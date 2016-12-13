@@ -53,12 +53,12 @@ router.get('/', function(req, res) {
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
     let user = req.params.user;
 
-    //TODO: ben er mee bezig, niet aankomen
+    // TODO: ben met deze methode bezig, niet aankomen
 
 
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -88,7 +88,7 @@ router.post('/adduser', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -118,7 +118,7 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -148,7 +148,7 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -178,7 +178,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -203,8 +203,33 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/householdbyemail/:email', function (req, res) {
-    let email;
-    res.json({params: req.params})
+    let email = req.params.email;
+
+    // code
+
+
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
+    /*
+
+     res.locals.error = true;
+     res.json({error: "Custom error message."});
+     res.end();
+
+
+     */
+
+    // Send own error before this block of code:
+    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
+    if (res.locals.error !== undefined) {
+        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
+        if (res.locals.error === false) {
+            res.json({params: {email: email}});
+            res.end();
+        }
+    } else {
+        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
+        res.end();
+    }
 });
 
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
@@ -213,7 +238,7 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -243,7 +268,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -274,7 +299,29 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 
     // code
 
-    res.json({params: {household: household, term: term}})
+
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
+    /*
+
+     res.locals.error = true;
+     res.json({error: "Custom error message."});
+     res.end();
+
+
+     */
+
+    // Send own error before this block of code:
+    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
+    if (res.locals.error !== undefined) {
+        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
+        if (res.locals.error === false) {
+            res.json({params: {household: household, term: term}});
+            res.end();
+        }
+    } else {
+        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
+        res.end();
+    }
 });
 
 router.post('/addtask', firebaseAuthenticator, function (req, res) {
@@ -283,7 +330,7 @@ router.post('/addtask', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -313,7 +360,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -343,7 +390,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -373,7 +420,7 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -403,7 +450,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;
@@ -428,8 +475,35 @@ router.post('/addaward', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res) {
-    if (req.params.assignusers === undefined) req.params.assignusers = false;
-    res.json({params: req.params})
+    let assignUsers = 7;
+    if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
+    let household = parseInt(req.params.household);
+
+    // code
+
+
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
+    /*
+
+     res.locals.error = true;
+     res.json({error: "Custom error message."});
+     res.end();
+
+
+     */
+
+    // Send own error before this block of code:
+    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
+    if (res.locals.error !== undefined) {
+        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
+        if (res.locals.error === false) {
+            res.json({params: {household: household, assignUsers: assignUsers}});
+            res.end();
+        }
+    } else {
+        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
+        res.end();
+    }
 });
 
 router.post('/addtasks', firebaseAuthenticator, function (req, res) {
@@ -438,7 +512,7 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res) {
     // code
 
 
-    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
      res.locals.error = true;

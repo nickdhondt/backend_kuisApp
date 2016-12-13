@@ -21,7 +21,6 @@ function firebaseAuthenticator(req, res, next) {
                 res.end();
                 next();
         });
-
     }
 }
 
