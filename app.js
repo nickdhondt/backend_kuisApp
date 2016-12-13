@@ -10,6 +10,16 @@ let api = require('./routes/api');
 
 let app = express();
 
+let admin = require("firebase-admin");
+
+let serviceAccount = require("./helpers/serviceAccount.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://kuisapp.firebaseio.com"
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

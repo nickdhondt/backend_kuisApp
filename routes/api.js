@@ -19,6 +19,10 @@ Bedenkingen:
  - werk met models (gelijkaardig aan die uit Android en frontend
  - wees niet bang om zaken in afzonderlijke modeules te plaatsen
 
+Vragen:
+ - heb je de Firebase uid nodig?
+     - die is te vinden in res.locals.uid (indien je de firebaseAuthenticator middleware niet vergeten bent)
+
 
 
 
@@ -44,12 +48,31 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
 
     //TODO: ben er mee bezig, niet aankomen
 
-    res.json({firebaseIDToken: firebaseIDToken, params: {user: user}})
+    if (res.locals.error !== undefined) {
+        if (res.locals.error === false) {
+            res.json({params: {user: user}});
+            res.end();
+        }
+    } else {
+        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
+        res.end();
+    }
 });
 
-router.post('/adduser', function (req, res) {
+router.post('/adduser', firebaseAuthenticator, function (req, res) {
     let body = req.body;
-    res.json({body: body});
+
+    // code
+
+    if (res.locals.error !== undefined) {
+        if (res.locals.error === false) {
+            res.json({body: body});
+            res.end();
+        }
+    } else {
+        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
+        res.end();
+    }
 });
 
 router.post('/updateuser', function (req, res) {
@@ -68,7 +91,7 @@ router.post('/addusertohousehold', function (req, res) {
 });
 
 router.get('/householdbyemail/:email', function (req, res) {
-    let email
+    let email;
     res.json({params: req.params})
 });
 
