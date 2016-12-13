@@ -1,10 +1,14 @@
 let express = require('express');
 let router = express.Router();
+
 let bodyParser = require('body-parser');
+
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
+
+let User = require("../models/User");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
