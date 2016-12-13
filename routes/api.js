@@ -453,13 +453,14 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
             let task = req.params.task;
-
-
-            // TODO: code hier
-
-
-            res.json({params: {task: task}});
-            res.end();
+            conn.query("delete * from tasks" +
+                        "where taskId = ? ", [task.id],
+            function (err,rows,fields) {
+               if(err) throw err;
+                let result = rows;
+                res.json(result);
+                res.end();
+            });
         }
     } else {
         res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
