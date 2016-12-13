@@ -203,33 +203,38 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/householdbyemail/:email', function (req, res) {
-    let email = req.params.email;
-
-    // code
-
-
-    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
-    /*
-
-     res.locals.error = true;
-     res.json({error: "Custom error message."});
-     res.end();
-
-
-     */
 
     // Send own error before this block of code:
     // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
     if (res.locals.error !== undefined) {
+
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
-            res.json({params: {email: email}});
-            res.end();
+
+            //parameter
+            let email = req.params.email;
+
+            //query
+            //opletten voor sqlinjection! gebruik '?' !
+            conn.query("select `households`.* from `households` " +
+                "inner join `users` on `users`.`household_id` = `households`.`id`" +
+                "where `email` = ? limit 1", [email],
+                function (err, rows, fields) {
+
+                    if(err)throw err;
+
+                    let result = rows[0];
+
+                    res.json(result);
+                    res.end();
+            });
+
         }
     } else {
         res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
         res.end();
     }
+
 });
 
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
