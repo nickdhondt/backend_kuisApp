@@ -17,7 +17,7 @@ function firebaseAuthenticator(req, res, next) {
                 next();
             }).catch(function(error) {
                 res.locals.error = true;
-                res.json({error: "Error while verifying ID Token"});
+                res.json({error: "Error while verifying ID Token (token could be wrong)", firebaseError: error});
                 res.end();
                 next();
         });
