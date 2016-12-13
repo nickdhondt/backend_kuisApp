@@ -32,12 +32,19 @@ router.get('/', function(req, res) {
     let routes = [];
 
     for(let route of router.stack) {
-        let methods = Object.getOwnPropertyNames(route.route.methods);
+        let methods;
+        let path;
 
-        routes.push({
-            path: "api" + route.route.path,
-            methods: methods
-        });
+
+        if (route.route !== undefined) {
+            path = route.route.path;
+            methods = Object.getOwnPropertyNames(route.route.methods);
+
+            routes.push({
+                path: "api" + path,
+                methods: methods
+            });
+        }
     }
 
     res.render('routes', { title: 'The Cleansing API routes', routes: routes })
