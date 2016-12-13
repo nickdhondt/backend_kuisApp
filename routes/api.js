@@ -55,13 +55,6 @@ router.get('/', function(req, res) {
 });
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
-    let user = req.params.user;
-
-    // TODO: ben met deze methode bezig, niet aankomen
-
-
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -77,6 +70,10 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let user = req.params.user;
+
+            // TODO: ben met deze methode bezig, niet aankomen
+
             res.json({params: {user: user}});
             res.end();
         }
@@ -87,11 +84,6 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/adduser', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -107,6 +99,12 @@ router.post('/adduser', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -117,11 +115,6 @@ router.post('/adduser', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/updateuser', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -137,6 +130,12 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -147,11 +146,6 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/updatehousehold', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -167,6 +161,12 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -177,11 +177,6 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -197,6 +192,12 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -241,15 +242,9 @@ router.get('/householdbyemail/:email', function (req, res) {
         res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
         res.end();
     }
-
 });
 
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -265,6 +260,12 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -275,11 +276,6 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -295,6 +291,12 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -305,13 +307,6 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
-    let term = 7;
-    if (req.params.term !== undefined) term = parseInt(req.params.term);
-    let household = parseInt(req.params.household);
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -327,6 +322,14 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let term = 7;
+            if (req.params.term !== undefined) term = parseInt(req.params.term);
+            let household = parseInt(req.params.household);
+
+
+            // TODO: code hier
+
+
             res.json({params: {household: household, term: term}});
             res.end();
         }
@@ -337,11 +340,6 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 });
 
 router.post('/addtask', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -357,6 +355,12 @@ router.post('/addtask', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -367,11 +371,6 @@ router.post('/addtask', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/updatetask', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -387,6 +386,12 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -397,11 +402,6 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/finishtask', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -417,6 +417,12 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -427,11 +433,6 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
-    let task = req.params.task;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -447,6 +448,12 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let task = req.params.task;
+
+
+            // TODO: code hier
+
+
             res.json({params: {task: task}});
             res.end();
         }
@@ -457,11 +464,6 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/addaward', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -477,6 +479,12 @@ router.post('/addaward', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
@@ -487,13 +495,6 @@ router.post('/addaward', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res) {
-    let assignUsers = 7;
-    if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
-    let household = parseInt(req.params.household);
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -509,6 +510,14 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let assignUsers = 7;
+            if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
+            let household = parseInt(req.params.household);
+
+
+            // TODO: code hier
+
+
             res.json({params: {household: household, assignUsers: assignUsers}});
             res.end();
         }
@@ -519,11 +528,6 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 });
 
 router.post('/addtasks', firebaseAuthenticator, function (req, res) {
-    let body = req.body;
-
-    // code
-
-
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -539,6 +543,12 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res) {
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+            let body = req.body;
+
+
+            // TODO: code hier
+
+
             res.json({body: body});
             res.end();
         }
