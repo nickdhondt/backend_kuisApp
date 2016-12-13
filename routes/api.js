@@ -307,7 +307,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 });
 
 //af: bart
-//controle door: (is maar een ideetje hoor)
+//controle door:
 router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
 
     // Send own error before this block of code:
