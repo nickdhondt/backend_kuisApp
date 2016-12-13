@@ -209,7 +209,6 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: (is maar een ideetje hoor)
-
 router.get('/householdbyemail/:email', function (req, res) {
 
 
@@ -307,32 +306,36 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
-    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
-    /*
-
-     res.locals.error = true;
-     res.json({error: "Custom error message."});
-     res.end();
-
-
-     */
+//af: bart
+//controle door: (is maar een ideetje hoor)
+router.get('/taskstodobyhousehold/:household/:term?', function (req, res) {
 
     // Send own error before this block of code:
     // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
+
     if (res.locals.error !== undefined) {
         // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
         if (res.locals.error === false) {
+
             let term = 7;
             if (req.params.term !== undefined) term = parseInt(req.params.term);
             let household = parseInt(req.params.household);
 
+            let termDate = new Date();
+            termDate.setDate(termDate.getDate() + term);
 
-            // TODO: code hier
+            conn.query("select * from `tasks` " +
+                "where duedate < ? " +
+                "and household_id = ?" , [termDate, household],
 
+                function (err, rows, fields) {
+                    if(err)throw err;
+                    let result = rows;
 
-            res.json({params: {household: household, term: term}});
-            res.end();
+                    res.json(result);
+                    res.end();
+                });
+
         }
     } else {
         res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
