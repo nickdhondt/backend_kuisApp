@@ -209,7 +209,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: (is maar een ideetje hoor)
-router.get('/householdbyemail/:email', function (req, res) {
+router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res) {
 
 
     // Send own error before this block of code:
@@ -308,7 +308,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: (is maar een ideetje hoor)
-router.get('/taskstodobyhousehold/:household/:term?', function (req, res) {
+router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
 
     // Send own error before this block of code:
     // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
