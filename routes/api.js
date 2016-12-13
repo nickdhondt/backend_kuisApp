@@ -9,10 +9,11 @@ router.get('/', function(req, res, next) {
 
     for(let route of router.stack) {
         //TODO: vind methods. Is jsol in route.methods
-        methods = "undefined";
+        let methods = Object.getOwnPropertyNames(route.route.methods);
+
         routes.push({
             path: "api" + route.route.path,
-            method: methods
+            methods: methods
         });
     }
 
