@@ -1,14 +1,16 @@
 let express = require('express');
 let router = express.Router();
+let bodyParser = require('body-parser');
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: false }));
+
+router.get('/', function(req, res) {
     let routes = [];
 
     for(let route of router.stack) {
-        //TODO: vind methods. Is jsol in route.methods
         let methods = Object.getOwnPropertyNames(route.route.methods);
 
         routes.push({
@@ -20,70 +22,81 @@ router.get('/', function(req, res, next) {
     res.render('routes', { title: 'The Cleansing API routes', routes: routes })
 });
 
-router.get('/userbyuid/:user', function (req, res, next) {
-    res.json({param: req.params.user})
+router.get('/userbyuid/:user', function (req, res) {
+    res.json({params: req.params})
 });
 
-router.post('/adduser', function (req, res, next) {
-    res.json({});
+router.post('/adduser', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.post('/updateuser', function (req, res, next) {
-    res.json({});
+router.post('/updateuser', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.post('/updatehousehold', function (req, res, next) {
-    res.json({});
+router.post('/updatehousehold', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.post('/addusertohousehold', function (req, res, next) {
-    res.json({});
+router.post('/addusertohousehold', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.get('/householdbyemail/:email', function (req, res, next) {
-    res.json({param: req.params.email})
+router.get('/householdbyemail/:email', function (req, res) {
+    res.json({params: req.params})
 });
 
-router.post('/leavehousehold', function (req, res, next) {
-    res.json({});
+router.post('/leavehousehold', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.post('/addhousehold', function (req, res, next) {
-    res.json({});
+router.post('/addhousehold', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.get('/taskstodobyhousehold/:household/:term?', function (req, res, next) {
+router.get('/taskstodobyhousehold/:household/:term?', function (req, res) {
     if (req.params.term === undefined) req.params.term = 7;
-    res.json({params: req.params.household + ', ' + req.params.term})
+    res.json({params: req.params})
 });
 
-router.post('/addtask', function (req, res, next) {
-    res.json({});
+router.post('/addtask', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.post('/updatetask', function (req, res, next) {
-    res.json({});
+router.post('/updatetask', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.post('/finishtask', function (req, res, next) {
-    res.json({});
+router.post('/finishtask', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.get('/deletetask/:task', function (req, res, next) {
-    res.json({param: req.params.task})
+router.get('/deletetask/:task', function (req, res) {
+    res.json({params: req.params})
 });
 
-router.post('/addaward', function (req, res, next) {
-    res.json({});
+router.post('/addaward', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
-router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
+router.get('/importtasks/:household/:assignusers?', function (req, res) {
     if (req.params.assignusers === undefined) req.params.assignusers = false;
-    res.json({params: req.params.household + ', ' + req.params.assignusers})
+    res.json({params: req.params})
 });
 
-router.post('/addtasks', function (req, res, next) {
-    res.json({});
+router.post('/addtasks', function (req, res) {
+    let body = req.body;
+    res.json({postBody: body});
 });
 
 module.exports = router;
