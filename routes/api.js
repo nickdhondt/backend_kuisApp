@@ -1,10 +1,14 @@
 let express = require('express');
 let router = express.Router();
+
 let bodyParser = require('body-parser');
+
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
+
+let User = require("../models/User");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -55,7 +59,9 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
 
     // TODO: ben met deze methode bezig, niet aankomen
 
+    userObj = new User();
 
+    console.log(userObj);
 
 
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
