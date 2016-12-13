@@ -212,6 +212,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 
 router.get('/householdbyemail/:email', function (req, res) {
 
+
     // Send own error before this block of code:
     // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
     if (res.locals.error !== undefined) {
