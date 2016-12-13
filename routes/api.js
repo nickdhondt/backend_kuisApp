@@ -368,7 +368,33 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
 });
 
 router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
-    res.json({params: req.params})
+    let task = req.params.task;
+
+    // code
+
+
+    // IMPORTANT: if you want to send your own error, you can do so by dong the following before the block of code below:
+    /*
+
+     res.locals.error = true;
+     res.json({error: "Custom error message."});
+     res.end();
+
+
+     */
+
+    // Send own error before this block of code:
+    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
+    if (res.locals.error !== undefined) {
+        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
+        if (res.locals.error === false) {
+            res.json({params: {task: task}});
+            res.end();
+        }
+    } else {
+        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
+        res.end();
+    }
 });
 
 router.post('/addaward', firebaseAuthenticator, function (req, res) {
