@@ -59,9 +59,7 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
 
     // TODO: ben met deze methode bezig, niet aankomen
 
-    userObj = new User();
 
-    console.log(userObj);
 
 
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
