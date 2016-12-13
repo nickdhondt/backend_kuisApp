@@ -17,7 +17,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 Bedenkingen:
 
  - werk met models (gelijkaardig aan die uit Android en frontend
- - wees niet bang om zaken in afzonderlijke modeules te plaatsen
+ - wees niet bang om zaken in afzonderlijke modules te plaatsen
 
 Vragen:
  - heb je de Firebase uid nodig?
