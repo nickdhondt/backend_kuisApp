@@ -202,6 +202,9 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
     }
 });
 
+//af: bart
+//controle door:
+//(is maar ideetje hé)
 router.get('/householdbyemail/:email', function (req, res) {
 
     // Send own error before this block of code:
