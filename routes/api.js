@@ -4,6 +4,8 @@ let bodyParser = require('body-parser');
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
+let firebaseAuthenticator = require("../middleware/firebase-authenticator");
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
@@ -37,9 +39,8 @@ router.get('/', function(req, res) {
     res.render('routes', { title: 'The Cleansing API routes', routes: routes })
 });
 
-router.get('/userbyuid/:user', function (req, res) {
+router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
     let user = req.params.user;
-    let firebaseIDToken = req.get("Firebase-ID-Token");
 
     //TODO: ben er mee bezig, niet aankomen
 
