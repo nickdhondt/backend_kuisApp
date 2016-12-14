@@ -9,7 +9,7 @@ function firebaseAuthenticator(req, res, next) {
         res.locals.error = true;
         res.json({error: "Firebase ID Token not sent"});
         res.end();
-        next();
+        //next();
     } else {
         admin.auth().verifyIdToken(firebaseIDToken)
             .then(function(decodedToken) {
@@ -19,7 +19,7 @@ function firebaseAuthenticator(req, res, next) {
                 res.locals.error = true;
                 res.json({error: "Error while verifying ID Token (token could be wrong)", firebaseError: error});
                 res.end();
-                next();
+                //next();
         });
     }
 }

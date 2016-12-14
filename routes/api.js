@@ -211,14 +211,6 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 //controle door: (is maar een ideetje hoor)
 router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res) {
 
-
-    // Send own error before this block of code:
-    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
-    if (res.locals.error !== undefined) {
-
-        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
-        if (res.locals.error === false) {
-
             //parameter
             let email = req.params.email;
 
@@ -237,11 +229,6 @@ router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res
                     res.end();
             });
 
-        }
-    } else {
-        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
-        res.end();
-    }
 });
 
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
@@ -308,14 +295,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door:
-router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
-
-    // Send own error before this block of code:
-    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
-
-    if (res.locals.error !== undefined) {
-        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
-        if (res.locals.error === false) {
+router.get('/taskstodobyhousehold/:household/:term?',  function (req, res) {
 
             let term = 7;
             if (req.params.term !== undefined) term = parseInt(req.params.term);
@@ -324,23 +304,25 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
             let termDate = new Date();
             termDate.setDate(termDate.getDate() + term);
 
+            let result;
+
             conn.query("select * from `tasks` " +
                 "where duedate < ? " +
                 "and household_id = ?" , [termDate, household],
 
                 function (err, rows, fields) {
-                    if(err)throw err;
-                    let result = rows;
+                    if(err){
+                        //console.log(err); //throw err;
+                        result = {'error': err.message};
+                    }
+                    else{
+                        result = rows;
 
+                    }
                     res.json(result);
                     res.end();
                 });
 
-        }
-    } else {
-        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
-        res.end();
-    }
 });
 
 router.post('/addtask', firebaseAuthenticator, function (req, res) {
