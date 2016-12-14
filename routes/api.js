@@ -295,7 +295,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door:
-router.get('/taskstodobyhousehold/:household/:term?',  function (req, res) {
+router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
 
             let term = 7;
             if (req.params.term !== undefined) term = parseInt(req.params.term);
