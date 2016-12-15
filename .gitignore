@@ -1,10 +1,2 @@
-
-.gitignore
-.idea/backend_kuisApp.iml
-.idea/inspectionProfiles/
-.idea/jsLibraryMappings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/watcherTasks.xml
-.idea/workspace.xml
-node_modules/
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
