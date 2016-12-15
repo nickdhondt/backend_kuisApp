@@ -55,32 +55,12 @@ router.get('/', function(req, res) {
 });
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
-    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
-    /*
+    let user = req.params.user;
 
-     res.locals.error = true;
-     res.json({error: "Custom error message."});
-     res.end();
+    // TODO: ben met deze methode bezig, niet aankomen
 
-
-     */
-
-    // Send own error before this block of code:
-    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
-    if (res.locals.error !== undefined) {
-        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
-        if (res.locals.error === false) {
-            let user = req.params.user;
-
-            // TODO: ben met deze methode bezig, niet aankomen
-
-            res.json({params: {user: user}});
-            res.end();
-        }
-    } else {
-        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
-        res.end();
-    }
+    res.json({params: {user: user}});
+    res.end();
 });
 
 router.post('/adduser', firebaseAuthenticator, function (req, res) {
@@ -209,25 +189,25 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: (is maar een ideetje hoor)
-router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res) {
+router.get('/householdbyemail/:email', function (req, res) {
 
-            //parameter
-            let email = req.params.email;
+    //parameter
+    let email = req.params.email;
 
-            //query
-            //opletten voor sqlinjection! gebruik '?' !
-            conn.query("select `households`.* from `households` " +
-                "inner join `users` on `users`.`household_id` = `households`.`id`" +
-                "where `email` = ? limit 1", [email],
-                function (err, rows, fields) {
+    //query
+    //opletten voor sqlinjection! gebruik '?' !
+    conn.query("select `households`.* from `households` " +
+        "inner join `users` on `users`.`household_id` = `households`.`id`" +
+        "where `email` = ? limit 1", [email],
+        function (err, rows, fields) {
 
-                    if(err)throw err;
+            if(err)throw err;
 
-                    let result = rows[0];
+            let result = rows[0];
 
-                    res.json(result);
-                    res.end();
-            });
+            res.json(result);
+            res.end();
+    });
 
 });
 
@@ -297,31 +277,31 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 //controle door:
 router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
 
-            let term = 7;
-            if (req.params.term !== undefined) term = parseInt(req.params.term);
-            let household = parseInt(req.params.household);
+    let term = 7;
+    if (req.params.term !== undefined) term = parseInt(req.params.term);
+    let household = parseInt(req.params.household);
 
-            let termDate = new Date();
-            termDate.setDate(termDate.getDate() + term);
+    let termDate = new Date();
+    termDate.setDate(termDate.getDate() + term);
 
-            let result;
+    let result;
 
-            conn.query("select * from `tasks` " +
-                "where duedate < ? " +
-                "and household_id = ?" , [termDate, household],
+    conn.query("select * from `tasks` " +
+        "where duedate < ? " +
+        "and household_id = ?" , [termDate, household],
 
-                function (err, rows, fields) {
-                    if(err){
-                        //console.log(err); //throw err;
-                        result = {'error': err.message};
-                    }
-                    else{
-                        result = rows;
+        function (err, rows, fields) {
+            if(err){
+                //console.log(err); //throw err;
+                result = {'error': err.message};
+            }
+            else{
+                result = rows;
 
-                    }
-                    res.json(result);
-                    res.end();
-                });
+            }
+            res.json(result);
+            res.end();
+        });
 
 });
 
