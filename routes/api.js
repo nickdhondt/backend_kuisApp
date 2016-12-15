@@ -416,7 +416,7 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
         if (res.locals.error === false) {
             let task = req.params.task;
             conn.query("delete * from tasks" +
-                        "where taskId = ? ", [task.id],
+                        "where id = ? ", [task.id],
             function (err,result) {
                if(err) throw err;
                 res.json(result.rowsAffected);
@@ -448,7 +448,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res) {
             let body = req.body;
 
 
-            // TODO: code hier
+            // TODO: steven hier bezig met code
 
 
             res.json({body: body});
@@ -512,7 +512,7 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res) {
             let body = req.body;
 
 
-            // TODO: code hier
+            // TODO: steven hier bezig met code
 
 
             res.json({body: body});
