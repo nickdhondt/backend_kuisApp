@@ -189,7 +189,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: (is maar een ideetje hoor)
-router.get('/householdbyemail/:email', function (req, res) {
+router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res) {
 
     //parameter
     let email = req.params.email;
