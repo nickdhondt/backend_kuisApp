@@ -282,7 +282,6 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 //af: bart
 //controle door:
 router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res, next) {
-
     let term = 7;
     if (req.params.term !== undefined) term = parseInt(req.params.term);
     let household = parseInt(req.params.household);
@@ -297,14 +296,11 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
         "and household_id = ?" , [termDate, household],
 
         function (err, rows, fields) {
-            if(err){
-                //console.log(err); //throw err;
-                result = {'error': err.message};
-            }
-            else{
-                result = rows;
+        //TODO: onze error handling uitleggen opde examens
+            if(err) return next(err);
 
-            }
+            result = rows;
+
             res.json(result);
             res.end();
         });
