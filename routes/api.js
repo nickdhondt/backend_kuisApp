@@ -401,65 +401,23 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 });
 
 router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
-    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
-    /*
+    let task = req.params.task;
+    conn.query("delete * from tasks" +
+                 "where id = ? ", [task.id],
+    function (err,result) {
+    if(err) throw err;
+       res.json(result.rowsAffected);
+       res.end();
+    });
 
-     res.locals.error = true;
-     res.json({error: "Custom error message."});
-     res.end();
-
-
-     */
-
-    // Send own error before this block of code:
-    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
-    if (res.locals.error !== undefined) {
-        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
-        if (res.locals.error === false) {
-            let task = req.params.task;
-            conn.query("delete * from tasks" +
-                        "where id = ? ", [task.id],
-            function (err,result) {
-               if(err) throw err;
-                res.json(result.rowsAffected);
-                res.end();
-            });
-        }
-    } else {
-        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
-        res.end();
-    }
 });
 
 router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
-    // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
-    /*
+    let body = req.body;
+    // TODO: steven hier bezig met code
+    res.json({body: body});
+    res.end();
 
-     res.locals.error = true;
-     res.json({error: "Custom error message."});
-     res.end();
-
-
-     */
-
-    // Send own error before this block of code:
-    // Check if the error property exists. If not, no checks have been executed and firebaseAuthenticator probably wasn't called.
-    if (res.locals.error !== undefined) {
-        // Check if the firebaseAuthenticator returned errors. If not, proceed and return json.
-        if (res.locals.error === false) {
-            let body = req.body;
-
-
-            // TODO: steven hier bezig met code
-
-
-            res.json({body: body});
-            res.end();
-        }
-    } else {
-        res.json({error: "Could not verify for errors (did you forget the firebaseAuthenticator?)"});
-        res.end();
-    }
 });
 
 router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
