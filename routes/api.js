@@ -32,7 +32,7 @@ Vragen:
 
  */
 
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
     let routes = [];
 
     for(let route of router.stack) {
@@ -54,16 +54,23 @@ router.get('/', function(req, res) {
     res.render('routes', { title: 'The Cleansing API routes', routes: routes })
 });
 
-router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res) {
+router.get('/userbyuid/:user', function (req, res, next) {
     let user = req.params.user;
 
     // TODO: ben met deze methode bezig, niet aankomen
 
-    res.json({params: {user: user}});
-    res.end();
+    conn.query("select `id`, `name`, `lname`, `email`, `household_id`, `score`, `phoneNumber`, `uid`, `imgsrc` from `users` where `uid` = ? limit 1", [user],
+        function (err, rows, fields) {
+            if(err) return next(err);
+
+            let result = rows[0];
+
+            res.json(result);
+            res.end();
+        });
 });
 
-router.post('/adduser', firebaseAuthenticator, function (req, res) {
+router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -94,7 +101,7 @@ router.post('/adduser', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.post('/updateuser', firebaseAuthenticator, function (req, res) {
+router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -125,7 +132,7 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.post('/updatehousehold', firebaseAuthenticator, function (req, res) {
+router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -156,7 +163,7 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
+router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -189,7 +196,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: (is maar een ideetje hoor)
-router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res) {
+router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res, next) {
 
     //parameter
     let email = req.params.email;
@@ -200,8 +207,7 @@ router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res
         "inner join `users` on `users`.`household_id` = `households`.`id`" +
         "where `email` = ? limit 1", [email],
         function (err, rows, fields) {
-
-            if(err)throw err;
+            if(err) return next(err);
 
             let result = rows[0];
 
@@ -275,7 +281,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door:
-router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res) {
+router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res, next) {
 
     let term = 7;
     if (req.params.term !== undefined) term = parseInt(req.params.term);
@@ -305,7 +311,7 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 
 });
 
-router.post('/addtask', firebaseAuthenticator, function (req, res) {
+router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -336,7 +342,7 @@ router.post('/addtask', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.post('/updatetask', firebaseAuthenticator, function (req, res) {
+router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -367,7 +373,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.post('/finishtask', firebaseAuthenticator, function (req, res) {
+router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -398,7 +404,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
+router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -429,7 +435,7 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.post('/addaward', firebaseAuthenticator, function (req, res) {
+router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -460,7 +466,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res) {
     }
 });
 
-router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res) {
+router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
@@ -493,7 +499,7 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
     }
 });
 
-router.post('/addtasks', firebaseAuthenticator, function (req, res) {
+router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
     // IMPORTANT: if you want to send your own error, you can do so by doing the following before the block of code below:
     /*
 
