@@ -405,9 +405,9 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
     conn.query("delete * from tasks" +
                  "where id = ? ", [task.id],
     function (err,result) {
-    if(err) throw err;
-       res.json(result.rowsAffected);
-       res.end();
+        if(err) return next(err);
+        res.json(result.rowsAffected);
+        res.end();
     });
 
 });
