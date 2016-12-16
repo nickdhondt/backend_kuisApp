@@ -54,7 +54,7 @@ router.get('/', function (req, res) {
     res.render('routes', { title: 'The Cleansing API routes', routes: routes })
 });
 
-router.get('/userbyuid/:user', function (req, res, next) {
+router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
     let user = req.params.user;
 
     // TODO: ben met deze methode bezig, niet aankomen

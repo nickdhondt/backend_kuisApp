@@ -6,20 +6,15 @@ function firebaseAuthenticator(req, res, next) {
     res.locals.error = false;
 
     if(firebaseIDToken === undefined) {
-        res.locals.error = true;
-        res.json({error: "Firebase ID Token not sent"});
-        res.end();
-        //next();
+        let err = new Error("Firebase ID Token not sent");
+        return next(err);
     } else {
         admin.auth().verifyIdToken(firebaseIDToken)
             .then(function(decodedToken) {
                 res.locals.uid = decodedToken.uid;
                 next();
             }).catch(function(error) {
-                res.locals.error = true;
-                res.json({error: "Error while verifying ID Token (token could be wrong)", firebaseError: error});
-                res.end();
-                //next();
+                return next(error);
         });
     }
 }
