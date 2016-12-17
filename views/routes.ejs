@@ -1,0 +1,17 @@
+<% include partials/ng-header.ejs %>
+
+<h1><%= title %></h1>
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Route</th>
+    </tr>
+    <% for(var i=0; i<routes.length; i++) { %>
+    <tr>
+        <td><%= routes[i].methods %></td>
+        <td><%= routes[i].path %></td>
+    </tr>
+    <% } %>
+</table>
+
+<% include partials/footer.ejs %>
