@@ -7,6 +7,8 @@ let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
+let apiNotFound = require("../middleware/api-not-found");
+let apiErrorHandling = require("../middleware/api-error-handling");
 
 let User = require("../models/User");
 
@@ -483,5 +485,8 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
         res.end();
     }
 });
+
+router.use(apiNotFound);
+router.use(apiErrorHandling);
 
 module.exports = router;
