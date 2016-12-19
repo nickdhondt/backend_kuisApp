@@ -180,7 +180,7 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 });
 
 router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
-
+            //query: insert ... into tasks
 
 
             // TODO: code hier
