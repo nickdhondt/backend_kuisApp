@@ -189,10 +189,12 @@ router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
 });
 
 router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
-
-
-
-            // TODO: code hier
+    let body = req.body;
+    conn.query("update", body, function (err,res) {
+        if(err) return next(err);
+        res.json({body: body});
+        res.end();
+    })
 
 
 });
@@ -247,13 +249,11 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
 
             let body = req.body;
-
-
-            // TODO: steven hier bezig met code
-
-
-            res.json({body: body});
-            res.end();
+            conn.query("insert into tasks values ? ", body, function (err,res) {
+                if(err) return next(err);
+                res.json({body: body});
+                res.end();
+            });
 
 });
 
