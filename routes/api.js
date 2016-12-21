@@ -180,12 +180,12 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 });
 
 router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
-            //query: insert ... into tasks
-
-
-            // TODO: code hier
-
-
+    let body = req.body;
+    conn.query("insert into tasks values ?", body, function (err,res) {
+        if(err) return next(err);
+        res.json({body:body});
+        res.end();
+    });
 });
 
 router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
@@ -221,9 +221,11 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
 
 router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     let body = req.body;
-    // TODO: steven hier bezig met code
-    res.json({body: body});
-    res.end();
+    conn.query("insert into awards values ?", body, function (err,result) {
+        if(err) return next(err);
+        res.json({body: body});
+        res.end();
+    })
 
 });
 
