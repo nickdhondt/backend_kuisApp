@@ -189,7 +189,7 @@ router.post('/addtask', function (req, res, next) {
         body.name,
         body.dueDate,
         body.assigned_to
-    ];
+    ];//comment
     conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err,res) {
         if(err) return next(err);
         res.json({body:body});
