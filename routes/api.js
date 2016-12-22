@@ -219,7 +219,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/deletetask/:task', function (req, res, next) {
+router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
 
     let task = req.params.task;
     conn.query("delete from `tasks` " +
