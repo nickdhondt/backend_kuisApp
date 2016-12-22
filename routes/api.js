@@ -179,20 +179,18 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 
 });
 
-router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtask', function (req, res, next) {
     let body = req.body;
-    let post = {
-        id: body.id,
-        name: body.name,
-        duedate: body.duedate,
-        description: body.description,
-        period: body.period,
-        assigned_to: body.assigned_to,
-        username: body.username,
-        householdId: body.householdId,
-        points: body.points
-    };
-    conn.query("insert into tasks values ?", post, function (err,res) {
+    let post = [
+        body.description,
+        body.household_id,
+        body.period,
+        body.points,
+        body.name,
+        body.dueDate,
+        body.assigned_to
+    ];
+    conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err,res) {
         if(err) return next(err);
         res.json({body:body});
         res.end();
@@ -271,7 +269,7 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
                 householdId: body.householdId,
                 points: body.points
             };
-            conn.query("insert into tasks values ? ", post, function (err,res) {
+            conn.query("insert into `tasks` values ? ", post, function (err,res) {
                 if(err) return next(err);
                 res.json({body: body});
                 res.end();
