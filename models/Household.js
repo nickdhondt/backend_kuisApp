@@ -2,15 +2,13 @@ let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
 class Household {
-    static getHouseholdByID(id) {
-        return new Promise(function(resolve, reject) {
-            conn.query("select * from `households` where `id` = ? limit 1", [id],
-                function (err, rows, fields) {
-                    if(err) reject(err);
+    static getHouseholdByID(id, user, cb) {
+        conn.query("select * from `households` where `id` = ? limit 1", [id],
+            function (err, rows, fields) {
+                if(err) return next(err);
 
-                    resolve(rows[0]);
-                });
-        });
+                cb(user, rows[0]);
+            })
     }
 }
 

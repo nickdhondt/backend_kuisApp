@@ -12,6 +12,8 @@ let apiErrorHandling = require("../middleware/api-error-handling");
 
 let User = require("../models/User");
 let Household = require("../models/Household");
+let Award = require("../models/Award");
+let Task = require("../models/Task");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -62,30 +64,35 @@ router.get('/userbyuid/:user', function (req, res, next) {
 
     // TODO: ben met deze methode bezig, niet aankomen
 
-
-    // User.getUserByUID(user)
-    //     .then(User.populateHouseholdWithAward(result))
-    //     .then(function (result) {
-    //     if (result !== undefined && result.household_id !== null){
-    //         return Household.getHouseholdByID(result.household_id).then(function (household) {
-    //             result.household = household;
-    //
-    //             return result;
-    //         }).catch(function (err) {
-    //             return next(err);
-    //         });
-    //     }
-    //
-    //     return result;
-    // }).then(function (result) {
-    //     if (result.household.award)
-    // }).then(function (result) {
-    //     if (result === undefined) result = {};
-    //     res.json(result);
-    //     res.end();
-    // }).catch(function (err) {
-    //     return next(err);
-    // });
+    User.getUserByUID(user, function (user) {
+        if (user !== undefined && user.household_id !== null) {
+            Household.getHouseholdByID(user.household_id, user, function (user, household) {
+                user.household = household;
+                Task.getTasksByHouseholdID(household.id, user, function (user, tasks) {
+                    user.household.tasks = tasks;
+                    User.getUsersByHouseholdID(user.household_id, user, function (user, users) {
+                        user.household.users = users;
+                        Task.getTasksTodoByHouseholdID(user.household_id, user, function (user, tasksTodo) {
+                            user.household.taskstodo = tasksTodo;
+                            if (user.household.award !== null) {
+                                Award.getAwardByHouseholdID(user.household_id, user, function (user, award) {
+                                    user.household.award = award;
+                                    res.json(user);
+                                    res.end();
+                                })
+                            } else {
+                                res.json(user);
+                                res.end();
+                            }
+                        })
+                    });
+                })
+            })
+        } else {
+            res.json(user);
+            res.end();
+        }
+    })
 });
 
 router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
@@ -293,7 +300,7 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.use(apiNotFound);
-router.use(apiErrorHandling);
+// router.use(apiNotFound);
+// router.use(apiErrorHandling);
 
 module.exports = router;
