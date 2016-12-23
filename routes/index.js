@@ -4,14 +4,12 @@ let router = express.Router();
 let dist = path.join(__dirname,'../public/');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'The Cleansing API' });
+router.get('*', function(req, res, next) {
+    res.sendFile(dist + 'index.html');
+    //res.render('index', { title: 'The Cleansing API' });
 });
 
 
-router.get('/login', function(req, res, next) {
-    res.render('login');
-});
 
 
 module.exports = router;
