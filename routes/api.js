@@ -195,20 +195,31 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 
 });
 
-router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
-            //query: insert ... into tasks
-
-
-            // TODO: code hier
-
-
+router.post('/addtask', function (req, res, next) {
+    let body = req.body;
+    let post = [
+        body.description,
+        body.household_id,
+        body.period,
+        body.points,
+        body.name,
+        body.dueDate,
+        body.assigned_to
+    ];//comment
+    conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err,res) {
+        if(err) return next(err);
+        res.json({body:body});
+        res.end();
+    });
 });
 
 router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
-
-
-
-            // TODO: code hier
+    let body = req.body;
+    conn.query("update", body, function (err,res) {
+        if(err) return next(err);
+        res.json({body: body});
+        res.end();
+    })
 
 
 });
@@ -225,8 +236,8 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
 
     let task = req.params.task;
-    conn.query("delete * from tasks" +
-                 "where id = ? limit 1", [task],
+    conn.query("delete from `tasks` " +
+                 "where id = ?", [task],
     function (err,result) {
         if(err) return next(err);
         res.json(result.rowsAffected);
@@ -237,9 +248,11 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
 
 router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     let body = req.body;
-    // TODO: steven hier bezig met code
-    res.json({body: body});
-    res.end();
+    conn.query("insert into awards values ?", body, function (err,result) {
+        if(err) return next(err);
+        res.json({body: body});
+        res.end();
+    })
 
 });
 
@@ -261,13 +274,22 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
 
             let body = req.body;
-
-
-            // TODO: steven hier bezig met code
-
-
-            res.json({body: body});
-            res.end();
+            let post = {
+                id: body.id,
+                name: body.name,
+                duedate: body.duedate,
+                description: body.description,
+                period: body.period,
+                assigned_to: body.assigned_to,
+                username: body.username,
+                householdId: body.householdId,
+                points: body.points
+            };
+            conn.query("insert into `tasks` values ? ", post, function (err,res) {
+                if(err) return next(err);
+                res.json({body: body});
+                res.end();
+            });
 
 });
 
