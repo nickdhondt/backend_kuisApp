@@ -11,6 +11,7 @@ let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
 
 let User = require("../models/User");
+let Household = require("../models/Household");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -41,7 +42,6 @@ router.get('/', function (req, res) {
         let methods;
         let path;
 
-
         if (route.route !== undefined) {
             path = route.route.path;
             methods = Object.getOwnPropertyNames(route.route.methods);
@@ -53,23 +53,39 @@ router.get('/', function (req, res) {
         }
     }
 
-    res.render('routes', { title: 'The Cleansing API routes', routes: routes })
+    res.render('routes', { title: 'The Cleansing API routes', routes: routes });
+    res.end();
 });
 
-router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
+router.get('/userbyuid/:user', function (req, res, next) {
     let user = req.params.user;
 
     // TODO: ben met deze methode bezig, niet aankomen
 
-    conn.query("select `id`, `name`, `lname`, `email`, `household_id`, `score`, `phoneNumber`, `uid`, `imgsrc` from `users` where `uid` = ? limit 1", [user],
-        function (err, rows, fields) {
-            if(err) return next(err);
 
-            let result = rows[0];
-
-            res.json(result);
-            res.end();
-        });
+    // User.getUserByUID(user)
+    //     .then(User.populateHouseholdWithAward(result))
+    //     .then(function (result) {
+    //     if (result !== undefined && result.household_id !== null){
+    //         return Household.getHouseholdByID(result.household_id).then(function (household) {
+    //             result.household = household;
+    //
+    //             return result;
+    //         }).catch(function (err) {
+    //             return next(err);
+    //         });
+    //     }
+    //
+    //     return result;
+    // }).then(function (result) {
+    //     if (result.household.award)
+    // }).then(function (result) {
+    //     if (result === undefined) result = {};
+    //     res.json(result);
+    //     res.end();
+    // }).catch(function (err) {
+    //     return next(err);
+    // });
 });
 
 router.post('/adduser', firebaseAuthenticator, function (req, res, next) {

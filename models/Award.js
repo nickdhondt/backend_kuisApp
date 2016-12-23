@@ -1,10 +1,10 @@
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
-class Household {
-    static getHouseholdByID(id) {
+class Award {
+    static getAwardByHouseholdID(id) {
         return new Promise(function(resolve, reject) {
-            conn.query("select * from `households` where `id` = ? limit 1", [id],
+            conn.query("select * from `awards` where `household_id` = ? limit 1", [id],
                 function (err, rows, fields) {
                     if(err) reject(err);
 
@@ -14,4 +14,4 @@ class Household {
     }
 }
 
-module.exports = Household;
+module.exports = Award;
