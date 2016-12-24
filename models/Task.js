@@ -21,14 +21,14 @@ class Task {
       })
   }
 
-    static deleteTask(id,cb){
-        conn.query("delete from `tasks` " +
-            "where id = ?", [id],
-            function (err,result) {
-                if(err) return next(err);
-                cb(result.rowsAffected);
-        });
-    }
+  static deleteTask(id, cb) {
+    conn.query("delete from `tasks` " +
+      "where id = ?", [id],
+      function (err, result) {
+        if (err) return next(err);
+        cb(result.rowsAffected);
+      });
+  }
 }
 
 module.exports = Task;

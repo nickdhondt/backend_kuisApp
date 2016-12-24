@@ -9,6 +9,16 @@ class Household {
         else cb(user, rows[0]);
       })
   }
+
+  static getHouseholdByEmail(email, cb) {
+    conn.query("select `households`.* from `households` " +
+      "inner join `users` on `users`.`household_id` = `households`.`id`" +
+      "where `email` = ? limit 1", [email],
+      function (err, rows, fields) {
+        if (err) process.emit("mysqlError", err);
+        else cb(rows[0]);
+      });
+  }
 }
 
 module.exports = Household;

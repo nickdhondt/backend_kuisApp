@@ -47,7 +47,7 @@ router.get('/userbyuid/:user', function (req, res, next) {
     return next(err);
   });
 
-  User.getUserByUID(user, function (user) {
+  User.getUserByUID(user, firebaseAuthenticator, function (user) {
     if (user !== undefined && user.household_id !== null) {
       Household.getHouseholdByID(user.household_id, user, (user, household) => {
         user.household = household;
@@ -141,28 +141,20 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 });
 
 //af: bart
-//controle door: (is maar een ideetje hoor)
-// TODO: fix
+//controle door: Nick
 
-router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res, next) {
-
+router.get('/householdbyemail/:email', function (req, res, next) {
   //parameter
   let email = req.params.email;
 
-  //query
-  //opletten voor sqlinjection! gebruik '?' !
-  conn.query("select `households`.* from `households` " +
-    "inner join `users` on `users`.`household_id` = `households`.`id`" +
-    "where `email` = ? limit 1", [email],
-    function (err, rows, fields) {
-      if (err) return next(err);
+  process.on("mysqlError", (err) => {
+    return next(err);
+  });
 
-      let result = rows[0];
-
-      res.json(result);
-      res.end();
-    });
-
+  Household.getHouseholdByEmail(email, function (household) {
+    res.json(household);
+    res.end();
+  });
 });
 
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
