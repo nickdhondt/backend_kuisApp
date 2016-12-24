@@ -25,8 +25,8 @@ class Task {
     conn.query("delete from `tasks` " +
       "where id = ?", [id],
       function (err, result) {
-        if (err) return next(err);
-        cb(result.rowsAffected);
+        if (err) process.emit("mysqlError", err);
+        cb (result.rowsAffected);
       });
   }
 }

@@ -243,11 +243,15 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 });
 
 router.get('/deletetask/:task', function (req, res, next) {
-    let task = req.params.task;
-    Task.deleteTask(task,function (task) {
-        res.json(task);
-        res.end();
-    });
+  process.on("mysqlError", (err) => {
+    return next(err);
+  });
+
+  let task = req.params.task;
+  Task.deleteTask(task, function (task) {
+    res.json(task);
+    res.end();
+  });
 
 });
 
