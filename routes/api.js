@@ -235,7 +235,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
   conn.query("update", body, function (err, res) {
     if (err) return next(err);
     res.json({body: body});
-    res.end();
+    res.end(); //comment
   })
 
 
