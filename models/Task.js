@@ -3,21 +3,21 @@ let conn = require('../helpers/connection')(mysql);
 let moment = require('moment');
 
 class Task {
-  static getTasksByHouseholdID(id, user, cb) {
+  static getTasksByHouseholdID(id, obj, cb) {
     conn.query("select * from `tasks` where `household_id` = ?", [id],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);
-        else cb(user, rows);
+        else cb(obj, rows);
       })
   }
 
-  static getTasksTodoByHouseholdID(id, user, cb) {
-    let dueDate = new moment().add(7, "days").format("YYYY-MM-DD");
+  static getTasksTodoByHouseholdID(id, term, obj, cb) {
+    let dueDate = new moment().add(term, "days").format("YYYY-MM-DD");
 
     conn.query("select * from `tasks` where `household_id` = ? and `dueDate` <= ?", [id, dueDate],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);
-        else cb(user, rows);
+        else cb(obj, rows);
       })
   }
 

@@ -72,7 +72,7 @@ router.get('/userbyuid/:user', function (req, res, next) {
           user.household.tasks = tasks;
           User.getUsersByHouseholdID(user.household_id, user, (user, users) => {
             user.household.users = users;
-            Task.getTasksTodoByHouseholdID(user.household_id, user, (user, tasksTodo) => {
+            Task.getTasksTodoByHouseholdID(user.household_id, 7, user, (user, tasksTodo) => {
               user.household.taskstodo = tasksTodo;
               Award.getAwardByHouseholdID(user.household_id, user, (user, award) => {
                 if (award !== undefined) {
@@ -143,7 +143,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 //af: bart
 //controle door: Nick
 
-router.get('/householdbyemail/:email', function (req, res, next) {
+router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res, next) {
   //parameter
   let email = req.params.email;
 
@@ -176,32 +176,20 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 });
 
 //af: bart
-//controle door:
-// TODO: fix
-router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res, next) {
+//controle door: Nick
+router.get('/taskstodobyhousehold/:household/:term?', function (req, res, next) {
   let term = 7;
   if (req.params.term !== undefined) term = parseInt(req.params.term);
   let household = parseInt(req.params.household);
 
-  let termDate = new Date();
-  termDate.setDate(termDate.getDate() + term);
+  process.on("mysqlError", (err) => {
+    return next(err);
+  });
 
-  let result;
-
-  conn.query("select * from `tasks` " +
-    "where duedate < ? " +
-    "and household_id = ?", [termDate, household],
-
-    function (err, rows, fields) {
-      //TODO: onze error handling uitleggen op de examens
-      if (err) return next(err);
-
-      result = rows;
-
-      res.json(result);
-      res.end();
-    });
-
+  Task.getTasksTodoByHouseholdID(household, term, null, function (obj, tasks) {
+    res.json(tasks);
+    res.end();
+  });
 });
 
 router.post('/addtask', function (req, res, next) {
