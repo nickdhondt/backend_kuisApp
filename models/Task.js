@@ -20,13 +20,6 @@ class Task {
         else cb(user, rows);
       })
   }
-        conn.query("select * from `tasks` where `household_id` = ? and `dueDate` <= ?", [id, dueDateString],
-            function (err, rows, fields) {
-                if(err) return next(err);
-
-                cb(user, rows);
-            })
-    }
 
     static deleteTask(id,cb){
         conn.query("delete from `tasks` " +
@@ -34,7 +27,7 @@ class Task {
             function (err,result) {
                 if(err) return next(err);
                 cb(result.rowsAffected);
-            });
+        });
     }
 }
 
