@@ -215,7 +215,7 @@ router.post('/addtask', function (req, res, next) {
     ];//comment
     conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err,res) {
         if(err) return next(err);
-        res.json({body:body});
+        res.json({body: body});
         res.end();
     });
 });
@@ -225,7 +225,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     conn.query("update", body, function (err,res) {
         if(err) return next(err);
         res.json({body: body});
-        res.end();
+        res.end({body: "success"});
     })
 
 
@@ -240,14 +240,11 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
+router.get('/deletetask/:task', function (req, res, next) {
 
     let task = req.params.task;
-    conn.query("delete from `tasks` " +
-                 "where id = ?", [task],
-    function (err,result) {
-        if(err) return next(err);
-        res.json(result.rowsAffected);
+    Task.deleteTask(task,function (task) {
+        res.json(task);
         res.end();
     });
 

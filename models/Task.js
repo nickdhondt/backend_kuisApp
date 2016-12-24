@@ -28,6 +28,15 @@ class Task{
                 cb(user, rows);
             })
     }
+
+    static deleteTask(id,cb){
+        conn.query("delete from `tasks` " +
+            "where id = ?", [id],
+            function (err,result) {
+                if(err) return next(err);
+                cb(result.rowsAffected);
+            });
+    }
 }
 
 module.exports = Task;
