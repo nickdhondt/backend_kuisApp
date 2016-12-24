@@ -242,7 +242,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/deletetask/:task', function (req, res, next) {
+router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
   process.on("mysqlError", (err) => {
     return next(err);
   });
