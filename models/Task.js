@@ -29,6 +29,40 @@ class Task {
         cb (result.rowsAffected);
       });
   }
+  static addTask(body, cb){
+      let post = [
+          body.description,
+          body.household_id,
+          body.period,
+          body.points,
+          body.name,
+          body.dueDate,
+          body.assigned_to
+      ];
+      conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err, res) {
+          if (err) process.emit("mysqlError", err);
+          cb(body);
+      });
+  }
+
+  static updateTask(body,cb){
+      let post = [
+          body.id,
+          body.description,
+          body.household_id,
+          body.period,
+          body.points,
+          body.name,
+          body.dueDate,
+          body.assigned_to
+      ];
+      conn.query("update ....", post, function (res,err) {
+          if(err) process.emit("mysqlError", err);
+          cb(body);
+      });
+  }
 }
+
+
 
 module.exports = Task;

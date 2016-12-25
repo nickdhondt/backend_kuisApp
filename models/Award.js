@@ -16,6 +16,14 @@ class Award {
         if (err) process.emit("mysqlError", err);
       });
   }
+
+  static addAward(body,cb){
+      //body in array stoppen
+      conn.query("insert into awards values ?", post, function (err,res) {
+          if(err) process.emit("mysqlError", err);
+          else cb(body);
+      })
+  }
 }
 
 module.exports = Award;
