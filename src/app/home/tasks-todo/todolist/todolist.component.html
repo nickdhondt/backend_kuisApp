@@ -1,5 +1,8 @@
-<ul>
+<ul *ngIf="[tasksTodo]">
     <li *ngFor="let tasktodo of tasksTodo">
         {{tasktodo.name}}
     </li>
 </ul>
+<div *ngIf="[tasksTodo]==''">
+    <p>loading tasks...</p>
+</div>

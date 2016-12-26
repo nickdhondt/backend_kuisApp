@@ -64,7 +64,7 @@ webpackJsonp([0,3],{
                     .map(function (response) {
                         return response.json();
                     })
-                    .catch(this.handleError);
+                    .catch(ApiService.handleError);
             };
             ApiService = __decorate([
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(),

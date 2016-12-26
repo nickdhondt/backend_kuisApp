@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {FirebaseAuthState, AuthProviders, FirebaseAuth} from "angularfire2";
 import {Router} from "@angular/router";
 
@@ -16,9 +16,17 @@ export class AuthService {
 
       //navigeer naar login als authstate null is
       //door logout, door netwerk error, door...
-      if(!state) this.router.navigate(['']);
+      if (!state) {
+        this.router.navigate(['']);
+      }
+      // else{
+      //   this.token.then(token => {
+      //     localStorage.setItem('firebaseToken', token);
+      //     console.log("localstorage set");
+      //   });
+      // }
 
-      console.log("authstate changed " + this.authenticated);
+      //console.log("authstate changed " + this.authenticated);
     });
 
   }

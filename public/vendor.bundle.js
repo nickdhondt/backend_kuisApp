@@ -26841,7 +26841,7 @@ function _callAndReportToErrorHandler(errorHandler, callback) {
         var result = callback();
         if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__src_util_lang__["a" /* isPromise */])(result)) {
             return result.catch(function (e) {
-                errorHandler.handleError(e);
+                ApiService.handleError(e);
                 // rethrow as the exception handler might not do it
                 throw e;
             });
@@ -26849,7 +26849,7 @@ function _callAndReportToErrorHandler(errorHandler, callback) {
         return result;
     }
     catch (e) {
-        errorHandler.handleError(e);
+        ApiService.handleError(e);
         // rethrow as the exception handler might not do it
         throw e;
     }
@@ -26903,7 +26903,11 @@ var PlatformRef_ = (function (_super) {
                 throw new Error('No ErrorHandler. Is platform module (BrowserModule) included?');
             }
             moduleRef.onDestroy(function () { return __WEBPACK_IMPORTED_MODULE_1__src_facade_collection__["d" /* ListWrapper */].remove(_this._modules, moduleRef); });
-            ngZone.onError.subscribe({ next: function (error) { exceptionHandler.handleError(error); } });
+            ngZone.onError.subscribe({
+                next: function (error) {
+                    ApiService.handleError(error);
+                }
+            });
             return _callAndReportToErrorHandler(exceptionHandler, function () {
                 var initStatus = moduleRef.injector.get(__WEBPACK_IMPORTED_MODULE_5__application_init__["a" /* ApplicationInitStatus */]);
                 return initStatus.donePromise.then(function () {
@@ -29259,7 +29263,7 @@ var NgZone = (function () {
                 }
             },
             onHandleError: function (delegate, current, target, error) {
-                delegate.handleError(target, error);
+                ApiService.handleError(target, error);
                 _this.triggerError(error);
                 return false;
             }

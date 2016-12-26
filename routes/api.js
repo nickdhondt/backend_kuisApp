@@ -188,13 +188,21 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
   if (req.params.term !== undefined) term = parseInt(req.params.term);
   let household = parseInt(req.params.household);
 
-  process.on("mysqlError", (err) => {
-    return next(err);
-  });
+    if (!isNaN(household)) {
+        Task.getTasksTodoByHouseholdID(household, term, null, function (obj, tasks) {
+            res.json(tasks);
+            res.end();
+        });
+    }
+    else {
+        Task.getTasksTodoByUID(res.locals.uid, term, null, function (obj, tasks) {
+            res.json(tasks);
+            res.end();
+        })
+    }
 
-  Task.getTasksTodoByHouseholdID(household, term, null, function (obj, tasks) {
-    res.json(tasks);
-    res.end();
+    process.on("mysqlError", (err) => {
+        return next(err);
   });
 });
 

@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
-import {AuthService} from "../../../../auth/services/auth.service";
 
 @Component({
     selector: 'app-todolist',
@@ -9,37 +8,25 @@ import {AuthService} from "../../../../auth/services/auth.service";
 })
 export class TodolistComponent implements OnInit {
 
-    private tasksTodo: any[];
+    tasksTodo;
 
-    constructor(private apiService: ApiService, private auth: AuthService) {
-        this.getTasksTodo();
+    constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
+        this.getTasksTodo();
     }
 
     private getTasksTodo(): void {
 
-        this.auth.token
-            .then((token) => {
-
-                this.apiService
-                    .getTaskstodobyhousehold(token, 37, 7)
-                    .subscribe(
-                        (data: any[]) => {
-                            this.tasksTodo = data;
-                            console.log(data)
-                        }
-                        ,
-                        error => console.log(error),
-                        () => console.log('Get all Items complete'));
-
-            })
-            .catch((msg) => {
-                console.log('no token: ' + msg);
-            });
-
-
+        this.apiService
+            .getTaskstodobyhousehold(37, 7)
+            .subscribe(
+                data => {
+                    console.log(data);
+                    this.tasksTodo = data;
+                }
+                ,
+                error => console.log(error));
     }
-
 }

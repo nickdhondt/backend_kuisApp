@@ -21,6 +21,16 @@ class Task {
       })
   }
 
+    static getTasksTodoByUID(id, term, obj, cb) {
+        let dueDate = new moment().add(term, "days").format("YYYY-MM-DD");
+
+        conn.query("select * from `tasks` where `household_id` = (select `household_id` from `users` where `uid` = ?) and `dueDate` <= ?", [id, dueDate],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(obj, rows);
+            })
+    }
+
   static deleteTask(id, cb) {
     conn.query("delete from `tasks` " +
       "where id = ?", [id],
