@@ -12,8 +12,8 @@ export class ApiService {
 
 
     constructor(private _http: Http, private _contract: Contract, private auth: AuthService) {
-        this.actionUrl = _contract.ServerWithApiUrl;
-        //this.actionUrl = _contract.LocalhostWithApiUrl;
+        //this.actionUrl = _contract.ServerWithApiUrl;
+        this.actionUrl = _contract.LocalhostWithApiUrl;
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
@@ -21,24 +21,18 @@ export class ApiService {
 
     private handleError(error: Response) {
         console.error(error);
-        return Observable.throw(error.json().error || 'server error');
+
+        return Observable.throw(error.json().error || 'server error...');
     }
 
-    private addToken(cb) {
-        this.auth.token
-            .then((token) => {
-                cb(token);
-            })
-            .catch((msg) => {
-                console.log('no token: ' + msg);
-            });
-    }
 
     public getTaskstodobyhousehold(token: string, householdId: number, term: number): Observable<any[]> {
 
         if (term == 0) term = 7;
 
-        this.headers.append('firebase-token', token);
+        this.headers.append('Firebase-ID-Token', token);
+
+        console.log(this.headers);
 
         return this._http.get(this.actionUrl + "taskstodobyhousehold/" + householdId + "/" + term, {headers: this.headers})
             .map((response: Response) => <any[]>response.json())
