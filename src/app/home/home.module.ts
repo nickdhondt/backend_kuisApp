@@ -6,18 +6,23 @@ import {AppRoutingModule} from "../app.routes";
 import {TasksTodoComponent} from "./tasks-todo/tasks-todo.component";
 import {AllTasksComponent} from "./all-tasks/all-tasks.component";
 import {HouseholdComponent} from "./household/household.component";
+import {ApiService} from "../../service/api.service";
+import {Contract} from "../../contract";
+import {CommonModule} from "@angular/common";
+import {TodolistComponent} from "./tasks-todo/todolist/todolist.component";
 
 @NgModule({
     declarations: [
         HomeComponent,
         TasksTodoComponent,
         AllTasksComponent,
-        HouseholdComponent
+        HouseholdComponent,
+        TodolistComponent,
     ],
     imports: [
-        RouterModule, AppRoutingModule
+        RouterModule, AppRoutingModule, CommonModule
     ],
-    providers: [AuthService],
+    providers: [AuthService, ApiService, Contract],
 })
 
 export class HomeModule { }

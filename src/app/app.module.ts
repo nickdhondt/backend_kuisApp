@@ -1,17 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {AppComponent} from "./app.component";
 import {AuthMethods, AngularFireModule} from "angularfire2";
 import {AuthService} from "../auth/services/auth.service";
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "../auth/guard/auth.guard";
 import {AppRoutingModule} from "./app.routes";
 import {UnauthGuard} from "../auth/guard/unauth.guard";
 import {CommonModule} from "@angular/common";
 import {HomeModule} from "./home/home.module";
-import { NotFoundComponent } from './not-found/not-found.component';
+import {NotFoundComponent} from "./not-found/not-found.component";
+import {Contract} from "../contract";
+import {ApiService} from "../service/api.service";
 
 
 const myFirebaseConfig = {
@@ -41,7 +43,7 @@ const myFirebaseAuthConfig = {
       CommonModule,
       HomeModule
   ],
-  providers: [AuthService, AuthGuard, UnauthGuard],
+  providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService],
   bootstrap: [AppComponent]
 })
 
