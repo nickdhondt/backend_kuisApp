@@ -12,6 +12,7 @@ import {ApiService} from "../../service/api.service";
 import {Contract} from "../../contract";
 import {CommonModule} from "@angular/common";
 import {TodolistComponent} from "./tasks-todo/todolist/todolist.component";
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {TodolistComponent} from "./tasks-todo/todolist/todolist.component";
         TodolistComponent,
         HouseholdComponent,
         NavigationComponent,
-        HeaderComponent
+        HeaderComponent,
+        ChatComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule
