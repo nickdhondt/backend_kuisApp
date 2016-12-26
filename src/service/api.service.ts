@@ -26,9 +26,7 @@ export class ApiService {
         return Observable.throw(error.json().error || 'server error...');
     }
 
-    public getTaskstodobyhousehold(householdId: number, term: number): Observable<Task[]> {
-
-        if (term == 0) term = 7;
+    public getTaskstodobyhousehold(term: number = 7): Observable<Task[]> {
 
         let tokenPromise = new Promise<Task[]>((resolve, reject) => {
 

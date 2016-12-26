@@ -21,7 +21,7 @@ export class TodolistComponent implements OnInit {
     private getTasksTodo(): void {
 
         this.apiService
-            .getTaskstodobyhousehold(37, 7)
+            .getTaskstodobyhousehold()
             .subscribe(
                 data => this.tasksTodo = data.sort((t1, t2) => {
                     if (t1.dueDate > t2.dueDate) return 1;
