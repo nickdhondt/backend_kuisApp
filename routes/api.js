@@ -40,7 +40,7 @@ router.get('/', function (req, res) {
   res.end();
 });
 
-router.get('/userbyuid/:user', function (req, res, next) {
+router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
   let user = req.params.user;
 
   process.on("mysqlError", (err) => {
@@ -177,7 +177,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 
 //af: bart
 //controle door: Nick
-router.get('/taskstodobyhousehold/:household/:term?', function (req, res, next) {
+router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res, next) {
   let term = 7;
   if (req.params.term !== undefined) term = parseInt(req.params.term);
   let household = parseInt(req.params.household);
@@ -192,7 +192,7 @@ router.get('/taskstodobyhousehold/:household/:term?', function (req, res, next) 
   });
 });
 
-router.post('/addtask', function (req, res, next) {
+router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
   let body = req.body;
   let post = [
     body.description,
@@ -269,7 +269,6 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 });
 
 router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
-
   let body = req.body;
   let post = {
     id: body.id,
@@ -282,7 +281,7 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
     householdId: body.householdId,
     points: body.points
   };
-  conn.query("insert into `tasks` values ? ", post, function (err, res) {
+  conn.query("insert into `tasks` values ? ", firebaseAuthenticator, post, function (err, res) {
     if (err) return next(err);
     res.json({body: body});
     res.end();
