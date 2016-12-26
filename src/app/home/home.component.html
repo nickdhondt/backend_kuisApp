@@ -1,18 +1,14 @@
 <header>
     <app-header></app-header>
-    <!--<p>hallo {{user}}</p>-->
+    <p>hallo {{user}}</p>
 </header>
 
 
-    <app-navigation></app-navigation>
-    <h1>ik moet een navigatie component worden</h1>
-    <ul>
-        <li><a [routerLink]="['']">todo</a></li>
-        <li><a [routerLink]="['tasks']">all tasks</a></li>
-        <li><a [routerLink]="['household']">household</a></li>
-        <li><span (click)="getToken()">get token, je kan op mij klikken</span></li>
-        <li><span (click)="logout()">logout, je kan op mij klikken</span></li>
-    </ul>
+
+    <app-navigation>
+    <h1>ik moet een navigatie worden</h1>
+
+    </app-navigation>
 
 
 <main>
