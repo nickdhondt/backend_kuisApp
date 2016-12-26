@@ -1,7 +1,6 @@
 let admin = require("firebase-admin");
 
 function firebaseAuthenticator(req, res, next) {
-  console.log(req);
     let firebaseIDToken = req.get("Firebase-ID-Token");
 
     res.locals.error = false;
