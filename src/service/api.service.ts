@@ -3,6 +3,7 @@ import {Headers, Http, Response} from "@angular/http";
 import {Contract} from "../contract";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
+import {Task} from "../models/task.model";
 import any = jasmine.any;
 
 @Injectable()
@@ -25,11 +26,11 @@ export class ApiService {
         return Observable.throw(error.json().error || 'server error...');
     }
 
-    public getTaskstodobyhousehold(householdId: number, term: number) {
+    public getTaskstodobyhousehold(householdId: number, term: number): Observable<Task[]> {
 
         if (term == 0) term = 7;
 
-        let tokenPromise = new Promise((resolve, reject) => {
+        let tokenPromise = new Promise<Task[]>((resolve, reject) => {
 
             this.auth.token.then(token => {
 
@@ -38,7 +39,11 @@ export class ApiService {
                 return this._http.get(
                     this.actionUrl + "taskstodobyhousehold/" + null + "/" + term,
                     {headers: this.headers})
-                    .map((response: Response) => response.json())
+                    .map((response: Response) => {
+                        let tasks: Task[] = [];
+                        response.json().forEach(item => tasks.push(Task.makeTaskFromJSON(item)));
+                        return tasks;
+                    })
                     .catch(ApiService.handleError)
                     .subscribe(data => resolve(data), err => reject(err));
             })

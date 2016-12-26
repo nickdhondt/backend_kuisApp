@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
+import {Task} from "../../../../models/task.model";
 
 @Component({
     selector: 'app-todolist',
@@ -8,7 +9,7 @@ import {ApiService} from "../../../../service/api.service";
 })
 export class TodolistComponent implements OnInit {
 
-    tasksTodo;
+    tasksTodo: Task[];
 
     constructor(private apiService: ApiService) {
     }
@@ -22,11 +23,15 @@ export class TodolistComponent implements OnInit {
         this.apiService
             .getTaskstodobyhousehold(37, 7)
             .subscribe(
-                data => {
-                    console.log(data);
-                    this.tasksTodo = data;
-                }
-                ,
+                data => this.tasksTodo = data.sort((t1, t2) => {
+                    if (t1.dueDate > t2.dueDate) return 1;
+                    if (t1.dueDate < t2.dueDate) return -1;
+                    return 0;
+                }),
                 error => console.log(error));
+    }
+
+    showDetail() {
+        alert("detail popup van de taak (geen echte popup hé!)")
     }
 }

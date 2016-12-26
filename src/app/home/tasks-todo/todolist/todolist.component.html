@@ -1,8 +1,14 @@
-<ul *ngIf="[tasksTodo]">
-    <li *ngFor="let tasktodo of tasksTodo">
-        {{tasktodo.name}}
-    </li>
-</ul>
+<div *ngIf="[tasksTodo]">
+
+    <div class="card white darken-1" style="margin: 0; cursor: pointer" *ngFor="let tasktodo of tasksTodo"
+         (click)="showDetail()">
+        <div class="card-content">
+            <p>{{tasktodo.name}}</p>
+            <p>{{tasktodo.dueDate.toLocaleDateString()}}</p>
+        </div>
+    </div>
+
+</div>
 <div *ngIf="[tasksTodo]==''">
     <p>loading tasks...</p>
 </div>

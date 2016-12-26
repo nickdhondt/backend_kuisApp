@@ -40,8 +40,8 @@ const myFirebaseAuthConfig = {
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
-      CommonModule,
-      HomeModule
+    CommonModule,
+    HomeModule,
   ],
   providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService],
   bootstrap: [AppComponent]
