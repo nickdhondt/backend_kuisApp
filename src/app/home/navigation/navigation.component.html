@@ -1,0 +1,19 @@
+<!--<ul>-->
+    <!--<li><a [routerLink]="['']">todo</a></li>-->
+    <!--<li><a [routerLink]="['tasks']">all tasks</a></li>-->
+    <!--<li><a [routerLink]="['household']">household</a></li>-->
+    <!--<li><span (click)="getToken()">get token, je kan op mij klikken</span></li>-->
+    <!--<li><span (click)="logout()">logout, je kan op mij klikken</span></li>-->
+<!--</ul>-->
+
+<ul id="nav-mobile" class="side-nav fixed  ">
+    <li class="logo">
+        <a id="logo-container" href="#!" class="brand-logo">The Cleansing</a>
+    </li>
+    <li class="bold"><a [routerLink]="['']" class="waves-effect waves-teal">Home</a></li>
+    <li class="bold"><a [routerLink]="['tasks']" class="waves-effect waves-teal">Tasks</a></li>
+    <li class="bold"><a [routerLink]="['household']"class="waves-effect waves-teal">Household</a></li>
+    <li class="bold"><a href="#" class="waves-effect waves-teal">Settings</a></li>
+    <li class="bold"><a class="waves-effect waves-teal" (click)="logout()">Sign out</a> </li>
+</ul>
+
