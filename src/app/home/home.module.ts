@@ -6,13 +6,15 @@ import {AppRoutingModule} from "../app.routes";
 import {TasksTodoComponent} from "./tasks-todo/tasks-todo.component";
 import {AllTasksComponent} from "./all-tasks/all-tasks.component";
 import {HouseholdComponent} from "./household/household.component";
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
     declarations: [
         HomeComponent,
         TasksTodoComponent,
         AllTasksComponent,
-        HouseholdComponent
+        HouseholdComponent,
+        NavigationComponent
     ],
     imports: [
         RouterModule, AppRoutingModule
