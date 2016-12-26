@@ -1,9 +1,10 @@
 <header>
-    <h1>ik moet een header component worden</h1>
-    <p>hallo {{user}}</p>
+    <app-header></app-header>
+    <!--<p>hallo {{user}}</p>-->
 </header>
 
-<nav>
+
+    <app-navigation></app-navigation>
     <h1>ik moet een navigatie component worden</h1>
     <ul>
         <li><a [routerLink]="['']">todo</a></li>
@@ -12,7 +13,7 @@
         <li><span (click)="getToken()">get token, je kan op mij klikken</span></li>
         <li><span (click)="logout()">logout, je kan op mij klikken</span></li>
     </ul>
-</nav>
+
 
 <main>
     <h1>ik ben main en bevat enkel een router-outlet</h1>
@@ -21,7 +22,7 @@
 </main>
 <aside>
     <h1>Ik ben een aside en moet een chatbox worden</h1>
-    chatbox
+
 </aside>
 <footer><h1>ik moet een footer component worden</h1></footer>
 

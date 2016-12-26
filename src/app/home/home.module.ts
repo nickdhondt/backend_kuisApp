@@ -7,6 +7,7 @@ import {TasksTodoComponent} from "./tasks-todo/tasks-todo.component";
 import {AllTasksComponent} from "./all-tasks/all-tasks.component";
 import {HouseholdComponent} from "./household/household.component";
 import { NavigationComponent } from './navigation/navigation.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { NavigationComponent } from './navigation/navigation.component';
         TasksTodoComponent,
         AllTasksComponent,
         HouseholdComponent,
-        NavigationComponent
+        NavigationComponent,
+        HeaderComponent
     ],
     imports: [
         RouterModule, AppRoutingModule
