@@ -7764,7 +7764,6 @@ Picker.extend( 'pickadate', DatePicker )
     }
   };
 
-
     $.fn.carousel = function(methodOrOptions) {
       if ( methods[methodOrOptions] ) {
         return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
@@ -7774,6 +7773,15 @@ Picker.extend( 'pickadate', DatePicker )
       } else {
         $.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.carousel' );
       }
-    };
-    // Plugin end
+    };// Plugin end
 }( jQuery ));
+
+
+$(document).ready(function () {
+    $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 240
+        closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    });
+    $('.collapsible').collapsible();
+
+})
