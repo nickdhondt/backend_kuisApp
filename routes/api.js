@@ -230,7 +230,7 @@ router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
   let body = req.body;
   Task.addTask(body,function (body) {
     res.json({body: body});
-    res.end();
+    res.end(); //comment
   })
 
 });
