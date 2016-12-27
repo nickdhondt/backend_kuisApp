@@ -163,6 +163,20 @@ router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res
   });
 });
 
+//af: bart
+//controle door:
+router.get('/household', function (req, res, next) {
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    Household.getHouseholdByUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", function (household) {
+        res.json(household);
+        res.end();
+    });
+});
+
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 
 
@@ -209,7 +223,9 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
 router.post('/addtask', function (req, res, next) {
   process.on("mysqlError", (err) => {
     return next(err);
-  });
+  })
+});
+
 //af: bart
 //controle door:
 router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {

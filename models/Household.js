@@ -19,6 +19,20 @@ class Household {
         else cb(rows[0]);
       });
   }
+
+
+    static getHouseholdByUID(uid, cb) {
+        conn.query(
+            "select `households`.* from `households` " +
+            "inner join `users` on `users`.`household_id` = `households`.`id`" +
+            "where `uid` = ? limit 1", [uid],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(rows[0]);
+            });
+    }
+
+
 }
 
 module.exports = Household;
