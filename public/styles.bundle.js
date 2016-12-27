@@ -296,7 +296,7 @@ if(false) {
 
 
 // module
-        exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*body>*{*/\n    /*height: 100vh;*/\n    /*width: 100%;*/\n/*}*/", ""]);
+        exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*body>*{*/\n/*height: 100vh;*/\n/*width: 100%;*/\n/*}*/\n\n@media only screen and (min-width: 993px) {\n    header, footer, main{\n        padding-left:300px;\n    }\n}", ""]);
 
 // exports
 
