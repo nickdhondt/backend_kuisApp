@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewContainerRef} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
-import {Modal, Overlay} from "angular2-modal";
 import {Task} from "../../../../models/task.model";
 
 @Component({
@@ -11,9 +10,10 @@ import {Task} from "../../../../models/task.model";
 export class TasklistComponent implements OnInit {
 
     tasks: Task[];
+    showDialog: boolean = false;
+    selectedTask: Task;
 
-    constructor(private apiService: ApiService, public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef) {
-        overlay.defaultViewContainer = vcRef;
+    constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
@@ -32,5 +32,4 @@ export class TasklistComponent implements OnInit {
                 }),
                 error => console.log(error));
     }
-
 }

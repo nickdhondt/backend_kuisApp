@@ -206,6 +206,10 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
   });
 });
 
+router.post('/addtask', function (req, res, next) {
+  process.on("mysqlError", (err) => {
+    return next(err);
+  });
 //af: bart
 //controle door:
 router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
@@ -224,31 +228,22 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 
 router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
   let body = req.body;
-  let post = [
-    body.description,
-    body.household_id,
-    body.period,
-    body.points,
-    body.name,
-    body.dueDate,
-    body.assigned_to
-  ];//comment
-  conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err, res) {
-    if (err) return next(err);
-    res.json({body: body});
-    res.end();
-  });
-});
-
-router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
-  let body = req.body;
-  conn.query("update", body, function (err, res) {
-    if (err) return next(err);
+  Task.addTask(body,function (body) {
     res.json({body: body});
     res.end(); //comment
   })
 
+});
 
+router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
+  process.on("mysqlError", (err) =>{
+    return next(err);
+  });
+  let body = req.body;
+  Task.updateTask(body,function (task) {
+    res.json(task);
+    res.end();
+  })
 });
 
 router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
@@ -260,6 +255,8 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
 
 });
 
+//af: steven
+//controle door: nick
 router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
   process.on("mysqlError", (err) => {
     return next(err);
