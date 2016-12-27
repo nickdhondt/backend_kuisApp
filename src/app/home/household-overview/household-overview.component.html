@@ -1,0 +1,10 @@
+<h1 class="center-align">{{household.name}}</h1>
+
+<div *ngIf="[household.users]">
+
+    <figure *ngFor="let user of household.users">
+        <img src="{{user.imgsrc}}" class="circle z-depth-1">
+        <figcaption>{{user.name}}</figcaption>
+    </figure>
+
+</div>

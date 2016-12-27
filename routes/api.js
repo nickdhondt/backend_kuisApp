@@ -165,15 +165,17 @@ router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res
 
 //af: bart
 //controle door:
-router.get('/household', function (req, res, next) {
+router.get('/household', firebaseAuthenticator, function (req, res, next) {
 
     process.on("mysqlError", (err) => {
         return next(err);
     });
 
-    Household.getHouseholdByUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", function (household) {
+    Household.getHouseholdByUID(res.locals.uid, function (household) {
+
         res.json(household);
         res.end();
+
     });
 });
 

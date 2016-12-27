@@ -20,6 +20,7 @@ import {FormsModule} from "@angular/forms";
 import {MaterializeDirective} from "angular2-materialize";
 import {TasklistComponent} from "./all-tasks/tasklist/tasklist.component";
 import {TaskdetailComponent} from "./taskdetail/taskdetail.component";
+import {HouseholdOverviewComponent} from "./household-overview/household-overview.component";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {TaskdetailComponent} from "./taskdetail/taskdetail.component";
         MessageItemComponent,
         MaterializeDirective,
         TasklistComponent,
-        TaskdetailComponent
+        TaskdetailComponent,
+        HouseholdOverviewComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule

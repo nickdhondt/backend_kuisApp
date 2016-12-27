@@ -1,5 +1,6 @@
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
+let Award = require("./Award");
 
 class Household {
   static getHouseholdByID(id, obj, cb) {
@@ -28,9 +29,29 @@ class Household {
             "where `uid` = ? limit 1", [uid],
             function (err, rows, fields) {
                 if (err) process.emit("mysqlError", err);
-                else cb(rows[0]);
+                else {
+                    Household.getUsersbyHousehold(rows[0], cb);
+                }
             });
     }
+
+    static getUsersbyHousehold(household, cb) {
+        conn.query(
+            "select * from `users` " +
+            "where `household_id` = ?", [household.id],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else {
+                    household.users = rows;
+                    Award.getAwardByHouseholdID(household.id, null, (obj, award) => {
+                        household.award = award;
+                        cb(household)
+                    });
+                }
+            });
+    }
+
+
 
 
 }

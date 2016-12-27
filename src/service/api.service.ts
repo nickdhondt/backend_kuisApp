@@ -78,23 +78,24 @@ export class ApiService {
 
     public getHousehold(): Observable<Household> {
 
-        let tokenPromise = new Promise<Household>((resolve,reject)=>{
-            throw this.auth.token.then(token=>{
-                this.headers.set("Firebase-ID-Token",token);
+
+        let tokenPromise = new Promise<Household>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
 
                 return this._http.get(
                     this.actionUrl + "household",
                     {headers: this.headers})
-                // .map((response:Response)=> {
-                //     let household : Household;
-                //     response.json().forEach(item=>Household.makeHouseholdFromJSON(item));
-                //     return household;
-                // })
+                    .map((response: Response) => {
+                        return Household.makeHouseholdFromJSON(response.json());
+                    })
                     .catch(ApiService.handleError)
-                    .subscribe(data=>resolve(data), err=>reject(err));
+                    .subscribe(data => resolve(data), err => reject(err));
             })
         });
 
-        return Observable.fromPromise(tokenPromise)
+        return Observable.fromPromise(tokenPromise);
     }
 }

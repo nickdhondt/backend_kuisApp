@@ -6,36 +6,40 @@ import {User} from "./user.model";
 
 export class Household {
 
-    private taskstodo: Task[];
-    private countFinishedTasks: number;
-    private countFinishedAwards: number;
-    private countTotalScore: string;
-    private countTasks: number;
-    private mostPopularTask: string;
-    private mostAwardsWon: string;
-    private lastAward: string;
-    private lastAwardWonBy: string;
-    private tasks: Task[];
-    private users: User[];
-    private award?: any;
+    public id: number;
+    public name: string;
+    public taskstodo: Task[];
+    public countFinishedTasks: number;
+    public countFinishedAwards: number;
+    public countTotalScore: string;
+    public countTasks: number;
+    public mostPopularTask: string;
+    public mostAwardsWon: string;
+    public lastAward: string;
+    public lastAwardWonBy: string;
+    public tasks: Task[];
+    public users: User[];
+    public award?: any;
 
     constructor() {
     }
 
     public static makeHouseholdFromJSON(item): Household {
 
-        let household: Household;
+        let household: Household = new Household();
 
-        household.taskstodo = item.taskstodo;
-        household.countFinishedTasks = item.countFinishedTasks;
-        household.countFinishedAwards = item.countFinishedAwards;
-        household.countTotalScore = item.countTotalScore;
-        household.countTasks = item.countTasks;
-        household.mostPopularTask = item.mostPopularTask;
-        household.mostAwardsWon = item.mostAwardsWon;
-        household.lastAward = item.lastAward;
-        household.lastAwardWonBy = item.lastAwardWonBy;
-        household.tasks = item.tasks;
+        household.id = item.id;
+        household.name = item.name;
+        // household.taskstodo = item.taskstodo;
+        // household.countFinishedTasks = item.countFinishedTasks;
+        // household.countFinishedAwards = item.countFinishedAwards;
+        // household.countTotalScore = item.countTotalScore;
+        // household.countTasks = item.countTasks;
+        // household.mostPopularTask = item.mostPopularTask;
+        // household.mostAwardsWon = item.mostAwardsWon;
+        // household.lastAward = item.lastAward;
+        // household.lastAwardWonBy = item.lastAwardWonBy;
+        // household.tasks = item.tasks;
         household.users = item.users;
         household.award = item.award;
 
