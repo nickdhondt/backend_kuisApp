@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../../../auth/services/auth.service";
 import {Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -9,21 +10,16 @@ import {Router} from "@angular/router";
 })
 export class NavigationComponent implements OnInit {
 
-  user:string;
+    user: firebase.User;
 
   ngOnInit() {
   }
   constructor(private auth:AuthService, private router:Router) {
-
+      this.user = auth.authState.auth;
   }
-
 
   logout(){
     this.auth.logout();
-  }
-
-  slideOut() {
-    document.getElementById("slide-out").style.transform = "translateX(0px)";
   }
 
 }

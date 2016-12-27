@@ -1,6 +1,6 @@
 webpackJsonp([1,3],{
 
-    /***/ 1052:
+    /***/ 1056:
 /***/ function(module, exports) {
 
 /*
@@ -253,24 +253,24 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-    /***/ 1055:
+    /***/ 1059:
 /***/ function(module, exports, __webpack_require__) {
 
-        module.exports = __webpack_require__(460);
+        module.exports = __webpack_require__(461);
 
 
 /***/ },
 
-    /***/ 460:
+    /***/ 461:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-        var content = __webpack_require__(750);
+        var content = __webpack_require__(754);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-        var update = __webpack_require__(1052)(content, {});
+        var update = __webpack_require__(1056)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -288,22 +288,22 @@ if(false) {
 
 /***/ },
 
-    /***/ 750:
+    /***/ 754:
 /***/ function(module, exports, __webpack_require__) {
 
-        exports = module.exports = __webpack_require__(751)();
+        exports = module.exports = __webpack_require__(755)();
 // imports
 
 
 // module
-        exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*body>*{*/\n/*height: 100vh;*/\n/*width: 100%;*/\n/*}*/\n\n@media only screen and (min-width: 993px) {\n    header, footer, main{\n        padding-left:300px;\n    }\n}", ""]);
+        exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*body>*{*/\n/*height: 100vh;*/\n/*width: 100%;*/\n/*}*/\n\n@media only screen and (min-width: 993px) {\n    header, footer, main {\n        padding-left: 300px;\n    }\n}", ""]);
 
 // exports
 
 
 /***/ },
 
-    /***/ 751:
+    /***/ 755:
 /***/ function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ }
 
-}, [1055]);
+}, [1059]);
 //# sourceMappingURL=styles.bundle.map

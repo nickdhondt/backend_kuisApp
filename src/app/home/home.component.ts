@@ -17,18 +17,4 @@ export class HomeComponent {
     this.user = auth.authState.auth.displayName;
   }
 
-
-  logout(){
-    this.auth.logout();
-  }
-
-    // getToken(){
-    //   this.auth.token
-    //       .then((token)=>{console.log('token app: ' + token);})
-    //       .catch((msg)=>{console.log('no token: ' + msg);});
-    // }
-
-    slideOut() {
-        document.getElementById("nav-mobile").style.transform = "translateX(0px)";
-    }
 }

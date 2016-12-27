@@ -1,32 +1,77 @@
-<!--<ul id="nav-mobile" class="side-nav fixed  ">-->
-<!--<li class="logo">-->
-<!--<a id="logo-container" href="#!" class="brand-logo">The Cleansing</a>-->
+<!--&lt;!&ndash;<ul id="nav-mobile" class="side-nav fixed  ">&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="logo">&ndash;&gt;-->
+<!--&lt;!&ndash;<a id="logo-container" href="#!" class="brand-logo">The Cleansing</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="bold"><a [routerLink]="['']" class="waves-effect waves-teal">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="bold"><a [routerLink]="['tasks']" class="waves-effect waves-teal">Tasks</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="bold"><a [routerLink]="['household']"class="waves-effect waves-teal">Household</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="bold"><a href="#" class="waves-effect waves-teal">Settings</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="bold"><a class="waves-effect waves-teal" (click)="logout()">Sign out</a> </li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+<!--<div class="nav-wrapper">-->
+
+<!--&lt;!&ndash;<ul class="right ">&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="">My Account</a> </li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a>Settings</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a>Sign out</a> </li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+<!--<ul id="slide-out" class="side-nav">-->
+<!--<li>-->
+<!--<div class="userView">-->
+<!--<div class="background yellow darken-2">-->
+
+<!--</div>-->
+<!--<img class="circle"-->
+<!--src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAe_AAAAJDI1NDNhYjBhLTU0OTQtNDQyNi1iNGQ2LTIzZmMxMDMxOWMzMg.jpg">-->
+<!--<span class="name">The cleansing</span>-->
+<!--<span class="email">get it clean or get out</span>-->
+<!--</div>-->
 <!--</li>-->
-<!--<li class="bold"><a [routerLink]="['']" class="waves-effect waves-teal">Home</a></li>-->
-<!--<li class="bold"><a [routerLink]="['tasks']" class="waves-effect waves-teal">Tasks</a></li>-->
-<!--<li class="bold"><a [routerLink]="['household']"class="waves-effect waves-teal">Household</a></li>-->
-<!--<li class="bold"><a href="#" class="waves-effect waves-teal">Settings</a></li>-->
-<!--<li class="bold"><a class="waves-effect waves-teal" (click)="logout()">Sign out</a> </li>-->
+
+<!--<li><a [routerLink]="['']" class="waves-effect "><i class="material-icons">home</i>Home</a></li>-->
+<!--<li><a [routerLink]="['tasks']" class="waves-effect "><i class="material-icons">assignment</i>Tasks</a></li>-->
+<!--<li><a [routerLink]="['household']" class="waves-effect "><i class="material-icons">people</i>Household</a></li>-->
+<!--<li>-->
+<!--<div class="divider"></div>-->
+<!--</li>-->
+<!--<li><a href="#" class="waves-effect "><i class="material-icons">settings</i>Settings</a></li>-->
+<!--<li><a class="waves-effect " (click)="logout()"><i class="material-icons">input</i>Sign out</a></li>-->
+<!--<li>-->
+<!--<div class="divider"></div>-->
+<!--</li>-->
+<!--<li><a href="#" class="waves-effect waves-teal">About</a></li>-->
 <!--</ul>-->
 
-<div class="nav-wrapper">
+<!--<a href="home" class="brand-logo center">The Cleansing</a>-->
+<!--<a (click)="slideOut()" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>-->
+<!--</div>-->
 
-    <!--<ul class="right ">-->
-    <!--<li><a href="">My Account</a> </li>-->
-    <!--<li><a>Settings</a></li>-->
-    <!--<li><a>Sign out</a> </li>-->
-    <!--</ul>-->
 
-    <ul id="slide-out" class="side-nav">
+<nav class="top-nav yellow darken-2">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a
+                    materialize="sideNav"
+                    data-activates="nav-mobile"
+                    class="button-collapse top-nav full hide-on-large-only">
+                <i class="material-icons">menu</i>
+            </a>
+            <a class="page-title">The cleansing</a>
+        </div>
+    </div>
+</nav>
+
+<ul id="nav-mobile" class="side-nav fixed">
     <li>
         <div class="userView">
             <div class="background yellow darken-2">
 
             </div>
-            <img class="circle"
-                 src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAe_AAAAJDI1NDNhYjBhLTU0OTQtNDQyNi1iNGQ2LTIzZmMxMDMxOWMzMg.jpg">
-            <span class="name">The cleansing</span>
-            <span class="email">get it clean or get out</span>
+            <img class="circle z-depth-1" src="{{user.photoURL}}">
+            <span class="name white-text">{{user.displayName}}</span>
+            <span class="email white-text">{{user.email}}</span>
         </div>
     </li>
 
@@ -43,7 +88,3 @@
     </li>
     <li><a href="#" class="waves-effect waves-teal">About</a></li>
 </ul>
-
-    <a href="home" class="brand-logo center">The Cleansing</a>
-    <a (click)="slideOut()" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-</div>
