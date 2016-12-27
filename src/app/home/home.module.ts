@@ -16,6 +16,8 @@ import { ChatComponent } from './chat/chat.component';
 import { MessageListComponent } from './chat/message-list/message-list.component';
 import { MessageFormComponent } from './chat/message-form/message-form.component';
 import { MessageItemComponent } from './chat/message-item/message-item.component';
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
     declarations: [
@@ -33,7 +35,8 @@ import { MessageItemComponent } from './chat/message-item/message-item.component
         MessageItemComponent
     ],
     imports: [
-        RouterModule, AppRoutingModule, CommonModule
+        RouterModule, AppRoutingModule, CommonModule, FormsModule
+
     ],
     providers: [AuthService, ApiService, Contract],
 })
