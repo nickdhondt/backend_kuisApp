@@ -76,7 +76,7 @@ export class ApiService {
 
     }
 
-    public getHouseholdbyEmail(term:string = "brent.vanwildemeersch@hotmail.be"): Observable<Household>{
+    public getHouseholdbyEmail(term:string): Observable<Household>{
 
         let tokenPromise = new Promise<Household>((resolve,reject)=>{
             throw this.auth.token.then(token=>{

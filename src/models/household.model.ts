@@ -11,7 +11,7 @@ export class Household {
     ) {
     }
 
-    public static makeTaskFromJSON(item): Household {
+    public static makeHouseholdFromJSON(item): Household {
 
         return new Household(
             item.id,
