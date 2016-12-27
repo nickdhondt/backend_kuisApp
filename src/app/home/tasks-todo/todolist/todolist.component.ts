@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewContainerRef} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
 import {Task} from "../../../../models/task.model";
-import {Overlay} from "angular2-modal";
-import {Modal} from "angular2-modal/plugins/bootstrap";
+
 
 @Component({
     selector: 'app-todolist',
@@ -12,9 +11,10 @@ import {Modal} from "angular2-modal/plugins/bootstrap";
 export class TodolistComponent implements OnInit {
 
     tasksTodo: Task[];
+    showDialog: boolean = false;
+    selectedTask: Task;
 
-    constructor(private apiService: ApiService, public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef) {
-        overlay.defaultViewContainer = vcRef;
+    constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
@@ -34,26 +34,4 @@ export class TodolistComponent implements OnInit {
                 error => console.log(error));
     }
 
-    showDetail() {
-        //alert("detail popup van de taak (geen echte popup hé!)")
-        this.modal
-            .prompt()
-            .size('lg')
-            .title('Task detail')
-            .body(`
-    
-                    <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-            does not block.</h4>
-            <b>Configuration:</b>
-            <ul>
-                <li>Non blocking (click anywhere outside to dismiss)</li>
-                <li>Size large</li>
-                <li>Dismissed with default keyboard key (ESC)</li>
-                <li>Close wth button click</li>
-                <li>HTML content</li>
-            </ul>
-    
-                `)
-            .open();
-    }
 }

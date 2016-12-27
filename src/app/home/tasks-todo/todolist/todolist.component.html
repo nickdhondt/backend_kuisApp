@@ -1,7 +1,7 @@
 <div class="collection" *ngIf="[tasksTodo]">
 
     <div class="collection-item" *ngFor="let tasktodo of tasksTodo"
-         (click)="showDetail()">
+         (click)="showDialog = !showDialog; selectedTask = tasktodo">
 
         <p>{{tasktodo.name}}</p>
             <p>{{tasktodo.dueDate.toLocaleDateString()}}</p>
@@ -12,3 +12,5 @@
 <div *ngIf="[tasksTodo]==''">
     <p>loading tasks...</p>
 </div>
+
+<app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask"></app-taskdetail>
