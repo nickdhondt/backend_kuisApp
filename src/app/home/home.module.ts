@@ -13,6 +13,9 @@ import {Contract} from "../../contract";
 import {CommonModule} from "@angular/common";
 import {TodolistComponent} from "./tasks-todo/todolist/todolist.component";
 import { ChatComponent } from './chat/chat.component';
+import { MessageListComponent } from './chat/message-list/message-list.component';
+import { MessageFormComponent } from './chat/message-form/message-form.component';
+import { MessageItemComponent } from './chat/message-item/message-item.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { ChatComponent } from './chat/chat.component';
         HouseholdComponent,
         NavigationComponent,
         HeaderComponent,
-        ChatComponent
+        ChatComponent,
+        MessageListComponent,
+        MessageFormComponent,
+        MessageItemComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule

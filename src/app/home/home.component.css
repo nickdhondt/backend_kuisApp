@@ -17,3 +17,14 @@ header, main, footer,aside {
         display: block;
     }
 }
+
+aside app-chat {
+    position: absolute;
+
+    top:0px;
+    bottom: 0px;
+    right: 0px;
+    width: 250px;
+    border-left: 1px solid gray;
+
+}
