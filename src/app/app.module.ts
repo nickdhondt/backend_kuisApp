@@ -14,6 +14,9 @@ import {HomeModule} from "./home/home.module";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {Contract} from "../contract";
 import {ApiService} from "../service/api.service";
+import {ModalModule} from "angular2-modal";
+import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
+import {LoaderSmallComponent} from "./loader-small/loader-small.component";
 
 
 const myFirebaseConfig = {
@@ -33,6 +36,7 @@ const myFirebaseAuthConfig = {
     AppComponent,
     LoginComponent,
     NotFoundComponent,
+      LoaderSmallComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,8 @@ const myFirebaseAuthConfig = {
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
     CommonModule,
     HomeModule,
+      ModalModule.forRoot(),
+      BootstrapModalModule,
   ],
   providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService],
   bootstrap: [AppComponent]

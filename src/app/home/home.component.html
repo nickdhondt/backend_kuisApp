@@ -1,25 +1,18 @@
 <header>
     <app-header></app-header>
-    <p>hallo {{user}}</p>
+    <nav>
+        <app-navigation></app-navigation>
+    </nav>
 </header>
 
-
-
-    <app-navigation>
-    <h1>ik moet een navigatie worden</h1>
-
-    </app-navigation>
-
-
-<main>
-    <h1>ik ben main en bevat enkel een router-outlet</h1>
+<main class="container">
     <router-outlet></router-outlet>
-
+    <aside>
+        <app-chat></app-chat>
+    </aside>
 </main>
-<aside>
-    <app-chat></app-chat>
 
-</aside>
-<footer><h1>ik moet een footer component worden</h1></footer>
+
+<footer><h4>ik moet een footer component worden</h4></footer>
 
 

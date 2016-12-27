@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../../../auth/services/auth.service";
 import {Router} from "@angular/router";
 
@@ -20,6 +20,10 @@ export class NavigationComponent implements OnInit {
 
   logout(){
     this.auth.logout();
+  }
+
+  slideOut() {
+    document.getElementById("slide-out").style.transform = "translateX(0px)";
   }
 
 }

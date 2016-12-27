@@ -1,6 +1,6 @@
 webpackJsonp([1,3],{
 
-/***/ 1001:
+    /***/ 1052:
 /***/ function(module, exports) {
 
 /*
@@ -253,24 +253,24 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-/***/ 1004:
+    /***/ 1055:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(435);
+        module.exports = __webpack_require__(460);
 
 
 /***/ },
 
-/***/ 435:
+    /***/ 460:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(707);
+        var content = __webpack_require__(750);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(1001)(content, {});
+        var update = __webpack_require__(1052)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -288,22 +288,22 @@ if(false) {
 
 /***/ },
 
-/***/ 707:
+    /***/ 750:
 /***/ function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(708)();
+        exports = module.exports = __webpack_require__(751)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n", ""]);
+        exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*body>*{*/\n    /*height: 100vh;*/\n    /*width: 100%;*/\n/*}*/", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ 708:
+    /***/ 751:
 /***/ function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ }
 
-},[1004]);
+}, [1055]);
 //# sourceMappingURL=styles.bundle.map
