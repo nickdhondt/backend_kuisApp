@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../../auth/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-message-list',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageListComponent implements OnInit {
 
-  constructor() { }
+
+
+
+
+
+
 
   ngOnInit() {
   }

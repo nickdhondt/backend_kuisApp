@@ -1,7 +1,24 @@
 <!--<app-message-list></app-message-list>-->
 <!--<app-message-form></app-message-form>-->
 
+
 <div class="message-container side-nav fixed right-aligned">
+    <h5>The Cleansing Chatbox </h5>
+    <div class="col s12 ">
+        <div class=" card gray lighten-5 ">
+            <div class="row valign-wrapper ">
+                <div class="col s3">
+                    <img src="{{photoUrl}}" alt="" class="responsive-img circle">
+                </div>
+                <div class="col s9">
+        <span class="black-text">
+          {{user}}
+        </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <app-message-list></app-message-list>
     <app-message-form></app-message-form>
 </div>
