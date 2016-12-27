@@ -12,11 +12,12 @@ import {ApiService} from "../../service/api.service";
 import {Contract} from "../../contract";
 import {CommonModule} from "@angular/common";
 import {TodolistComponent} from "./tasks-todo/todolist/todolist.component";
-import {ChatComponent} from "./chat/chat.component";
-import {MessageListComponent} from "./chat/message-list/message-list.component";
-import {MessageFormComponent} from "./chat/message-form/message-form.component";
-import {MessageItemComponent} from "./chat/message-item/message-item.component";
-import {MaterializeDirective} from "angular2-materialize";
+import { ChatComponent } from './chat/chat.component';
+import { MessageListComponent } from './chat/message-list/message-list.component';
+import { MessageFormComponent } from './chat/message-form/message-form.component';
+import { MessageItemComponent } from './chat/message-item/message-item.component';
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
     declarations: [
@@ -31,11 +32,11 @@ import {MaterializeDirective} from "angular2-materialize";
         ChatComponent,
         MessageListComponent,
         MessageFormComponent,
-        MessageItemComponent,
-        MaterializeDirective
+        MessageItemComponent
     ],
     imports: [
-        RouterModule, AppRoutingModule, CommonModule
+        RouterModule, AppRoutingModule, CommonModule, FormsModule
+
     ],
     providers: [AuthService, ApiService, Contract],
 })

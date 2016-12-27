@@ -18,7 +18,6 @@ import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import {LoaderSmallComponent} from "./loader-small/loader-small.component";
 
-
 const myFirebaseConfig = {
   apiKey: "AIzaSyB_BRv8vUg4D0njciLkTNqGBEfZM4cNVlQ",
   authDomain: "kuisapp.firebaseapp.com",
@@ -36,7 +35,7 @@ const myFirebaseAuthConfig = {
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-      LoaderSmallComponent,
+    LoaderSmallComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +45,8 @@ const myFirebaseAuthConfig = {
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
     CommonModule,
     HomeModule,
-      ModalModule.forRoot(),
-      BootstrapModalModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
   ],
   providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService],
   bootstrap: [AppComponent]

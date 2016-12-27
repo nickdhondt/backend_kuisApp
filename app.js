@@ -4,11 +4,17 @@ let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let socket = require("socket.io");
 
 let index = require('./routes/index');
 let api = require('./routes/api');
 
 let app = express();
+
+let io = socket();
+app.io = io;
+
+let chat = require('./routes/chat')(io);
 
 let admin = require("firebase-admin");
 
@@ -41,8 +47,8 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api', api);
+app.use('/chat', chat);
 app.use('/', index);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
