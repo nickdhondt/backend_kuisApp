@@ -29,7 +29,11 @@
     }
   ],
   "addons": [],
-  "packages": [],
+  "packages": {
+    "materialize": {
+      "main": "public/js/materialize"
+    }
+  },
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"

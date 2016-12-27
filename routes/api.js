@@ -18,6 +18,12 @@ let Task = require("../models/Task");
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Firebase-ID-Token");
+  next();
+});
+
 router.get('/', function (req, res) {
   let routes = [];
 
@@ -40,7 +46,7 @@ router.get('/', function (req, res) {
   res.end();
 });
 
-router.get('/userbyuid/:user', function (req, res, next) {
+router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
   let user = req.params.user;
 
   process.on("mysqlError", (err) => {
@@ -72,7 +78,7 @@ router.get('/userbyuid/:user', function (req, res, next) {
           user.household.tasks = tasks;
           User.getUsersByHouseholdID(user.household_id, user, (user, users) => {
             user.household.users = users;
-            Task.getTasksTodoByHouseholdID(user.household_id, user, (user, tasksTodo) => {
+            Task.getTasksTodoByHouseholdID(user.household_id, 7, user, (user, tasksTodo) => {
               user.household.taskstodo = tasksTodo;
               Award.getAwardByHouseholdID(user.household_id, user, (user, award) => {
                 if (award !== undefined) {
@@ -143,7 +149,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 //af: bart
 //controle door: Nick
 
-router.get('/householdbyemail/:email', function (req, res, next) {
+router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res, next) {
   //parameter
   let email = req.params.email;
 
@@ -176,38 +182,51 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 });
 
 //af: bart
-//controle door:
-// TODO: fix
+//controle door: Nick
 router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res, next) {
   let term = 7;
   if (req.params.term !== undefined) term = parseInt(req.params.term);
   let household = parseInt(req.params.household);
 
-  let termDate = new Date();
-  termDate.setDate(termDate.getDate() + term);
+    if (!isNaN(household)) {
+        Task.getTasksTodoByHouseholdID(household, term, null, function (obj, tasks) {
+            res.json(tasks);
+            res.end();
+        });
+    }
+    else {
+        Task.getTasksTodoByUID(res.locals.uid, term, null, function (obj, tasks) {
+            res.json(tasks);
+            res.end();
+        })
+    }
 
-  let result;
-
-  conn.query("select * from `tasks` " +
-    "where duedate < ? " +
-    "and household_id = ?", [termDate, household],
-
-    function (err, rows, fields) {
-      //TODO: onze error handling uitleggen op de examens
-      if (err) return next(err);
-
-      result = rows;
-
-      res.json(result);
-      res.end();
-    });
-
+    process.on("mysqlError", (err) => {
+        return next(err);
+  });
 });
 
 router.post('/addtask', function (req, res, next) {
   process.on("mysqlError", (err) => {
     return next(err);
   });
+//af: bart
+//controle door:
+router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
+
+
+    Task.getTasksUID(res.locals.uid, null, function (obj, tasks) {
+        res.json(tasks);
+        res.end();
+    });
+
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+});
+
+router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
   let body = req.body;
   Task.addTask(body,function (body) {
     res.json({body: body});
@@ -277,7 +296,6 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 });
 
 router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
-
   let body = req.body;
   let post = {
     id: body.id,
@@ -290,7 +308,7 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
     householdId: body.householdId,
     points: body.points
   };
-  conn.query("insert into `tasks` values ? ", post, function (err, res) {
+  conn.query("insert into `tasks` values ? ", firebaseAuthenticator, post, function (err, res) {
     if (err) return next(err);
     res.json({body: body});
     res.end();

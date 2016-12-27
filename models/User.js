@@ -12,11 +12,11 @@ class User {
       })
   }
 
-  static getUsersByHouseholdID(id, user, cb) {
+  static getUsersByHouseholdID(id, obj, cb) {
     conn.query("select * from `users` where `household_id` = ?", [id],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);
-        else cb(user, rows);
+        else cb(obj, rows);
       })
 
   }

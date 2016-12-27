@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {AuthService} from "../auth/services/auth.service";
-import {Router} from "@angular/router";
-import {FirebaseAuthState} from "angularfire2";
-import { BrowserModule } from '@angular/platform-browser';
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 export class AppComponent{
 
-  constructor(private auth:AuthService, private router: Router){
+    constructor() {
 
   }
 

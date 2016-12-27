@@ -1,24 +1,20 @@
 <header>
-    <h1>ik moet een header component worden</h1>
-    <p>hallo {{user}}</p>
+    <app-navigation></app-navigation>
 </header>
 
-<nav>
-    <h1>ik moet een navigatie component worden</h1>
-    <ul>
-        <li><a [routerLink]="['']">todo</a></li>
-        <li><a [routerLink]="['tasks']">all tasks</a></li>
-        <li><a [routerLink]="['household']">household</a></li>
-        <li><span (click)="getToken()">get token, je kan op mij klikken</span></li>
-        <li><span (click)="logout()">logout, je kan op mij klikken</span></li>
-    </ul>
-</nav>
-
 <main>
-    <h1>ik ben main en bevat enkel een router-outlet</h1>
-    <router-outlet></router-outlet>
-
+    <div class="row">
+        <div class="col s12 l10">
+            <router-outlet></router-outlet>
+        </div>
+        <aside class="hide-on-med-and-down col l2">
+            <app-chat></app-chat>
+        </aside>
+    </div>
 </main>
-<footer><h1>ik moet een footer component worden</h1></footer>
+
+<footer></footer>
+
+
 
 
