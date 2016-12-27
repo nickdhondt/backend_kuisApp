@@ -26,6 +26,30 @@ export class ApiService {
         return Observable.throw(error.json().error || 'server error...');
     }
 
+    public getTasks(): Observable<Task[]> {
+
+        let tokenPromise = new Promise<Task[]>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "tasksbytoken",
+                    {headers: this.headers})
+                    .map((response: Response) => {
+                        let tasks: Task[] = [];
+                        response.json().forEach(item => tasks.push(Task.makeTaskFromJSON(item)));
+                        return tasks;
+                    })
+                    .catch(ApiService.handleError)
+                    .subscribe(data => resolve(data), err => reject(err));
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
+
     public getTaskstodobyhousehold(term: number = 7): Observable<Task[]> {
 
         let tokenPromise = new Promise<Task[]>((resolve, reject) => {

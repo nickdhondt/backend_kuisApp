@@ -206,6 +206,22 @@ router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, fun
   });
 });
 
+//af: bart
+//controle door:
+router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
+
+
+    Task.getTasksUID(res.locals.uid, null, function (obj, tasks) {
+        res.json(tasks);
+        res.end();
+    });
+
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+});
+
 router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
   let body = req.body;
   let post = [

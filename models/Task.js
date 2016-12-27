@@ -3,6 +3,16 @@ let conn = require('../helpers/connection')(mysql);
 let moment = require('moment');
 
 class Task {
+
+    static getTasksUID(id, obj, cb) {
+
+        conn.query("select * from `tasks` where `household_id` = (select `household_id` from `users` where `uid` = ?)", [id],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(obj, rows);
+            })
+    }
+
   static getTasksByHouseholdID(id, obj, cb) {
     conn.query("select * from `tasks` where `household_id` = ?", [id],
       function (err, rows, fields) {

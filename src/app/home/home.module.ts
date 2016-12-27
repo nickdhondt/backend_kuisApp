@@ -18,6 +18,7 @@ import {MessageFormComponent} from "./chat/message-form/message-form.component";
 import {MessageItemComponent} from "./chat/message-item/message-item.component";
 import {FormsModule} from "@angular/forms";
 import {MaterializeDirective} from "angular2-materialize";
+import {TasklistComponent} from "./all-tasks/tasklist/tasklist.component";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MaterializeDirective} from "angular2-materialize";
         MessageListComponent,
         MessageFormComponent,
         MessageItemComponent,
-        MaterializeDirective
+        MaterializeDirective,
+        TasklistComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule
