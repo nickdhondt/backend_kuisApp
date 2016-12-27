@@ -1,0 +1,14 @@
+<div class="collection" *ngIf="[tasks]">
+
+    <div class="collection-item" *ngFor="let task of tasks"
+         (click)="showDetail()">
+
+        <p>{{task.name}}</p>
+        <p>{{task.dueDate.toLocaleDateString()}}</p>
+
+    </div>
+
+</div>
+<div *ngIf="[tasks]==''">
+    <p>loading tasks...</p>
+</div>
