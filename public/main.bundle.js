@@ -51,7 +51,6 @@ var ApiService = (function () {
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
     }
-
     ApiService.handleError = function (error) {
         console.error(error);
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].throw(error.json().error || 'server error...');
@@ -151,7 +150,7 @@ var AppComponent = (function () {
             selector: 'app-root',
             template: __webpack_require__(772),
             styles: [__webpack_require__(757)]
-        }),
+        }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
@@ -1190,6 +1189,9 @@ var NavigationComponent = (function () {
     NavigationComponent.prototype.logout = function () {
         this.auth.logout();
     };
+    NavigationComponent.prototype.slideOut = function () {
+        document.getElementById("slide-out").style.transform = "translateX(0px)";
+    };
     NavigationComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-navigation',
@@ -1269,7 +1271,7 @@ var TodolistComponent = (function () {
             selector: 'app-todolist',
             template: __webpack_require__(783),
             styles: [__webpack_require__(768)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["a" /* Modal */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["a" /* Modal */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_modal__["k" /* Overlay */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_angular2_modal__["k" /* Overlay */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["h" /* ViewContainerRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["h" /* ViewContainerRef */]) === 'function' && _d) || Object])
     ], TodolistComponent);
     return TodolistComponent;
@@ -1444,7 +1446,7 @@ var environment = {
     /***/ 757:
 /***/ function(module, exports) {
 
-        module.exports = "/*@media all and (min-width: 992px){*/\r\n    /*body{*/\r\n        /*background-color: yellow;*/\r\n    /*}*/\r\n    /*app-header{*/\r\n        /*display: none;*/\r\n    /*}*/\r\n/*}*/"
+        module.exports = "/*@media all and (min-width: 992px){*/\r\n/*body{*/\r\n/*background-color: yellow;*/\r\n/*}*/\r\n/*app-header{*/\r\n/*display: none;*/\r\n/*}*/\r\n/*}*/"
 
 /***/ },
 
@@ -1458,14 +1460,14 @@ module.exports = ""
     /***/ 759:
 /***/ function(module, exports) {
 
-        module.exports = "/*img{*/\r\n    /*width: 50px;*/\r\n    /*height:50px;*/\r\n/*}*/"
+        module.exports = "/*img{*/\r\n/*width: 50px;*/\r\n/*height:50px;*/\r\n/*}*/"
 
 /***/ },
 
     /***/ 760:
 /***/ function(module, exports) {
 
-        module.exports = "/*.message-form{*/\r\n    /*bottom: 60px;*/\r\n    /*position: absolute;*/\r\n/*}*/\r\n/*form{*/\r\n    /*width: 100%;*/\r\n    /*margin-left: 0px;*/\r\n\r\n/*}*/"
+        module.exports = "/*.message-form{*/\r\n/*bottom: 60px;*/\r\n/*position: absolute;*/\r\n/*}*/\r\n/*form{*/\r\n/*width: 100%;*/\r\n/*margin-left: 0px;*/\r\n\r\n/*}*/"
 
 /***/ },
 
@@ -1485,14 +1487,14 @@ module.exports = ""
 
     /***/ 763: /***/ function (module, exports) {
 
-        module.exports = "/*.brand-logo{*/\r\n    /*font-family: 'Finger Paint', cursive;*/\r\n    /*font-size: 32px;*/\r\n/*}*/"
+        module.exports = "/*.brand-logo{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*}*/"
 
         /***/
     },
 
     /***/ 764: /***/ function (module, exports) {
 
-        module.exports = "/*h1{*/\r\n    /*font-size: 35px;*/\r\n/*}*/\r\n/*app-header{*/\r\n    /*display: none;*/\r\n/*}*/\r\n/*header, main, footer,aside {*/\r\n    /*padding-left: 350px;*/\r\n/*}*/\r\n\r\n/*@media only screen and (max-width : 992px) {*/\r\n    /*header, main, footer {*/\r\n        /*padding-left: 0;*/\r\n\r\n    /*}*/\r\n    /*app-header{*/\r\n        /*display: block;*/\r\n    /*}*/\r\n/*}*/\r\n\r\n/*aside app-chat {*/\r\n    /*position: absolute;*/\r\n\r\n    /*top:0px;*/\r\n    /*bottom: 0px;*/\r\n    /*right: 0px;*/\r\n    /*width: 250px;*/\r\n    /*border-left: 1px solid gray;*/\r\n\r\n/*}*/"
+        module.exports = "/*h1{*/\r\n/*font-size: 35px;*/\r\n/*}*/\r\n/*app-header{*/\r\n/*display: none;*/\r\n/*}*/\r\n/*header, main, footer,aside {*/\r\n/*padding-left: 350px;*/\r\n/*}*/\r\n\r\n/*@media only screen and (max-width : 992px) {*/\r\n/*header, main, footer {*/\r\n/*padding-left: 0;*/\r\n\r\n/*}*/\r\n/*app-header{*/\r\n/*display: block;*/\r\n/*}*/\r\n/*}*/\r\n\r\n/*aside app-chat {*/\r\n/*position: absolute;*/\r\n\r\n/*top:0px;*/\r\n/*bottom: 0px;*/\r\n/*right: 0px;*/\r\n/*width: 250px;*/\r\n/*border-left: 1px solid gray;*/\r\n\r\n/*}*/"
 
         /***/
     },
@@ -1506,7 +1508,7 @@ module.exports = ""
 
     /***/ 766: /***/ function (module, exports) {
 
-        module.exports = "/*.logo a{*/\r\n    /*font-family: 'Finger Paint', cursive;*/\r\n    /*font-size: 32px;*/\r\n    /*margin-bottom: 5%;*/\r\n    /*margin-top: 5%;*/\r\n/*}*/\r\n\r\n\r\n"
+        module.exports = "/*.logo a{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*margin-bottom: 5%;*/\r\n/*margin-top: 5%;*/\r\n/*}*/\r\n\r\n\r\n"
 
         /***/
     },
@@ -1527,7 +1529,7 @@ module.exports = ""
 
     /***/ 769: /***/ function (module, exports) {
 
-        module.exports = "app-loader-small *{\r\n    height: 200px;\r\n    background: red;\r\n}"
+        module.exports = "app-loader-small * {\r\n    height: 200px;\r\n    background: red;\r\n}"
 
         /***/
     },
@@ -1562,7 +1564,7 @@ module.exports = ""
 
     /***/ 774: /***/ function (module, exports) {
 
-        module.exports = "<!--<app-message-list></app-message-list>-->\r\n<!--<app-message-form></app-message-form>-->\r\n\r\n\r\n<div class=\"message-container side-nav fixed right-aligned\">\r\n    <h5>The Cleansing Chatbox </h5>\r\n    <p>Users in household:</p>\r\n    <div class=\"col s12 \">\r\n        <div class=\" card gray lighten-5 \">\r\n            <div class=\"row valign-wrapper \">\r\n                <div class=\"col s3\">\r\n                    <img src=\"{{photoUrl}}\" alt=\"\" class=\"responsive-img circle\">\r\n                </div>\r\n                <div class=\"col s9\">\r\n        <span class=\"black-text\">\r\n          {{user}}\r\n        </span>\r\n\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <app-message-list></app-message-list>\r\n    <app-message-form></app-message-form>\r\n</div>\r\n"
+        module.exports = "<!--<app-message-list></app-message-list>-->\r\n<!--<app-message-form></app-message-form>-->\r\n\r\n<!--message-container side-nav fixed right-aligned-->\r\n<div class=\"\">\r\n    <h5>The Cleansing Chatbox </h5>\r\n    <p>Users in household:</p>\r\n    <div class=\"col s12 \">\r\n        <div class=\" card gray lighten-5 \">\r\n            <div class=\"row valign-wrapper \">\r\n                <div class=\"col s3\">\r\n                    <img src=\"{{photoUrl}}\" alt=\"\" class=\"responsive-img circle\">\r\n                </div>\r\n                <div class=\"col s9\">\r\n        <span class=\"black-text\">\r\n          {{user}}\r\n        </span>\r\n\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <app-message-list></app-message-list>\r\n    <app-message-form></app-message-form>\r\n</div>\r\n"
 
         /***/
     },
@@ -1591,14 +1593,14 @@ module.exports = ""
     /***/ 778:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"yellow darken-2\">\r\n  <div class=\"nav-wrapper\">\r\n       <ul class=\"right hide-on-med-and-down\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n\r\n    <ul class=\"side-nav\" id=\"mobile-demo\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n    <a href=\"#!\" class=\"brand-logo center\">The Cleansing</a>\r\n    <a href=\"\" data-activates=\"mobile-demo\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>\r\n    <script>\r\n\r\n    </script>\r\n  </div>\r\n\r\n\r\n</nav>\r\n\r\n\r\n"
+        module.exports = "<nav class=\"yellow darken-2\">\r\n  <div class=\"nav-wrapper\">\r\n\r\n    <ul class=\"right hide-on-med-and-down\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n\r\n    <ul class=\"side-nav\" id=\"mobile-demo\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n    <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\r\n    <a data-activates=\"mobile-demo\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>\r\n    <script>\r\n\r\n    </script>\r\n  </div>\r\n\r\n\r\n</nav>\r\n\r\n\r\n"
 
 /***/ },
 
     /***/ 779:
 /***/ function(module, exports) {
 
-        module.exports = "<header>\r\n    <app-header></app-header>\r\n    <nav>\r\n        <app-navigation></app-navigation>\r\n    </nav>\r\n</header>\r\n\r\n<main class=\"container\">\r\n    <router-outlet></router-outlet>\r\n    <aside>\r\n        <app-chat></app-chat>\r\n    </aside>\r\n</main>\r\n\r\n\r\n\r\n<footer><h4>ik moet een footer component worden</h4></footer>\r\n\r\n\r\n"
+        module.exports = "<header>\r\n    <nav class=\"top-nav yellow darken-2\">\r\n        <div class=\"container\">\r\n            <div class=\"nav-wrapper\">\r\n                <a data-activates=\"nav-mobile\" class=\"button-collapse top-nav full hide-on-large-only\">\r\n                    <i class=\"material-icons\">menu</i>\r\n                </a>\r\n                <a class=\"page-title\">cleansing top-nav</a>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n    <!--<div class=\"container\">-->\r\n        <!--<a data-activates=\"nav-mobile\" class=\"button-collapse top-nav full hide-on-large-only\">-->\r\n            <!--<i class=\"material-icons\">menu</i>-->\r\n        <!--</a>-->\r\n    <!--</div>-->\r\n\r\n    <ul id=\"nav-mobile\" class=\"side-nav fixed\">\r\n            <li>\r\n                <div class=\"userView\">\r\n                    <div class=\"background yellow darken-2\">\r\n\r\n                    </div>\r\n                    <img class=\"circle\"\r\n                         src=\"https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAe_AAAAJDI1NDNhYjBhLTU0OTQtNDQyNi1iNGQ2LTIzZmMxMDMxOWMzMg.jpg\">\r\n                    <span class=\"name\">The cleansing</span>\r\n                    <span class=\"email\">get it clean or get out</span>\r\n                </div>\r\n            </li>\r\n\r\n            <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\r\n            <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\r\n            <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\r\n            <li>\r\n                <div class=\"divider\"></div>\r\n            </li>\r\n            <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\r\n            <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">input</i>Sign out</a></li>\r\n            <li>\r\n                <div class=\"divider\"></div>\r\n            </li>\r\n            <li><a href=\"#\" class=\"waves-effect waves-teal\">About</a></li>\r\n        </ul>\r\n\r\n\r\n</header>\r\n<!--<app-header></app-header>-->\r\n<!--<nav class=\"yellow darken-2\">-->\r\n    <!--<app-navigation></app-navigation>-->\r\n<!--</nav>-->\r\n\r\n\r\n<main class=\"\">\r\n    <div class=\"row\">\r\n\r\n        <div class=\"col l2 hide-on-med-and-down\"></div>\r\n        <div class=\"col s12 l8\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <aside class=\"hide-on-med-and-down col l2\"><app-chat></app-chat></aside>\r\n    </div>\r\n</main>\r\n\r\n<!--<aside>-->\r\n<!--&lt;!&ndash;<app-chat></app-chat>&ndash;&gt;-->\r\n<!--</aside>-->\r\n<footer></footer>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ },
 
@@ -1612,7 +1614,7 @@ module.exports = "<nav class=\"yellow darken-2\">\r\n  <div class=\"nav-wrapper\
     /***/ 781:
 /***/ function(module, exports) {
 
-module.exports = "\r\n\r\n<ul id=\"nav-mobile\" class=\"side-nav fixed  \">\r\n    <li class=\"logo\">\r\n        <a id=\"logo-container\" href=\"#!\" class=\"brand-logo\">The Cleansing</a>\r\n    </li>\r\n    <li class=\"bold\"><a [routerLink]=\"['']\" class=\"waves-effect waves-teal\">Home</a></li>\r\n    <li class=\"bold\"><a [routerLink]=\"['tasks']\" class=\"waves-effect waves-teal\">Tasks</a></li>\r\n    <li class=\"bold\"><a [routerLink]=\"['household']\"class=\"waves-effect waves-teal\">Household</a></li>\r\n    <li class=\"bold\"><a href=\"#\" class=\"waves-effect waves-teal\">Settings</a></li>\r\n    <li class=\"bold\"><a class=\"waves-effect waves-teal\" (click)=\"logout()\">Sign out</a> </li>\r\n</ul>\r\n\r\n"
+        module.exports = "<!--<ul id=\"nav-mobile\" class=\"side-nav fixed  \">-->\r\n<!--<li class=\"logo\">-->\r\n<!--<a id=\"logo-container\" href=\"#!\" class=\"brand-logo\">The Cleansing</a>-->\r\n<!--</li>-->\r\n<!--<li class=\"bold\"><a [routerLink]=\"['']\" class=\"waves-effect waves-teal\">Home</a></li>-->\r\n<!--<li class=\"bold\"><a [routerLink]=\"['tasks']\" class=\"waves-effect waves-teal\">Tasks</a></li>-->\r\n<!--<li class=\"bold\"><a [routerLink]=\"['household']\"class=\"waves-effect waves-teal\">Household</a></li>-->\r\n<!--<li class=\"bold\"><a href=\"#\" class=\"waves-effect waves-teal\">Settings</a></li>-->\r\n<!--<li class=\"bold\"><a class=\"waves-effect waves-teal\" (click)=\"logout()\">Sign out</a> </li>-->\r\n<!--</ul>-->\r\n\r\n<div class=\"nav-wrapper\">\r\n\r\n    <!--<ul class=\"right \">-->\r\n        <!--<li><a href=\"\">My Account</a> </li>-->\r\n        <!--<li><a>Settings</a></li>-->\r\n        <!--<li><a>Sign out</a> </li>-->\r\n    <!--</ul>-->\r\n\r\n    <ul id=\"slide-out\" class=\"side-nav\">\r\n    <li>\r\n        <div class=\"userView\">\r\n            <div class=\"background yellow darken-2\">\r\n\r\n            </div>\r\n            <img class=\"circle\"\r\n                 src=\"https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAe_AAAAJDI1NDNhYjBhLTU0OTQtNDQyNi1iNGQ2LTIzZmMxMDMxOWMzMg.jpg\">\r\n            <span class=\"name\">The cleansing</span>\r\n            <span class=\"email\">get it clean or get out</span>\r\n        </div>\r\n    </li>\r\n\r\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\r\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\r\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\r\n    <li>\r\n        <div class=\"divider\"></div>\r\n    </li>\r\n    <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\r\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">input</i>Sign out</a></li>\r\n    <li>\r\n        <div class=\"divider\"></div>\r\n    </li>\r\n    <li><a href=\"#\" class=\"waves-effect waves-teal\">About</a></li>\r\n</ul>\r\n\r\n    <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\r\n    <a (click)=\"slideOut()\" data-activates=\"slide-out\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>\r\n</div>"
 
 /***/ },
 
@@ -1626,21 +1628,21 @@ module.exports = "\r\n\r\n<ul id=\"nav-mobile\" class=\"side-nav fixed  \">\r\n 
     /***/ 783:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"collection\" *ngIf=\"[tasksTodo]\">\n\n    <div class=\"collection-item\" *ngFor=\"let tasktodo of tasksTodo\"\n         (click)=\"showDetail()\">\n\n            <p>{{tasktodo.name}}</p>\n            <p>{{tasktodo.dueDate.toLocaleDateString()}}</p>\n\n    </div>\n\n</div>\n<div *ngIf=\"[tasksTodo]==''\">\n    <p>loading tasks...</p>\n</div>\n"
+        module.exports = "<div class=\"collection\" *ngIf=\"[tasksTodo]\">\n\n    <div class=\"collection-item\" *ngFor=\"let tasktodo of tasksTodo\"\n         (click)=\"showDetail()\">\n\n        <p>{{tasktodo.name}}</p>\n            <p>{{tasktodo.dueDate.toLocaleDateString()}}</p>\n\n    </div>\n\n</div>\n<div *ngIf=\"[tasksTodo]==''\">\n    <p>loading tasks...</p>\n</div>\n"
 
 /***/ },
 
     /***/ 784:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"center-align\">\n  <div class=\"preloader-wrapper small active\">\n  <div class=\"spinner-layer spinner-blue\">\n    <div class=\"circle-clipper left\">\n      <div class=\"circle\"></div>\n    </div><div class=\"gap-patch\">\n    <div class=\"circle\"></div>\n  </div><div class=\"circle-clipper right\">\n    <div class=\"circle\"></div>\n  </div>\n  </div>\n\n  <div class=\"spinner-layer spinner-red\">\n    <div class=\"circle-clipper left\">\n      <div class=\"circle\"></div>\n    </div><div class=\"gap-patch\">\n    <div class=\"circle\"></div>\n  </div><div class=\"circle-clipper right\">\n    <div class=\"circle\"></div>\n  </div>\n  </div>\n\n  <div class=\"spinner-layer spinner-yellow\">\n    <div class=\"circle-clipper left\">\n      <div class=\"circle\"></div>\n    </div><div class=\"gap-patch\">\n    <div class=\"circle\"></div>\n  </div><div class=\"circle-clipper right\">\n    <div class=\"circle\"></div>\n  </div>\n  </div>\n\n  <div class=\"spinner-layer spinner-green\">\n    <div class=\"circle-clipper left\">\n      <div class=\"circle\"></div>\n    </div><div class=\"gap-patch\">\n    <div class=\"circle\"></div>\n  </div><div class=\"circle-clipper right\">\n    <div class=\"circle\"></div>\n  </div>\n  </div>\n</div>\n</div>"
+        module.exports = "<div class=\"center-align\">\n    <div class=\"preloader-wrapper small active\">\n        <div class=\"spinner-layer spinner-blue\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-red\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-yellow\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-green\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
     /***/ 785:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"row\">\n  <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\n  <article class=\"card\">\n    <div class=\"card-content\">\n    <h1 class=\"card-title\">{{title}}</h1>\n    </div>\n    <div class=\"card-action\">\n      <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\n      <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\n    </div>\n\n  </article>\n  </div>\n</div>"
+        module.exports = "<div class=\"row\">\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\n        <article class=\"card\">\n            <div class=\"card-content\">\n                <h1 class=\"card-title\">{{title}}</h1>\n            </div>\n            <div class=\"card-action\">\n                <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\n                <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\n            </div>\n\n        </article>\n    </div>\n</div>"
 
         /***/
     },
