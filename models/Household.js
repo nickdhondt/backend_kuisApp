@@ -82,6 +82,17 @@ class Household {
         })
     }
 
+    static leaveHousehold(body, cb){
+        let post = [
+            body.id
+        ];
+        conn.query("update `users` set `household_id` = null where `id` = ?", post, function (err, res) {
+            if(err) process.emit("mysqlError", err);
+            else cb(body);
+        });
+
+    }
+
 }
 
 module.exports = Household;
