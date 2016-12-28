@@ -14,13 +14,14 @@ export class MessageFormComponent implements OnInit {
 
     constructor() {
         this.socket = io("http://localhost:3000");
+        firebase.auth().currentUser.getToken().then(token => {
+            this.socket.emit("subscribe", token);
+        });
     }
 
     sendMessage() {
-        firebase.auth().currentUser.getToken().then(token => {
-            this.socket.emit("chat-message", {firebaseTokenID: token, message: "message"});
-            this.messageContent = "";
-        });
+        this.socket.emit("chat-message", "message");
+        this.messageContent = "";
     }
 
     ngOnInit() {
