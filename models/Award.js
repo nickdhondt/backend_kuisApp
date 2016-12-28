@@ -24,6 +24,28 @@ class Award {
           else cb(body);
       })
   }
+
+  static countAwardsFromHousehold(householdId, cb){
+      conn.query("select count(*) as awardsCount from `awards` where household_id = ?", householdId, function (err,rows) {
+          if(err) process.emit("mysqlError", err);
+          else cb(rows);
+      })
+  }
+
+  static updateAwardFromHousehold(body, cb){
+      let post = [
+          body.description,
+          body.name,
+          body.month,
+          body.winner_id,
+          body.creator_id,
+          body.household_id
+      ];
+      conn.query("update `awards` set `description` = ?, `name` = ?, `month` = ?, `winner_id` = ?, `creator_id` = ? where `household_id` = ? ", post, function (err,res) {
+          if(err) process.emit("mysqlError", err);
+          else cb(body);
+      })
+  }
 }
 
 module.exports = Award;

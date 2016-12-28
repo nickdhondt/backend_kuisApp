@@ -81,6 +81,10 @@ class Task {
           cb(body);
       });
   }
+
+  static addTasks(body,cb){
+
+  }
 }
 
 

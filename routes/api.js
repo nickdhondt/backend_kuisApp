@@ -285,15 +285,29 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
   });
 
-  router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
+  router.post('/addaward', function (req, res, next) {
       process.on("mysqlError", (err) => {
           return next(err);
       });
-    let body = req.body;
-      Award.addAward(body, function (body) {
-          res.json({body: body});
-          res.end();
-      })
+      let body = req.body;
+      let household_id = body.household_id;
+      Award.countAwardsFromHousehold(household_id,function (rows) {
+         if(rows.length > 0){
+             //bestaande taak wegschrijven naar mongodb
+             //update van de bestaande award
+             Award.updateAwardFromHousehold(body,function (body) {
+                 res.json({body: body});
+                 res.end();
+             })
+         }else{
+             //nieuwe award voor huishouden invoegen
+             Award.addAward(body, function (body) {
+                 res.json({body: body});
+                 res.end();
+             })
+         }
+      });
+
   });
 
   router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
@@ -313,17 +327,6 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
   router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
     let body = req.body;
-    let post = {
-      id: body.id,
-      name: body.name,
-      duedate: body.duedate,
-      description: body.description,
-      period: body.period,
-      assigned_to: body.assigned_to,
-      username: body.username,
-      householdId: body.householdId,
-      points: body.points
-    };
     conn.query("insert into `tasks` values ? ", firebaseAuthenticator, post, function (err, res) {
       if (err) return next(err);
       res.json({body: body});
