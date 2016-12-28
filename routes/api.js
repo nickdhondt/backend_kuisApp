@@ -209,16 +209,21 @@ router.post('/leavehousehold', function (req, res) {
     })
 });
 
-router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
+router.post('/addhousehold', function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Household.addHousehold(body, function (body) {
+    Household.addHousehold(body, function (id) {
 
-        //TODO user meteen aan household toevoegen
-        res.json({body: body});
-        res.end();
+        var household_id = id;
+        //current user uid ophalen
+        var uid = res.locals.uid;
+        Household.addUserToHousehold(household_id,uid, function (household) {
+            res.json(household);
+            res.end();
+        })
+
     })
 });
 

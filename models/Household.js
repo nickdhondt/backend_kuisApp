@@ -61,7 +61,7 @@ class Household {
         ];
         conn.query("insert into `households` (`name`) values (?)", post, function (err, res) {
             if(err) process.emit("mysqlError", err);
-            else cb(household);
+            else cb(res.insertId);
         })
     }
 
@@ -76,7 +76,7 @@ class Household {
 
         conn.query("update `households` set `name` = ?, `address` = ?, `phoneNumber` = ? where `id` = ?", post, function (err, res) {
             if(err) process.emit("mysqlError", err);
-            else cb(household);
+            else cb(res);
         })
     }
 
@@ -89,6 +89,17 @@ class Household {
             else cb(body);
         });
 
+    }
+
+    static addUserToHousehold(householdId, uid, cb){
+        let post = [
+            householdId,
+            uid
+        ];
+        conn.query("update `users` set `household_id` = ? where `uid` = ?", post, function (err,res) {
+            if(err) process.emit("mysqlError", err);
+            else cb(res.rowsAffected);
+        })
     }
 
 }
