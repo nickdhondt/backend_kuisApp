@@ -2,9 +2,8 @@
  * Created by Student on 28/12/2016.
  */
 "use strict"
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
+const Schema = require('mongoose').Schema;
+const Model = require('mongoose').Model;
 
 var finishedTaskSchema = new Schema({
     id: Number,
@@ -14,7 +13,7 @@ var finishedTaskSchema = new Schema({
     period : Number,
     household_id: Number,
     assigned_to : Number,
-    points :Number,
+    points :  Number,
     done : Boolean,
     finished_by: Number,
     finished_on : String
@@ -22,5 +21,8 @@ var finishedTaskSchema = new Schema({
 });
 
 
-// let finishedTasksModel = mongoose.model("finishedTasks",finishedTaskSchema);
-// module.exports = finishedTasksModel;
+
+
+let finishedTask = Model("finishedTask",finishedTaskSchema);
+module.exports = finishedTask;
+
