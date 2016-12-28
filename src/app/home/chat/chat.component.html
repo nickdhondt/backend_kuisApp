@@ -2,18 +2,19 @@
 <!--<app-message-form></app-message-form>-->
 
 <!--message-container side-nav fixed right-aligned-->
-<div class="">
+<div class="" *ngIf="household.users">
     <h5>The Cleansing Chatbox </h5>
-    <p>Users in household:</p>
-    <div class="col s12 ">
+    <p>Users in {{household.name}}:</p>
+    <div class="col s12 " *ngFor="let user of household.users; let i=index;">
         <div class=" card gray lighten-5 ">
             <div class="row valign-wrapper ">
                 <div class="col s3">
-                    <img src="{{photoUrl}}" alt="" class="responsive-img circle">
+                    <img src="{{user.imgsrc}}" alt="" class="responsive-img circle">
+
                 </div>
                 <div class="col s9">
         <span class="black-text">
-          {{user}}
+          {{user.name}}
         </span>
 
                 </div>
