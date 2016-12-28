@@ -38,7 +38,7 @@ export class HouseholdOverviewComponent implements OnInit {
                     }
 
                 },
-
+//test
                 error => console.log("error household " + error)
             );
     }
