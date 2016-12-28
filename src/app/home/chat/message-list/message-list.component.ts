@@ -14,7 +14,7 @@ export class MessageListComponent implements OnInit {
     socket = null;
 
     constructor() {
-        this.socket = io("http://localhost:3000");
+        this.socket = io(location.protocol+'//'+location.hostname+(location.port ? ':' + (location.port === '4200' ? "3000" : location.port) : ''));
         firebase.auth().currentUser.getToken().then(token => {
             this.socket.emit("subscribe", token);
         });
@@ -22,8 +22,7 @@ export class MessageListComponent implements OnInit {
         let that = this;
 
         this.socket.on("sent-message", function (msg) {
-            that.messages.push(msg);
-            console.log("receive");
+            that.messages.push("(" + msg.user.name + " " + msg.user.lname + ") " + msg.message);
         }, this);
     }
 

@@ -14,7 +14,7 @@ export class MessageFormComponent implements OnInit {
     messageContent:String = "test";
 
     constructor() {
-        this.socket = io("http://localhost:3000");
+        this.socket = io(location.protocol+'//'+location.hostname+(location.port ? ':' + (location.port === '4200' ? "3000" : location.port) : ''));
         firebase.auth().currentUser.getToken().then(token => {
             this.socket.emit("subscribe", token);
         });
@@ -22,7 +22,6 @@ export class MessageFormComponent implements OnInit {
 
     sendMessage() {
         this.socket.emit("chat-message", this.messageContent);
-        console.log("send");
         this.messageContent = "";
     }
 

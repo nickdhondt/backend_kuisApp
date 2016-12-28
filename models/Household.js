@@ -55,8 +55,32 @@ class Household {
             });
     }
 
+    static addHousehold(household, cb){
+        let post = [
+            body.name,
+            body.address,
+            body.phoneNumber
+        ];
+        conn.query("insert into `households` (`name`, `address`, `phoneNumber`) values (?,?,?)", post, function (err, res) {
+            if(err) process.emit("mysqlError", err);
+            else cb(household);
+        })
+    }
 
 
+    static updateHousehold(household, cb){
+        let post = [
+            household.name,
+            household.address,
+            household.phoneNumber,
+            household.id
+        ];
+
+        conn.query("update `households` set `name` = ?, `address` = ?, `phoneNumber` = ? where `id` = ?", post, function (err, res) {
+            if(err) process.emit("mysqlError", err);
+            else cb(household);
+        })
+    }
 
 }
 
