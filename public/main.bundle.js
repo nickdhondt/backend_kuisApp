@@ -961,7 +961,6 @@ var MessageFormComponent = (function () {
     }
     MessageFormComponent.prototype.sendMessage = function () {
         this.socket.emit("chat-message", this.messageContent);
-        console.log("send");
         this.messageContent = "";
     };
     MessageFormComponent.prototype.ngOnInit = function () {
@@ -1052,8 +1051,7 @@ var MessageListComponent = (function () {
         });
         var that = this;
         this.socket.on("sent-message", function (msg) {
-            that.messages.push(msg);
-            console.log("receive");
+            that.messages.push("(" + msg.user.name + " " + msg.user.lname + ") " + msg.message);
         }, this);
     }
     MessageListComponent.prototype.ngOnInit = function () {

@@ -22,7 +22,6 @@ export class MessageFormComponent implements OnInit {
 
     sendMessage() {
         this.socket.emit("chat-message", this.messageContent);
-        console.log("send");
         this.messageContent = "";
     }
 
