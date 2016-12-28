@@ -15,14 +15,21 @@ module.exports = function (io) {
                 .then(function (decodedToken) {
                     let uid = decodedToken.uid;
                     User.getUserByUID(uid, function (user) {
-                        console.log("Subscribe to room: household_" + user.household_id);
-                        socket.householdID = user.household_id;
-                        socket.join("household_" + user.household_id);
+                        if (user.household_id !== undefined) {
+                            console.log("Subscribe to room: household_" + user.household_id);
+                            socket.householdID = user.household_id;
+                            socket.join("household_" + user.household_id);
+                        } else {
+                            console.log("Subscribe to room: user_" + user.id);
+                            socket.householdID = user.id;
+                            socket.join("household_" + user.id);
+                        }
                     })
                 });
         });
         socket.on("chat-message", function (data) {
-            io./*to('household_' + socket.householdID).*/emit("sent-message", data);
+            io.to('household_' + socket.householdID).emit("sent-message", data);
+            console.log(data);
             console.log("sent to household: " + socket.householdID);
         })
     });

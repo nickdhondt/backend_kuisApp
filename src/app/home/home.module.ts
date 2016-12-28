@@ -48,6 +48,8 @@ import {LoaderSmallComponent} from "../loader-small/loader-small.component";
         RouterModule, AppRoutingModule, CommonModule, FormsModule
     ],
     providers: [AuthService, ApiService, Contract],
+    bootstrap: [MessageListComponent, MessageFormComponent, MessageItemComponent]
 })
 
-export class HomeModule { }
+export class HomeModule {
+}

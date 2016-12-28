@@ -1,6 +1,7 @@
 import {Component, OnInit, NgModule} from '@angular/core';
 import * as io from 'socket.io-client';
 import * as firebase from 'firebase';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-message-form',
@@ -10,7 +11,7 @@ import * as firebase from 'firebase';
 
 export class MessageFormComponent implements OnInit {
     socket = null;
-    messageContent:String = "";
+    messageContent:String = "test";
 
     constructor() {
         this.socket = io("http://localhost:3000");
@@ -20,9 +21,9 @@ export class MessageFormComponent implements OnInit {
     }
 
     sendMessage() {
-        this.socket.emit("chat-message", "message");
+        this.socket.emit("chat-message", this.messageContent);
+        console.log("send");
         this.messageContent = "";
-        console.log("test");
     }
 
     ngOnInit() {
