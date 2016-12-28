@@ -24,6 +24,7 @@ import {HouseholdOverviewComponent} from "./household-overview/household-overvie
 import {LoaderSmallComponent} from "../loader-small/loader-small.component";
 import {UserImgComponent} from "./household-overview/user-img/user-img.component";
 import {UserDetailComponent} from "./household-overview/user-detail/user-detail.component";
+import {AwardComponent} from "./household-overview/award/award.component";
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {UserDetailComponent} from "./household-overview/user-detail/user-detail.
         HouseholdOverviewComponent,
         LoaderSmallComponent,
         UserImgComponent,
-        UserDetailComponent
+        UserDetailComponent,
+        AwardComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule
