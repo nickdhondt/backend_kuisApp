@@ -26,7 +26,7 @@ var uristring  =
     process.env.MONGOLAB_URI||
         process.env.MONGOHQ_URL||
     "mongodb://admin:abc123@ds163667.mlab.com:63667/heroku_s3b0kwzb";
-
+mongoose.Promise = global.Promise;
 mongoose.connect(uristring,function (err,res) {
     if(err){
         console.log("Error connecting to : " + uristring + ". " + err);
@@ -35,7 +35,8 @@ mongoose.connect(uristring,function (err,res) {
     else {
         console.log("Succeed to connect to :" + uristring);
     }
-})
+
+});
 
 
 
