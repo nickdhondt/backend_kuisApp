@@ -128,13 +128,17 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
 
 });
 
+//af: steven
+//controle door:
 router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next) {
-
-
-
-    // TODO: code hier
-
-
+    process.on("mysqlError", (err) =>{
+        return next(err);
+    });
+    let body = req.body;
+    Household.updateHousehold(body,function (household) {
+        res.json({body: household});
+        res.end();
+    })
 });
 
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
@@ -189,12 +193,16 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 });
 
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
+    process.on("mysqlError", (err) =>{
+        return next(err);
+    });
+    let body = req.body;
+    Household.addHousehold(body,function (body) {
 
-
-
-    // TODO: code hier
-
-
+        //TODO user meteen aan household toevoegen
+        res.json({body: body});
+        res.end();
+    })
 });
 
 //af: bart
@@ -285,7 +293,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
   });
 
-  router.post('/addaward', function (req, res, next) {
+  router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
       process.on("mysqlError", (err) => {
           return next(err);
       });
@@ -326,13 +334,14 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
   });
 
   router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
+      process.on("mysqlError", (err) =>{
+          return next(err);
+      });
     let body = req.body;
-    conn.query("insert into `tasks` values ? ", firebaseAuthenticator, post, function (err, res) {
-      if (err) return next(err);
-      res.json({body: body});
-      res.end();
-    });
-
+    Task.addTask(body, function (body) {
+        res.json({body: body});
+        res.end();
+    })
   });
 // router.use(apiNotFound);
 // router.use(apiErrorHandling);
