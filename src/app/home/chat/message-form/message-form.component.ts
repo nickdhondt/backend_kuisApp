@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 
 export class MessageFormComponent implements OnInit {
     socket = null;
-    messageContent = "";
+    messageContent:String = "";
 
     constructor() {
         this.socket = io("http://localhost:3000");
@@ -22,6 +22,7 @@ export class MessageFormComponent implements OnInit {
     sendMessage() {
         this.socket.emit("chat-message", "message");
         this.messageContent = "";
+        console.log("test");
     }
 
     ngOnInit() {

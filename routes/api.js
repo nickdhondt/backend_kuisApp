@@ -248,13 +248,15 @@ router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.post('/updatetask', function (req, res, next) {
+//af: steven
+//controle door:
+router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Task.updateTask(body, function (task) {
-        res.json(task);
+    Task.updateTask(body, function (body) {
+        res.json({body: body});
         res.end();
     })
 });
@@ -270,7 +272,7 @@ router.post('/updatetask', function (req, res, next) {
 
 //af: steven
 //controle door: nick
-  router.get('/deletetask/:task', function (req, res, next) {
+  router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
       return next(err);
     });
@@ -284,12 +286,14 @@ router.post('/updatetask', function (req, res, next) {
   });
 
   router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
+      process.on("mysqlError", (err) => {
+          return next(err);
+      });
     let body = req.body;
-    conn.query("insert into awards values ?", body, function (err, result) {
-      if (err) return next(err);
-      res.json({body: body});
-      res.end();
-    })
+      Award.addAward(body, function (body) {
+          res.json({body: body});
+          res.end();
+      })
   });
 
   router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {

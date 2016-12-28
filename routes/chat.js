@@ -22,7 +22,8 @@ module.exports = function (io) {
                 });
         });
         socket.on("chat-message", function (data) {
-            io.to('household_' + socket.householdID).emit("sent-message", data);
+            io./*to('household_' + socket.householdID).*/emit("sent-message", data);
+            console.log("sent to household: " + socket.householdID);
         })
     });
 

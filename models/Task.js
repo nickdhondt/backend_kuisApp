@@ -76,7 +76,7 @@ class Task {
           body.assigned_to,
           body.id
       ];
-      conn.query("update `tasks` set `description` = ?, `household_id` = ?, period = ?, points = ?, name = ?, dueDate = ?, assigned_to = ? where `id` = ?", post, function (res,err) {
+      conn.query("update `tasks` set `description` = ?, `household_id` = ?, period = ?, points = ?, name = ?, dueDate = ?, assigned_to = ? where `id` = ?", post, function (err,res) {
           if(err) process.emit("mysqlError", err);
           cb(body);
       });
