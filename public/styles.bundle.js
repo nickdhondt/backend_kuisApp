@@ -1,6 +1,6 @@
 webpackJsonp([1,3],{
 
-    /***/ 1097:
+/***/ 1107:
 /***/ function(module, exports) {
 
 /*
@@ -253,24 +253,24 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-    /***/ 1104:
+/***/ 1114:
 /***/ function(module, exports, __webpack_require__) {
 
-        module.exports = __webpack_require__(483);
+module.exports = __webpack_require__(484);
 
 
 /***/ },
 
-    /***/ 483:
+/***/ 484:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-        var content = __webpack_require__(780);
+var content = __webpack_require__(784);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-        var update = __webpack_require__(1097)(content, {});
+var update = __webpack_require__(1107)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -288,22 +288,22 @@ if(false) {
 
 /***/ },
 
-    /***/ 780:
+/***/ 784:
 /***/ function(module, exports, __webpack_require__) {
 
-        exports = module.exports = __webpack_require__(781)();
+exports = module.exports = __webpack_require__(785)();
 // imports
 
 
 // module
-        exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*body>*{*/\n/*height: 100vh;*/\n/*width: 100%;*/\n/*}*/\n\n@media only screen and (min-width: 993px) {\n    header, footer, main {\n        padding-left: 300px;\n    }\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\n/*body>*{*/\r\n/*height: 100vh;*/\r\n/*width: 100%;*/\r\n/*}*/\r\n\r\n@media only screen and (min-width: 993px) {\r\n    header, footer, main {\r\n        padding-left: 300px;\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
 
 /***/ },
 
-    /***/ 781:
+/***/ 785:
 /***/ function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ }
 
-}, [1104]);
+},[1114]);
 //# sourceMappingURL=styles.bundle.map
