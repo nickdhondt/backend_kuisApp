@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
-import any = jasmine.any;
+
 
 @Injectable()
 export class ApiService {
@@ -92,7 +92,10 @@ export class ApiService {
                         return Household.makeHouseholdFromJSON(response.json());
                     })
                     .catch(ApiService.handleError)
-                    .subscribe(data => resolve(data), err => reject(err));
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
             })
         });
 

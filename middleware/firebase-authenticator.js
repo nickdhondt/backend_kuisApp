@@ -11,6 +11,7 @@ function firebaseAuthenticator(req, res, next) {
     } else {
         admin.auth().verifyIdToken(firebaseIDToken)
             .then(function(decodedToken) {
+                res.locals.firebaseUser = decodedToken;
                 res.locals.uid = decodedToken.uid;
                 next();
             }).catch(function(error) {

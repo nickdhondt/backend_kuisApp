@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from "@angular/core";
 import {AuthService} from "../../auth/services/auth.service";
 import {Router} from "@angular/router";
 
@@ -20,7 +20,11 @@ export class LoginComponent{
     this.title = "logging in with facebook";
     this.auth.loginFacebook()
         .then(()=> {
-          this.router.navigate(['home']);
+
+            this.auth.addUser().subscribe(
+                data => this.router.navigate(['home']),
+                error => console.log(error));
+
         })
         .catch((error)=>{
           this.title = "" + error;
@@ -31,11 +35,15 @@ export class LoginComponent{
 
     this.title = "logging in with google";
     this.auth.loginGoogle()
-        .then(()=>{
-          this.router.navigate(['home']);
+        .then(() => {
+
+            this.auth.addUser().subscribe(
+                data => this.router.navigate(['home']),
+                error => console.log(error));
+
         })
         .catch((error)=>{
-          this.title = "" + error;
-        });
+            this.title = "" + error;
+        })
   }
 }

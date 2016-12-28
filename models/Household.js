@@ -30,7 +30,11 @@ class Household {
             function (err, rows, fields) {
                 if (err) process.emit("mysqlError", err);
                 else {
-                    Household.getUsersbyHousehold(rows[0], cb);
+                    if (rows.length == 0) {
+                        cb({});
+                        //process.emit("mysqlError", new Error("no household found"));
+                    }
+                    else Household.getUsersbyHousehold(rows[0], cb);
                 }
             });
     }
