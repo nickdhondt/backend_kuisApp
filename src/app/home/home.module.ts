@@ -22,6 +22,8 @@ import {TasklistComponent} from "./all-tasks/tasklist/tasklist.component";
 import {TaskdetailComponent} from "./taskdetail/taskdetail.component";
 import {HouseholdOverviewComponent} from "./household-overview/household-overview.component";
 import {LoaderSmallComponent} from "../loader-small/loader-small.component";
+import {UserImgComponent} from "./household-overview/user-img/user-img.component";
+import {UserDetailComponent} from "./household-overview/user-detail/user-detail.component";
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {LoaderSmallComponent} from "../loader-small/loader-small.component";
         TasklistComponent,
         TaskdetailComponent,
         HouseholdOverviewComponent,
-        LoaderSmallComponent
+        LoaderSmallComponent,
+        UserImgComponent,
+        UserDetailComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule

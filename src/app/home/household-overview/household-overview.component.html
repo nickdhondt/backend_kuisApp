@@ -3,15 +3,15 @@
 
     <h1 class="center-align">{{household.name}}</h1>
 
-    <div style="display: flex; justify-content: center; align-items: flex-end">
-        <figure class="" style="margin: 20px" *ngFor="let user of household.users">
+    <div style="padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap">
 
-            <img src="{{user.imgsrc}}" class=" hoverable circle z-depth-1 responsive-img">
-            <figcaption class="chip">
-                <span class="circle">5</span>
-                {{user.name}}
-            </figcaption>
-    </figure>
+        <app-user-img
+                *ngFor="let user of household.users; let i = index;"
+                [user]="user"
+                [index]="i"
+                (click)="showDialog = !showDialog; selectedUser = user;"
+        ></app-user-img>
+
     </div>
 
 </div>
@@ -19,3 +19,5 @@
 <div *ngIf="![household.users]">
     <app-loader-small></app-loader-small>
 </div>
+
+<app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
