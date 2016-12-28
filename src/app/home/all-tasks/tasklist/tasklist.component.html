@@ -1,4 +1,6 @@
-<div class="collection" *ngIf="[tasks]" [hidden]="!tasks">
+<app-loader-small *ngIf="loading"></app-loader-small>
+
+<div class="collection" [hidden]="tasks.length == 0" *ngIf="tasks.length > 0">
 
     <div class="collection-item" *ngFor="let task of tasks"
          (click)="showDialog = !showDialog; selectedTask = task;">
@@ -8,9 +10,20 @@
     </div>
 </div>
 
+<div *ngIf="!loading && tasks.length == 0">
 
-<div *ngIf="[tasks]==''">
-    <app-loader-small></app-loader-small>
+    <h2 class="center-align grey-text light text-darken-1">all my tasks</h2>
+
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">No tasks found</span>
+            <p>You have no tasks, what are you even doing!</p>
+        </div>
+        <div class="card-action">
+            <a href="#">Fuck you</a>
+            <a href="#">OK</a>
+        </div>
+    </div>
 </div>
 
 <app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask"></app-taskdetail>

@@ -9,9 +9,10 @@ import {Task} from "../../../../models/task.model";
 })
 export class TasklistComponent implements OnInit {
 
-    tasks: Task[];
+    tasks: Task[] = [];
     showDialog: boolean = false;
     selectedTask: Task;
+    loading: boolean = true;
 
     constructor(private apiService: ApiService) {
     }
@@ -25,11 +26,15 @@ export class TasklistComponent implements OnInit {
         this.apiService
             .getTasks()
             .subscribe(
-                data => this.tasks = data.sort((t1, t2) => {
-                    if (t1.period > t2.period) return 1;
-                    if (t1.period < t2.period) return -1;
-                    return 0;
-                }),
-                error => console.log(error));
+                data => {
+                    this.tasks = data.sort((t1, t2) => {
+                        if (t1.period > t2.period) return 1;
+                        if (t1.period < t2.period) return -1;
+                        return 0;
+                    });
+                    this.loading = false;
+                },
+                error => console.log(error)
+            );
     }
 }

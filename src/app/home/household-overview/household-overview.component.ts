@@ -14,6 +14,7 @@ export class HouseholdOverviewComponent implements OnInit {
     household: Household = new Household();
     showDialog: boolean = false;
     selectedUser: User;
+    loading: boolean = true;
 
     constructor(private apiService: ApiService) {
     }
@@ -28,6 +29,9 @@ export class HouseholdOverviewComponent implements OnInit {
             .getHousehold()
             .subscribe(
                 data => {
+
+                    this.loading = false;
+
                     if (!isUndefined(data.users)) {
                         data.users.sort((a: User, b: User) => {
                             if (a.score < b.score) return 1;
@@ -35,6 +39,9 @@ export class HouseholdOverviewComponent implements OnInit {
                             return 0;
                         });
                         this.household = data;
+                    }
+                    else {
+
                     }
 
                 },

@@ -1,6 +1,8 @@
-<div *ngIf="[household.users]">
+<app-loader-small *ngIf="loading"></app-loader-small>
 
-    <h1 class="center-align">{{household.name}}</h1>
+<div *ngIf="household.users">
+
+    <h2 class="center-align grey-text light text-darken-1">{{household.name}}</h2>
 
     <div style="padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap">
 
@@ -15,8 +17,22 @@
 
 </div>
 
-<div *ngIf="![household.users]">
-    <app-loader-small></app-loader-small>
+<div *ngIf="!loading && !household.users">
+
+    <h2 class="center-align grey-text light text-darken-1">my household</h2>
+
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">No household found</span>
+            <p>It seems like you don't belong to a household yet.</p>
+            <p>Go join or make a household.</p>
+        </div>
+        <div class="card-action">
+            <a href="#">Fuck you</a>
+            <a href="#">OK</a>
+        </div>
+    </div>
 </div>
+
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>

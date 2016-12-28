@@ -1,6 +1,5 @@
-<div *ngIf="![loading]">
-    <app-loader-small></app-loader-small>
-</div>
+<app-loader-small *ngIf="loading"></app-loader-small>
+
 
 <div class="collection" [hidden]="tasksTodo.length == 0" *ngIf="tasksTodo.length > 0">
 
@@ -14,11 +13,14 @@
 
 </div>
 
-<div *ngIf="tasksTodo.length == 0">
+<div *ngIf="!loading && tasksTodo.length == 0">
+
+    <h2 class="center-align grey-text light text-darken-1">my upcoming tasks</h2>
+
     <div class="card">
         <div class="card-content">
             <span class="card-title">No tasks found</span>
-            <p>No tasks found, go make some!</p>
+            <p>You have nothing to do, go make some tasks!</p>
         </div>
         <div class="card-action">
             <a href="#">Fuck you</a>
