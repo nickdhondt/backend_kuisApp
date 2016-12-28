@@ -961,7 +961,6 @@ var MessageFormComponent = (function () {
     }
     MessageFormComponent.prototype.sendMessage = function () {
         this.socket.emit("chat-message", this.messageContent);
-        console.log("send");
         this.messageContent = "";
     };
     MessageFormComponent.prototype.ngOnInit = function () {
@@ -1052,8 +1051,7 @@ var MessageListComponent = (function () {
         });
         var that = this;
         this.socket.on("sent-message", function (msg) {
-            that.messages.push(msg);
-            console.log("receive");
+            that.messages.push("(" + msg.user.name + " " + msg.user.lname + ") " + msg.message);
         }, this);
     }
     MessageListComponent.prototype.ngOnInit = function () {
@@ -1852,7 +1850,7 @@ module.exports = "<!--<app-message-list></app-message-list>-->\r\n<!--<app-messa
 /***/ 831:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"message-form\">\r\n    <form class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"input-field col s8\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" placeholder=\"Brent is fantastisch\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s4\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\" class=\"waves-effect waves-light btn-floating btn-large\">\r\n                    <i class=\"material-icons\">chat</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
+module.exports = "<div class=\"message-form\">\r\n    <form class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"input-field col s8\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" placeholder=\"Brent is fantastisch\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s4\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\" class=\"waves-effect waves-light btn-floating btn-large\">\r\n                    <i class=\"material-icons\">send</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
 
 /***/ },
 
