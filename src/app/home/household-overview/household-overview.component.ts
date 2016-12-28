@@ -21,6 +21,12 @@ export class HouseholdOverviewComponent implements OnInit {
 
     ngOnInit() {
         this.getHousehold();
+        this.postFinishedTask();
+    }
+
+    private postFinishedTask():void{
+        this.apiService
+            .postFinishedTask()
     }
 
     private getHousehold(): void {

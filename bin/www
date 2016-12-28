@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('backend-kuisapp:server');
 var http = require('http');
+var config = require("../config");
 
 /**
  * Get port from environment and store in Express.
@@ -24,6 +25,10 @@ var server = http.createServer(app);
 var io = app.io;
 io.attach( server );
 
+
+//self executing database mongo connectie
+// var DBService = require("../src/service/connectDBService");
+// var connectDB = DBService(config.MONGODBURL,require("mongoose"));
 /**
  * Listen on provided port, on all network interfaces.
  */

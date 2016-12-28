@@ -33,10 +33,13 @@ mongoose.connect(uristring,function (err,res) {
 
     }
     else {
-        console.log("Succeed to connect to :" + uristring);
-    }
+      var msg =  "connection met mongo server " + uristring;
 
-});
+      }
+      console.log(msg);
+    });
+
+
 
 
 
