@@ -1,0 +1,19 @@
+<figure class="" style="margin: 0">
+
+    <div style="position: relative">
+
+        <div class="chip"
+             [ngClass]="index == 0 ? 'yellow darken-2 white-text':''"
+             style="position: absolute; top:-10px; left:0;">
+            {{user.score}}
+        </div>
+
+        <div class="hoverable circle z-depth-1"
+             style="max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px">
+            <img src="{{user.imgsrc}}" class="responsive-img">
+        </div>
+    </div>
+
+    <figcaption class="center grey-text darken-1">{{user.name}}</figcaption>
+
+</figure>

@@ -1,0 +1,12 @@
+<div [@dialog] *ngIf="visible" class="card dialog">
+    <!--<ng-content></ng-content>-->
+    <div class="card-content">
+        <span class="card-title">{{user.name}}</span>
+        <p>Hebban olla uogala nestas hagunnan hinase hic anda thu uuat unbidan uue nu</p>
+    </div>
+    <div class="card-action">
+        <a *ngIf="closable" (click)="close()" aria-label="Close" class="">close</a>
+    </div>
+</div>
+
+<div *ngIf="visible" class="overlay" (click)="close()"></div>
