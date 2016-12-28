@@ -1,11 +1,36 @@
 <div [@dialog] *ngIf="visible" class="card dialog">
     <!--<ng-content></ng-content>-->
     <div class="card-content">
-        <span class="card-title">{{user.name}}</span>
-        <p>Hebban olla uogala nestas hagunnan hinase hic anda thu uuat unbidan uue nu</p>
+        <span class="card-title center-align">Member Details</span>
+        <div class="row center-align" >
+            <img src="{{user.imgsrc}}" class="responsive-img circle " style="max-height: 100px; max-width: 100px; overflow: hidden">
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{user.name}}" id="first_name" type="text" class="validate">
+                        <label class="active" for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{user.lname}}" id="last_name" type="text" class="validate">
+                        <label class="active" for="last_name">Last Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input value="{{user.email}}" id="email" type="text" class="validate">
+                        <label class="active" for="email">E-mail</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input value="{{user.phoneNumber}}" id="phone_number" type="text" class="validate">
+                        <label class="active" for="phone_number">Phone Number</label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="card-action">
         <a *ngIf="closable" (click)="close()" aria-label="Close" class="">close</a>
+        <a (click)="save()" class="right" aria-label="Save">save</a>
     </div>
 </div>
 
