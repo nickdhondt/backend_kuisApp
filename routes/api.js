@@ -253,8 +253,8 @@ router.post('/updatetask', function (req, res, next) {
         return next(err);
     });
     let body = req.body;
-    Task.updateTask(body, function (task) {
-        res.json(task);
+    Task.updateTask(body, function (body) {
+        res.json({body: body});
         res.end();
     })
 });
