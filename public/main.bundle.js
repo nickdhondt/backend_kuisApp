@@ -1885,7 +1885,7 @@ module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>
 /***/ 836:
 /***/ function(module, exports) {
 
-module.exports = "\r\n<div *ngIf=\"[household.users]\">\r\n\r\n    <h1 class=\"center-align\">{{household.name}}</h1>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"![household.users]\">\r\n    <app-loader-small></app-loader-small>\r\n</div>\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>"
+module.exports = "<div *ngIf=\"[household.users]\">\r\n\r\n    <h1 class=\"center-align\">{{household.name}}</h1>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"![household.users]\">\r\n    <app-loader-small></app-loader-small>\r\n</div>\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>"
 
 /***/ },
 
@@ -1994,7 +1994,7 @@ var ApiService = (function () {
         this._contract = _contract;
         this.auth = auth;
         //this.actionUrl = _contract.ServerWithApiUrl;
-        this.actionUrl = _contract.LocalhostWithApiUrl;
+        this.actionUrl = _contract.ServerWithApiUrl;
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');

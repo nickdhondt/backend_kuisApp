@@ -42,8 +42,8 @@ module.exports = function (io) {
                 };
 
                 request(options, function (error, response, body) {
-                    let JSONBody = JSON.parse(body);
-                    console.log(body);
+                    // let JSONBody = JSON.parse(body);
+                    // console.log(body);
                 });
             });
         })
