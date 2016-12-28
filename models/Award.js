@@ -18,8 +18,15 @@ class Award {
   }
 
   static addAward(body,cb){
-      //body in array stoppen
-      conn.query("insert into awards values ?", post, function (err,res) {
+      let post = [
+          body.description,
+          body.name,
+          body.month,
+          body.winner_id,
+          body.creator_id,
+          body.household_id
+      ];
+      conn.query("insert into awards (`description`, `name`, `month`, `winner_id`, `creator_id`, `household_id`) values (?,?,?,?,?,?)", post, function (err,res) {
           if(err) process.emit("mysqlError", err);
           else cb(body);
       })
