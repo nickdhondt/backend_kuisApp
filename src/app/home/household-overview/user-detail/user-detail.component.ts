@@ -34,4 +34,8 @@ export class UserDetailComponent implements OnInit {
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }
+    save(){
+        //Code om update-user uit te voeren
+
+    }
 }

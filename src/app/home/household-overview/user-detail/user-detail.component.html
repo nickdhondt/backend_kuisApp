@@ -17,11 +17,13 @@
                         <label class="active" for="last_name">Last Name</label>
                     </div>
                     <div class="input-field col s12">
-                        <input value="{{user.email}}" id="email" type="text" class="validate">
-                        <label class="active" for="email">E-mail</label>
+                        <i class="prefix material-icons">email</i>
+                        <input value="{{user.email}}" id="email" type="email" class="validate">
+                        <label class="active" for="email" data-error="Email not validated" data-success="Valid Email ">E-mail</label>
                     </div>
                     <div class="input-field col s12">
-                        <input value="{{user.phoneNumber}}" id="phone_number" type="text" class="validate">
+                        <i class="material-icons prefix">phone</i>
+                        <input value="{{user.phoneNumber}}" id="phone_number" type="number" class="validate">
                         <label class="active" for="phone_number">Phone Number</label>
                     </div>
                 </div>
@@ -30,7 +32,7 @@
     </div>
     <div class="card-action">
         <a *ngIf="closable" (click)="close()" aria-label="Close" class="">close</a>
-        <a (click)="save()" class="right" aria-label="Save">save</a>
+        <a  (click)="save()" class="right"  aria-label="Save">save</a>
     </div>
 </div>
 
