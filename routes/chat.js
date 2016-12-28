@@ -3,6 +3,7 @@ module.exports = function (io) {
     let router = app.Router();
     let admin = require("firebase-admin");
     let User = require("../models/User");
+    let request = require("request");
 
     router.all('/', function (req, res, next) {
         next();
@@ -10,7 +11,6 @@ module.exports = function (io) {
 
     io.on('connection', function (socket) {
         socket.on("subscribe", function (token) {
-            console.log(token);
             admin.auth().verifyIdToken(token)
                 .then(function (decodedToken) {
                     let uid = decodedToken.uid;
