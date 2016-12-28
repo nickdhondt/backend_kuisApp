@@ -119,12 +119,17 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
-
-
-
-    // TODO: code hier
-
+//af: steven
+//controle door:
+router.post('/updateuser', function (req, res, next) {
+    process.on("mysqlError", (err) =>{
+        return next(err);
+    });
+    let body = req.body;
+    User.updateUser(body,function (user) {
+        res.json({body: user});
+        res.end();
+    })
 
 });
 

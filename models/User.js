@@ -20,6 +20,24 @@ class User {
       })
 
   }
+
+  static updateUser(user, cb){
+      let post = [
+          user.email,
+          user.household_id,
+          user.imgsrc,
+          user.lname,
+          user.phonenumber,
+          user.score,
+          user.uid,
+          user.name,
+          user.id
+      ];
+      conn.query("update `users` set `email` = ?, `household_id` = ?, `imgsrc` = ?, `lname` = ?, `phonenumber` = ?, `score` = ?, `uid` = ?, `name` = ? where `id` = ?", post, function (err, res) {
+          if(err) process.emit("mysqlError", err);
+          else cb(user);
+      })
+  }
 }
 
 module.exports = User;
