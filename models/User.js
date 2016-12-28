@@ -20,6 +20,29 @@ class User {
       })
 
   }
+
+    static addUser(firebaseUser, cb) {
+
+        let user = {};
+
+        user.name = firebaseUser.name;
+        user.email = firebaseUser.email;
+        user.uid = firebaseUser.uid;
+        user.imgsrc = firebaseUser.picture;
+
+        conn.query("insert into `users` (name, email, uid, imgsrc) values (?,?,?,?)", [user.name, user.email, user.uid, user.picture],
+            function (err, rows, fields) {
+
+                if (err && !err.message.startsWith("ER_DUP_ENTRY:")) {
+                    process.emit("mysqlError", err);
+                }
+
+                else {
+                    cb(user);
+                }
+
+            })
+    }
 }
 
 module.exports = User;

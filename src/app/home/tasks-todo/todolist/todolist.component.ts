@@ -10,9 +10,10 @@ import {Task} from "../../../../models/task.model";
 })
 export class TodolistComponent implements OnInit {
 
-    tasksTodo: Task[];
+    tasksTodo: Task[] = [];
     showDialog: boolean = false;
     selectedTask: Task;
+    loading: boolean = true;
 
     constructor(private apiService: ApiService) {
     }
@@ -26,12 +27,16 @@ export class TodolistComponent implements OnInit {
         this.apiService
             .getTaskstodobyhousehold()
             .subscribe(
-                data => this.tasksTodo = data.sort((t1, t2) => {
-                    if (t1.dueDate > t2.dueDate) return 1;
-                    if (t1.dueDate < t2.dueDate) return -1;
-                    return 0;
-                }),
-                error => console.log(error));
+                data => {
+                    this.tasksTodo = data.sort((t1, t2) => {
+                        if (t1.dueDate > t2.dueDate) return 1;
+                        if (t1.dueDate < t2.dueDate) return -1;
+                        return 0;
+                    });
+                    this.loading = false;
+                },
+                error => console.log(error)
+            );
     }
 
 }

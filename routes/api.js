@@ -113,8 +113,16 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
 
 router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
 
-    // TODO: code hier
+    User.addUser(res.locals.firebaseUser, function (user) {
+
+        res.json(user);
+        res.end();
+
+    });
 
 
 });

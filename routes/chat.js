@@ -13,8 +13,10 @@ module.exports = function (io) {
             console.log(token);
             admin.auth().verifyIdToken(token)
                 .then(function (decodedToken) {
+
                     let uid = decodedToken.uid;
                     User.getUserByUID(uid, function (user) {
+
                         if (user.household_id !== undefined) {
                             console.log("Subscribe to room: household_" + user.household_id);
                             socket.householdID = user.household_id;

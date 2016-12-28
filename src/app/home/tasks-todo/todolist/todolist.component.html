@@ -1,17 +1,30 @@
-<div class="collection" [hidden]="!tasksTodo" *ngIf="[tasksTodo]">
+<div *ngIf="![loading]">
+    <app-loader-small></app-loader-small>
+</div>
+
+<div class="collection" [hidden]="tasksTodo.length == 0" *ngIf="tasksTodo.length > 0">
 
     <div class="collection-item" *ngFor="let tasktodo of tasksTodo"
          (click)="showDialog = !showDialog; selectedTask = tasktodo">
 
         <p>{{tasktodo.name}}</p>
-            <p>{{tasktodo.dueDate.toLocaleDateString()}}</p>
+        <p>{{tasktodo.dueDate.toLocaleDateString()}}</p>
 
     </div>
 
 </div>
 
-<div *ngIf="[tasksTodo]==''">
-    <app-loader-small></app-loader-small>
+<div *ngIf="tasksTodo.length == 0">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">No tasks found</span>
+            <p>No tasks found, go make some!</p>
+        </div>
+        <div class="card-action">
+            <a href="#">Fuck you</a>
+            <a href="#">OK</a>
+        </div>
+    </div>
 </div>
 
 <app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask"></app-taskdetail>

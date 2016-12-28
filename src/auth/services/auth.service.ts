@@ -1,13 +1,27 @@
 import {Injectable} from "@angular/core";
 import {FirebaseAuthState, AuthProviders, FirebaseAuth} from "angularfire2";
 import {Router} from "@angular/router";
+import {Headers, Http, Response} from "@angular/http";
+import {Contract} from "../../contract";
+import {User} from "../../models/user.model";
+import {Observable} from "rxjs";
+
 
 @Injectable()
 export class AuthService {
 
   public authState: FirebaseAuthState = null;
+    private actionUrl: string;
+    private headers: Headers;
+    //this.actionUrl = _contract.ServerWithApiUrl;
 
-  constructor(public auth$:FirebaseAuth, private router:Router) {
+
+    constructor(public auth$: FirebaseAuth, private router: Router, private _http: Http, private _contract: Contract) {
+
+        this.actionUrl = _contract.LocalhostWithApiUrl;
+        this.headers = new Headers();
+        this.headers.append('Content-Type', 'application/json');
+        this.headers.append('Accept', 'application/json');
 
     //abonneer op authstate wijzigingen
     this.auth$.subscribe((state: FirebaseAuthState) => {
@@ -19,14 +33,6 @@ export class AuthService {
       if (!state) {
         this.router.navigate(['']);
       }
-      // else{
-      //   this.token.then(token => {
-      //     localStorage.setItem('firebaseToken', token);
-      //     console.log("localstorage set");
-      //   });
-      // }
-
-      //console.log("authstate changed " + this.authenticated);
     });
 
   }
@@ -39,16 +45,39 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : '';
   }
 
+    addUser(): Observable<User> {
+        let tokenPromise = new Promise<any>((resolve, reject) => {
+
+            this.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.post(
+                    this.actionUrl + "adduser", null,
+                    {headers: this.headers})
+                    .map((response: Response) => {
+
+                        return User.makeUserFromJSON(response.json());
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        return Observable.throw(error.json().error || 'server error...');
+                    })
+                    .subscribe(data => resolve(data), err => reject(err));
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
+
   loginFacebook(): firebase.Promise<FirebaseAuthState> {
     return this.auth$
         .login({provider:AuthProviders.Facebook});
-        //.catch(error => console.error('Error @ AuthService#loginFacebook : ', error ));
   }
 
   loginGoogle(): firebase.Promise<FirebaseAuthState> {
     return this.auth$
       .login({provider:AuthProviders.Google});
-      //.catch(error => console.error('Error @ AuthService#loginGoogle : ', error ));
   }
 
   logout(){
