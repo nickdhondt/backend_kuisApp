@@ -57,11 +57,9 @@ class Household {
 
     static addHousehold(household, cb){
         let post = [
-            body.name,
-            body.address,
-            body.phoneNumber
+            household.name
         ];
-        conn.query("insert into `households` (`name`, `address`, `phoneNumber`) values (?,?,?)", post, function (err, res) {
+        conn.query("insert into `households` (`name`) values (?)", post, function (err, res) {
             if(err) process.emit("mysqlError", err);
             else cb(household);
         })
