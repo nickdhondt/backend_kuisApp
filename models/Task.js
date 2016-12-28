@@ -50,7 +50,7 @@ class Task {
       });
   }
   static addTask(body, cb){
-      let post = [
+      var post = [
           body.description,
           body.household_id,
           body.period,
@@ -67,16 +67,16 @@ class Task {
 
   static updateTask(body,cb){
       let post = [
-          body.id,
           body.description,
           body.household_id,
           body.period,
           body.points,
           body.name,
           body.dueDate,
-          body.assigned_to
+          body.assigned_to,
+          body.id
       ];
-      conn.query("update ....", post, function (res,err) {
+      conn.query("update `tasks` set `description` = ?, `household_id` = ?, period = ?, points = ?, name = ?, dueDate = ?, assigned_to = ? where `id` = ?", post, function (err,res) {
           if(err) process.emit("mysqlError", err);
           cb(body);
       });

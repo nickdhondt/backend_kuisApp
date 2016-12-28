@@ -1,10 +1,21 @@
-<h1 class="center-align">{{household.name}}</h1>
 
 <div *ngIf="[household.users]">
 
-    <figure *ngFor="let user of household.users">
-        <img src="{{user.imgsrc}}" class="circle z-depth-1">
-        <figcaption>{{user.name}}</figcaption>
-    </figure>
+    <h1 class="center-align">{{household.name}}</h1>
 
+    <div style="display: flex; justify-content: center; align-items: flex-end">
+        <figure class="" style="margin: 20px" *ngFor="let user of household.users">
+
+            <img src="{{user.imgsrc}}" class=" hoverable circle z-depth-1 responsive-img">
+            <figcaption class="chip">
+                <span class="circle">5</span>
+                {{user.name}}
+            </figcaption>
+    </figure>
+    </div>
+
+</div>
+
+<div *ngIf="![household.users]">
+    <app-loader-small></app-loader-small>
 </div>

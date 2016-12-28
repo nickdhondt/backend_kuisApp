@@ -16,7 +16,6 @@ import {Contract} from "../contract";
 import {ApiService} from "../service/api.service";
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
-import {LoaderSmallComponent} from "./loader-small/loader-small.component";
 
 const myFirebaseConfig = {
   apiKey: "AIzaSyB_BRv8vUg4D0njciLkTNqGBEfZM4cNVlQ",
@@ -35,7 +34,6 @@ const myFirebaseAuthConfig = {
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    LoaderSmallComponent
   ],
   imports: [
     BrowserModule,
