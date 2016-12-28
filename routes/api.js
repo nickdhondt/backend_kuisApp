@@ -128,7 +128,9 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.post('/updatehousehold', function (req, res, next) {
+//af: steven
+//controle door:
+router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) =>{
         return next(err);
     });
@@ -291,7 +293,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
   });
 
-  router.post('/addaward', function (req, res, next) {
+  router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
       process.on("mysqlError", (err) => {
           return next(err);
       });
