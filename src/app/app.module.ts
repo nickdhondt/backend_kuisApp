@@ -18,36 +18,37 @@ import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 const myFirebaseConfig = {
-  apiKey: "AIzaSyB_BRv8vUg4D0njciLkTNqGBEfZM4cNVlQ",
-  authDomain: "kuisapp.firebaseapp.com",
-  databaseURL: "https://kuisapp.firebaseio.com",
-  storageBucket: "kuisapp.appspot.com"
+    apiKey: "AIzaSyB_BRv8vUg4D0njciLkTNqGBEfZM4cNVlQ",
+    authDomain: "kuisapp.firebaseapp.com",
+    databaseURL: "https://kuisapp.firebaseio.com",
+    storageBucket: "kuisapp.appspot.com"
 };
 
 const myFirebaseAuthConfig = {
-  method: AuthMethods.Popup
+    method: AuthMethods.Popup
 };
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    NotFoundComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpModule,
-    AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
-    CommonModule,
-    HomeModule,
-    ModalModule.forRoot(),
-    BootstrapModalModule,
-  ],
-  providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        NotFoundComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpModule,
+        AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
+        CommonModule,
+        HomeModule,
+        ModalModule.forRoot(),
+        BootstrapModalModule,
+    ],
+    providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService],
+    bootstrap: [AppComponent],
 })
 
-export class AppModule { }
+export class AppModule {
+}

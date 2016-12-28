@@ -5,7 +5,7 @@ import {Task} from "../../../../models/task.model";
 @Component({
     selector: 'app-tasklist',
     templateUrl: './tasklist.component.html',
-    styleUrls: ['./tasklist.component.css']
+    styleUrls: ['./tasklist.component.css'],
 })
 export class TasklistComponent implements OnInit {
 
