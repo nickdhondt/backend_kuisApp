@@ -34,7 +34,6 @@ mongoose.connect(uristring,function (err,res) {
     }
     else {
         console.log("Succeed to connect to :" + uristring);
-//
     }
 })
 
