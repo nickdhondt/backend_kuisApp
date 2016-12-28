@@ -196,13 +196,17 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
     });
 });
 
-router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
-
-
-
-    // TODO: code hier
-
-
+//af: steven
+// controle door:
+router.post('/leavehousehold', function (req, res) {
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+    let body = req.body;
+    Household.leaveHousehold(body, function (body) {
+        res.json({body: body});
+        res.end();
+    })
 });
 
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
