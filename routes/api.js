@@ -286,12 +286,14 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
   });
 
   router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
+      process.on("mysqlError", (err) => {
+          return next(err);
+      });
     let body = req.body;
-    conn.query("insert into awards values ?", body, function (err, result) {
-      if (err) return next(err);
-      res.json({body: body});
-      res.end();
-    })
+      Award.addAward(body, function (body) {
+          res.json({body: body});
+          res.end();
+      })
   });
 
   router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
