@@ -22,5 +22,5 @@ var finishedTaskSchema = new Schema({
 });
 
 
-// let finishedTasksModel = mongoose.model("finishedTasks",finishedTaskSchema);
-// module.exports = finishedTasksModel;
+var finishedTasksModel = mongoose.model("finishedTasks",finishedTaskSchema);
+module.exports = finishedTasksModel;
