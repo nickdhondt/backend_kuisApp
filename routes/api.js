@@ -292,8 +292,8 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
       let body = req.body;
       let household_id = body.household_id;
       Award.countAwardsFromHousehold(household_id,function (rows) {
-         if(rows.length > 0){
-             //bestaande taak wegschrijven naar mongodb
+         if(rows[0].awardsCount > 0){
+             //TODO: bestaande taak wegschrijven naar mongodb
              //update van de bestaande award
              Award.updateAwardFromHousehold(body,function (body) {
                  res.json({body: body});
