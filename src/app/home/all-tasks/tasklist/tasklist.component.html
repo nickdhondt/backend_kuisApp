@@ -2,7 +2,19 @@
 
 <div class="collection" [hidden]="tasks.length == 0" *ngIf="tasks.length > 0">
 
-    <div class="collection-item" *ngFor="let task of tasks"
+    <nav class="amber">
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input #filterField (keyup)="0" id="search" type="search" name="filter" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="collection-item" *ngFor="let task of tasks | tasksFilter:filterField.value"
          (click)="showDialog = !showDialog; selectedTask = task;">
         <p>periodicy: {{task.period}}</p>
         <p>name: {{task.name}}</p>
