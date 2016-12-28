@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
-// let mongoose = require("mongoose");
+var finishedTask = require("../models/MongoDB_Models/finishedtask.model");
 
 
 @Injectable()
@@ -105,20 +105,29 @@ export class ApiService {
 
     public postFinishedTask(): void {
         console.log("PostfinishedTask");
-        // let uristring =
-        //     process.env.MONGOLAB_URI||
-        //     process.env.MONGOHQ||
-        //     "mongodb://admin:abc123@ds163667.mlab.com:63667/heroku_s3b0kwzb";
-        //
-        // mongoose.Promise = global.Promise;
-        // mongoose.connect(uristring,function (err,res) {
-        //     if(err){
-        //         console.log("Error connecting to :" + uristring + ". " + err);
-        //     }
-        //     else {
-        //         console.log("Succesfull connected to : " + uristring);
-        //     }
-        // });
+
+
+        var  newFinishedTask = finishedTask({
+            id : 1622,
+            name: "stof afdoen",
+            dueDate: "2016-11-28",
+            description: "douche, wastafel en toilet",
+            period:7,
+            household_id: 37,
+            assigned_to : 71,
+            points: 30,
+            done:true,
+            finished_by: 26,
+            finished_on: "2016-11-26"
+
+        });
+
+        //save finishedtask
+        newFinishedTask.save(function (err) {
+            if(err) throw err;
+
+            console.log("Finishedtask created");
+        })
 
 
     }
