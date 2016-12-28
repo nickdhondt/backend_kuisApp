@@ -1,4 +1,3 @@
-app-loader-small * {
-    height: 200px;
-    background: red;
+app-loader-small {
+    margin-top: 150px;
 }

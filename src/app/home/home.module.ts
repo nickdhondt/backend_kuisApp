@@ -21,6 +21,7 @@ import {MaterializeDirective} from "angular2-materialize";
 import {TasklistComponent} from "./all-tasks/tasklist/tasklist.component";
 import {TaskdetailComponent} from "./taskdetail/taskdetail.component";
 import {HouseholdOverviewComponent} from "./household-overview/household-overview.component";
+import {LoaderSmallComponent} from "../loader-small/loader-small.component";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {HouseholdOverviewComponent} from "./household-overview/household-overvie
         MaterializeDirective,
         TasklistComponent,
         TaskdetailComponent,
-        HouseholdOverviewComponent
+        HouseholdOverviewComponent,
+        LoaderSmallComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule

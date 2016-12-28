@@ -1,4 +1,4 @@
-<div class="collection" *ngIf="[tasks]">
+<div class="collection" *ngIf="[tasks]" [hidden]="!tasks">
 
     <div class="collection-item" *ngFor="let task of tasks"
          (click)="showDialog = !showDialog; selectedTask = task;">
@@ -7,8 +7,10 @@
 
     </div>
 </div>
+
+
 <div *ngIf="[tasks]==''">
-    <p>loading tasks...</p>
+    <app-loader-small></app-loader-small>
 </div>
 
 <app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask"></app-taskdetail>
