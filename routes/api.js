@@ -9,7 +9,7 @@ let conn = require('../helpers/connection')(mysql);
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
-let finishedTaskCtrl = require('../Mongo/controllers/finishedtask.controller');
+// let finishedTaskCtrl = require('../Mongo/controllers/finishedtask.controller');
 
 
 let User = require("../models/User");
@@ -19,7 +19,7 @@ let Task = require("../models/Task");
 
 let moment = require("moment");
 
-let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
+// let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
