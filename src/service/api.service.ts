@@ -8,6 +8,7 @@ import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
 
 
+
 @Injectable()
 export class ApiService {
 
@@ -146,4 +147,25 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
+
+    public addFinishedTask(){
+
+      let tokenPromise = new Promise((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set('Firebase-ID-Token', token);
+
+          return this._http.post(
+            this.actionUrl +"finishtask",
+            {headers: this.headers})
+            .catch(ApiService.handleError)
+            .subscribe(
+              data=>resolve(data),
+              err=>reject(err)
+          )
+        })
+      });
+      return Observable.fromPromise(tokenPromise);
+    }
+
+
 }

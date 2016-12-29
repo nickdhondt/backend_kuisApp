@@ -9,6 +9,8 @@ let conn = require('../helpers/connection')(mysql);
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
+let finishedTaskCtrl = require('../Mongo/controllers/finishedtask.controller');
+
 
 let User = require("../models/User");
 let Household = require("../models/Household");
@@ -17,6 +19,7 @@ let Task = require("../models/Task");
 
 let moment = require("moment");
 
+let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
@@ -308,11 +311,29 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     })
 });
 
-router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/finishtask', firebaseAuthenticator, function (req, res) {
+  //TODO,nieuwe finishtask
 
+  console.log("Test Finishtask");
+  let body = req.body
+  var newfinishedtask = new FinishedTask({
+    id: body.id,
+    name : body.name,
+    dueDate : body.dueDate,
+    description : body.description,
+    period : body.period,
+    household_id: body.household_id,
+    assigned_to: body.assigned_to,
+    points: body.points,
+    done: body.done,
+    finished_by: body.finished_by,
+    finished_on : body.finished_on
+  });
 
-
-    // TODO: code hier
+  newfinishedtask.save(function (err) {
+    if(err) throw err;
+    console.log("Task finished & send");
+  })
 
 
 });

@@ -25,34 +25,35 @@ export class HouseholdOverviewComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.getHousehold();
+        this.getHousehold();
     }
+
 
     private getHousehold(): void {
 
-//         this.apiService
-//             .getHousehold()
-//             .subscribe(
-//                 data => {
-//
-//                     this.loading = false;
-//
-//                     if (!isUndefined(data.users)) {
-//                         data.users.sort((a: User, b: User) => {
-//                             if (a.score < b.score) return 1;
-//                             if (b.score < a.score) return -1;
-//                             return 0;
-//                         });
-//                         this.household = data;
-//                     }
-//                     else {
-//
-//                     }
-//
-//                 },
-// //test
-//                 error => console.log("error household " + error)
-//             );
+        this.apiService
+            .getHousehold()
+            .subscribe(
+                data => {
+
+                    this.loading = false;
+
+                    if (!isUndefined(data.users)) {
+                        data.users.sort((a: User, b: User) => {
+                            if (a.score < b.score) return 1;
+                            if (b.score < a.score) return -1;
+                            return 0;
+                        });
+                        this.household = data;
+                    }
+                    else {
+
+                    }
+
+                },
+//test
+                error => console.log("error household " + error)
+            );
     }
 
 }
