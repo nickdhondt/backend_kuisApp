@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
-var finishedTask = require("../models/MongoDB_Models/finishedtask.model");
+
 
 
 @Injectable()
@@ -103,32 +103,5 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
-    public postFinishedTask(): void {
-        console.log("PostfinishedTask");
 
-
-        var  newFinishedTask = finishedTask({
-            id : 1622,
-            name: "stof afdoen",
-            dueDate: "2016-11-28",
-            description: "douche, wastafel en toilet",
-            period:7,
-            household_id: 37,
-            assigned_to : 71,
-            points: 30,
-            done:true,
-            finished_by: 26,
-            finished_on: "2016-11-26"
-
-        });
-
-        //save finishedtask
-        newFinishedTask.save(function (err) {
-            if(err) throw err;
-
-            console.log("Finishedtask created");
-        })
-
-
-    }
 }

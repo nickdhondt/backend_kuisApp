@@ -27,7 +27,7 @@ io.attach( server );
 
 
 //self executing database mongo connectie
-var DBService = require("../src/service/connectDBService");
+var DBService = require("../Mongo/connectDBService");
 var connectDB = DBService(config.MONGODBURL,require("mongoose"));
 /**
  * Listen on provided port, on all network interfaces.
