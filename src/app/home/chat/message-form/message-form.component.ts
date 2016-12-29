@@ -1,7 +1,7 @@
 import {Component, OnInit, NgModule} from '@angular/core';
 import * as io from 'socket.io-client';
 import * as firebase from 'firebase';
-import {NgForm} from '@angular/forms';
+import {ChatSocketService} from "../../../../service/chat-socket.service";
 
 @Component({
     selector: 'app-message-form',
@@ -11,17 +11,12 @@ import {NgForm} from '@angular/forms';
 
 export class MessageFormComponent implements OnInit {
     socket = null;
-    messageContent:String = "test";
+    messageContent:String = "";
 
-    constructor() {
-        this.socket = io(location.protocol+'//'+location.hostname+(location.port ? ':' + (location.port === '4200' ? "3000" : location.port) : ''));
-        firebase.auth().currentUser.getToken().then(token => {
-            this.socket.emit("subscribe", token);
-        });
-    }
+    constructor(private chatSocketService:ChatSocketService) {}
 
     sendMessage() {
-        this.socket.emit("chat-message", this.messageContent);
+        this.chatSocketService.sendMessage(this.messageContent);
         this.messageContent = "";
     }
 

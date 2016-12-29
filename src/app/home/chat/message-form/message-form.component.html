@@ -1,9 +1,9 @@
-<div class="message-form">
+<div class="message-form chat-form">
     <form class="container">
         <div class="row">
             <div class="input-field col s8">
                 <i class="prefix mdi-communication-chat"></i>
-                <input type="text" placeholder="Brent is fantastisch" value={{messageContent}} (input)="messageContent = $event.target.value">
+                <input type="text" placeholder="Announcement" value={{messageContent}} (input)="messageContent = $event.target.value">
             </div>
             <div class="input-field col s4">
                 <button type="submit" (click)="sendMessage()" class="waves-effect waves-light btn-floating btn-small red">

@@ -1,25 +1,25 @@
 
-<div class="" *ngIf="household.users">
-<h5>The Cleansing Chatbox </h5>
-<p>Users in {{household.name}}:</p>
-<div class="col s12  " *ngFor="let user of household.users; let i=index;">
-<div class=" card gray lighten-5 "  >
-<div class="row valign-wrapper hoverable">
-<div class="col s3" >
-<img src="{{user.imgsrc}}" alt="" class="responsive-img circle" style="max-width: 30px; max-height: 30px; overflow: hidden; ">
+<div class="no-margin card-panel" *ngIf="household.users">
+<div (click)="toggleChat()">Announcements</div>
+<!--<p>Users in {{household.name}}:</p>-->
+<!--<div class="col s12  " *ngFor="let user of household.users; let i=index;">-->
+<!--<div class=" card gray lighten-5 "  >-->
+<!--<div class="row valign-wrapper hoverable">-->
+<!--<div class="col s3" >-->
+<!--<img src="{{user.imgsrc}}" alt="" class="responsive-img circle" style="max-width: 30px; max-height: 30px; overflow: hidden; ">-->
 
-</div>
-<div class="col s9">
-<span class="black-text">
-{{user.name}}
-</span>
+<!--</div>-->
+<!--<div class="col s9">-->
+<!--<span class="black-text">-->
+<!--{{user.name}}-->
+<!--</span>-->
 
-</div>
-</div>
-</div>
-</div>
-<app-message-list></app-message-list>
-<app-message-form></app-message-form>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<app-message-list [hidden]="isHidden"></app-message-list>
+<app-message-form [hidden]="isHidden"></app-message-form>
 </div>
 
 
