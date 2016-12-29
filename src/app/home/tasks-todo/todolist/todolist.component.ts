@@ -7,7 +7,7 @@ import {User} from "../../../../models/user.model";
 @Component({
     selector: 'app-todolist',
     templateUrl: './todolist.component.html',
-    styleUrls: ['./todolist.component.css'],
+    styleUrls: ['./todolist.component.css']
 })
 export class TodolistComponent implements OnInit {
 
@@ -45,30 +45,13 @@ export class TodolistComponent implements OnInit {
 
     private cancel(task: Task, index: number) {
 
-        //this.tasksTodo.splice(index,1);
+        setTimeout(() => this.tasksTodo.splice(index, 1), 300);
+
     }
 
     private finish(task: Task, index: number) {
 
-        //this.tasksTodo.splice(index,1);
+        setTimeout(() => this.tasksTodo.splice(index, 1), 300);
     }
-
-
-    // private getTasksTodo(): void {
-    //
-    //     // this.apiService
-    //     //     .getTaskstodobyhousehold()
-    //     //     .subscribe(
-    //     //         data => {
-    //     //             this.tasksTodo = data.sort((t1, t2) => {
-    //     //                 if (t1.dueDate > t2.dueDate) return 1;
-    //     //                 if (t1.dueDate < t2.dueDate) return -1;
-    //     //                 return 0;
-    //     //             });
-    //     //             this.loading = false;
-    //     //         },
-    //     //         error => console.log(error)
-    //     //     );
-    // }
 
 }
