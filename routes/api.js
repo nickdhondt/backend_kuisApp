@@ -15,6 +15,8 @@ let Household = require("../models/Household");
 let Award = require("../models/Award");
 let Task = require("../models/Task");
 
+let moment = require("moment");
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
@@ -46,14 +48,14 @@ router.get('/', function (req, res) {
     res.end();
 });
 
-router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
+router.get('/userbyuid/:user', function (req, res, next) {
     let user = req.params.user;
 
     process.on("mysqlError", (err) => {
         return next(err);
     });
 
-    User.getUserByUID(user, firebaseAuthenticator, function (user) {
+    User.getUserByUID(user, function (user) {
         if (user !== undefined && user.household_id !== null) {
             Household.getHouseholdByID(user.household_id, user, (user, household) => {
                 user.household = household;
