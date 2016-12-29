@@ -169,12 +169,14 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 });
 
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
+    process.on("mysqlError", (err) =>{
+        return next(err);
+    });
 
-
-
-    // TODO: code hier
-
-
+    Household.addUserToHousehold(householdId, uid, function (household) {
+        res.json({body: household});
+        res.end();
+    })
 });
 
 //af: bart
@@ -337,7 +339,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     let household_id = body.household_id;
     Award.countAwardsFromHousehold(household_id, function (rows) {
         if (rows[0].awardsCount > 0) {
-            //TODO: bestaande taak wegschrijven naar mongodb
+            //TODO: bestaande award wegschrijven naar mongodb
             //update van de bestaande award
             Award.updateAwardFromHousehold(body, function (body) {
                 res.json({body: body});
