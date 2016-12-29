@@ -82,8 +82,11 @@ class Task {
       });
   }
 
-  static addTasks(body,cb){
-
+  static addTasks(post,cb){
+      conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", [post], function (err, res) {
+          if (err) process.emit("mysqlError", err);
+          cb("Tasks added");
+      });
   }
 }
 
