@@ -319,7 +319,8 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
 router.post('/finishtask', firebaseAuthenticator, function (req, res) {
   //TODO,nieuwe finishtask
-
+    console.log("FinishTask called");
+    console.log(req);
 
     let newFinishedtask = FinishedTask({
         id : req.body.id,
