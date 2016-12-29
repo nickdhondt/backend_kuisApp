@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+import {ApiService} from "../../../service/api.service";
+import {User} from "../../../models/user.model";
 
 @Component({
   selector: 'app-all-tasks',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllTasksComponent implements OnInit {
 
-  constructor() { }
+    ngOnInit(): void {
+        this.getUser();
+    }
 
-  ngOnInit() {
-  }
+    user: User;
+    loading: Boolean = true;
+
+    constructor(private apiSevice: ApiService) {
+
+    }
+
+    getUser() {
+        this.apiSevice
+            .getEverything()
+            .subscribe(
+                data => {
+                    this.user = data;
+                    this.loading = false;
+                },
+                error => console.log(error)
+            );
+    }
 
 }

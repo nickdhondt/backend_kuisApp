@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
 import {Task} from "../../../../models/task.model";
+import {User} from "../../../../models/user.model";
 
 @Component({
     selector: 'app-tasklist',
@@ -9,32 +10,34 @@ import {Task} from "../../../../models/task.model";
 })
 export class TasklistComponent implements OnInit {
 
-    tasks: Task[] = [];
+
+    @Input() tasks: Task[];
+    @Input() users: User[];
+
     showDialog: boolean = false;
     selectedTask: Task;
-    loading: boolean = true;
 
     constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
-        this.getTasks();
+        //this.getTasks();
     }
 
     private getTasks(): void {
 
-        this.apiService
-            .getTasks()
-            .subscribe(
-                data => {
-                    this.tasks = data.sort((t1, t2) => {
-                        if (t1.period > t2.period) return 1;
-                        if (t1.period < t2.period) return -1;
-                        return 0;
-                    });
-                    this.loading = false;
-                },
-                error => console.log(error)
-            );
+        // this.apiService
+        //     .getTasks()
+        //     .subscribe(
+        //         data => {
+        //             this.tasks = data.sort((t1, t2) => {
+        //                 if (t1.period > t2.period) return 1;
+        //                 if (t1.period < t2.period) return -1;
+        //                 return 0;
+        //             });
+        //             this.loading = false;
+        //         },
+        //         error => console.log(error)
+        //     );
     }
 }
