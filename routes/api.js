@@ -146,7 +146,7 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', function (req, res, next) {
+router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) =>{
         return next(err);
     });
@@ -171,6 +171,8 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
     })
 });
 
+//af: steven
+//controle door:
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) =>{
         return next(err);
@@ -219,7 +221,7 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 // controle door:
-router.post('/leavehousehold', function (req, res) {
+router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -243,7 +245,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
         //current user uid ophalen
         var uid = res.locals.uid;
         Household.addUserToHousehold(household_id,uid, function (household) {
-            res.json(household);
+            res.json(household_id);
             res.end();
         })
     })
