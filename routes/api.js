@@ -230,6 +230,8 @@ router.post('/leavehousehold', function (req, res) {
     })
 });
 
+//af: steven
+//controle door:
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
