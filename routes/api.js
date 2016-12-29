@@ -77,8 +77,6 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
 
                 user.household = Object.assign(user.household, statsTasks, statsAwards);
 
-
-
                 Task.getTasksByHouseholdID(household.id, user, (user, tasks) => {
                     user.household.tasks = tasks;
                     User.getUsersByHouseholdID(user.household_id, user, (user, users) => {
