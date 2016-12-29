@@ -27,6 +27,7 @@ import {UserDetailComponent} from "./household-overview/user-detail/user-detail.
 import {AwardComponent} from "./household-overview/award/award.component";
 import {TasksFilterPipe} from "../../pipe/tasks-filter.pipe";
 import {FooterComponent} from "./footer/footer.component";
+import {TasktodoRowComponent} from "./tasks-todo/todolist/tasktodo-row/tasktodo-row.component";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {FooterComponent} from "./footer/footer.component";
         UserDetailComponent,
         AwardComponent,
         TasksFilterPipe,
-        FooterComponent
+        FooterComponent,
+        TasktodoRowComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule
