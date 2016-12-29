@@ -1,6 +1,6 @@
 webpackJsonp([1,3],{
 
-/***/ 1123:
+/***/ 1124:
 /***/ function(module, exports) {
 
 /*
@@ -253,7 +253,7 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-/***/ 1132:
+/***/ 1133:
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(488);
@@ -270,7 +270,7 @@ module.exports = __webpack_require__(488);
 var content = __webpack_require__(794);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(1123)(content, {});
+var update = __webpack_require__(1124)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -296,7 +296,7 @@ exports = module.exports = __webpack_require__(795)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\n/*body>*{*/\r\n/*height: 100vh;*/\r\n/*width: 100%;*/\r\n/*}*/\r\n\r\n@media only screen and (min-width: 993px) {\r\n    header, footer, main {\r\n        padding-left: 300px;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\n/*body>*{*/\r\n/*height: 100vh;*/\r\n/*width: 100%;*/\r\n/*}*/\r\n\r\n@media only screen and (min-width: 993px) {\r\n    header, footer, main {\r\n        padding-left: 300px;\r\n    }\r\n}\r\n\r\n.chat-bottom {\r\n    position: fixed;\r\n    right: 10px;\r\n    bottom: 0;\r\n    width: 300px;\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n}\r\n\r\n.chat-list {\r\n    overflow-y: auto;\r\n    height: 350px;\r\n}\r\n\r\n.chat-form {\r\n    height: 50px;\r\n}\r\n\r\n.no-margin {\r\n    margin: 0 !important;\r\n}", ""]);
 
 // exports
 
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ }
 
-},[1132]);
+},[1133]);
 //# sourceMappingURL=styles.bundle.map

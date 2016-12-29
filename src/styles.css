@@ -10,3 +10,25 @@
         padding-left: 300px;
     }
 }
+
+.chat-bottom {
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+    width: 300px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.chat-list {
+    overflow-y: auto;
+    height: 350px;
+}
+
+.chat-form {
+    height: 50px;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
