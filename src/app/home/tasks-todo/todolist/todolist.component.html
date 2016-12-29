@@ -3,13 +3,16 @@
 
 <div class="collection" [hidden]="tasksTodo.length == 0" *ngIf="tasksTodo.length > 0">
 
-    <div class="collection-item" *ngFor="let tasktodo of tasksTodo"
-         (click)="showDialog = !showDialog; selectedTask = tasktodo">
+    <div class="collection-item" *ngFor="let tasktodo of tasksTodo; let i = index">
 
-        <app-tasktodo-row [task]="tasktodo" [user]="user(tasktodo.assigned_to)"></app-tasktodo-row>
+        <app-tasktodo-row
+                (cancel)="cancel($event, i)"
+                (finish)="finish($event, i)"
+                (showDetail)="showDetail($event)"
+                [task]="tasktodo"
+                [user]="user(tasktodo.assigned_to)"></app-tasktodo-row>
 
     </div>
-
 </div>
 
 <div *ngIf="tasksTodo.length == 0">

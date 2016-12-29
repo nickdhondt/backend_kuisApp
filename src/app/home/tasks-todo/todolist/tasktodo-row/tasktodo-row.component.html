@@ -1,4 +1,4 @@
-<div class="row" style="margin-bottom: 0; display: flex; align-items: stretch">
+<div class="row" style="margin-bottom: 0; display: flex; align-items: stretch" [@visibleState]="state">
     <div class="col"
          style="display: flex;
                     flex-direction: column;
@@ -21,11 +21,20 @@
          justify-content: flex-end;
          align-self: flex-start">
 
-        <a class="tooltipped" materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
+        <a class="tooltipped"
+           (click)="finishClick()"
+           materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
             <i class="material-icons">done</i></a>
-        <a class="tooltipped" materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="edit">
+        <a class="tooltipped"
+           (click)="showDetailClick()"
+           materialize="tooltip"
+           data-position="bottom"
+           data-delay="20"
+           data-tooltip="edit">
             <i class="material-icons">mode_edit</i></a>
-        <a class="tooltipped" materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
+        <a class="tooltipped"
+           (click)="cancelClick()"
+           materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
             <i class="material-icons">cancel</i></a>
 
     </div>

@@ -1,4 +1,15 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter,
+    trigger,
+    state,
+    style,
+    transition,
+    animate
+} from "@angular/core";
 import {Task} from "../../../../../models/task.model";
 import * as moment from "moment";
 import {User} from "../../../../../models/user.model";
@@ -7,13 +18,45 @@ import {User} from "../../../../../models/user.model";
 @Component({
     selector: 'app-tasktodo-row',
     templateUrl: './tasktodo-row.component.html',
-    styleUrls: ['./tasktodo-row.component.css']
+    styleUrls: ['./tasktodo-row.component.css'],
+    animations: [
+        trigger('visibleState', [
+
+            state('finished', style({
+                transform: 'translateX(-50%)',
+            })),
+            state('canceled', style({
+                transform: 'translateX(50%)'
+            })),
+
+            transition('* => finished', [animate('300ms ease-out')]),
+            transition('* => canceled', [animate('300ms ease-out')])
+        ])
+    ]
 })
 export class TasktodoRowComponent implements OnInit {
 
     @Input() task: Task;
     @Input() user: User;
+    @Output() showDetail = new EventEmitter();
+    @Output() finish = new EventEmitter();
+    @Output() cancel = new EventEmitter();
 
+    state: string;
+
+    showDetailClick() {
+        this.showDetail.emit(this.task);
+    }
+
+    finishClick() {
+        this.state = 'finished';
+        this.finish.emit(this.task);
+    }
+
+    cancelClick() {
+        this.state = 'canceled';
+        this.finish.emit(this.task);
+    }
 
     constructor() {
 
