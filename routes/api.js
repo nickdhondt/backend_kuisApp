@@ -10,13 +10,12 @@ let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
 
-let moment = require('moment');
-let dateFormat = require('dateformat');
-
 let User = require("../models/User");
 let Household = require("../models/Household");
 let Award = require("../models/Award");
 let Task = require("../models/Task");
+
+let moment = require("moment");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
