@@ -1,5 +1,9 @@
-import {Component, OnInit, Input, Output, EventEmitter, trigger, style, animate, transition} from "@angular/core";
+import {
+    Component, OnInit, Input, Output, EventEmitter, trigger, style, animate, transition,
+    AfterViewInit
+} from "@angular/core";
 import {Task} from "../../../models/task.model";
+
 
 @Component({
     selector: 'app-taskdetail',
@@ -28,9 +32,14 @@ export class TaskdetailComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     close() {
+        this.visible = false;
+        this.visibleChange.emit(this.visible);
+    }
+    saved(){
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }

@@ -2,8 +2,57 @@
     <!--<ng-content></ng-content>-->
     <div class="card-content">
         <span class="card-title">{{task.name}}</span>
-        <p>Hebban olla uogala nestas hagunnan hinase hic anda thu uuat unbidan uue nu</p>
+
+        <div class="fixed-action-btn horizontal">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red" onclick="Materialize.toast('Task Changes Saved',4000,'rounded')" ><i class="material-icons">save</i></a> </li>
+                <li><a class="btn-floating yellow darken-1" onclick="Materialize.toast('Task Deleted',4000,'rounded')"><i class="material-icons">delete</i></a> </li>
+            </ul>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{task.name}}" id="task_name" type="text" class="validate">
+                        <label for="task_name" class="active">Task Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{task.dueDate}}" id="task_due_date" type="date" class="">
+                        <label for="task_due_date" class="active">Next Due Date</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input value="{{task.description}}" id="task_description" type="text" class="materialize-textarea">
+                        <label for="task_due_date" class="active">Description</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{task.period}}" id="task_periodicity" type="number" class="validate">
+                        <label for="task_periodicity" class="active">Periodicity (in days)</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{task.points}}" id="task_points" type="number" class="validate">
+                        <label for="task_points" class="active">Points</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="task_user_select">
+                            <option value="" selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label for="task_user_select" class="active">User</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{task.points}}" id="task_test" type="number" class="validate">
+                        <label for="task_test" class="active">Points</label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
     <div class="card-action">
         <a *ngIf="closable" (click)="close()" aria-label="Close" class="">close</a>
     </div>
