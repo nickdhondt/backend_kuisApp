@@ -5,7 +5,7 @@ import FinishedTask from '../MongoDB_Models/finishedtask.model';
 
 
 //Create new finishedTask
-function create(req, res, next) {
+function create(req, res) {
   const newFinishedTask = new FinishedTask({
     id : req.body.id,
     name : req.body.name,
@@ -20,8 +20,10 @@ function create(req, res, next) {
     finished_on : req.body.finished_on
   });
 
-  user.save()
-    .catch(e=>next(e));
+  user.save(function (err) {
+    if(err) throw new Error;
+  })
+
 }
 
 export default {create};

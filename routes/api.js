@@ -317,25 +317,9 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
   //TODO,nieuwe finishtask
 
   console.log("Test Finishtask");
-  let body = req.body
-  var newfinishedtask = new FinishedTask({
-    id: body.id,
-    name : body.name,
-    dueDate : body.dueDate,
-    description : body.description,
-    period : body.period,
-    household_id: body.household_id,
-    assigned_to: body.assigned_to,
-    points: body.points,
-    done: body.done,
-    finished_by: body.finished_by,
-    finished_on : body.finished_on
-  });
 
-  newfinishedtask.save(function (err) {
-    if(err) throw err;
-    console.log("Task finished & send");
-  })
+    finishedTaskCtrl.create(req,res);
+
 
 
 });
