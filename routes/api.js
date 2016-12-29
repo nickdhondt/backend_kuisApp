@@ -392,7 +392,6 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     let household_id = body.household_id;
     Award.countAwardsFromHousehold(household_id, function (rows) {
         if (rows[0].awardsCount > 0) {
-            //TODO: bestaande award wegschrijven naar mongodb
             //update van de bestaande award
             Award.updateAwardFromHousehold(body, function (body) {
                 res.json({body: body});
@@ -424,13 +423,31 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 
 });
 
-router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
+//af: steven
+//controle door:
+router.post('/addtasks', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Task.addTask(body, function (body) {
-        res.json({body: body});
+    let arrayToSend = [];
+    for(let i = 0; i < body.length; i++){
+        let arr = [];
+        arr.push(body[i].description);
+        arr.push(body[i].household_id);
+        arr.push(body[i].period);
+        arr.push(body[i].points);
+        arr.push(body[i].name);
+        arr.push(body[i].dueDate);
+        arr.push(body[i].assigned_to);
+        arrayToSend.push(arr);
+    }
+
+    console.log(arrayToSend);
+
+    Task.addTasks(arrayToSend, function (body) {
+        console.log("tasks added");
+        res.json(body);
         res.end();
     })
 });
