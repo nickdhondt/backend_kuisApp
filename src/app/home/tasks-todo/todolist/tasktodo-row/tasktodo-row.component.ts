@@ -23,10 +23,11 @@ import {User} from "../../../../../models/user.model";
         trigger('visibleState', [
 
             state('finished', style({
-                transform: 'translateX(-50%)',
+                transform: 'translateX(-50%) scale(0)'
+                ,
             })),
             state('canceled', style({
-                transform: 'translateX(50%)'
+                transform: 'translateX(50%) scale(0)'
             })),
 
             transition('* => finished', [animate('300ms ease-out')]),
@@ -55,7 +56,7 @@ export class TasktodoRowComponent implements OnInit {
 
     cancelClick() {
         this.state = 'canceled';
-        this.finish.emit(this.task);
+        this.cancel.emit(this.task);
     }
 
     constructor() {
