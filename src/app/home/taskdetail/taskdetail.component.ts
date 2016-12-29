@@ -1,6 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter, trigger, style, animate, transition} from "@angular/core";
 import {Task} from "../../../models/task.model";
 import {User} from "../../../models/user.model";
+import {ApiService} from "../../../service/api.service";
+;
 
 
 @Component({
@@ -27,7 +29,8 @@ export class TaskdetailComponent implements OnInit {
     @Input() visible: boolean;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor() {
+    constructor(private apiservice:ApiService) {
+
     }
 
     ngOnInit() {
@@ -38,9 +41,22 @@ export class TaskdetailComponent implements OnInit {
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }
-    saved(){
+    save(){
+        // TODO : code to save changes
         this.visible = false;
         this.visibleChange.emit(this.visible);
+
+
+
+
+
+
+
+
+
+    }
+    delete(){
+        //TODO : code to delete task
     }
 
 }

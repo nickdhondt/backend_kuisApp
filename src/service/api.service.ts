@@ -6,6 +6,9 @@ import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
+import enumerate = Reflect.enumerate;
+
+
 
 
 @Injectable()
@@ -38,6 +41,7 @@ export class ApiService {
 
                 return this._http.get(
                     this.actionUrl + "tasksbytoken",
+
                     {headers: this.headers})
                     .map((response: Response) => {
                         let tasks: Task[] = [];
@@ -47,6 +51,7 @@ export class ApiService {
                     .catch(ApiService.handleError)
                     .subscribe(data => resolve(data), err => reject(err));
             })
+
         });
 
         return Observable.fromPromise(tokenPromise);
@@ -146,4 +151,43 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
+
+    public addFinishedTask(name: string, id: number): Observable<any> {
+
+        let data: [string,number];
+        data = [name, id];
+        console.log(data);
+
+        let tokenPromise = new Promise<any>((resolve, reject)=> {
+            this.auth.token.then(token=> {
+                this.headers.set('Firebase-ID-Token', token);
+                return this._http.post(
+                    this.actionUrl + "finishtask",
+                    data,
+                    {headers: this.headers})
+                    .catch(ApiService.handleError)
+            })
+        });
+        return Observable.fromPromise(tokenPromise);
+    }
+
+    public addFinishedAward(): Observable<any>{
+
+        let tokenPromise = new Promise<any>((resolve,reject)=>{
+            this.auth.token.then(token=> {
+                this.headers.set('Firebase-ID-Token', token);
+                return this._http.post(
+                    this.actionUrl + "finishtask",
+                    console.log(this.actionUrl),
+                    {headers: this.headers})
+                    .catch(ApiService.handleError)
+            })
+            });
+
+        return Observable.fromPromise(tokenPromise);
+        }
+
+
+
 }
+

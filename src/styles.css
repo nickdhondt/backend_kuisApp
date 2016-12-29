@@ -32,3 +32,11 @@
 .no-margin {
     margin: 0 !important;
 }
+a {
+    cursor: pointer;
+}
+
+.material-tooltip > * {
+    background: #607d8b;
+    color: white;
+}

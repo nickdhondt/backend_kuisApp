@@ -2,7 +2,6 @@
 
     <app-loader-small *ngIf="loading"></app-loader-small>
 
-
     <app-tasklist *ngIf="user"
                   [tasks]="user.household? user.household.tasks : []"
                   [users]="user.household? user.household.users : undefined">

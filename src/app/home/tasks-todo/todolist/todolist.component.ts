@@ -21,7 +21,20 @@ export class TodolistComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.getTasksTodo();
+        this.tasksTodo.sort((t1, t2) => {
+            if (t1.dueDate > t2.dueDate) return 1;
+            if (t1.dueDate < t2.dueDate) return -1;
+            return 0;
+        });
+    }
+
+    private user(id: number) {
+
+        for (let user in this.users) {
+            if (this.users[user].id == id) return this.users[user];
+        }
+
+        return new User();
     }
 
     private getTasksTodo(): void {

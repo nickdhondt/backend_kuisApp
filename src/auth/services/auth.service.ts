@@ -45,6 +45,7 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : '';
   }
 
+
     addUser(): Observable<User> {
         let tokenPromise = new Promise<any>((resolve, reject) => {
 
