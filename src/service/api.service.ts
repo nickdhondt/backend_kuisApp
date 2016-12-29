@@ -8,6 +8,8 @@ import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
 
 
+
+
 @Injectable()
 export class ApiService {
 
@@ -146,4 +148,12 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
+
+    public addFinishedTask(){
+
+
+
+    }
+
+
 }

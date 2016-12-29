@@ -9,6 +9,8 @@ let conn = require('../helpers/connection')(mysql);
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
+let finishedTaskCtrl = require('../Mongo/controllers/finishedtask.controller');
+
 
 let User = require("../models/User");
 let Household = require("../models/Household");
@@ -17,6 +19,7 @@ let Task = require("../models/Task");
 
 let moment = require("moment");
 
+let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
@@ -143,7 +146,7 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', function (req, res, next) {
+router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) =>{
         return next(err);
     });
@@ -168,13 +171,19 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
     })
 });
 
+//af: steven
+//controle door:
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
-
-
-
-    // TODO: code hier
-
-
+    process.on("mysqlError", (err) =>{
+        return next(err);
+    });
+    let body = req.body;
+    let householdId = body.household_id;
+    let uid = res.locals.uid;
+    Household.addUserToHousehold(householdId, uid, function (household) {
+        res.json({body: household});
+        res.end();
+    })
 });
 
 //af: bart
@@ -212,7 +221,7 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 // controle door:
-router.post('/leavehousehold', function (req, res) {
+router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -223,7 +232,9 @@ router.post('/leavehousehold', function (req, res) {
     })
 });
 
-router.post('/addhousehold', function (req, res) {
+//af: steven
+//controle door:
+router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -234,10 +245,9 @@ router.post('/addhousehold', function (req, res) {
         //current user uid ophalen
         var uid = res.locals.uid;
         Household.addUserToHousehold(household_id,uid, function (household) {
-            res.json(household);
+            res.json(household_id);
             res.end();
         })
-
     })
 });
 
@@ -305,11 +315,13 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     })
 });
 
-router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/finishtask', firebaseAuthenticator, function (req, res) {
+  //TODO,nieuwe finishtask
 
+  console.log("Test Finishtask");
 
+    finishedTaskCtrl.create(req,res);
 
-    // TODO: code hier
 
 
 });
@@ -337,7 +349,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     let household_id = body.household_id;
     Award.countAwardsFromHousehold(household_id, function (rows) {
         if (rows[0].awardsCount > 0) {
-            //TODO: bestaande taak wegschrijven naar mongodb
+            //TODO: bestaande award wegschrijven naar mongodb
             //update van de bestaande award
             Award.updateAwardFromHousehold(body, function (body) {
                 res.json({body: body});
