@@ -5,26 +5,31 @@
 
 export class Task {
 
-    constructor(public id: number,
-                public name: string,
-                public dueDate: Date,
-                public description: string,
-                public period: number,
-                public assigned_to: number,
-                public household_id: number,
-                public points: number,) {
+    public id: number;
+    public name: string;
+    public dueDate: Date;
+    public description: string;
+    public period: number;
+    public assigned_to: number;
+    public household_id: number;
+    public points: number;
+
+    constructor() {
     }
 
     public static makeTaskFromJSON(item): Task {
 
-        return new Task(
-            item.id,
-            item.name,
-            new Date(Date.parse(item.dueDate)),
-            item.description,
-            item.period,
-            item.assigned_to,
-            item.household_id,
-            item.points)
+        let task = new Task();
+
+        task.id = item.id;
+        task.name = item.name;
+        task.dueDate = new Date(Date.parse(item.dueDate));
+        task.description = item.description;
+        task.period = item.period;
+        task.assigned_to = item.assigned_to;
+        task.household_id = item.household_id;
+        task.points = item.points;
+
+        return task;
     }
 }

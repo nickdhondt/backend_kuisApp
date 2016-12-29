@@ -1,9 +1,12 @@
 <div class="container">
 
-    <app-household-overview>loading...</app-household-overview>
+    <app-loader-small *ngIf="loading"></app-loader-small>
 
+    <app-household-overview *ngIf="user" [household]="user.household">loading...</app-household-overview>
 
-    <app-todolist>loading...</app-todolist>
-
+    <app-todolist *ngIf="user"
+                  [tasksTodo]="user.household? user.household.taskstodo : []"
+                  [users]="user.household? user.household.users : undefined">loading...
+    </app-todolist>
 
 </div>

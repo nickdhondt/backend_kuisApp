@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
-import {AuthService} from "../../../auth/services/auth.service";
+import {User} from "../../../models/user.model";
 
 @Component({
   selector: 'app-tasks-todo',
@@ -9,13 +9,29 @@ import {AuthService} from "../../../auth/services/auth.service";
 })
 export class TasksTodoComponent implements OnInit {
 
-    constructor(private apiService: ApiService, private auth: AuthService) {
+    ngOnInit(): void {
+        this.getUser();
+    }
+
+    user: User;
+    loading: Boolean = true;
+
+    constructor(private apiSevice: ApiService) {
+
 
     }
 
-  ngOnInit() {
-
-  }
+    getUser() {
+        this.apiSevice
+            .getEverything()
+            .subscribe(
+                data => {
+                    this.user = data;
+                    this.loading = false;
+                },
+                error => console.log(error)
+            );
+    }
 
 
 }

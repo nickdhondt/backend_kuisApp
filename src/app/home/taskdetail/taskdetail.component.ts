@@ -1,8 +1,6 @@
-import {
-    Component, OnInit, Input, Output, EventEmitter, trigger, style, animate, transition,
-    AfterViewInit
-} from "@angular/core";
+import {Component, OnInit, Input, Output, EventEmitter, trigger, style, animate, transition} from "@angular/core";
 import {Task} from "../../../models/task.model";
+import {User} from "../../../models/user.model";
 
 
 @Component({
@@ -24,6 +22,7 @@ import {Task} from "../../../models/task.model";
 export class TaskdetailComponent implements OnInit {
 
     @Input() task: Task;
+    @Input() users: User[];
     @Input() closable = true;
     @Input() visible: boolean;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();

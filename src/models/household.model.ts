@@ -3,6 +3,7 @@
  */
 import {Task} from "./task.model";
 import {User} from "./user.model";
+import {Award} from "./award.model";
 
 export class Household {
 
@@ -19,7 +20,7 @@ export class Household {
     public lastAwardWonBy: string;
     public tasks: Task[];
     public users: User[];
-    public award?: any;
+    public award: Award;
 
     constructor() {
     }

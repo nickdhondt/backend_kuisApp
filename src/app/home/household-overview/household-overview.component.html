@@ -1,6 +1,6 @@
-<app-loader-small *ngIf="loading"></app-loader-small>
+<!--<app-loader-small *ngIf="loading"></app-loader-small>-->
 
-<div *ngIf="household.users">
+<div *ngIf="household">
 
     <h2 class="center-align grey-text light text-darken-1">{{household.name}}</h2>
 
@@ -20,7 +20,7 @@
 
 </div>
 
-<div *ngIf="!loading && !household.users">
+<div *ngIf="!household">
 
     <h2 class="center-align grey-text light text-darken-1">my household</h2>
 

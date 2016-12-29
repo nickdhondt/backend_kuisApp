@@ -25,7 +25,8 @@ import {LoaderSmallComponent} from "../loader-small/loader-small.component";
 import {UserImgComponent} from "./household-overview/user-img/user-img.component";
 import {UserDetailComponent} from "./household-overview/user-detail/user-detail.component";
 import {AwardComponent} from "./household-overview/award/award.component";
-import {TasksFilterPipe} from '../../pipe/tasks-filter.pipe';
+import {TasksFilterPipe} from "../../pipe/tasks-filter.pipe";
+import {FooterComponent} from "./footer/footer.component";
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {TasksFilterPipe} from '../../pipe/tasks-filter.pipe';
         UserImgComponent,
         UserDetailComponent,
         AwardComponent,
-        TasksFilterPipe
+        TasksFilterPipe,
+        FooterComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule

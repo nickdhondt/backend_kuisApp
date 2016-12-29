@@ -1,4 +1,4 @@
-<app-loader-small *ngIf="loading"></app-loader-small>
+<!--<app-loader-small *ngIf="loading"></app-loader-small>-->
 
 
 <div class="collection" [hidden]="tasksTodo.length == 0" *ngIf="tasksTodo.length > 0">
@@ -13,7 +13,7 @@
 
 </div>
 
-<div *ngIf="!loading && tasksTodo.length == 0">
+<div *ngIf="tasksTodo.length == 0">
 
     <h2 class="center-align grey-text light text-darken-1">my upcoming tasks</h2>
 
@@ -29,4 +29,4 @@
     </div>
 </div>
 
-<app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask"></app-taskdetail>
+<app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask" [(users)]="users"></app-taskdetail>

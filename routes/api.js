@@ -50,7 +50,9 @@ router.get('/', function (req, res) {
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
-    let user = req.locals.uid;
+    let user = res.locals.uid;
+
+    console.log(user);
 
     process.on("mysqlError", (err) => {
         return next(err);

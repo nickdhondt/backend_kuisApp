@@ -10,10 +10,9 @@ import {Router} from "@angular/router";
 
 export class HomeComponent {
 
-  user:string;
 
   constructor(private auth:AuthService, private router:Router) {
-    this.user = auth.authState.auth.displayName;
+
   }
 
 }

@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
 import {Task} from "../../../../models/task.model";
+import {User} from "../../../../models/user.model";
 
 
 @Component({
@@ -10,33 +11,34 @@ import {Task} from "../../../../models/task.model";
 })
 export class TodolistComponent implements OnInit {
 
-    tasksTodo: Task[] = [];
+    @Input() tasksTodo: Task[];
+    @Input() users: User[];
+
     showDialog: boolean = false;
     selectedTask: Task;
-    loading: boolean = true;
 
     constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
-        this.getTasksTodo();
+        //this.getTasksTodo();
     }
 
     private getTasksTodo(): void {
 
-        this.apiService
-            .getTaskstodobyhousehold()
-            .subscribe(
-                data => {
-                    this.tasksTodo = data.sort((t1, t2) => {
-                        if (t1.dueDate > t2.dueDate) return 1;
-                        if (t1.dueDate < t2.dueDate) return -1;
-                        return 0;
-                    });
-                    this.loading = false;
-                },
-                error => console.log(error)
-            );
+        // this.apiService
+        //     .getTaskstodobyhousehold()
+        //     .subscribe(
+        //         data => {
+        //             this.tasksTodo = data.sort((t1, t2) => {
+        //                 if (t1.dueDate > t2.dueDate) return 1;
+        //                 if (t1.dueDate < t2.dueDate) return -1;
+        //                 return 0;
+        //             });
+        //             this.loading = false;
+        //         },
+        //         error => console.log(error)
+        //     );
     }
 
 }

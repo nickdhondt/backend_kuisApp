@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
+import {User} from "../models/user.model";
 
 
 @Injectable()
@@ -15,8 +16,8 @@ export class ApiService {
 
 
     constructor(private _http: Http, private _contract: Contract, private auth: AuthService) {
-        this.actionUrl = _contract.ServerWithApiUrl;
-        // this.actionUrl = _contract.LocalhostWithApiUrl;
+        //this.actionUrl = _contract.ServerWithApiUrl;
+        this.actionUrl = _contract.LocalhostWithApiUrl;
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
@@ -90,6 +91,50 @@ export class ApiService {
                     {headers: this.headers})
                     .map((response: Response) => {
                         return Household.makeHouseholdFromJSON(response.json());
+                    })
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
+
+    public getEverything(): Observable<User> {
+
+
+        let tokenPromise = new Promise<User>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "userbyuid/" + null,
+                    {headers: this.headers})
+                    .map((response: Response) => {
+
+                        let user: User = response.json();
+
+                        if (user.household) {
+                            for (let u in user.household.users) {
+                                user.household.users[u] = User.makeUserFromJSON(user.household.users[u]);
+                            }
+
+                            for (let t in user.household.tasks) {
+                                user.household.tasks[t] = Task.makeTaskFromJSON(user.household.tasks[t]);
+                            }
+
+                            for (let t in user.household.taskstodo) {
+                                user.household.taskstodo[t] = Task.makeTaskFromJSON(user.household.taskstodo[t]);
+                            }
+                        }
+
+
+                        return user;
                     })
                     .catch(ApiService.handleError)
                     .subscribe(
