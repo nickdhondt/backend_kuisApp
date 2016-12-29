@@ -337,13 +337,13 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
     });
 
     newFinishedtask.save(function (err) {
-        if(err) throw new Error;
+        if(err) return next(err);
 
         console.log("Finishedtask send do mongoDB");
     })
 
-
-
+    res.json({});
+    res.end();
 });
 
 router.post('/finishaward',firebaseAuthenticator , function (req,res) {
@@ -360,11 +360,13 @@ router.post('/finishaward',firebaseAuthenticator , function (req,res) {
     });
 
     newFinishedAward.save(function (err) {
-        if(err) throw new Error;
+        if(err) return next(err);
 
         console.log("FinishedAward send do mongoDB");
     })
 
+    res.json({});
+    res.end();
 })
 
 //af: steven
@@ -422,13 +424,29 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 
 });
 
-router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtasks', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Task.addTask(body, function (body) {
-        res.json({body: body});
+    let arrayToSend = [];
+    for(let i = 0; i < body.length; i++){
+        let arr = [];
+        arr.push(body[i].description);
+        arr.push(body[i].household_id);
+        arr.push(body[i].period);
+        arr.push(body[i].points);
+        arr.push(body[i].name);
+        arr.push(body[i].dueDate);
+        arr.push(body[i].assigned_to);
+        arrayToSend.push(arr);
+    }
+
+    console.log(arrayToSend);
+
+    Task.addTasks(arrayToSend, function (body) {
+        console.log("tasks added");
+        res.json(body);
         res.end();
     })
 });
