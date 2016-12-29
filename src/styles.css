@@ -22,16 +22,37 @@
 
 .chat-list {
     overflow-y: auto;
-    height: 350px;
+    height: 300px;
 }
 
 .chat-form {
     height: 50px;
 }
 
+.chat-form input {
+    width: 92% !important;
+}
+
+.chat-panel li:not(:first-of-type) {
+    margin: 20px 0 0 0;
+}
+
+.chat-panel .card-content, .chat-panel .card-action {
+    padding: 10px;
+}
+
+.chat-list {
+    margin: 20px 0;
+}
+
+.no-padding {
+    padding: 0 !important;
+
+}
 .no-margin {
     margin: 0 !important;
 }
+
 a {
     cursor: pointer;
 }
