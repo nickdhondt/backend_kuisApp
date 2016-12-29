@@ -392,7 +392,6 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     let household_id = body.household_id;
     Award.countAwardsFromHousehold(household_id, function (rows) {
         if (rows[0].awardsCount > 0) {
-            //TODO: bestaande award wegschrijven naar mongodb
             //update van de bestaande award
             Award.updateAwardFromHousehold(body, function (body) {
                 res.json({body: body});
@@ -424,6 +423,8 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
 
 });
 
+//af: steven
+//controle door:
 router.post('/addtasks', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
