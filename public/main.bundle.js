@@ -59,7 +59,7 @@ var Contract = (function () {
     ], Contract);
     return Contract;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contract.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contract.js.map
 
 /***/ },
 
@@ -91,7 +91,7 @@ var Household = (function () {
     };
     return Household;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.model.js.map
 
 /***/ },
 
@@ -120,7 +120,7 @@ var Task = (function () {
     };
     return Task;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task.model.js.map
 
 /***/ },
 
@@ -179,7 +179,7 @@ var ChatSocketService = (function () {
     ], ChatSocketService);
     return ChatSocketService;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/chat-socket.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/chat-socket.service.js.map
 
 /***/ },
 
@@ -212,7 +212,7 @@ var AppComponent = (function () {
     ], AppComponent);
     return AppComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.component.js.map
 
 /***/ },
 
@@ -282,7 +282,7 @@ var AppRoutingModule = (function () {
     ], AppRoutingModule);
     return AppRoutingModule;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.routes.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.routes.js.map
 
 /***/ },
 
@@ -332,7 +332,7 @@ var AllTasksComponent = (function () {
     return AllTasksComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/all-tasks.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/all-tasks.component.js.map
 
 /***/ },
 
@@ -372,7 +372,7 @@ var HomeComponent = (function () {
     return HomeComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.component.js.map
 
 /***/ },
 
@@ -407,7 +407,7 @@ var HouseholdComponent = (function () {
     ], HouseholdComponent);
     return HouseholdComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.component.js.map
 
 /***/ },
 
@@ -457,7 +457,7 @@ var TasksTodoComponent = (function () {
     return TasksTodoComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-todo.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-todo.component.js.map
 
 /***/ },
 
@@ -520,7 +520,7 @@ var LoginComponent = (function () {
     return LoginComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/login.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/login.component.js.map
 
 /***/ },
 
@@ -555,7 +555,7 @@ var NotFoundComponent = (function () {
     ], NotFoundComponent);
     return NotFoundComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/not-found.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/not-found.component.js.map
 
 /***/ },
 
@@ -615,7 +615,7 @@ var AuthGuard = (function () {
     return AuthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.guard.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.guard.js.map
 
 /***/ },
 
@@ -671,7 +671,7 @@ var UnauthGuard = (function () {
     return UnauthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/unauth.guard.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/unauth.guard.js.map
 
 /***/ },
 
@@ -708,7 +708,7 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/main.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/main.js.map
 
 /***/ },
 
@@ -742,7 +742,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AuthService = (function () {
-    //this.actionUrl = _contract.ServerWithApiUrl;
     function AuthService(auth$, router, _http, _contract) {
         var _this = this;
         this.auth$ = auth$;
@@ -750,7 +749,8 @@ var AuthService = (function () {
         this._http = _http;
         this._contract = _contract;
         this.authState = null;
-        this.actionUrl = _contract.LocalhostWithApiUrl;
+        //this.actionUrl = _contract.LocalhostWithApiUrl;
+        this.actionUrl = _contract.ServerWithApiUrl;
         this.headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
@@ -826,7 +826,7 @@ var AuthService = (function () {
     return AuthService;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.service.js.map
 
 /***/ },
 
@@ -867,7 +867,7 @@ var ApiService = (function () {
         this._contract = _contract;
         this.auth = auth;
         this.actionUrl = _contract.ServerWithApiUrl;
-        // this.actionUrl = _contract.LocalhostWithApiUrl;
+        //this.actionUrl = _contract.LocalhostWithApiUrl;
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
@@ -985,7 +985,7 @@ var ApiService = (function () {
     return ApiService;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/api.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/api.service.js.map
 
 /***/ },
 
@@ -1078,7 +1078,7 @@ var AppModule = (function () {
     ], AppModule);
     return AppModule;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.module.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.module.js.map
 
 /***/ },
 
@@ -1142,7 +1142,7 @@ var TasklistComponent = (function () {
     return TasklistComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasklist.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasklist.component.js.map
 
 /***/ },
 
@@ -1213,7 +1213,7 @@ var ChatComponent = (function () {
     return ChatComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/chat.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/chat.component.js.map
 
 /***/ },
 
@@ -1242,8 +1242,7 @@ var MessageFormComponent = (function () {
         this.messageContent = "";
     }
     MessageFormComponent.prototype.sendMessage = function () {
-        if (this.messageContent !== "")
-            this.chatSocketService.sendMessage(this.messageContent);
+        this.chatSocketService.sendMessage(this.messageContent);
         this.messageContent = "";
     };
     MessageFormComponent.prototype.ngOnInit = function () {
@@ -1259,7 +1258,7 @@ var MessageFormComponent = (function () {
     return MessageFormComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-form.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-form.component.js.map
 
 /***/ },
 
@@ -1298,7 +1297,7 @@ var MessageItemComponent = (function () {
     ], MessageItemComponent);
     return MessageItemComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-item.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-item.component.js.map
 
 /***/ },
 
@@ -1323,9 +1322,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var MessageListComponent = (function () {
     function MessageListComponent(chatSocketService) {
         this.chatSocketService = chatSocketService;
-        this.messages = [{ user: { imgsrc: "https://scontent.xx.fbcdn.net/v/t1.0-1/s100x100/13100703_10206817833626040_7412135762927104247_n.jpg?oh=790f130d163810fa6f01733daea967a2&oe=589D9B76", name: "Nick", lname: "D'hondt" }, message: "Hebban olla uogala nestas hagunnan hinase hi(c) (a)nda thu uuat unbidan uue nu" },
-            { user: { imgsrc: "https://scontent.xx.fbcdn.net/v/t1.0-1/s100x100/13100703_10206817833626040_7412135762927104247_n.jpg?oh=790f130d163810fa6f01733daea967a2&oe=589D9B76", name: "Nick", lname: "D'hondt" }, message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pulvinar, mauris id pulvinar semper, orci ligula pulvinar elit, ullamcorper gravida eros nibh eget orci. Mauris." },
-            { user: { imgsrc: "https://scontent.xx.fbcdn.net/v/t1.0-1/s100x100/13100703_10206817833626040_7412135762927104247_n.jpg?oh=790f130d163810fa6f01733daea967a2&oe=589D9B76", name: "Nick", lname: "D'hondt" }, message: "HDes Teufels liebstes Möbelstück ist die lange Bank." }];
+        this.messages = [{ user: { imgsrc: "https://scontent.xx.fbcdn.net/v/t1.0-1/s100x100/13100703_10206817833626040_7412135762927104247_n.jpg?oh=790f130d163810fa6f01733daea967a2&oe=589D9B76", name: "Nick", lname: "D'hondt" }, message: "How does it feel To treat me like y…" }];
     }
     MessageListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1346,7 +1343,7 @@ var MessageListComponent = (function () {
     return MessageListComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-list.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-list.component.js.map
 
 /***/ },
 
@@ -1381,7 +1378,7 @@ var FooterComponent = (function () {
     ], FooterComponent);
     return FooterComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/footer.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/footer.component.js.map
 
 /***/ },
 
@@ -1416,7 +1413,7 @@ var HeaderComponent = (function () {
     ], HeaderComponent);
     return HeaderComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/header.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/header.component.js.map
 
 /***/ },
 
@@ -1535,7 +1532,7 @@ var HomeModule = (function () {
     ], HomeModule);
     return HomeModule;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.module.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.module.js.map
 
 /***/ },
 
@@ -1577,7 +1574,7 @@ var AwardComponent = (function () {
     return AwardComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.component.js.map
 
 /***/ },
 
@@ -1655,7 +1652,7 @@ var HouseholdOverviewComponent = (function () {
     return HouseholdOverviewComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household-overview.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household-overview.component.js.map
 
 /***/ },
 
@@ -1731,7 +1728,7 @@ var UserDetailComponent = (function () {
     return UserDetailComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-detail.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-detail.component.js.map
 
 /***/ },
 
@@ -1777,7 +1774,7 @@ var UserImgComponent = (function () {
     return UserImgComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-img.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-img.component.js.map
 
 /***/ },
 
@@ -1823,7 +1820,7 @@ var NavigationComponent = (function () {
     return NavigationComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/navigation.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/navigation.component.js.map
 
 /***/ },
 
@@ -1910,7 +1907,7 @@ var TaskdetailComponent = (function () {
     return TaskdetailComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/taskdetail.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/taskdetail.component.js.map
 
 /***/ },
 
@@ -2006,7 +2003,7 @@ var TasktodoRowComponent = (function () {
     return TasktodoRowComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasktodo-row.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasktodo-row.component.js.map
 
 /***/ },
 
@@ -2057,11 +2054,15 @@ var TodolistComponent = (function () {
     };
     TodolistComponent.prototype.cancel = function (task, index) {
         var _this = this;
-        setTimeout(function () { return _this.tasksTodo.splice(index, 1); }, 300);
+        setTimeout(function () {
+            return _this.tasksTodo.splice(index, 1);
+        }, 300);
     };
     TodolistComponent.prototype.finish = function (task, index) {
         var _this = this;
-        setTimeout(function () { return _this.tasksTodo.splice(index, 1); }, 300);
+        setTimeout(function () {
+            return _this.tasksTodo.splice(index, 1);
+        }, 300);
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
@@ -2082,7 +2083,7 @@ var TodolistComponent = (function () {
     return TodolistComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/todolist.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/todolist.component.js.map
 
 /***/ },
 
@@ -2096,7 +2097,7 @@ var TodolistComponent = (function () {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
 
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/index.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/index.js.map
 
 /***/ },
 
@@ -2131,7 +2132,7 @@ var LoaderSmallComponent = (function () {
     ], LoaderSmallComponent);
     return LoaderSmallComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/loader-small.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/loader-small.component.js.map
 
 /***/ },
 
@@ -2147,7 +2148,7 @@ var LoaderSmallComponent = (function () {
 var environment = {
     production: false
 };
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/environment.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/environment.js.map
 
 /***/ },
 
@@ -2178,7 +2179,7 @@ var Award = (function () {
     };
     return Award;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.model.js.map
 
 /***/ },
 
@@ -2214,7 +2215,7 @@ var TasksFilterPipe = (function () {
     ], TasksFilterPipe);
     return TasksFilterPipe;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-filter.pipe.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-filter.pipe.js.map
 
 /***/ },
 
@@ -2256,21 +2257,7 @@ var TasksFilterPipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/polyfills.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/polyfills.js.map
 
 /***/ },
 
@@ -2438,7 +2425,7 @@ module.exports = ""
 /***/ 838:
 /***/ function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\r\n"
+        module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ },
 
@@ -2459,21 +2446,21 @@ module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all o
 /***/ 841:
 /***/ function(module, exports) {
 
-module.exports = "\r\n<div class=\"no-margin card-panel chat-panel\" *ngIf=\"household.users\">\r\n    <a (click)=\"toggleChat()\">Announcements</a>\r\n<!--<p>Users in {{household.name}}:</p>-->\r\n<!--<div class=\"col s12  \" *ngFor=\"let user of household.users; let i=index;\">-->\r\n<!--<div class=\" card gray lighten-5 \"  >-->\r\n<!--<div class=\"row valign-wrapper hoverable\">-->\r\n<!--<div class=\"col s3\" >-->\r\n<!--<img src=\"{{user.imgsrc}}\" alt=\"\" class=\"responsive-img circle\" style=\"max-width: 30px; max-height: 30px; overflow: hidden; \">-->\r\n\r\n<!--</div>-->\r\n<!--<div class=\"col s9\">-->\r\n<!--<span class=\"black-text\">-->\r\n<!--{{user.name}}-->\r\n<!--</span>-->\r\n\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n<app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "\r\n<div class=\"no-margin card-panel\" *ngIf=\"household.users\">\r\n    <a (click)=\"toggleChat()\">Announcements</a>\r\n<!--<p>Users in {{household.name}}:</p>-->\r\n<!--<div class=\"col s12  \" *ngFor=\"let user of household.users; let i=index;\">-->\r\n<!--<div class=\" card gray lighten-5 \"  >-->\r\n<!--<div class=\"row valign-wrapper hoverable\">-->\r\n<!--<div class=\"col s3\" >-->\r\n<!--<img src=\"{{user.imgsrc}}\" alt=\"\" class=\"responsive-img circle\" style=\"max-width: 30px; max-height: 30px; overflow: hidden; \">-->\r\n\r\n<!--</div>-->\r\n<!--<div class=\"col s9\">-->\r\n<!--<span class=\"black-text\">-->\r\n<!--{{user.name}}-->\r\n<!--</span>-->\r\n\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n<app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ },
 
 /***/ 842:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"chat-form\">\r\n    <form>\r\n        <div class=\"row no-margin\">\r\n            <div class=\"input-field col s10 no-margin no-padding\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\" class=\"waves-effect waves-light btn-floating btn-small red\">\r\n                    <i class=\"material-icons\">send</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
+module.exports = "<div class=\"message-form chat-form\">\r\n    <form class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"input-field col s8\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s4\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\" class=\"waves-effect waves-light btn-floating btn-small red\">\r\n                    <i class=\"material-icons\">send</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
 
 /***/ },
 
 /***/ 843:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row no-margin\">\r\n    <div class=\"col s12 no-padding\">\r\n        <div class=\"card light-green lighten-3 no-margin\">\r\n            <div class=\"card-content\">\r\n                <p>{{message.message}}</p>\r\n            </div>\r\n            <div class=\"card-action\">\r\n                <span>{{message.user.name}} {{message.user.lname}}</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col s12 \">\r\n        <div class=\"card light-green lighten-3\">\r\n            <div class=\"card-content\">\r\n                <p>{{message.message}}</p>\r\n            </div>\r\n            <div class=\"card-action\">\r\n                <span>{{message.user.name}} {{message.user.lname}}</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ },
 
@@ -2487,7 +2474,7 @@ module.exports = "<!--<p>Messages in Houshold:</p>-->\r\n<ul class=\"chat-list\"
 /***/ 845:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container \">\r\n    <div class=\"row\">\r\n        <div class=\"col l6 s12\">\r\n            <h5 class=\"white-text\">Footer Content</h5>\r\n            <p class=\"grey-text text-lighten-4\">You can use rows and columns here to organize your footer\r\n                content.</p>\r\n        </div>\r\n        <div class=\"col l4 offset-l2 s12\">\r\n            <h5 class=\"white-text\">Links</h5>\r\n            <ul>\r\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 1</a></li>\r\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 2</a></li>\r\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 3</a></li>\r\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 4</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"footer-copyright\">\r\n    <div class=\"container\">\r\n        © 2014 Copyright Text\r\n        <a class=\"grey-text text-lighten-4 right\" href=\"#!\">More Links</a>\r\n    </div>\r\n</div>\r\n"
+        module.exports = "<div class=\"container \">\n    <div class=\"row\">\n        <div class=\"col l6 s12\">\n            <h5 class=\"white-text\">Footer Content</h5>\n            <p class=\"grey-text text-lighten-4\">You can use rows and columns here to organize your footer\n                content.</p>\n        </div>\n        <div class=\"col l4 offset-l2 s12\">\n            <h5 class=\"white-text\">Links</h5>\n            <ul>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 1</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 2</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 3</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 4</a></li>\n            </ul>\n        </div>\n    </div>\n</div>\n<div class=\"footer-copyright\">\n    <div class=\"container\">\n        © 2014 Copyright Text\n        <a class=\"grey-text text-lighten-4 right\" href=\"#!\">More Links</a>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -2508,7 +2495,7 @@ module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>
 /***/ 848:
 /***/ function(module, exports) {
 
-module.exports = "<p *ngIf=\"award\" class=\"center materialize-red-text\">{{award.name}}</p>\r\n<p *ngIf=\"!award\" class=\"center materialize-red-text\">ik werk nog niet</p>"
+        module.exports = "<p *ngIf=\"award\" class=\"center materialize-red-text\">{{award.name}}</p>\n<p *ngIf=\"!award\" class=\"center materialize-red-text\">ik werk nog niet</p>"
 
 /***/ },
 
@@ -2529,14 +2516,14 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 851:
 /***/ function(module, exports) {
 
-module.exports = "<figure class=\"\" style=\"margin: 0\">\r\n\r\n    <div style=\"position: relative\">\r\n\r\n        <div class=\"chip\"\r\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\r\n             style=\"position: absolute; top:-10px; left:0;\">\r\n            {{user.score}}\r\n        </div>\r\n\r\n        <div class=\"hoverable circle z-depth-1\"\r\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\r\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img\">\r\n        </div>\r\n    </div>\r\n\r\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\r\n\r\n</figure>\r\n"
+        module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"position: relative\">\n\n        <div class=\"chip\"\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\n             style=\"position: absolute; top:-10px; left:0;\">\n            {{user.score}}\n        </div>\n\n        <div class=\"hoverable circle z-depth-1\"\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img\">\n        </div>\n    </div>\n\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\n\n</figure>\n"
 
 /***/ },
 
 /***/ 852:
 /***/ function(module, exports) {
 
-module.exports = "<p>\r\n  household works!\r\n</p>\r\n"
+        module.exports = "<p>\n  household works!\n</p>\n"
 
 /***/ },
 
@@ -2557,42 +2544,42 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 855:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\r\n\r\n    <app-todolist *ngIf=\"user\"\r\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">loading...\r\n    </app-todolist>\r\n\r\n</div>"
+        module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\n\n    <app-todolist *ngIf=\"user\"\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\n                  [users]=\"user.household? user.household.users : undefined\">loading...\n    </app-todolist>\n\n</div>"
 
 /***/ },
 
 /***/ 856:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\" style=\"margin-bottom: 0; display: flex; align-items: stretch\" [@visibleState]=\"(state)\">\r\n    <div class=\"col\"\r\n         style=\"display: flex;\r\n                    flex-direction: column;\r\n                    justify-content: center;\r\n                    align-items: center\">\r\n\r\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\r\n        <p *ngIf=\"dateDiff==1\" class=\"text-small \">day left</p>\r\n        <p *ngIf=\"dateDiff!=1\" class=\"text-small \">days left</p>\r\n    </div>\r\n    <div class=\"col\" style=\"flex-grow: 1\">\r\n        <span class=\"title\">{{task.name}}</span>\r\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\r\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\r\n    </div>\r\n    <div class=\"col\"\r\n         style=\"display: flex;\r\n         flex-direction: row;\r\n         flex-wrap: wrap;\r\n         justify-content: flex-end;\r\n         align-self: flex-start\">\r\n\r\n        <a class=\"tooltipped\"\r\n           (click)=\"finishClick()\"\r\n           materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n            <i class=\"material-icons\">done</i></a>\r\n        <a class=\"tooltipped\"\r\n           (click)=\"showDetailClick()\"\r\n           materialize=\"tooltip\"\r\n           data-position=\"bottom\"\r\n           data-delay=\"20\"\r\n           data-tooltip=\"edit\">\r\n            <i class=\"material-icons\">mode_edit</i></a>\r\n        <a class=\"tooltipped\"\r\n           (click)=\"cancelClick()\"\r\n           materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n            <i class=\"material-icons\">cancel</i></a>\r\n\r\n    </div>\r\n</div>\r\n\r\n"
+        module.exports = "<div class=\"row\" style=\"margin-bottom: 0; display: flex; align-items: stretch\" [@visibleState]=\"(state)\">\n    <div class=\"col\"\n         style=\"display: flex;\n                    flex-direction: column;\n                    justify-content: center;\n                    align-items: center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p *ngIf=\"dateDiff==1\" class=\"text-small \">day left</p>\n        <p *ngIf=\"dateDiff!=1\" class=\"text-small \">days left</p>\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n    </div>\n    <div class=\"col\"\n         style=\"display: flex;\n         flex-direction: row;\n         flex-wrap: wrap;\n         justify-content: flex-end;\n         align-self: flex-start\">\n\n        <a class=\"tooltipped\"\n           (click)=\"finishClick()\"\n           materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n            <i class=\"material-icons\">done</i></a>\n        <a class=\"tooltipped\"\n           (click)=\"showDetailClick()\"\n           materialize=\"tooltip\"\n           data-position=\"bottom\"\n           data-delay=\"20\"\n           data-tooltip=\"edit\">\n            <i class=\"material-icons\">mode_edit</i></a>\n        <a class=\"tooltipped\"\n           (click)=\"cancelClick()\"\n           materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n            <i class=\"material-icons\">cancel</i></a>\n\n    </div>\n</div>\n\n"
 
 /***/ },
 
 /***/ 857:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n\r\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\r\n\r\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo; let i = index\">\r\n\r\n        <!--<div style=\"position:absolute; z-index: 10\">-->\r\n        <!--<a class=\"btn\">test</a>-->\r\n        <!--</div>-->\r\n\r\n        <app-tasktodo-row\r\n                (cancel)=\"cancel($event, i)\"\r\n                (finish)=\"finish($event, i)\"\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"tasktodo\"\r\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasksTodo.length == 0\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have nothing to do, go make some tasks!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
+        module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\n\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo; let i = index\">\n\n        <!--<div style=\"position:absolute; z-index: 10\">-->\n        <!--<a class=\"btn\">test</a>-->\n        <!--</div>-->\n\n        <app-tasktodo-row\n                (cancel)=\"cancel($event, i)\"\n                (finish)=\"finish($event, i)\"\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"tasktodo\"\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\n\n\n    </div>\n</div>\n\n<div *ngIf=\"tasksTodo.length == 0\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have nothing to do, go make some tasks!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
 
 /***/ },
 
 /***/ 858:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\r\n    <div class=\"preloader-wrapper small active\">\r\n        <div class=\"spinner-layer spinner-blue\">\r\n            <div class=\"circle-clipper left\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"gap-patch\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"circle-clipper right\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"spinner-layer spinner-red\">\r\n            <div class=\"circle-clipper left\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"gap-patch\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"circle-clipper right\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"spinner-layer spinner-yellow\">\r\n            <div class=\"circle-clipper left\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"gap-patch\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"circle-clipper right\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"spinner-layer spinner-green\">\r\n            <div class=\"circle-clipper left\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"gap-patch\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n            <div class=\"circle-clipper right\">\r\n                <div class=\"circle\"></div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+        module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    <div class=\"preloader-wrapper small active\">\n        <div class=\"spinner-layer spinner-blue\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-red\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-yellow\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-green\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 859:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\r\n        <article class=\"card\">\r\n            <div class=\"card-content\">\r\n                <h1 class=\"card-title\">{{title}}</h1>\r\n            </div>\r\n            <div class=\"card-action\">\r\n                <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\r\n                <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\r\n            </div>\r\n\r\n        </article>\r\n    </div>\r\n</div>"
+        module.exports = "<div class=\"row\">\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\n        <article class=\"card\">\n            <div class=\"card-content\">\n                <h1 class=\"card-title\">{{title}}</h1>\n            </div>\n            <div class=\"card-action\">\n                <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\n                <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\n            </div>\n\n        </article>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 860:
 /***/ function(module, exports) {
 
-module.exports = "<p>\r\n  not-found works!\r\n</p>\r\n"
+        module.exports = "<p>\n  not-found works!\n</p>\n"
 
 /***/ },
 
@@ -2622,7 +2609,7 @@ var User = (function () {
     };
     return User;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user.model.js.map
 
 /***/ }
 
