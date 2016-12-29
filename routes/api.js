@@ -172,7 +172,9 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
     process.on("mysqlError", (err) =>{
         return next(err);
     });
-
+    let body = req.body;
+    let householdId = body.household_id;
+    let uid = res.locals.uid;
     Household.addUserToHousehold(householdId, uid, function (household) {
         res.json({body: household});
         res.end();
@@ -225,7 +227,7 @@ router.post('/leavehousehold', function (req, res) {
     })
 });
 
-router.post('/addhousehold', function (req, res) {
+router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -239,7 +241,6 @@ router.post('/addhousehold', function (req, res) {
             res.json(household);
             res.end();
         })
-
     })
 });
 
