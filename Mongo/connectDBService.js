@@ -8,14 +8,6 @@ module.exports = (function (configURL, database) {
 
     var db = database.connect(configURL);
 
-    mongoose.connect(configURL, function (err,res) {
-        if(err) {
-            console.log("Connection failed");
-            console.log("ConfigURL : " +configURL);
-        }
-        else console.log("Connection succesfull");
-    });
-
 
     database.connection.on("open",function () {
         //mongoose test
