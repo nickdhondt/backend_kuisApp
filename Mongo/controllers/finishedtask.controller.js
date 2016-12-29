@@ -20,7 +20,7 @@ function create(req, res) {
     finished_on : req.body.finished_on
   });
 
-  user.save(function (err) {
+  newFinishedTask.save(function (err) {
     if(err) throw new Error;
   })
 

@@ -6,6 +6,7 @@ import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
+import enumerate = Reflect.enumerate;
 
 
 
@@ -149,11 +150,25 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
-    public addFinishedTask(){
+    public addFinishedTask(name: string, id: number): Observable<any> {
 
+        let data: [string,number];
+        data = [name, id];
+        console.log(data);
 
-
+        let tokenPromise = new Promise<any>((resolve, reject)=> {
+            this.auth.token.then(token=> {
+                this.headers.set('Firebase-ID-Token', token);
+                return this._http.post(
+                    this.actionUrl + "finishtask",
+                    {headers: this.headers},
+                    data)
+                    .catch(ApiService.handleError)
+            })
+        });
+        return Observable.fromPromise(tokenPromise);
     }
 
 
 }
+

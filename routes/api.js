@@ -9,7 +9,7 @@ let conn = require('../helpers/connection')(mysql);
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
-let finishedTaskCtrl = require('../Mongo/controllers/finishedtask.controller');
+
 
 
 let User = require("../models/User");
@@ -18,8 +18,10 @@ let Award = require("../models/Award");
 let Task = require("../models/Task");
 
 let moment = require("moment");
-
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
+let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
+
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
@@ -317,14 +319,53 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
 router.post('/finishtask', firebaseAuthenticator, function (req, res) {
   //TODO,nieuwe finishtask
+    console.log("FinishTask called");
+    console.log(req);
 
-  console.log("Test Finishtask");
+    let newFinishedtask = FinishedTask({
+        id : req.body.id,
+        name: req.body.name,
+        dueDate: req.body.name,
+        description: req.body.description,
+        period:req.body.period,
+        household_id:req.body.household_id,
+        assigned_to:req.body.assigned_to,
+        points : req.body.points,
+        done:req.body.done,
+        finished_by : req.body.finished_by,
+        finished_on: req.body.finished_on
+    });
 
-    finishedTaskCtrl.create(req,res);
+    newFinishedtask.save(function (err) {
+        if(err) throw new Error;
+
+        console.log("Finishedtask send do mongoDB");
+    })
 
 
 
 });
+
+router.post('/finishaward',firebaseAuthenticator , function (req,res) {
+    let newFinishedAward = FinishedAward({
+        id : req.body.id,
+        name: req.body.name,
+        description: req.body.description,
+        month:req.body.month,
+        winner_id:req.body.winner_id,
+        household_id:req.body.household_id,
+        users:req.body.users,
+        creator_id:req.body.creator_id
+
+    });
+
+    newFinishedAward.save(function (err) {
+        if(err) throw new Error;
+
+        console.log("FinishedAward send do mongoDB");
+    })
+
+})
 
 //af: steven
 //controle door: nick
