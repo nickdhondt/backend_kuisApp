@@ -163,8 +163,8 @@ export class ApiService {
                 this.headers.set('Firebase-ID-Token', token);
                 return this._http.post(
                     this.actionUrl + "finishtask",
-                    {headers: this.headers},
-                    data)
+                    data,
+                    {headers: this.headers})
                     .catch(ApiService.handleError)
             })
         });
