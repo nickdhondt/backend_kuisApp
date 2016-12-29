@@ -10,3 +10,12 @@
         padding-left: 300px;
     }
 }
+
+a {
+    cursor: pointer;
+}
+
+.material-tooltip > * {
+    background: #607d8b;
+    color: white;
+}
