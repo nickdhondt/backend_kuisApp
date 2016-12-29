@@ -1936,7 +1936,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var TasktodoRowComponent = (function () {
     function TasktodoRowComponent() {
+        this.showDetail = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.finish = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.cancel = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
+    TasktodoRowComponent.prototype.showDetailClick = function () {
+        this.showDetail.emit(this.task);
+    };
+    TasktodoRowComponent.prototype.finishClick = function () {
+        this.state = 'finished';
+        this.finish.emit(this.task);
+    };
+    TasktodoRowComponent.prototype.cancelClick = function () {
+        this.state = 'canceled';
+        this.finish.emit(this.task);
+    };
     TasktodoRowComponent.prototype.ngOnInit = function () {
     };
     Object.defineProperty(TasktodoRowComponent.prototype, "dateDiff", {
@@ -1954,11 +1968,35 @@ var TasktodoRowComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__models_user_model__["a" /* User */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__models_user_model__["a" /* User */]) === 'function' && _b) || Object)
     ], TasktodoRowComponent.prototype, "user", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
+        __metadata('design:type', Object)
+    ], TasktodoRowComponent.prototype, "showDetail", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
+        __metadata('design:type', Object)
+    ], TasktodoRowComponent.prototype, "finish", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
+        __metadata('design:type', Object)
+    ], TasktodoRowComponent.prototype, "cancel", void 0);
     TasktodoRowComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasktodo-row',
             template: __webpack_require__(856),
-            styles: [__webpack_require__(833)]
+            styles: [__webpack_require__(833)],
+            animations: [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibleState', [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('finished', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
+                        transform: 'translateX(-50%)',
+                    })),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('canceled', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
+                        transform: 'translateX(50%)'
+                    })),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => finished', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('300ms ease-out')]),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => canceled', [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('300ms ease-out')])
+                ])
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], TasktodoRowComponent);
@@ -2010,20 +2048,15 @@ var TodolistComponent = (function () {
         }
         return new __WEBPACK_IMPORTED_MODULE_2__models_user_model__["a" /* User */]();
     };
-    TodolistComponent.prototype.getTasksTodo = function () {
-        // this.apiService
-        //     .getTaskstodobyhousehold()
-        //     .subscribe(
-        //         data => {
-        //             this.tasksTodo = data.sort((t1, t2) => {
-        //                 if (t1.dueDate > t2.dueDate) return 1;
-        //                 if (t1.dueDate < t2.dueDate) return -1;
-        //                 return 0;
-        //             });
-        //             this.loading = false;
-        //         },
-        //         error => console.log(error)
-        //     );
+    TodolistComponent.prototype.showDetail = function (task) {
+        this.selectedTask = task;
+        this.showDialog = !this.showDialog;
+    };
+    TodolistComponent.prototype.cancel = function (task, index) {
+        //this.tasksTodo.splice(index,1);
+    };
+    TodolistComponent.prototype.finish = function (task, index) {
+        //this.tasksTodo.splice(index,1);
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
@@ -2037,7 +2070,7 @@ var TodolistComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-todolist',
             template: __webpack_require__(857),
-            styles: [__webpack_require__(834)]
+            styles: [__webpack_require__(834)],
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], TodolistComponent);
@@ -2421,7 +2454,7 @@ module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all o
 /***/ 841:
 /***/ function(module, exports) {
 
-module.exports = "\r\n<div class=\"no-margin card-panel\" *ngIf=\"household.users\">\r\n<div (click)=\"toggleChat()\">Announcements</div>\r\n<!--<p>Users in {{household.name}}:</p>-->\r\n<!--<div class=\"col s12  \" *ngFor=\"let user of household.users; let i=index;\">-->\r\n<!--<div class=\" card gray lighten-5 \"  >-->\r\n<!--<div class=\"row valign-wrapper hoverable\">-->\r\n<!--<div class=\"col s3\" >-->\r\n<!--<img src=\"{{user.imgsrc}}\" alt=\"\" class=\"responsive-img circle\" style=\"max-width: 30px; max-height: 30px; overflow: hidden; \">-->\r\n\r\n<!--</div>-->\r\n<!--<div class=\"col s9\">-->\r\n<!--<span class=\"black-text\">-->\r\n<!--{{user.name}}-->\r\n<!--</span>-->\r\n\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n<app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "\r\n<div class=\"no-margin card-panel\" *ngIf=\"household.users\">\r\n    <a (click)=\"toggleChat()\">Announcements</a>\r\n<!--<p>Users in {{household.name}}:</p>-->\r\n<!--<div class=\"col s12  \" *ngFor=\"let user of household.users; let i=index;\">-->\r\n<!--<div class=\" card gray lighten-5 \"  >-->\r\n<!--<div class=\"row valign-wrapper hoverable\">-->\r\n<!--<div class=\"col s3\" >-->\r\n<!--<img src=\"{{user.imgsrc}}\" alt=\"\" class=\"responsive-img circle\" style=\"max-width: 30px; max-height: 30px; overflow: hidden; \">-->\r\n\r\n<!--</div>-->\r\n<!--<div class=\"col s9\">-->\r\n<!--<span class=\"black-text\">-->\r\n<!--{{user.name}}-->\r\n<!--</span>-->\r\n\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<!--</div>-->\r\n<app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n<app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ },
 
@@ -2526,14 +2559,14 @@ module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\
 /***/ 856:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\" style=\"margin-bottom: 0; display: flex; align-items: stretch\">\r\n    <div class=\"col\"\r\n         style=\"display: flex;\r\n                    flex-direction: column;\r\n                    justify-content: center;\r\n                    align-items: center\">\r\n\r\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\r\n        <p *ngIf=\"dateDiff==1\" class=\"text-small \">day left</p>\r\n        <p *ngIf=\"dateDiff!=1\" class=\"text-small \">days left</p>\r\n    </div>\r\n    <div class=\"col\" style=\"flex-grow: 1\">\r\n        <span class=\"title\">{{task.name}}</span>\r\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\r\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\r\n    </div>\r\n    <div class=\"col\"\r\n         style=\"display: flex;\r\n         flex-direction: row;\r\n         flex-wrap: wrap;\r\n         justify-content: flex-end;\r\n         align-self: flex-start\">\r\n\r\n        <a class=\"tooltipped\" materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n            <i class=\"material-icons\">done</i></a>\r\n        <a class=\"tooltipped\" materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"edit\">\r\n            <i class=\"material-icons\">mode_edit</i></a>\r\n        <a class=\"tooltipped\" materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n            <i class=\"material-icons\">cancel</i></a>\r\n\r\n    </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\" style=\"margin-bottom: 0; display: flex; align-items: stretch\" [@visibleState]=\"state\">\r\n    <div class=\"col\"\r\n         style=\"display: flex;\r\n                    flex-direction: column;\r\n                    justify-content: center;\r\n                    align-items: center\">\r\n\r\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\r\n        <p *ngIf=\"dateDiff==1\" class=\"text-small \">day left</p>\r\n        <p *ngIf=\"dateDiff!=1\" class=\"text-small \">days left</p>\r\n    </div>\r\n    <div class=\"col\" style=\"flex-grow: 1\">\r\n        <span class=\"title\">{{task.name}}</span>\r\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\r\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\r\n    </div>\r\n    <div class=\"col\"\r\n         style=\"display: flex;\r\n         flex-direction: row;\r\n         flex-wrap: wrap;\r\n         justify-content: flex-end;\r\n         align-self: flex-start\">\r\n\r\n        <a class=\"tooltipped\"\r\n           (click)=\"finishClick()\"\r\n           materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n            <i class=\"material-icons\">done</i></a>\r\n        <a class=\"tooltipped\"\r\n           (click)=\"showDetailClick()\"\r\n           materialize=\"tooltip\"\r\n           data-position=\"bottom\"\r\n           data-delay=\"20\"\r\n           data-tooltip=\"edit\">\r\n            <i class=\"material-icons\">mode_edit</i></a>\r\n        <a class=\"tooltipped\"\r\n           (click)=\"cancelClick()\"\r\n           materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n            <i class=\"material-icons\">cancel</i></a>\r\n\r\n    </div>\r\n</div>\r\n\r\n"
 
 /***/ },
 
 /***/ 857:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n\r\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\r\n\r\n    <div class=\"collection-item\" *ngFor=\"let tasktodo of tasksTodo\"\r\n         (click)=\"showDialog = !showDialog; selectedTask = tasktodo\">\r\n\r\n        <app-tasktodo-row [task]=\"tasktodo\" [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\r\n\r\n    </div>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"tasksTodo.length == 0\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have nothing to do, go make some tasks!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n\r\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\r\n\r\n    <div class=\"collection-item\" *ngFor=\"let tasktodo of tasksTodo; let i = index\">\r\n\r\n        <app-tasktodo-row\r\n                (cancel)=\"cancel($event, i)\"\r\n                (finish)=\"finish($event, i)\"\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"tasktodo\"\r\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasksTodo.length == 0\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have nothing to do, go make some tasks!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
 
 /***/ },
 

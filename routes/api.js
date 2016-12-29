@@ -337,13 +337,13 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
     });
 
     newFinishedtask.save(function (err) {
-        if(err) throw new Error;
+        if(err) return next(err);
 
         console.log("Finishedtask send do mongoDB");
     })
 
-
-
+    res.json({});
+    res.end();
 });
 
 router.post('/finishaward',firebaseAuthenticator , function (req,res) {
@@ -360,11 +360,13 @@ router.post('/finishaward',firebaseAuthenticator , function (req,res) {
     });
 
     newFinishedAward.save(function (err) {
-        if(err) throw new Error;
+        if(err) return next(err);
 
         console.log("FinishedAward send do mongoDB");
     })
 
+    res.json({});
+    res.end();
 })
 
 //af: steven
