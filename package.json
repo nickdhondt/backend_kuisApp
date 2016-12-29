@@ -26,6 +26,7 @@
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "core-js": "^2.4.1",
+    "dateformat": "^2.0.0",
     "debug": "~2.2.0",
     "ejs": "^2.5.5",
     "express": "~4.14.0",

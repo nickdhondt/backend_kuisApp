@@ -10,6 +10,9 @@ let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
 
+let moment = require('moment');
+let dateFormat = require('dateformat');
+
 let User = require("../models/User");
 let Household = require("../models/Household");
 let Award = require("../models/Award");
@@ -47,13 +50,14 @@ router.get('/', function (req, res) {
 });
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
-    let user = req.params.user;
+
+    let user = req.locals.uid;
 
     process.on("mysqlError", (err) => {
         return next(err);
     });
 
-    User.getUserByUID(user, firebaseAuthenticator, function (user) {
+    User.getUserByUID(user, function (user) {
         if (user !== undefined && user.household_id !== null) {
             Household.getHouseholdByID(user.household_id, user, (user, household) => {
                 user.household = household;
@@ -72,7 +76,9 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
                     lastAwardWonBy: "User or collection of users"
                 };
 
-                user = Object.assign(user, statsTasks, statsAwards);
+                user.household = Object.assign(user.household, statsTasks, statsAwards);
+
+
 
                 Task.getTasksByHouseholdID(household.id, user, (user, tasks) => {
                     user.household.tasks = tasks;
@@ -81,21 +87,30 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
                         Task.getTasksTodoByHouseholdID(user.household_id, 7, user, (user, tasksTodo) => {
                             user.household.taskstodo = tasksTodo;
                             Award.getAwardByHouseholdID(user.household_id, user, (user, award) => {
+
+
                                 if (award !== undefined) {
                                     let awardTerm = "day"; // Change to "month" for production
 
                                     let awardDate = moment(award.month, "YYYY-MM-DD");
                                     let now = moment().subtract(1, awardTerm);
 
+                                    award.month = moment(award.month).format("YYYY-MM-DD");
+
                                     if (awardDate.isBefore(now)) {
                                         // TODO: verhuis award naar mongo
 
                                         Award.deleteAwardByHouseholdID(user.household.id);
-                                    } else user.household.award = award;
+
+                                        award = null;
+                                    }
+
+                                    user.household.award = award;
 
                                     res.json(user);
                                     res.end();
                                 } else {
+                                    user.household.award = null;
                                     res.json(user);
                                     res.end();
                                 }
