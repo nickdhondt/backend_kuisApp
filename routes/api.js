@@ -174,20 +174,17 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 
 //af: steven
 //controle door: Bart en hij zag dat het niet goed was.
-router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
+router.post('/addusertohousehold', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
     let householdId = body.household_id;
     let uid = res.locals.uid;
-    Household.addUserToHousehold(householdId, uid, function (uid) {
-        console.log(uid);
 
-        User.getUserByUID(uid, (user) => {
-            res.json(user);
-            res.end();
-        });
+    Household.addUserToHousehold(householdId, uid, function () {
+
+        res.redirect('/userbyuid/null');
 
     })
 });
