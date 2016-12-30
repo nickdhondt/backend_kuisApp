@@ -54,7 +54,7 @@ router.get('/', function (req, res) {
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
-    let user = res.locals.uid;
+    let user = res.locals.uid | req.params.user;
 
     console.log(user);
 
