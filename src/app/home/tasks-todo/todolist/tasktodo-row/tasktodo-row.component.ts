@@ -14,6 +14,9 @@ import {Task} from "../../../../../models/task.model";
 import * as moment from "moment";
 import {User} from "../../../../../models/user.model";
 import {ApiService} from "../../../../../service/api.service";
+import * as firebase from 'firebase';
+import {SocketService} from "../../../../../service/socket.service";
+import {take} from "rxjs/operator/take";
 
 
 @Component({
@@ -45,6 +48,7 @@ export class TasktodoRowComponent implements OnInit {
     @Output() cancel = new EventEmitter();
 
     state: string;
+    private isDestroyed:Boolean = false;
 
     showDetailClick() {
         this.showDetail.emit(this.task);
@@ -52,22 +56,40 @@ export class TasktodoRowComponent implements OnInit {
 
     finishClick() {
         this.state = 'finished';
+        this.isDestroyed = true;
         this.finish.emit(this.task);
-        // console.log("test");
-        // this.apiService.addFinishedTask(this.task.id,true,"N0uqQuawstafVTsU1yX3FrvDFne2","2016-11-06" );
-        // this.apiService.addFinishedTask(this.task.name, this.task.id).subscribe((ack)=>{});
-        this.apiService.addFinishedAward();
+        let userUid:string = firebase.auth().currentUser.uid;
+
+        this.apiService.addFinishedTask(this.task.id, true, userUid, moment().format("YYYY-MM-DD HH:mm:ss"));
     }
 
     cancelClick() {
         this.state = 'canceled';
+        this.isDestroyed = true;
         this.cancel.emit(this.task);
+
+        let userUid:string = firebase.auth().currentUser.uid;
+
+        this.apiService.addFinishedTask(this.task.id, false, userUid, moment().format("YYYY-MM-DD HH:mm:ss"));
     }
 
-    constructor(private apiService:ApiService) {
+    constructor(private apiService:ApiService, private socketService:SocketService) {
     }
 
     ngOnInit() {
+        this.socketService.taskUpdates().subscribe((data) => {
+            if (!this.isDestroyed && data.taskID === this.task.id) {
+                console.log(data.done);
+                console.log(data.taskID + ", " + this.task.id);
+                if (data.done) {
+                    this.state = "finished";
+                    this.finish.emit(this.task);
+                } else {
+                    this.state = "canceled";
+                    this.cancel.emit(this.task);
+                }
+            }
+        })
     }
 
     get dateDiff(): number {

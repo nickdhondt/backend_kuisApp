@@ -16,24 +16,23 @@
         <div class="flex-wrap-end"
              style="align-self: flex-start">
 
-        <a class="tooltipped"
-           (click)="finishClick()"
-           materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
-            <i class="material-icons">done</i></a>
-        <a class="tooltipped"
-           (click)="showDetailClick()"
-           materialize="tooltip"
-           data-position="bottom"
-           data-delay="20"
-           data-tooltip="edit">
-            <i class="material-icons">mode_edit</i></a>
-        <a class="tooltipped"
-           (click)="cancelClick()"
-           materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
-            <i class="material-icons">cancel</i></a>
+            <a class="tooltipped"
+               (click)="finishClick()"
+               materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
+                <i class="material-icons">done</i></a>
+            <a class="tooltipped"
+               (click)="showDetailClick()"
+               materialize="tooltip"
+               data-position="bottom"
+               data-delay="20"
+               data-tooltip="edit">
+                <i class="material-icons">mode_edit</i></a>
+            <a class="tooltipped"
+               (click)="cancelClick()"
+               materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
+                <i class="material-icons">cancel</i></a>
 
-    </div>
+        </div>
         <span class="chip">{{task.points}} points</span>
     </div>
 </div>
-

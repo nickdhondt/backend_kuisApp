@@ -1,5 +1,7 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, EventEmitter} from "@angular/core";
 import {Award} from "../../../../models/award.model";
+import {Output} from "@angular/core/src/metadata/directives";
+
 
 @Component({
     selector: 'app-award',
@@ -8,12 +10,19 @@ import {Award} from "../../../../models/award.model";
 })
 export class AwardComponent implements OnInit {
 
-    @Input() award: Award;
+    currentaward:Award;
+    @Input()award:Award;
+    @Output()showDetail = new EventEmitter();
+    showDialog:boolean=false;
 
     constructor() {
     }
 
     ngOnInit() {
     }
+
+
+
+
 
 }

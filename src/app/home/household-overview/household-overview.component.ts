@@ -3,6 +3,7 @@ import {ApiService} from "../../../service/api.service";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
 import {AuthService} from "../../../auth/services/auth.service";
+import {Award} from "../../../models/award.model";
 
 
 @Component({
@@ -14,9 +15,11 @@ export class HouseholdOverviewComponent implements OnInit {
 
 
     @Input() household: Household;
+    @Input() users:User[]
     showDialog: boolean = false;
     selectedUser: User;
     authenticatedUserUID: string;
+    showDialogAward: boolean=false;
     // loading: boolean = true;
     //merge comment
 
@@ -28,6 +31,15 @@ export class HouseholdOverviewComponent implements OnInit {
 
     ngOnInit() {
         // this.getHousehold();
+    }
+    private user(id:number){
+        for(let user in this.users){
+            if(this.users[user].id == id){
+                console.log(this.users)
+                return this.user[user];
+            }
+        }
+        return new User()
     }
 
 
