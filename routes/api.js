@@ -3,6 +3,7 @@ let router = express.Router();
 
 let bodyParser = require('body-parser');
 
+let fs = require('fs');
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
@@ -490,12 +491,19 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
+router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
 
     let assignUsers = 7;
     if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
     let household = parseInt(req.params.household);
+    let json = JSON.parse(fs.readFileSync("./importjson/importJson.json"));
+    let response = [];
 
+    for(let i = 0; i < json.length; i++){
+        response = response.concat(json.all);
+    }
+
+    console.log(response);
 
     res.json({params: {household: household, assignUsers: assignUsers}});
     res.end();
