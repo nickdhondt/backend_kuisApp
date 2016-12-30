@@ -1,6 +1,4 @@
-li:not(:first-of-type) {
-  margin: 20px 0 0 0;
-}
+
 
 ::-webkit-scrollbar {
   width: 0px; /* remove scrollbar space */
@@ -10,4 +8,14 @@ li:not(:first-of-type) {
 /* optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
   background: #FF0000;
+}
+
+.chat-list {
+  margin: 20px 0;
+  overflow-y: auto;
+  height: 300px;
+
+  li:not(:first-of-type) {
+    margin: 20px 0 0 0;
+  }
 }
