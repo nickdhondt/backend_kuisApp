@@ -1,1 +1,2 @@
-<p class="center materialize-red-text" (click)="showDialog=!showDialog;currentaward=award">{{award.name}}</p>
+<p  *ngIf="award" class="center materialize-red-text" (click)="showDialog=!showDialog;currentaward=award">{{award.name}}</p>
+<p *ngIf="!award" class="center materialize-red-text" >Pech geen award deze maand</p>
