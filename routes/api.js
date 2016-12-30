@@ -251,14 +251,6 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
         res.json(household);
         res.end();
 
-
-        // var household_id = id;
-        // //current user uid ophalen
-        // var uid = res.locals.uid;
-        // Household.addUserToHousehold(household_id, uid, function (household) {
-        //     res.json(household_id);
-        //     res.end();
-        // })
     })
 });
 
@@ -314,7 +306,7 @@ router.post('/addtask', function (req, res, next) {
         res.end();
     }else{
         Task.addTask(body, function (body) {
-            res.json({body: body});
+            res.json(body);
             res.end(); //comment
         })
     }
