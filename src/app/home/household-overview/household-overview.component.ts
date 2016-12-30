@@ -21,6 +21,7 @@ export class HouseholdOverviewComponent implements OnInit {
     awardcreator:User;
     authenticatedUserUID: string;
     showDialogAward: boolean=false;
+    showDialogNewAward:boolean=false;
     // loading: boolean = true;
     //merge comment
 

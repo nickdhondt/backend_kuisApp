@@ -38,4 +38,5 @@
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<app-award-detail [(visible)]="showDialogAward" [(award)]="household.award" [(user)]="awardcreator" ></app-award-detail>
+<app-award-detail *ngIf="household.award" [(visible)]="showDialogAward" [(award)]="household.award" [(user)]="awardcreator" ></app-award-detail>
+<app-new-award *ngIf="!household.award" [(visible)] = "showDialogNewAward"></app-new-award>
