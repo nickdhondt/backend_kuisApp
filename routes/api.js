@@ -33,7 +33,7 @@ router.use(function (req, res, next) {
 router.get('/', function (req, res) {
     let routes = [];
 
-    for (let route of ronuter.stack) {
+    for (let route of router.stack) {
         let methods;
         let path;
 
@@ -317,12 +317,6 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 });
 
 router.post('/finishtask', function (req, res, next) {
-    // //TODO,nieuwe finishtask
-
-    //   console.log(req);
-    //
-
-
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -337,7 +331,6 @@ router.post('/finishtask', function (req, res, next) {
     let finished_by = req.body.finished_by;
     if (!req.body.finished_on) return next(new Error(format));
     let finished_on = req.body.finished_on;
-
 
     User.getUserByUID(finished_by, function (user) {
         if (user === undefined) return next(new Error("user not found"));
@@ -366,10 +359,50 @@ router.post('/finishtask', function (req, res, next) {
 
                 // todo: verder afwerken https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L253
 
-                process.emit("task-finished", {taskID: req.body.id, userID: req.body.finished_by});
+                let nextDue = moment(originalTask.dueDate).add(originalTask.period, "day");
 
-                res.json({});
-                res.end();
+                while(nextDue.isBefore(moment())) {
+                    nextDue = moment(nextDue).add(originalTask.period, "day");
+
+                    let newFinishedtask = FinishedTask({
+                        id: id,
+                        name: originalTask.name,
+                        dueDate: originalTask.dueDate,
+                        description: originalTask.description,
+                        period: originalTask.period,
+                        household_id: originalTask.household_id,
+                        assigned_to: originalTask.assigned_to,
+                        points: originalTask.points,
+                        done: done,
+                        finished_by: finished_by,
+                        finished_on: finished_on
+                    });
+
+                    newFinishedtask.save(function (err) {});
+                }
+
+                originalTask.dueDate = nextDue.format("YYYY-MM-DD");
+
+                User.getUsersByHouseholdID(originalTask.household_id, null, function (obj, users) {
+                    let newUser = -1;
+                    for(let user of users) {
+                        if (user.id > originalTask.assigned_to) {
+                            newUser = user.id;
+                            break;
+                        }
+                    }
+
+                    if (newUser === -1) newUser = users[0].id;
+
+                    originalTask.assigned_to = newUser;
+
+                    Task.updateTask(originalTask, function () {
+                        process.emit("task-finished", {taskID: id, userID: user.id});
+
+                        res.json(originalTask);
+                        res.end();
+                    });
+                });
             });
 
         });
