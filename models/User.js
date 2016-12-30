@@ -13,7 +13,7 @@ class User {
   }
 
   static getUsersByHouseholdID(id, obj, cb) {
-    conn.query("select * from `users` where `household_id` = ?", [id],
+    conn.query("select * from `users` where `household_id` = ? order by `id` asc", [id],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);
         else cb(obj, rows);
