@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http, Response} from "@angular/http";
+import {Headers, Http, Response, RequestOptions} from "@angular/http";
 import {Contract} from "../contract";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
@@ -7,6 +7,7 @@ import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
 import enumerate = Reflect.enumerate;
+
 
 
 
@@ -152,42 +153,58 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
-    public addFinishedTask(name: string, id: number): Observable<any> {
-        let data: [string,number];
-        data = [name, id];
-        console.log(data);
 
-        let tokenPromise = new Promise<any>((resolve, reject)=> {
+    public addFinishedTask(name: string, id: number) {
+
+        let tokenPromise = new Promise((resolve, reject)=> {
             this.auth.token.then(token=> {
                 this.headers.set('Firebase-ID-Token', token);
                 return this._http.post(
                     this.actionUrl + "finishtask",
-                    data,
+                    {name,id},
                     {headers: this.headers})
-                    .map((res:Response) => res.json())
+                    .map(res=>res.json())
                     .catch(ApiService.handleError)
+                    .subscribe(data=>console.log(data));
             })
         });
-        return Observable.fromPromise(tokenPromise);
+
+
+        // let data: [string,number];
+        // data = [name, id];
+        // console.log(data);
+        //
+        // let tokenPromise = new Promise<any>((resolve, reject)=> {
+        //     this.auth.token.then(token=> {
+        //         this.headers.set('Firebase-ID-Token', token);
+        //         return this._http.post(
+        //             this.actionUrl + "finishtask",
+        //             data,
+        //             {headers: this.headers})
+        //             .map((res:Response) => res.json())
+        //             .catch(ApiService.handleError)
+        //     })
+        // });
+        // return Observable.fromPromise(tokenPromise);
     }
 
-    public addFinishedAward(): Observable<any>{
+    public addFinishedAward() {
 
-        let tokenPromise = new Promise<any>((resolve,reject)=>{
-            this.auth.token.then(token=> {
-                this.headers.set('Firebase-ID-Token', token);
-                return this._http.post(
-                    this.actionUrl + "finishtask",
-                    console.log(this.actionUrl),
-                    {headers: this.headers})
-                    .catch(ApiService.handleError)
-            })
-            });
+        // let tokenPromise = new Promise<any>((resolve,reject)=>{
+        //     this.auth.token.then(token=> {
+        //         this.headers.set('Firebase-ID-Token', token);
+        //         return this._http.post(
+        //             this.actionUrl + "finishtask",
+        //             console.log(this.actionUrl),
+        //             {headers: this.headers})
+        //             .catch(ApiService.handleError)
+        //     })
+        //     });
+        //
+        // return Observable.fromPromise(tokenPromise);
 
-        return Observable.fromPromise(tokenPromise);
-        }
-
-
-
+    }
 }
+
+
 

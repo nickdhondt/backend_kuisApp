@@ -53,8 +53,9 @@ export class TasktodoRowComponent implements OnInit {
     finishClick() {
         this.state = 'finished';
         this.finish.emit(this.task);
-        console.log("test");
-        this.apiService.addFinishedTask(this.task.name, this.task.id).subscribe((ack)=>{});
+        // console.log("test");
+        this.apiService.addFinishedTask(this.task.name, this.task.id);
+        // this.apiService.addFinishedTask(this.task.name, this.task.id).subscribe((ack)=>{});
     }
 
     cancelClick() {
