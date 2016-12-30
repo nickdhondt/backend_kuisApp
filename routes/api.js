@@ -507,10 +507,35 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
 
     let result = [];
     let period = response[0][2];
-    result[period] = [];
+    let periodArr = [];
+    periodArr.push(period);
+    result.push(periodArr);
+    User.getUsersByHouseholdID(household, null, function (obj, rows) {
+        if(rows === 0){
+            res.status(500).message("no users in household");
+            res.end();
+        }else{
+            users = rows;
+        }
+    });
     let assignedUserPos = 0;
+    for(let item of response){
+        if(item[2] !== period){
+            period = item[2];
+            periodArr.push(period);
+            result.push(periodArr);
+        }
 
-    res.json({params: {household: household, assignUsers: assignUsers}});
+        periodArr.push(period);
+        result.push(periodArr);
+    }
+
+    response = [];
+    for(let periodGroup of result){
+
+    }
+
+    res.json({body: response});
     res.end();
 
 });
