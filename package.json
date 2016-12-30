@@ -62,6 +62,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "mongoose": "^4.7.5",
+    "node-sass": "^4.1.1",
     "protractor": "4.0.9",
     "ts-node": "1.2.1",
     "tsd": "^0.6.5",
