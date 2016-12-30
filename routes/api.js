@@ -318,61 +318,62 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 
 router.post('/finishtask', function (req, res, next) {
     // //TODO,nieuwe finishtask
-    console.log("FinishTask called");
+
     //   console.log(req);
     //
 
-    //
-    // process.on("mysqlError", (err) => {
-    //     return next(err);
-    // });
-    //
-    // let format = 'we require this kind of object: {"id":"7","done":true,"finished_by":"uidstring","finished_on":"2016-10-10"}';
-    //
-    // if (!req.body.id) return next(new Error(format));
-    // let id = Number(req.body.id);
-    // if (!req.body.done) return next(new Error(format));
-    // let done = (req.body.done === 'true');
-    // if (!req.body.finished_by) return next(new Error(format));
-    // let finished_by = req.body.finished_by;
-    // if (!req.body.finished_on) return next(new Error(format));
-    // let finished_on = req.body.finished_on;
-    //
-    // User.getUserByUID(finished_by, function (user) {
-    //     if (user === undefined) return next(new Error("user not found"));
-    //     Task.getTaskByID(id, function (originalTask) {
-    //
-    //         let newFinishedtask = FinishedTask({
-    //             id: id,
-    //             name: originalTask.name,
-    //             dueDate: originalTask.dueDate,
-    //             description: originalTask.description,
-    //             period: originalTask.period,
-    //             household_id: originalTask.household_id,
-    //             assigned_to: originalTask.assigned_to,
-    //             points: originalTask.points,
-    //             done: done,
-    //             finished_by: finished_by,
-    //             finished_on: finished_on
-    //         });
-    //
-    //         newFinishedtask.save(function (err) {
-    //             if (err) return next(err);
-    //
-    //             user.score += originalTask.points;
-    //
-    //             User.updateUser(user, function () {});
-    //
-    //             // todo: verder afwerken https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L253
-    //
-    //             process.emit("task-finished", {taskID: req.body.id, userID: req.body.finished_by});
-    //
-    //             res.json({});
-    //             res.end();
-    //         });
-    //
-    //     });
-    // });
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    let format = 'we require this kind of object: {"id":"7","done":true,"finished_by":"uidstring","finished_on":"2016-10-10"}';
+
+    if (!req.body.id) return next(new Error(format));
+    let id = Number(req.body.id);
+    if (!req.body.done) return next(new Error(format));
+    let done = (req.body.done === 'true');
+    if (!req.body.finished_by) return next(new Error(format));
+    let finished_by = req.body.finished_by;
+    if (!req.body.finished_on) return next(new Error(format));
+    let finished_on = req.body.finished_on;
+
+
+    User.getUserByUID(finished_by, function (user) {
+        if (user === undefined) return next(new Error("user not found"));
+        Task.getTaskByID(id, function (originalTask) {
+
+            let newFinishedtask = FinishedTask({
+                id: id,
+                name: originalTask.name,
+                dueDate: originalTask.dueDate,
+                description: originalTask.description,
+                period: originalTask.period,
+                household_id: originalTask.household_id,
+                assigned_to: originalTask.assigned_to,
+                points: originalTask.points,
+                done: done,
+                finished_by: finished_by,
+                finished_on: finished_on
+            });
+
+            newFinishedtask.save(function (err) {
+                if (err) return next(err);
+
+                user.score += originalTask.points;
+
+                User.updateUser(user, function () {});
+
+                // todo: verder afwerken https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L253
+
+                process.emit("task-finished", {taskID: req.body.id, userID: req.body.finished_by});
+
+                res.json({});
+                res.end();
+            });
+
+        });
+    });
 });
 
 router.post('/finishaward', firebaseAuthenticator, function (req, res) {

@@ -154,14 +154,14 @@ export class ApiService {
     }
 
 
-    public addFinishedTask(name: string, id: number) {
+    public addFinishedTask(id: number, done:boolean,finished_by:string, finished_on:string) {
 
         let tokenPromise = new Promise((resolve, reject)=> {
             this.auth.token.then(token=> {
                 this.headers.set('Firebase-ID-Token', token);
                 return this._http.post(
                     this.actionUrl + "finishtask",
-                    {name,id},
+                    {id,done,finished_by,finished_on},
                     {headers: this.headers})
                     .map(res=>res.json())
                     .catch(ApiService.handleError)
