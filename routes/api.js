@@ -398,8 +398,9 @@ router.post('/finishtask', function (req, res, next) {
                     Task.updateTask(originalTask, function () {
 
                         if (done) {
-                            let finishedTaskData = {taskID: id, userID: user.id, householdId: originalTask.household_id};
+                            let finishedTaskData = {taskID: id, userID: user.id, householdID: originalTask.household_id};
                             process.emit("task-finished-web", finishedTaskData);
+                            process.emit("task-finished-app", finishedTaskData);
                         }
 
                         res.json(originalTask);
