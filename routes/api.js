@@ -491,11 +491,21 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
     let json = JSON.parse(fs.readFileSync("./importjson/importJson.json"));
     let response = [];
 
-    for(let i = 0; i < json.length; i++){
-        response = response.concat(json.all);
+    for(var item of json.all){
+        let arr = [];
+        arr.push(item.name);
+        arr.push(item.description);
+        arr.push(item.period);
+        arr.push(item.points);
+        response.push(arr);
     }
 
-    console.log(response);
+    //sorteerfunctie moet nog gemaakt worden
+
+    let result = [];
+    let period = response[0][2];
+    result[period] = [];
+    let assignedUserPos = 0;
 
     res.json({params: {household: household, assignUsers: assignUsers}});
     res.end();
