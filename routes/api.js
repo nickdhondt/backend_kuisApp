@@ -11,7 +11,6 @@ let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
 
 
-
 let User = require("../models/User");
 let Household = require("../models/Household");
 let Award = require("../models/Award");
@@ -149,11 +148,11 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 //controle door:
 router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) =>{
+    process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    User.updateUser(body,function (user) {
+    User.updateUser(body, function (user) {
         res.json({body: user});
         res.end();
     })
@@ -176,7 +175,7 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 //af: steven
 //controle door:
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) =>{
+    process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
@@ -246,7 +245,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
         var household_id = id;
         //current user uid ophalen
         var uid = res.locals.uid;
-        Household.addUserToHousehold(household_id,uid, function (household) {
+        Household.addUserToHousehold(household_id, uid, function (household) {
             res.json(household_id);
             res.end();
         })
@@ -317,50 +316,80 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     })
 });
 
-router.post('/finishtask', firebaseAuthenticator, function (req, res) {
-  //TODO,nieuwe finishtask
-    console.log("FinishTask called");
-    console.log(req);
+router.post('/finishtask', function (req, res, next) {
+    // //TODO,nieuwe finishtask
+    //   console.log("FinishTask called");
+    //   console.log(req);
+    //
 
-    let newFinishedtask = FinishedTask({
-        id : req.body.id,
-        name: req.body.name,
-        dueDate: req.body.name,
-        description: req.body.description,
-        period:req.body.period,
-        household_id:req.body.household_id,
-        assigned_to:req.body.assigned_to,
-        points : req.body.points,
-        done:req.body.done,
-        finished_by : req.body.finished_by,
-        finished_on: req.body.finished_on
+
+    process.on("mysqlError", (err) => {
+        return next(err);
     });
 
-    newFinishedtask.save(function (err) {
-        if(err) return next(err);
+    let format = 'we require this kind of object: {"id":"7","done":true,"finished_by":"uidstring","finished_on":"2016-10-10"}';
 
-        console.log("Finishedtask send do mongoDB");
-    })
+    if (!req.body.id) return next(new Error(format));
+    let id = Number(req.body.id);
+    if (!req.body.done) return next(new Error(format));
+    let done = (req.body.done === 'true');
+    if (!req.body.finished_by) return next(new Error(format));
+    let finished_by = req.body.finished_by;
+    if (!req.body.finished_on) return next(new Error(format));
+    let finished_on = req.body.finished_on;
 
-    res.json({});
-    res.end();
+    User.getUserByUID(finished_by, function (user) {
+        if (user === undefined) return next(new Error("user not found"));
+        Task.getTaskByID(id, function (originalTask) {
+
+            let newFinishedtask = FinishedTask({
+                id: id,
+                name: originalTask.name,
+                dueDate: originalTask.dueDate,
+                description: originalTask.description,
+                period: originalTask.period,
+                household_id: originalTask.household_id,
+                assigned_to: originalTask.assigned_to,
+                points: originalTask.points,
+                done: done,
+                finished_by: finished_by,
+                finished_on: finished_on
+            });
+
+            newFinishedtask.save(function (err) {
+                if (err) return next(err);
+
+                user.score += originalTask.points;
+
+                User.updateUser(user, function () {});
+
+                // todo: verder afwerken https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L253
+
+                process.emit("task-finished", {taskID: req.body.id, userID: req.body.finished_by});
+
+                res.json({});
+                res.end();
+            });
+
+        });
+    });
 });
 
-router.post('/finishaward',firebaseAuthenticator , function (req,res) {
+router.post('/finishaward', firebaseAuthenticator, function (req, res) {
     let newFinishedAward = FinishedAward({
-        id : req.body.id,
+        id: req.body.id,
         name: req.body.name,
         description: req.body.description,
-        month:req.body.month,
-        winner_id:req.body.winner_id,
-        household_id:req.body.household_id,
-        users:req.body.users,
-        creator_id:req.body.creator_id
+        month: req.body.month,
+        winner_id: req.body.winner_id,
+        household_id: req.body.household_id,
+        users: req.body.users,
+        creator_id: req.body.creator_id
 
     });
 
     newFinishedAward.save(function (err) {
-        if(err) return next(err);
+        if (err) return next(err);
 
         console.log("FinishedAward send do mongoDB");
     })
@@ -431,7 +460,7 @@ router.post('/addtasks', function (req, res, next) {
     });
     let body = req.body;
     let arrayToSend = [];
-    for(let i = 0; i < body.length; i++){
+    for (let i = 0; i < body.length; i++) {
         let arr = [];
         arr.push(body[i].description);
         arr.push(body[i].household_id);

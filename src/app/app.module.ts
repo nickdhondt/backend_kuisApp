@@ -14,7 +14,7 @@ import {HomeModule} from "./home/home.module";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {Contract} from "../contract";
 import {ApiService} from "../service/api.service";
-import {ChatSocketService} from "../service/chat-socket.service";
+import {SocketService} from "../service/socket.service";
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
@@ -48,7 +48,7 @@ const myFirebaseAuthConfig = {
         ModalModule.forRoot(),
         BootstrapModalModule,
     ],
-    providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService, ChatSocketService],
+    providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService, SocketService],
     bootstrap: [AppComponent],
 })
 

@@ -14,7 +14,7 @@ let app = express();
 let io = socket();
 app.io = io;
 
-let chat = require('./routes/chat')(io);
+let chat = require('./routes/socket')(io);
 
 let admin = require("firebase-admin");
 

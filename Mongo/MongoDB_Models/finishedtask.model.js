@@ -16,7 +16,7 @@ var finishedTaskSchema = new Schema({
     assigned_to : Number,
     points :Number,
     done : Boolean,
-    finished_by: Number,
+    finished_by: String,
     finished_on : String
 
 });

@@ -153,7 +153,6 @@ export class ApiService {
     }
 
     public addFinishedTask(name: string, id: number): Observable<any> {
-
         let data: [string,number];
         data = [name, id];
         console.log(data);
@@ -165,6 +164,7 @@ export class ApiService {
                     this.actionUrl + "finishtask",
                     data,
                     {headers: this.headers})
+                    .map((res:Response) => res.json())
                     .catch(ApiService.handleError)
             })
         });
