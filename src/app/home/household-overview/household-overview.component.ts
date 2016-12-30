@@ -18,6 +18,7 @@ export class HouseholdOverviewComponent implements OnInit {
     @Input() users:User[]
     showDialog: boolean = false;
     selectedUser: User;
+    awardcreator:User;
     authenticatedUserUID: string;
     showDialogAward: boolean=false;
     // loading: boolean = true;
@@ -31,12 +32,14 @@ export class HouseholdOverviewComponent implements OnInit {
 
     ngOnInit() {
         // this.getHousehold();
+
     }
-    private user(id:number){
+     finduser(id:number){
         for(let user in this.users){
             if(this.users[user].id == id){
-                console.log(this.users)
-                return this.user[user];
+                this.awardcreator = this.users[user];
+                console.log(this.awardcreator);
+                return this.awardcreator
             }
         }
         return new User()

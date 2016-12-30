@@ -15,8 +15,7 @@
 
     </div>
 
-    <app-award [(award)]="household.award"  (click)="showDialogAward=!showDialogAward"></app-award>
-
+    <app-award [(award)]="household.award"  (click)="showDialogAward=!showDialogAward;" ></app-award>
 
 </div>
 
@@ -39,4 +38,4 @@
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<app-award-detail [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>
+<app-award-detail [(visible)]="showDialogAward" [(award)]="household.award" [(user)]="awardcreator" ></app-award-detail>

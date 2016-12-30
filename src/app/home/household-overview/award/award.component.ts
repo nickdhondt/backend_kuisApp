@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, EventEmitter} from "@angular/core";
 import {Award} from "../../../../models/award.model";
 import {Output} from "@angular/core/src/metadata/directives";
+import {User} from "../../../../models/user.model";
 
 
 @Component({
@@ -12,6 +13,7 @@ export class AwardComponent implements OnInit {
 
     currentaward:Award;
     @Input()award:Award;
+    @Input() user: User
     @Output()showDetail = new EventEmitter();
     showDialog:boolean=false;
 

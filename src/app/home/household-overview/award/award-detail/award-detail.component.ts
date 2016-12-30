@@ -23,18 +23,33 @@ import {User} from "../../../../../models/user.model";
 export class AwardDetailComponent implements OnInit {
 
   @Input() award: Award;
-  @Input() user : User
+  @Input() users: User[];
+  @Input() user:User;
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean>= new EventEmitter<boolean>();
   constructor() {}
+
 
   ngOnInit() {
 
   }
 
+  private finduser(id:number){
+    for(let u in this.users){
+      if(this.user[u].id==id){
+        console.log("creator found");
+
+        return this.user[u];
+      }
+      return new User();
+    }
+  }
   close(){
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
+
+
+
 
 }
