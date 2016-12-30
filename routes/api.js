@@ -147,7 +147,7 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
+router.post('/updateuser', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -298,6 +298,10 @@ router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
         return next(err);
     });
     let body = req.body;
+    if(body.dueDate == undefined || body.household_id == undefined){
+        res.status(500).send("geen geldige task" + body);
+        res.end();
+    }
     Task.addTask(body, function (body) {
         res.json({body: body});
         res.end(); //comment

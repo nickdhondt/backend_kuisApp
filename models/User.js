@@ -27,7 +27,7 @@ class User {
           user.household_id,
           user.imgsrc,
           user.lname,
-          user.phonenumber,
+          user.phoneNumber,
           user.score,
           user.uid,
           user.name,
