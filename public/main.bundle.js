@@ -50,8 +50,10 @@ var Contract = (function () {
         this.Localhost = "http://localhost:3000/";
         this.Server = "https://cleansing-api.herokuapp.com/";
         this.ApiUrl = "api/";
+        this.Hostname = location.protocol + '//' + location.hostname + (location.port ? ':' + (location.port === '4200' ? "3000" : location.port) : '');
         this.ServerWithApiUrl = this.Server + this.ApiUrl;
         this.LocalhostWithApiUrl = this.Localhost + this.ApiUrl;
+        this.AutoWithApiUrl = this.Hostname + "/" + this.ApiUrl;
     }
     Contract = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
@@ -727,8 +729,9 @@ var ApiService = (function () {
         this._http = _http;
         this._contract = _contract;
         this.auth = auth;
-        this.actionUrl = _contract.ServerWithApiUrl;
-        // this.actionUrl = _contract.LocalhostWithApiUrl;
+        // this.actionUrl = _contract.ServerWithApiUrl;
+        console.log(_contract.AutoWithApiUrl);
+        this.actionUrl = _contract.AutoWithApiUrl;
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');

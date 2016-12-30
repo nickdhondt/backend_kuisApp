@@ -17,8 +17,9 @@ export class ApiService {
 
 
     constructor(private _http: Http, private _contract: Contract, private auth: AuthService) {
-        this.actionUrl = _contract.ServerWithApiUrl;
-        // this.actionUrl = _contract.LocalhostWithApiUrl;
+        // this.actionUrl = _contract.ServerWithApiUrl;
+        console.log(_contract.AutoWithApiUrl);
+        this.actionUrl = _contract.AutoWithApiUrl;
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
