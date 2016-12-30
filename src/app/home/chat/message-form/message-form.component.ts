@@ -16,8 +16,10 @@ export class MessageFormComponent implements OnInit {
     constructor(private chatSocketService:ChatSocketService) {}
 
     sendMessage() {
-        if (this.messageContent !== "") this.chatSocketService.sendMessage(this.messageContent);
-        this.messageContent = "";
+        if (this.messageContent.trim() !== "") {
+            this.chatSocketService.sendMessage(this.messageContent);
+            this.messageContent = "";
+        }
     }
 
     ngOnInit() {
