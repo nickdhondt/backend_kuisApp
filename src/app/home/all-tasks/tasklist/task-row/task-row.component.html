@@ -1,0 +1,27 @@
+<div class="row flex-stretch" style="margin-bottom: 0;">
+    <div class="col flex-down-center">
+
+        <p class="text-small">repeats every</p>
+        <p class="text-large">{{task.period}}</p>
+        <p class="text-small ">{{task.period == 1 ? 'day':'days'}}</p>
+
+    </div>
+    <div class="col flex-down-spacebetween" style="flex-grow: 1;">
+        <span class="title">{{task.name}}</span>
+        <p class="grey-text truncate">{{task.description}} </p>
+        <span class="">{{task.points}} points</span>
+    </div>
+    <div class="col flex-down-left" style="align-items: flex-end">
+
+        <a class="tooltipped"
+           (click)="showDetailClick()"
+           materialize="tooltip"
+           data-position="bottom"
+           data-delay="20"
+           data-tooltip="edit">
+            <i class="material-icons ">mode_edit</i></a>
+
+
+    </div>
+</div>
+
