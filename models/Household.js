@@ -98,7 +98,7 @@ class Household {
         ];
         conn.query("update `users` set `household_id` = ? where `uid` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            else cb(res.rowsAffected);
+            else cb(uid);
         })
     }
 
