@@ -377,26 +377,28 @@ router.post('/finishtask', function (req, res, next) {
 });
 
 router.post('/finishaward', firebaseAuthenticator, function (req, res) {
-    let newFinishedAward = FinishedAward({
-        id: req.body.id,
-        name: req.body.name,
-        description: req.body.description,
-        month: req.body.month,
-        winner_id: req.body.winner_id,
-        household_id: req.body.household_id,
-        users: req.body.users,
-        creator_id: req.body.creator_id
 
-    });
 
-    newFinishedAward.save(function (err) {
-        if (err) return next(err);
-
-        console.log("FinishedAward send do mongoDB");
-    })
-
-    res.json({});
-    res.end();
+    // let newFinishedAward = FinishedAward({
+    //     id: req.body.id,
+    //     name: req.body.name,
+    //     description: req.body.description,
+    //     month: req.body.month,
+    //     winner_id: req.body.winner_id,
+    //     household_id: req.body.household_id,
+    //     users: req.body.users,
+    //     creator_id: req.body.creator_id
+    //
+    // });
+    //
+    // newFinishedAward.save(function (err) {
+    //     if (err) return next(err);
+    //
+    //     console.log("FinishedAward send do mongoDB");
+    // })
+    //
+    // res.json({});
+    // res.end();
 })
 
 //af: steven

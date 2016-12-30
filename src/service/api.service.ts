@@ -169,39 +169,23 @@ export class ApiService {
             })
         });
 
-
-        // let data: [string,number];
-        // data = [name, id];
-        // console.log(data);
-        //
-        // let tokenPromise = new Promise<any>((resolve, reject)=> {
-        //     this.auth.token.then(token=> {
-        //         this.headers.set('Firebase-ID-Token', token);
-        //         return this._http.post(
-        //             this.actionUrl + "finishtask",
-        //             data,
-        //             {headers: this.headers})
-        //             .map((res:Response) => res.json())
-        //             .catch(ApiService.handleError)
-        //     })
-        // });
-        // return Observable.fromPromise(tokenPromise);
-    }
+            }
 
     public addFinishedAward() {
+        let data= 'Test';
+       let tokenPromise = new Promise((resolve,reject)=>{
+           this.auth.token.then(token=>{
+               this.headers.set("Firebase-ID-Token",token);
+               return this._http.post(
+                   this.actionUrl + "finishaward",
+                   {data},
+                   {headers: this.headers})
+                   .map(res=>res.json())
+                   .catch(ApiService.handleError)
+                   .subscribe(data=>console.log(data));
 
-        // let tokenPromise = new Promise<any>((resolve,reject)=>{
-        //     this.auth.token.then(token=> {
-        //         this.headers.set('Firebase-ID-Token', token);
-        //         return this._http.post(
-        //             this.actionUrl + "finishtask",
-        //             console.log(this.actionUrl),
-        //             {headers: this.headers})
-        //             .catch(ApiService.handleError)
-        //     })
-        //     });
-        //
-        // return Observable.fromPromise(tokenPromise);
+           })
+       });
 
     }
 }
