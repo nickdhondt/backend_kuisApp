@@ -1,13 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import * as io from 'socket.io-client';
-import * as firebase from 'firebase';
-import {Observable} from "rxjs";
+import {Component, OnInit} from "@angular/core";
 import {ChatSocketService} from "../../../../service/chat-socket.service";
 
 @Component({
     selector: 'app-message-list',
     templateUrl: './message-list.component.html',
-    styleUrls: ['./message-list.component.css']
+    styleUrls: ['./message-list.component.scss']
 })
 
 export class MessageListComponent implements OnInit {

@@ -1,15 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../auth/services/auth.service";
-import {Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
-import {isUndefined} from 'util';
+import {isUndefined} from "util";
 
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
-    styleUrls: ['./chat.component.css']
+    styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
 
