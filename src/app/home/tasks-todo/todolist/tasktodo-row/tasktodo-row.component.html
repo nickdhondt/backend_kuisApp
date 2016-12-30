@@ -2,8 +2,8 @@
     <div class="col flex-down-center">
 
         <p [ngClass]="{'red-text': dateDiff<=0}" class="text-large">{{dateDiff}}</p>
-        <p *ngIf="dateDiff==1" class="text-small ">day left</p>
-        <p *ngIf="dateDiff!=1" class="text-small ">days left</p>
+        <p class="text-small ">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>
+
     </div>
     <div class="col" style="flex-grow: 1">
         <span class="title">{{task.name}}</span>

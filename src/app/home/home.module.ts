@@ -29,6 +29,7 @@ import {TasksFilterPipe} from "../../pipe/tasks-filter.pipe";
 import {FooterComponent} from "./footer/footer.component";
 import {TasktodoRowComponent} from "./tasks-todo/todolist/tasktodo-row/tasktodo-row.component";
 import {SortPipe} from "../../pipe/sort.pipe";
+import {TaskRowComponent} from "./all-tasks/tasklist/task-row/task-row.component";
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {SortPipe} from "../../pipe/sort.pipe";
         TasksFilterPipe,
         SortPipe,
         FooterComponent,
-        TasktodoRowComponent
+        TasktodoRowComponent,
+        TaskRowComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule

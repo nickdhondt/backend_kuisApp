@@ -22,6 +22,14 @@
     margin: 0 !important;
 }
 
+.text-small {
+  font-size: 0.6em;
+}
+
+.text-large {
+  font-size: 1.4em
+}
+
 a {
     cursor: pointer;
 }
@@ -45,10 +53,20 @@ a {
   flex-direction: column;
 }
 
+.flex-down-left {
+  @extend .flex-down;
+  align-items: flex-end;
+}
+
 .flex-down-center {
   @extend .flex-down;
   justify-content: center;
   align-items: center
+}
+
+.flex-down-spacebetween {
+  @extend .flex-down;
+  justify-content: space-between
 }
 
 .flex-center {

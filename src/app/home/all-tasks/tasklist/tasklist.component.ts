@@ -24,6 +24,21 @@ export class TasklistComponent implements OnInit {
         //this.getTasks();
     }
 
+    private user(id: number) {
+
+        for (let user in this.users) {
+            if (this.users[user].id == id) return this.users[user];
+        }
+
+        return new User();
+    }
+
+    private showDetail(task) {
+        this.selectedTask = task;
+        this.showDialog = !this.showDialog;
+    }
+
+
     private getTasks(): void {
 
         // this.apiService

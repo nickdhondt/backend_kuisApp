@@ -14,10 +14,14 @@
         </div>
     </nav>
 
-    <div class="collection-item" *ngFor="let task of tasks | tasksFilter:filterField.value | sort:'period'"
-         (click)="showDialog = !showDialog; selectedTask = task;">
-        <p>periodicy: {{task.period}}</p>
-        <p>name: {{task.name}}</p>
+    <div class="collection-item"
+         *ngFor="let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index">
+
+
+        <app-task-row
+                (showDetail)="showDetail($event)"
+                [task]="task"
+                [user]="user(task.assigned_to)"></app-task-row>
 
     </div>
 </div>
