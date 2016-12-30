@@ -5,10 +5,6 @@ module.exports = function (io) {
     let User = require("../models/User");
     let request = require("request");
 
-    router.all('/', function (req, res, next) {
-        next();
-    });
-
     io.on('connection', function (socket) {
         socket.on("subscribe", function (token) {
             admin.auth().verifyIdToken(token)
@@ -49,7 +45,7 @@ module.exports = function (io) {
             });
         });
 
-        process.on("task-finished", function (taskData) {
+        process.on("task-finished-web", function (taskData) {
             console.log(taskData);
             User.getUserByUID(socket.uid, function (data) {
                 io.to('household_' + socket.householdID).emit("tasks-update", {taskID: taskData.taskID});
@@ -70,6 +66,10 @@ module.exports = function (io) {
             });
 
         })
+    });
+
+    router.all('/', function (req, res, next) {
+        next();
     });
 
     return router;

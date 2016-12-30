@@ -14,7 +14,7 @@ let app = express();
 let io = socket();
 app.io = io;
 
-let chat = require('./routes/socket')(io);
+let socketRoute = require('./routes/socket')(io);
 
 let admin = require("firebase-admin");
 
@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api', api);
-app.use('/chat', chat);
+app.use('/socket', socketRoute);
 app.use('/', index);
 
 // catch 404 and forward to error handler

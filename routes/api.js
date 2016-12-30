@@ -325,7 +325,7 @@ router.post('/finishtask', function (req, res, next) {
 
     if (!req.body.id) return next(new Error(format));
     let id = Number(req.body.id);
-    if (!req.body.done) return next(new Error(format));
+    // if (!req.body.done) return next(new Error(format));
     let done = (req.body.done === 'true');
     if (!req.body.finished_by) return next(new Error(format));
     let finished_by = req.body.finished_by;
@@ -357,10 +357,6 @@ router.post('/finishtask', function (req, res, next) {
                     user.score += originalTask.points;
                     User.updateUser(user, function () {});
                 }
-
-
-
-                // todo: verder afwerken https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L253
 
                 let nextDue = moment(originalTask.dueDate).add(originalTask.period, "day");
 
@@ -402,9 +398,8 @@ router.post('/finishtask', function (req, res, next) {
                     Task.updateTask(originalTask, function () {
 
                         if (done) {
-                            let finishedTaskData = {taskID: id, userID: user.id};
-                            console.log(finishedTaskData);
-                            process.emit("task-finished", finishedTaskData);
+                            let finishedTaskData = {taskID: id, userID: user.id, householdId: originalTask.household_id};
+                            process.emit("task-finished-web", finishedTaskData);
                         }
 
                         res.json(originalTask);
