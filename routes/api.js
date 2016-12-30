@@ -54,6 +54,7 @@ router.get('/', function (req, res) {
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
+    //do not remove! req.params nodig voor redirect
     let user = res.locals.uid | req.params.user;
 
     console.log(user);
@@ -231,8 +232,9 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     });
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
-        res.json({body: body});
-        res.end();
+
+        res.redirect('/api/userbyuid/' + body.uid);
+        ;
     })
 });
 
