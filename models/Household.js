@@ -63,9 +63,9 @@ class Household {
             if (err) process.emit("mysqlError", err);
             else {
 
-                conn.query("select * from `households` where id = ?", [res.insertId], function (err, res) {
+                conn.query("select * from `households` where id = ?", [res.insertId], function (err, rows, fields) {
                     if (err) process.emit("mysqlError", err);
-                    else cb(res.rows[0])
+                    else cb(rows[0])
                 });
 
             }
