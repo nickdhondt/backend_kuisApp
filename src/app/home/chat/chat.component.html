@@ -1,6 +1,6 @@
 
 <div class="no-margin card-panel chat-panel" *ngIf="household.users">
-    <a (click)="toggleChat()">Announcements</a>
+    <a (click)="toggleChat()">{{isHidden ? 'Announcements' : 'X Close'}}</a>
 <!--<p>Users in {{household.name}}:</p>-->
 <!--<div class="col s12  " *ngFor="let user of household.users; let i=index;">-->
 <!--<div class=" card gray lighten-5 "  >-->
