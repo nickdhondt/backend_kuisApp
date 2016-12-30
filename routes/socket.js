@@ -28,6 +28,7 @@ module.exports = function (io) {
                     })
                 });
         });
+
         socket.on("chat-message", function (msg) {
             User.getUserByUID(socket.uid, function (data) {
                 io.to('household_' + socket.householdID).emit("sent-message", {user: {imgsrc: data.imgsrc, name: data.name, lname: data.lname}, message: msg});

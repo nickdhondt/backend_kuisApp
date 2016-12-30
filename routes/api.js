@@ -353,9 +353,12 @@ router.post('/finishtask', function (req, res, next) {
             newFinishedtask.save(function (err) {
                 if (err) return next(err);
 
-                user.score += originalTask.points;
+                if (!done) {
+                    user.score += originalTask.points;
+                    User.updateUser(user, function () {});
+                }
 
-                User.updateUser(user, function () {});
+
 
                 // todo: verder afwerken https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L253
 
@@ -397,14 +400,15 @@ router.post('/finishtask', function (req, res, next) {
                     originalTask.assigned_to = newUser;
 
                     Task.updateTask(originalTask, function () {
-                        process.emit("task-finished", {taskID: id, userID: user.id});
+                        let finishedTaskData = {taskID: id, userID: user.id};
+                        console.log(finishedTaskData);
+                        if (done) process.emit("task-finished", finishedTaskData);
 
                         res.json(originalTask);
                         res.end();
                     });
                 });
             });
-
         });
     });
 });
