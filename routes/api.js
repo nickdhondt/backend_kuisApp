@@ -103,7 +103,9 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
                                     award.month = moment(award.month).format("YYYY-MM-DD");
 
                                     if (awardDate.isBefore(now)) {
-                                        // TODO: verhuis award naar mongo
+                                        // TODO: verhuis award naar mongo https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L65
+
+                                        // process.emit("award-winner", winnerID);
 
                                         Award.deleteAwardByHouseholdID(user.household.id);
 
@@ -175,7 +177,7 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 });
 
 //af: steven
-//controle door: Bart en hij zag dat het niet goed was.
+//controle door: Bart
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -194,7 +196,6 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 
 //af: bart
 //controle door: Nick
-
 router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res, next) {
     //parameter
     let email = req.params.email;
@@ -226,7 +227,7 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 });
 
 //af: steven
-// controle door: Bart en hij zag wederom dat het niet goed was
+// controle door: Bart
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -234,13 +235,13 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
 
-        res.redirect('/api/userbyuid/' + body.uid);
-        ;
+        res.redirect('/api/userbyuid/' + res.locals.uid);
+
     })
 });
 
 //af: steven
-//controle door: Bart en rarara, 't was niet goed
+//controle door: Bart
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -258,6 +259,7 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 //af: bart
 //controle door: Nick
 router.get('/taskstodobyhousehold/:household/:term?', firebaseAuthenticator, function (req, res, next) {
+
     let term = 7;
     if (req.params.term !== undefined) term = parseInt(req.params.term);
     let household = parseInt(req.params.household);
@@ -293,8 +295,8 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 });
 
 //af: steven
-//controle door:
-router.post('/addtask', function (req, res, next) {
+//controle door: Bart
+router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -308,13 +310,13 @@ router.post('/addtask', function (req, res, next) {
     }else{
         Task.addTask(body, function (body) {
             res.json(body);
-            res.end(); //comment
+            res.end();
         })
     }
 });
 
 //af: steven
-//controle door:
+//controle door: Bart
 router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -419,6 +421,7 @@ router.post('/finishtask', function (req, res, next) {
     });
 });
 
+//todo mag weg?
 router.post('/finishaward', firebaseAuthenticator, function (req, res) {
 
 
@@ -442,7 +445,7 @@ router.post('/finishaward', firebaseAuthenticator, function (req, res) {
     //
     // res.json({});
     // res.end();
-})
+});
 
 //af: steven
 //controle door: nick

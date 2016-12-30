@@ -55,8 +55,6 @@ module.exports = function (io) {
             data: {taskFinished: taskData.taskID, userFinished: taskData.userID, done:taskData.done}
         });
 
-        console.log(body);
-
         let options = {
             url: "https://fcm.googleapis.com/fcm/send",
             method: "POST",

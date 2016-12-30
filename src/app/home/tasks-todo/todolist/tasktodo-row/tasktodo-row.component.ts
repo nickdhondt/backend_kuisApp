@@ -79,8 +79,6 @@ export class TasktodoRowComponent implements OnInit {
     ngOnInit() {
         this.socketService.taskUpdates().subscribe((data) => {
             if (!this.isDestroyed && data.taskID === this.task.id) {
-                console.log(data.done);
-                console.log(data.taskID + ", " + this.task.id);
                 if (data.done) {
                     this.state = "finished";
                     this.finish.emit(this.task);
@@ -88,6 +86,7 @@ export class TasktodoRowComponent implements OnInit {
                     this.state = "canceled";
                     this.cancel.emit(this.task);
                 }
+                this.isDestroyed = true;
             }
         })
     }
