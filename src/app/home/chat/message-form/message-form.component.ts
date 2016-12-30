@@ -16,7 +16,7 @@ export class MessageFormComponent implements OnInit {
     constructor(private chatSocketService:ChatSocketService) {}
 
     sendMessage() {
-        this.chatSocketService.sendMessage(this.messageContent);
+        if (this.messageContent !== "") this.chatSocketService.sendMessage(this.messageContent);
         this.messageContent = "";
     }
 
