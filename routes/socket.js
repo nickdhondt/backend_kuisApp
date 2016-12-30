@@ -5,10 +5,6 @@ module.exports = function (io) {
     let User = require("../models/User");
     let request = require("request");
 
-    router.all('/', function (req, res, next) {
-        next();
-    });
-
     io.on('connection', function (socket) {
         socket.on("subscribe", function (token) {
             admin.auth().verifyIdToken(token)
@@ -49,27 +45,38 @@ module.exports = function (io) {
             });
         });
 
-        process.on("task-finished", function (taskData) {
+        process.on("task-finished-web", function (taskData) {
             console.log(taskData);
             User.getUserByUID(socket.uid, function (data) {
                 io.to('household_' + socket.householdID).emit("tasks-update", {taskID: taskData.taskID});
-                body = JSON.stringify({condition: "'household_" + socket.householdID + "' in topics", priority: "high", data:{taskFinished: taskData.taskID, userFinished: taskData.userID}});
-
-                let options = {
-                    url: "https://fcm.googleapis.com/fcm/send",
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "key=AAAADThleZQ:APA91bGw5-Al9JrL7lY2QUOJYNjVUkZu1OnM15Y5NP-fzwYmhL0kVi6cO5tdJtyJg0vrdbdrWDLC7ELvWF0vL7UtVWIGpspZiCiHE68viwiWkCFaKyvE77Up-QCb026rr6VEFeU90Y2Z2Pvm7ajz-5Xi5Ov33bPVKA"
-                    },
-                    body: body
-                };
-
-                request(options, function (error, response, body) {
-                });
             });
 
         })
+    });
+    process.on("task-finished-app", function (taskData) {
+        console.log(taskData);
+        body = JSON.stringify({
+            condition: "'household_" + taskData.householdID + "' in topics",
+            priority: "high",
+            data: {taskFinished: taskData.taskID, userFinished: taskData.userID}
+        });
+
+        let options = {
+            url: "https://fcm.googleapis.com/fcm/send",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "key=AAAADThleZQ:APA91bGw5-Al9JrL7lY2QUOJYNjVUkZu1OnM15Y5NP-fzwYmhL0kVi6cO5tdJtyJg0vrdbdrWDLC7ELvWF0vL7UtVWIGpspZiCiHE68viwiWkCFaKyvE77Up-QCb026rr6VEFeU90Y2Z2Pvm7ajz-5Xi5Ov33bPVKA"
+            },
+            body: body
+        };
+
+        request(options, function (error, response, body) {
+        });
+    });
+
+    router.all('/', function (req, res, next) {
+        next();
     });
 
     return router;
