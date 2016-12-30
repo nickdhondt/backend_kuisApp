@@ -86,7 +86,11 @@ class Household {
         ];
         conn.query("update `users` set `household_id` = null where `id` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            else cb(body);
+            else {
+                body.household = null;
+                body.household_id = null;
+                cb(body);
+            }
         });
 
     }
