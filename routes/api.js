@@ -225,7 +225,7 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 });
 
 //af: steven
-// controle door:
+// controle door: Bart en hij zag wederom dat het niet goed was
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -239,21 +239,26 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 });
 
 //af: steven
-//controle door:
+//controle door: Bart en rarara, 't was niet goed
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Household.addHousehold(body, function (id) {
 
-        var household_id = id;
-        //current user uid ophalen
-        var uid = res.locals.uid;
-        Household.addUserToHousehold(household_id, uid, function (household) {
-            res.json(household_id);
-            res.end();
-        })
+    Household.addHousehold(body, function (household) {
+
+        res.json(household);
+        res.end();
+
+
+        // var household_id = id;
+        // //current user uid ophalen
+        // var uid = res.locals.uid;
+        // Household.addUserToHousehold(household_id, uid, function (household) {
+        //     res.json(household_id);
+        //     res.end();
+        // })
     })
 });
 

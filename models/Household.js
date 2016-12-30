@@ -61,7 +61,14 @@ class Household {
         ];
         conn.query("insert into `households` (`name`) values (?)", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            else cb(res.insertId);
+            else {
+
+                conn.query("select * from `households` where id = ?", [res.insertId], function (err, res) {
+                    if (err) process.emit("mysqlError", err);
+                    else cb(res.rows[0])
+                });
+
+            }
         })
     }
 
