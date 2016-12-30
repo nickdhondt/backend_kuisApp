@@ -184,7 +184,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 
     Household.addUserToHousehold(householdId, uid, function () {
 
-        res.redirect('/api/userbyuid/null');
+        res.redirect('/api/userbyuid/' + uid);
 
     })
 });
