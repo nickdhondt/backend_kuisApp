@@ -325,8 +325,8 @@ router.post('/finishtask', function (req, res, next) {
 
     if (!req.body.id) return next(new Error(format));
     let id = Number(req.body.id);
-    // if (!req.body.done) return next(new Error(format));
-    let done = (req.body.done === 'true');
+    if (req.body.done === undefined) return next(new Error(format));
+    let done = req.body.done;
     if (!req.body.finished_by) return next(new Error(format));
     let finished_by = req.body.finished_by;
     if (!req.body.finished_on) return next(new Error(format));
@@ -397,6 +397,7 @@ router.post('/finishtask', function (req, res, next) {
 
                     Task.updateTask(originalTask, function () {
 
+                        // console.log(done);
                         if (done) {
                             let finishedTaskData = {taskID: id, userID: user.id, householdID: originalTask.household_id};
                             process.emit("task-finished-web", finishedTaskData);

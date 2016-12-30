@@ -54,6 +54,7 @@ module.exports = function (io) {
         })
     });
     process.on("task-finished-app", function (taskData) {
+        console.log(taskData);
         body = JSON.stringify({
             condition: "'household_" + taskData.householdID + "' in topics",
             priority: "high",
