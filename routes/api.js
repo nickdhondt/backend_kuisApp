@@ -184,6 +184,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 
     Household.addUserToHousehold(householdId, uid, function () {
 
+        //moet zo, kan headers niet instellen bij redirect
         res.redirect('/api/userbyuid/' + uid);
 
     })
