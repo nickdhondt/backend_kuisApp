@@ -46,7 +46,7 @@ export class TaskdetailComponent implements OnInit {
         this.visible = false;
         this.visibleChange.emit(this.visible);
 
-        this.apiservice.addFinishedTask("Brent",3);
+        // this.apiservice.addFinishedTask("Brent",3);
 
 
 

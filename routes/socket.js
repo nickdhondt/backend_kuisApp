@@ -44,22 +44,18 @@ module.exports = function (io) {
                 });
             });
         });
-
-        process.on("task-finished-web", function (taskData) {
-            console.log(taskData);
-            User.getUserByUID(socket.uid, function (data) {
-                io.to('household_' + socket.householdID).emit("tasks-update", {taskID: taskData.taskID});
-            });
-
-        })
     });
-    process.on("task-finished-app", function (taskData) {
-        console.log(taskData);
+
+    process.on("task-finished", function (taskData) {
+        io.to('household_' + taskData.householdID).emit("tasks-update", {taskID: taskData.taskID, done:taskData.done});
+
         body = JSON.stringify({
             condition: "'household_" + taskData.householdID + "' in topics",
             priority: "high",
-            data: {taskFinished: taskData.taskID, userFinished: taskData.userID}
+            data: {taskFinished: taskData.taskID, userFinished: taskData.userID, done:taskData.done}
         });
+
+        console.log(body);
 
         let options = {
             url: "https://fcm.googleapis.com/fcm/send",
