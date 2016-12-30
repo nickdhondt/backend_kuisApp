@@ -54,7 +54,8 @@ router.get('/', function (req, res) {
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
-    let user = res.locals.uid;
+    //do not remove! req.params nodig voor redirect
+    let user = res.locals.uid | req.params.user;
 
     console.log(user);
 
@@ -147,7 +148,7 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
+router.post('/updateuser', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -173,7 +174,7 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 });
 
 //af: steven
-//controle door:
+//controle door: Bart en hij zag dat het niet goed was.
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -181,9 +182,12 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
     let body = req.body;
     let householdId = body.household_id;
     let uid = res.locals.uid;
-    Household.addUserToHousehold(householdId, uid, function (household) {
-        res.json({body: household});
-        res.end();
+
+    Household.addUserToHousehold(householdId, uid, function () {
+
+        //moet zo, kan headers niet instellen bij redirect
+        res.redirect('/api/userbyuid/' + uid);
+
     })
 });
 
@@ -228,8 +232,9 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     });
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
-        res.json({body: body});
-        res.end();
+
+        res.redirect('/api/userbyuid/' + body.uid);
+        ;
     })
 });
 
@@ -291,16 +296,23 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtask', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Task.addTask(body, function (body) {
-        res.json({body: body});
-        res.end(); //comment
-    })
-
+    if(body.dueDate === null || body.household_id == null){
+        let message = [];
+        message.push("geen geldige task");
+        message.push(req.body);
+        res.status(500).send(message);
+        res.end();
+    }else{
+        Task.addTask(body, function (body) {
+            res.json({body: body});
+            res.end(); //comment
+        })
+    }
 });
 
 //af: steven
