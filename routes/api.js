@@ -155,7 +155,7 @@ router.post('/updateuser', function (req, res, next) {
     });
     let body = req.body;
     User.updateUser(body, function (user) {
-        res.json({body: user});
+        res.json(user);
         res.end();
     })
 
@@ -169,7 +169,7 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
     });
     let body = req.body;
     Household.updateHousehold(body, function (household) {
-        res.json({body: household});
+        res.json(household);
         res.end();
     })
 });
@@ -252,14 +252,6 @@ router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
         res.json(household);
         res.end();
 
-
-        // var household_id = id;
-        // //current user uid ophalen
-        // var uid = res.locals.uid;
-        // Household.addUserToHousehold(household_id, uid, function (household) {
-        //     res.json(household_id);
-        //     res.end();
-        // })
     })
 });
 
@@ -315,7 +307,7 @@ router.post('/addtask', function (req, res, next) {
         res.end();
     }else{
         Task.addTask(body, function (body) {
-            res.json({body: body});
+            res.json(body);
             res.end(); //comment
         })
     }
@@ -329,7 +321,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     });
     let body = req.body;
     Task.updateTask(body, function (body) {
-        res.json({body: body});
+        res.json(body);
         res.end();
     })
 });
@@ -477,13 +469,13 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
         if (rows[0].awardsCount > 0) {
             //update van de bestaande award
             Award.updateAwardFromHousehold(body, function (body) {
-                res.json({body: body});
+                res.json(body);
                 res.end();
             })
         } else {
             //nieuwe award voor huishouden invoegen
             Award.addAward(body, function (body) {
-                res.json({body: body});
+                res.json(body);
                 res.end();
             })
         }
@@ -499,11 +491,21 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
     let json = JSON.parse(fs.readFileSync("./importjson/importJson.json"));
     let response = [];
 
-    for(let i = 0; i < json.length; i++){
-        response = response.concat(json.all);
+    for(var item of json.all){
+        let arr = [];
+        arr.push(item.name);
+        arr.push(item.description);
+        arr.push(item.period);
+        arr.push(item.points);
+        response.push(arr);
     }
 
-    console.log(response);
+    //sorteerfunctie moet nog gemaakt worden
+
+    let result = [];
+    let period = response[0][2];
+    result[period] = [];
+    let assignedUserPos = 0;
 
     res.json({params: {household: household, assignUsers: assignUsers}});
     res.end();

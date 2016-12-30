@@ -30,6 +30,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {TasktodoRowComponent} from "./tasks-todo/todolist/tasktodo-row/tasktodo-row.component";
 import {SortPipe} from "../../pipe/sort.pipe";
 import {TaskRowComponent} from "./all-tasks/tasklist/task-row/task-row.component";
+import { AwardDetailComponent } from './household-overview/award/award-detail/award-detail.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {TaskRowComponent} from "./all-tasks/tasklist/task-row/task-row.component
         SortPipe,
         FooterComponent,
         TasktodoRowComponent,
-        TaskRowComponent
+        TaskRowComponent,
+        AwardDetailComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule
