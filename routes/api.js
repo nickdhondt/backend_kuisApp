@@ -497,9 +497,6 @@ router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, funct
     let household = parseInt(req.params.household);
 
 
-    // TODO: code hier
-
-
     res.json({params: {household: household, assignUsers: assignUsers}});
     res.end();
 
