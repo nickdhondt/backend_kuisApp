@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import * as firebase from 'firebase';
 import {Observable} from "rxjs";
 
 @Injectable()
-export class ChatSocketService {
+export class SocketService {
+
 
     private hostname:String = location.protocol+'//'+location.hostname+(location.port ? ':' + (location.port === '4200' ? "3000" : location.port) : '');
     socket;
@@ -28,6 +29,22 @@ export class ChatSocketService {
         return Observable.create((observer: any) => {
             this.socket.on("sent-message", (msg) => {
                 observer.next(msg)
+            })
+        })
+    }
+
+    taskUpdates():Observable<any> {
+        return Observable.create((observer: any) => {
+            this.socket.on("tasks-update", (taskInfo) => {
+                observer.next(taskInfo)
+            })
+        })
+    }
+
+    awardWinner():Observable<any> {
+        return Observable.create((observer: any) => {
+            this.socket.on("award-winner", (winnerInfo) => {
+                observer.next(winnerInfo)
             })
         })
     }

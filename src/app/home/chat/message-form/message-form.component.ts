@@ -1,5 +1,5 @@
 import {Component, OnInit, EventEmitter, Output} from "@angular/core";
-import {ChatSocketService} from "../../../../service/chat-socket.service";
+import {SocketService} from "../../../../service/socket.service";
 
 @Component({
     selector: 'app-message-form',
@@ -12,11 +12,11 @@ export class MessageFormComponent implements OnInit {
     messageContent:String = "";
     @Output() messageSent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private chatSocketService:ChatSocketService) {}
+    constructor(private socketService:SocketService) {}
 
     sendMessage() {
         if (this.messageContent.trim() !== "") {
-            this.chatSocketService.sendMessage(this.messageContent);
+            this.socketService.sendMessage(this.messageContent);
             this.messageContent = "";
             this.messageSent.emit(true);
         }
