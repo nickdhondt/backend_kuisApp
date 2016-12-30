@@ -296,20 +296,23 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtask', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    if(body.dueDate == undefined || body.household_id == undefined){
-        res.status(500).send("geen geldige task" + body);
+    if(body.dueDate === null || body.household_id == null){
+        let message = [];
+        message.push("geen geldige task");
+        message.push(req.body);
+        res.status(500).send(message);
         res.end();
+    }else{
+        Task.addTask(body, function (body) {
+            res.json({body: body});
+            res.end(); //comment
+        })
     }
-    Task.addTask(body, function (body) {
-        res.json({body: body});
-        res.end(); //comment
-    })
-
 });
 
 //af: steven
