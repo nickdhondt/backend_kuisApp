@@ -340,7 +340,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res) {
         if(err) return next(err);
 
         console.log("Finishedtask send do mongoDB");
-    })
+    });
 
     res.json({});
     res.end();
