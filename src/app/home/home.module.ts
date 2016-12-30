@@ -28,6 +28,7 @@ import {AwardComponent} from "./household-overview/award/award.component";
 import {TasksFilterPipe} from "../../pipe/tasks-filter.pipe";
 import {FooterComponent} from "./footer/footer.component";
 import {TasktodoRowComponent} from "./tasks-todo/todolist/tasktodo-row/tasktodo-row.component";
+import {SortPipe} from "../../pipe/sort.pipe";
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {TasktodoRowComponent} from "./tasks-todo/todolist/tasktodo-row/tasktodo-
         UserDetailComponent,
         AwardComponent,
         TasksFilterPipe,
+        SortPipe,
         FooterComponent,
         TasktodoRowComponent
     ],

@@ -18,7 +18,7 @@ import {User} from "../../../../../models/user.model";
 @Component({
     selector: 'app-tasktodo-row',
     templateUrl: './tasktodo-row.component.html',
-    styleUrls: ['./tasktodo-row.component.css'],
+    styleUrls: ['./tasktodo-row.component.scss'],
     animations: [
         trigger('visibleState', [
 

@@ -30,3 +30,48 @@ a {
     background: #607d8b;
     color: white;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  @extend .flex;
+  flex-wrap: wrap;
+}
+
+.flex-down {
+  @extend .flex;
+  flex-direction: column;
+}
+
+.flex-down-center {
+  @extend .flex-down;
+  justify-content: center;
+  align-items: center
+}
+
+.flex-center {
+  @extend .flex;
+  justify-content: center;
+  align-items: center
+}
+
+.flex-vCenter {
+  @extend .flex;
+  align-items: center
+}
+
+.flex-stretch {
+  @extend .flex;
+  align-items: stretch
+}
+
+.flex-wrap-end {
+  @extend .flex-wrap;
+  justify-content: flex-end;
+}
+
+
+
+

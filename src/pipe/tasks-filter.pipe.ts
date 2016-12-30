@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {Pipe, PipeTransform} from "@angular/core";
 import {Task} from "../models/task.model";
 
 @Pipe({
@@ -11,5 +11,4 @@ export class TasksFilterPipe implements PipeTransform {
             return task.name.toLowerCase().includes(filter.toLowerCase());
         });
     }
-
 }

@@ -1,9 +1,5 @@
-<div class="row" style="margin-bottom: 0; display: flex; align-items: stretch" [@visibleState]="(state)">
-    <div class="col"
-         style="display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center">
+<div class="row flex-stretch" style="margin-bottom: 0;" [@visibleState]="(state)">
+    <div class="col flex-down-center">
 
         <p [ngClass]="{'red-text': dateDiff<=0}" class="text-large">{{dateDiff}}</p>
         <p *ngIf="dateDiff==1" class="text-small ">day left</p>
@@ -13,13 +9,12 @@
         <span class="title">{{task.name}}</span>
         <p class="grey-text">{{user.name || "do me!"}}</p>
         <p class="text-small">repeats every {{task.period}} days</p>
+
+
     </div>
-    <div class="col"
-         style="display: flex;
-         flex-direction: row;
-         flex-wrap: wrap;
-         justify-content: flex-end;
-         align-self: flex-start">
+    <div class="col flex-down">
+        <div class="flex-wrap-end"
+             style="align-self: flex-start">
 
         <a class="tooltipped"
            (click)="finishClick()"
@@ -37,6 +32,8 @@
            materialize="tooltip" data-position="bottom" data-delay="20" data-tooltip="finish">
             <i class="material-icons">cancel</i></a>
 
+    </div>
+        <span class="chip">{{task.points}} points</span>
     </div>
 </div>
 

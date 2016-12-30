@@ -17,16 +17,11 @@ export class TodolistComponent implements OnInit {
     showDialog: boolean = false;
     selectedTask: Task;
 
-
     constructor(private apiService: ApiService) {
     }
 
     ngOnInit() {
-        this.tasksTodo.sort((t1, t2) => {
-            if (t1.dueDate > t2.dueDate) return 1;
-            if (t1.dueDate < t2.dueDate) return -1;
-            return 0;
-        });
+
     }
 
     private user(id: number) {

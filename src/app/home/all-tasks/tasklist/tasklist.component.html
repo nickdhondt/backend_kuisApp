@@ -8,13 +8,13 @@
                 <div class="input-field">
                     <input #filterField (keyup)="0" id="search" type="search" name="filter" required>
                     <label for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
+                    <i class="material-icons" (click)="filterField.value = ''">close</i>
                 </div>
             </form>
         </div>
     </nav>
 
-    <div class="collection-item" *ngFor="let task of tasks | tasksFilter:filterField.value"
+    <div class="collection-item" *ngFor="let task of tasks | tasksFilter:filterField.value | sort:'period'"
          (click)="showDialog = !showDialog; selectedTask = task;">
         <p>periodicy: {{task.period}}</p>
         <p>name: {{task.name}}</p>

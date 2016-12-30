@@ -3,7 +3,7 @@
 
 <div class="collection" [hidden]="tasksTodo.length == 0" *ngIf="tasksTodo.length > 0">
 
-    <div class="collection-item" style="" *ngFor="let tasktodo of tasksTodo; let i = index">
+    <div class="collection-item" style="" *ngFor="let tasktodo of tasksTodo | sort; let i = index">
 
         <!--<div style="position:absolute; z-index: 10">-->
         <!--<a class="btn">test</a>-->
