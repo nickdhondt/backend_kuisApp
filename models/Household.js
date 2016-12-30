@@ -61,7 +61,14 @@ class Household {
         ];
         conn.query("insert into `households` (`name`) values (?)", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            else cb(res.insertId);
+            else {
+
+                conn.query("select * from `households` where id = ?", [res.insertId], function (err, rows, fields) {
+                    if (err) process.emit("mysqlError", err);
+                    else cb(rows[0])
+                });
+
+            }
         })
     }
 
@@ -84,9 +91,13 @@ class Household {
         let post = [
             body.id
         ];
-        conn.query("update `users` set `household_id` = null where `id` = ?", post, function (err, res) {
+        conn.query("update `users` set `household_id` = null, `score` = 0 where `id` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            else cb(body);
+            else {
+                body.household = null;
+                body.household_id = null;
+                cb(body);
+            }
         });
 
     }
@@ -98,7 +109,10 @@ class Household {
         ];
         conn.query("update `users` set `household_id` = ? where `uid` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            else cb(res.rowsAffected);
+            else {
+                console.log(post);
+                cb(res);
+            }
         })
     }
 

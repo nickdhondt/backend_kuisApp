@@ -1,6 +1,6 @@
 webpackJsonp([1,3],{
 
-/***/ 1128:
+/***/ 1132:
 /***/ function(module, exports) {
 
 /*
@@ -253,31 +253,31 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-/***/ 1138:
+/***/ 1142:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(488);
+module.exports = __webpack_require__(489);
 
 
 /***/ },
 
-/***/ 488:
+/***/ 489:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(795);
+var content = __webpack_require__(798);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(1128)(content, {});
+var update = __webpack_require__(1132)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-        module.hot.accept("!!./../node_modules/css-loader/index.js?sourcemap!./../node_modules/postcss-loader/index.js!./styles.scss", function () {
-            var newContent = require("!!./../node_modules/css-loader/index.js?sourcemap!./../node_modules/postcss-loader/index.js!./styles.scss");
+		module.hot.accept("!!./../node_modules/css-loader/index.js?sourcemap!./../node_modules/postcss-loader/index.js!./../node_modules/sass-loader/index.js?sourcemap!./styles.scss", function() {
+			var newContent = require("!!./../node_modules/css-loader/index.js?sourcemap!./../node_modules/postcss-loader/index.js!./../node_modules/sass-loader/index.js?sourcemap!./styles.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -288,22 +288,22 @@ if(false) {
 
 /***/ },
 
-/***/ 795:
+/***/ 798:
 /***/ function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(796)();
+exports = module.exports = __webpack_require__(799)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\n/*body>*{*/\r\n/*height: 100vh;*/\r\n/*width: 100%;*/\r\n/*}*/\r\n\r\n@media only screen and (min-width: 993px) {\r\n    header, footer, main {\r\n        padding-left: 300px;\r\n    }\r\n}\r\n\r\n.chat-bottom {\r\n    position: fixed;\r\n    right: 10px;\r\n    bottom: 0;\r\n    width: 300px;\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n}\r\n\r\n.chat-list {\r\n    overflow-y: auto;\r\n    height: 300px;\r\n}\r\n\r\n.chat-form {\r\n    height: 50px;\r\n}\r\n\r\n.chat-form input {\r\n    width: 92% !important;\r\n}\r\n\r\n.chat-panel li:not(:first-of-type) {\r\n    margin: 20px 0 0 0;\r\n}\r\n\r\n.chat-panel .card-content, .chat-panel .card-action {\r\n    padding: 10px;\r\n}\r\n\r\n.chat-list {\r\n    margin: 20px 0;\r\n}\r\n\r\n.no-padding {\r\n    padding: 0 !important;\r\n\r\n}\r\n.no-margin {\r\n    margin: 0 !important;\r\n}\r\n\r\na {\r\n    cursor: pointer;\r\n}\r\n\r\n.material-tooltip > * {\r\n    background: #607d8b;\r\n    color: white;\r\n}", ""]);
+exports.push([module.i, "@media only screen and (min-width: 993px) {\n  header, footer, main {\n    padding-left: 300px; } }\n\n.chat-bottom {\n  position: fixed;\n  right: 10px;\n  bottom: 0;\n  width: 300px;\n  box-sizing: border-box;\n  margin: 0; }\n\n.no-padding {\n  padding: 0 !important; }\n\n.no-margin {\n  margin: 0 !important; }\n\n.text-small {\n  font-size: 0.6em; }\n\n.text-large {\n  font-size: 1.4em; }\n\na {\n  cursor: pointer; }\n\n.material-tooltip > * {\n  background: #607d8b;\n  color: white; }\n\n.flex, .flex-wrap, .flex-wrap-end, .flex-down, .flex-down-left, .flex-down-center, .flex-down-spacebetween, .flex-center, .flex-vCenter, .flex-stretch {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.flex-wrap, .flex-wrap-end {\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.flex-down, .flex-down-left, .flex-down-center, .flex-down-spacebetween {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; }\n\n.flex-down-left {\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end; }\n\n.flex-down-center {\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\n.flex-down-spacebetween {\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n\n.flex-center {\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\n.flex-vCenter {\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\n.flex-stretch {\n  -webkit-box-align: stretch;\n      -ms-flex-align: stretch;\n          align-items: stretch; }\n\n.flex-wrap-end {\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ 796:
+/***/ 799:
 /***/ function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ }
 
-},[1138]);
+},[1142]);
 //# sourceMappingURL=styles.bundle.map

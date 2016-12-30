@@ -3,6 +3,7 @@ let router = express.Router();
 
 let bodyParser = require('body-parser');
 
+let fs = require('fs');
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
@@ -54,7 +55,8 @@ router.get('/', function (req, res) {
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
-    let user = res.locals.uid;
+    //do not remove! req.params nodig voor redirect
+    let user = res.locals.uid | req.params.user;
 
     console.log(user);
 
@@ -147,13 +149,13 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
+router.post('/updateuser', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
     User.updateUser(body, function (user) {
-        res.json({body: user});
+        res.json(user);
         res.end();
     })
 
@@ -167,13 +169,13 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
     });
     let body = req.body;
     Household.updateHousehold(body, function (household) {
-        res.json({body: household});
+        res.json(household);
         res.end();
     })
 });
 
 //af: steven
-//controle door:
+//controle door: Bart en hij zag dat het niet goed was.
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
@@ -181,9 +183,12 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
     let body = req.body;
     let householdId = body.household_id;
     let uid = res.locals.uid;
-    Household.addUserToHousehold(householdId, uid, function (household) {
-        res.json({body: household});
-        res.end();
+
+    Household.addUserToHousehold(householdId, uid, function () {
+
+        //moet zo, kan headers niet instellen bij redirect
+        res.redirect('/api/userbyuid/' + uid);
+
     })
 });
 
@@ -221,34 +226,32 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 });
 
 //af: steven
-// controle door:
+// controle door: Bart en hij zag wederom dat het niet goed was
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
-        res.json({body: body});
-        res.end();
+
+        res.redirect('/api/userbyuid/' + body.uid);
+        ;
     })
 });
 
 //af: steven
-//controle door:
+//controle door: Bart en rarara, 't was niet goed
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Household.addHousehold(body, function (id) {
 
-        var household_id = id;
-        //current user uid ophalen
-        var uid = res.locals.uid;
-        Household.addUserToHousehold(household_id, uid, function (household) {
-            res.json(household_id);
-            res.end();
-        })
+    Household.addHousehold(body, function (household) {
+
+        res.json(household);
+        res.end();
+
     })
 });
 
@@ -291,16 +294,23 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtask', function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Task.addTask(body, function (body) {
-        res.json({body: body});
-        res.end(); //comment
-    })
-
+    if(body.dueDate === null || body.household_id == null){
+        let message = [];
+        message.push("geen geldige task");
+        message.push(req.body);
+        res.status(500).send(message);
+        res.end();
+    }else{
+        Task.addTask(body, function (body) {
+            res.json(body);
+            res.end(); //comment
+        })
+    }
 });
 
 //af: steven
@@ -311,7 +321,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     });
     let body = req.body;
     Task.updateTask(body, function (body) {
-        res.json({body: body});
+        res.json(body);
         res.end();
     })
 });
@@ -397,12 +407,8 @@ router.post('/finishtask', function (req, res, next) {
 
                     Task.updateTask(originalTask, function () {
 
-                        // console.log(done);
-                        if (done) {
-                            let finishedTaskData = {taskID: id, userID: user.id, householdID: originalTask.household_id};
-                            process.emit("task-finished-web", finishedTaskData);
-                            process.emit("task-finished-app", finishedTaskData);
-                        }
+                        let finishedTaskData = {taskID: id, userID: user.id, householdID: originalTask.household_id, done: done};
+                        process.emit("task-finished", finishedTaskData);
 
                         res.json(originalTask);
                         res.end();
@@ -463,13 +469,13 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
         if (rows[0].awardsCount > 0) {
             //update van de bestaande award
             Award.updateAwardFromHousehold(body, function (body) {
-                res.json({body: body});
+                res.json(body);
                 res.end();
             })
         } else {
             //nieuwe award voor huishouden invoegen
             Award.addAward(body, function (body) {
-                res.json({body: body});
+                res.json(body);
                 res.end();
             })
         }
@@ -477,15 +483,19 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
+router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
 
     let assignUsers = 7;
     if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
     let household = parseInt(req.params.household);
+    let json = JSON.parse(fs.readFileSync("./importjson/importJson.json"));
+    let response = [];
 
+    for(let i = 0; i < json.length; i++){
+        response = response.concat(json.all);
+    }
 
-    // TODO: code hier
-
+    console.log(response);
 
     res.json({params: {household: household, assignUsers: assignUsers}});
     res.end();
