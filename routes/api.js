@@ -103,7 +103,9 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
                                     award.month = moment(award.month).format("YYYY-MM-DD");
 
                                     if (awardDate.isBefore(now)) {
-                                        // TODO: verhuis award naar mongo
+                                        // TODO: verhuis award naar mongo https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L65
+
+                                        // process.emit("award-winner", winnerID);
 
                                         Award.deleteAwardByHouseholdID(user.household.id);
 
