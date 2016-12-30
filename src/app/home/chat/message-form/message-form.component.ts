@@ -1,6 +1,4 @@
-import {Component, OnInit, NgModule} from '@angular/core';
-import * as io from 'socket.io-client';
-import * as firebase from 'firebase';
+import {Component, OnInit, EventEmitter, Output} from "@angular/core";
 import {ChatSocketService} from "../../../../service/chat-socket.service";
 
 @Component({
@@ -12,6 +10,7 @@ import {ChatSocketService} from "../../../../service/chat-socket.service";
 export class MessageFormComponent implements OnInit {
     socket = null;
     messageContent:String = "";
+    @Output() messageSent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private chatSocketService:ChatSocketService) {}
 
@@ -19,6 +18,7 @@ export class MessageFormComponent implements OnInit {
         if (this.messageContent.trim() !== "") {
             this.chatSocketService.sendMessage(this.messageContent);
             this.messageContent = "";
+            this.messageSent.emit(true);
         }
     }
 

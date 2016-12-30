@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
         this.isHidden = !this.isHidden;
     }
 
+
     private getHousehold(): void {
 
         this.apiService

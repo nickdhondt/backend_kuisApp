@@ -6,7 +6,8 @@
                 <input type="text" class="no-margin" placeholder="Announcement" value={{messageContent}} (input)="messageContent = $event.target.value">
             </div>
             <div class="input-field col s2 no-margin right-align no-padding">
-                <button type="submit" (click)="sendMessage()" class="waves-effect waves-light btn-floating btn-small red">
+                <button type="submit" (click)="sendMessage()"
+                        class="waves-effect waves-light btn-floating btn-small blue">
                     <i class="material-icons">send</i>
                 </button>
             </div>
