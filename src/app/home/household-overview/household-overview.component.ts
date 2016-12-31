@@ -20,6 +20,7 @@ export class HouseholdOverviewComponent implements OnInit {
     selectedUser: User;
     authenticatedUserUID: string;
     showDialogAward: boolean=false;
+    showDialogNewAward: boolean=false;
     // loading: boolean = true;
     //merge comment
 
@@ -29,13 +30,18 @@ export class HouseholdOverviewComponent implements OnInit {
 
     }
 
+    toggleDialog() {
+        if (this.household.award !== null) this.showDialogAward=!this.showDialogAward;
+        else this.showDialogNewAward=!this.showDialogNewAward;
+    }
+
     ngOnInit() {
         // this.getHousehold();
     }
     private user(id:number){
         for(let user in this.users){
             if(this.users[user].id == id){
-                console.log(this.users)
+                console.log(this.users);
                 return this.user[user];
             }
         }

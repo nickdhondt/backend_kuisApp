@@ -4,40 +4,48 @@ let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
 class User {
-  static getUserByUID(uid, cb) {
-    conn.query("select * from `users` where `uid` = ? limit 1", [uid],
-      function (err, rows, fields) {
-        if (err) process.emit("mysqlError", err);
-        else cb(rows[0]);
-      })
-  }
+    static getUserByUID(uid, cb) {
+        conn.query("select * from `users` where `uid` = ? limit 1", [uid],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(rows[0]);
+            })
+    }
 
-  static getUsersByHouseholdID(id, obj, cb) {
-    conn.query("select * from `users` where `household_id` = ? order by `id` asc", [id],
-      function (err, rows, fields) {
-        if (err) process.emit("mysqlError", err);
-        else cb(obj, rows);
-      })
+    // static resetScoresByHouseholdID(id, cb) {
+    //     conn.query("update `users` set `score`=0 where `household_id`=?", [id],
+    //         function (err, results) {
+    //             if (err) process.emit("mysqlError", err);
+    //             else cb(results);
+    //         })
+    // }
 
-  }
+    static getUsersByHouseholdID(id, obj, cb) {
+        conn.query("select * from `users` where `household_id` = ? order by `id` asc", [id],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(obj, rows);
+            })
 
-  static updateUser(user, cb){
-      let post = [
-          user.email,
-          user.household_id,
-          user.imgsrc,
-          user.lname,
-          user.phoneNumber,
-          user.score,
-          user.uid,
-          user.name,
-          user.id
-      ];
-      conn.query("update `users` set `email` = ?, `household_id` = ?, `imgsrc` = ?, `lname` = ?, `phonenumber` = ?, `score` = ?, `uid` = ?, `name` = ? where `id` = ?", post, function (err, res) {
-          if(err) process.emit("mysqlError", err);
-          else cb(user);
-      })
-  }
+    }
+
+    static updateUser(user, cb) {
+        let post = [
+            user.email,
+            user.household_id,
+            user.imgsrc,
+            user.lname,
+            user.phoneNumber,
+            user.score,
+            user.uid,
+            user.name,
+            user.id
+        ];
+        conn.query("update `users` set `email` = ?, `household_id` = ?, `imgsrc` = ?, `lname` = ?, `phonenumber` = ?, `score` = ?, `uid` = ?, `name` = ? where `id` = ?", post, function (err, res) {
+            if (err) process.emit("mysqlError", err);
+            else cb(user);
+        })
+    }
 
     static addUser(firebaseUser, cb) {
 

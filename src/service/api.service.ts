@@ -7,6 +7,7 @@ import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
 import enumerate = Reflect.enumerate;
+import * as moment from "moment";
 
 
 @Injectable()
@@ -167,6 +168,22 @@ export class ApiService {
             })
         });
 
+    }
+
+    public setAward(name:String, description:String) {
+        this.auth.token.then(token => {
+            this.headers.set('Firebase-ID-Token', token);
+
+            let month = moment().format("YYYY-MM-DD");
+
+            return this._http.post(
+                this.actionUrl + "addaward",
+                {month, name, description},
+                {headers: this.headers})
+                .map(res => res.json())
+                .catch(ApiService.handleError)
+                .subscribe(data => {}/*console.log(data)*/);
+        })
     }
 
     public addFinishedAward() {

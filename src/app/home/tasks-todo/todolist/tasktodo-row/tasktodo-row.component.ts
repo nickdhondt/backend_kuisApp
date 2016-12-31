@@ -79,6 +79,7 @@ export class TasktodoRowComponent implements OnInit {
     ngOnInit() {
         this.socketService.taskUpdates().subscribe((data) => {
             if (!this.isDestroyed && data.taskID === this.task.id) {
+                console.log(this.task);
                 if (data.done) {
                     this.state = "finished";
                     this.finish.emit(this.task);
