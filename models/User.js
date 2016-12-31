@@ -8,7 +8,8 @@ let Task = require("./Task");
 let Household = require("./Household");
 
 class User {
-  static getUserByUID(uid, cb) {
+
+    static getUserByUID(uid, cb) {
     conn.query("select * from `users` where `uid` = ? limit 1", [uid],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);
@@ -23,7 +24,6 @@ class User {
         if (err) process.emit("mysqlError", err);
         else cb(obj, rows);
       })
-
   }
 
 

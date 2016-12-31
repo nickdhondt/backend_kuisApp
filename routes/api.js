@@ -8,6 +8,7 @@ let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
+let checkTaskFormat = require("../middleware/checkTaskFormat");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
 
@@ -353,7 +354,121 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     })
 });
 
-router.post('/finishtask', function (req, res, next) {
+
+router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    let receivedTask = req.task;
+
+    //todo vervangen door res.locals.uid;
+    User.getUserByUID(receivedTask.finished_by, function (user) {
+
+        if (!user) return next(new Error("user not found"));
+
+        Task.getTaskByID(receivedTask.id, function (originalTask) {
+
+            originalTask.done = receivedTask.done;
+            originalTask.finished_by = receivedTask.finished_by;
+            originalTask.finished_on = receivedTask.finished_on;
+
+            let finishedTask = new FinishedTask(originalTask);
+
+            finishedTask.save(function (err) {
+                if (err) return next(err);
+
+                //checked
+                if (receivedTask.done) {
+                    user.score += originalTask.points;
+                    User.updateUser(user, () => {
+                    });
+                }
+
+                let nextDue = moment(originalTask.dueDate).add(originalTask.period, "day");
+
+                while (nextDue.isBefore(moment())) {
+
+                    nextDue = moment(nextDue).add(originalTask.period, "day");
+
+                    //todo moet id niet task_id zijn?
+                    //dit is niet langer uniek hé, maar ik ken niks van mongo, dus het kan...
+
+                    new FinishedTask({
+                        id: originalTask.id,
+                        name: originalTask.name,
+                        dueDate: originalTask.dueDate,
+                        description: originalTask.description,
+                        period: originalTask.period,
+                        household_id: originalTask.household_id,
+                        assigned_to: originalTask.assigned_to,
+                        points: originalTask.points,
+                        done: false,
+                        finished_by: finished_by,
+                        finished_on: finished_on
+                    }).save(function (err) {
+                    });
+                }
+
+                originalTask.dueDate = nextDue.format("YYYY-MM-DD");
+
+                if (originalTask.assinged_to != null) {
+
+                    User.getUsersByHouseholdID(originalTask.household_id, null, function (obj, users) {
+
+                        let newUser = -1;
+                        for (let user of users) {
+                            if (user.id > originalTask.assigned_to) {
+                                newUser = user.id;
+                                break;
+                            }
+                        }
+
+                        if (newUser === -1) newUser = users[0].id;
+
+                        originalTask.assigned_to = newUser;
+
+                        Task.updateTask(originalTask, function () {
+
+                            let finishedTaskData = {
+                                taskID: receivedTask.id,
+                                userID: user.id,
+                                householdID: receivedTask.household_id,
+                                done: receivedTask.done
+                            };
+                            process.emit("task-finished", finishedTaskData);
+
+                            res.json(originalTask);
+                            res.end();
+                        });
+                    });
+
+
+                }
+                else {
+                    Task.updateTask(originalTask, function () {
+
+                        let finishedTaskData = {
+                            taskID: receivedTask.id,
+                            userID: user.id,
+                            householdID: receivedTask.household_id,
+                            done: receivedTask.done
+                        };
+                        process.emit("task-finished", finishedTaskData);
+
+                        res.json(originalTask);
+                        res.end();
+                    })
+                }
+
+            });
+        });
+    });
+
+
+});
+
+router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });

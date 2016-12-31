@@ -137,8 +137,6 @@ export class ApiService {
                     {headers: this.headers})
                     .map((response: Response) => {
 
-                        console.log(response);
-
                         let user: User = response.json();
 
                         if (user.household) {
