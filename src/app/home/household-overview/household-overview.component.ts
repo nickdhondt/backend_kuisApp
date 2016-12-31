@@ -41,15 +41,15 @@ export class HouseholdOverviewComponent implements OnInit {
     ngOnInit() {
         // this.getHousehold();
     }
-    private user(id:number){
-        for(let user in this.users){
-            if(this.users[user].id == id){
-                console.log(this.users);
-                return this.user[user];
-            }
-        }
-        return new User()
-    }
+    // private user(id:number){
+    //     for(let user in this.users){
+    //         if(this.users[user].id == id){
+    //             console.log(this.users);
+    //             return this.user[user];
+    //         }
+    //     }
+    //     return new User()
+    // }
 
 
     private getHousehold(): void {
