@@ -4,7 +4,7 @@
 
     <app-household-overview *ngIf="user" [household]="user.household">loading...</app-household-overview>
 
-    <div class="row" *ngIf="user">
+    <div class="row" *ngIf="user && user.household">
         <ul>
             <li>{{user.household.countFinishedTasks}}</li>
             <li>{{user.household.countTotalScore}}</li>
