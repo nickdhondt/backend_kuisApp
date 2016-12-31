@@ -103,7 +103,7 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
+router.get('/userbyuid/:fbUser', function (req, res, next) {
 
     //do not remove! req.params nodig voor redirect
     let uid = res.locals.uid || req.params.fbUser;
