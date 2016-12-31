@@ -38,5 +38,5 @@
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<app-award-detail *ngIf="household.award !== null" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>
+<app-award-detail *ngIf="household.award !== null" (awardAdded)="awardAdded($event)" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>
 <app-new-award [(visible)]="showDialogNewAward"></app-new-award>

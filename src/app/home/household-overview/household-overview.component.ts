@@ -42,6 +42,10 @@ export class HouseholdOverviewComponent implements OnInit {
         // this.getHousehold();
     }
 
+    private awardAdded(award) {
+        this.household.award = award;
+    }
+
     private user(id:number) {
         for (let user in this.users) {
             if (this.users[user].id == id) {
