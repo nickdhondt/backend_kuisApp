@@ -355,15 +355,14 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
 });
 
 
-router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
+router.post('/finishtasknew', [firebaseAuthenticator, checkTaskFormat], function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
 
     let receivedTask = req.task;
 
-    //todo vervangen door res.locals.uid;
-    User.getUserByUID(receivedTask.finished_by, function (user) {
+    User.getUserByUID(res.locals.uid, function (user) {
 
         if (!user) return next(new Error("fbUser not found"));
 
@@ -399,7 +398,6 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
                 while (nextDue.isBefore(moment())) {
 
                     nextDue = moment(nextDue).add(originalTask.period, "day");
-                    console.log(nextDue);
 
                     new FinishedTask({
                         id: originalTask.id,
@@ -414,7 +412,6 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
                         finished_by: null,
                         finished_on: receivedTask.finished_on
                     }).save(function (err) {
-
                     });
                 }
 
