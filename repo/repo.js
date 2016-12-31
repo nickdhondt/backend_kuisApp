@@ -11,6 +11,9 @@ let User = require("../models/User");
 let Household = require("../models/Household");
 let Task = require("../models/Task");
 
+let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
+let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
+
 class getUser {
 
     static getUserByUIDBart(uid, cb) {
