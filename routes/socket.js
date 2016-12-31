@@ -47,6 +47,7 @@ module.exports = function (io) {
     });
 
     process.on("task-finished", function (taskData) {
+
         io.to('household_' + taskData.householdID).emit("tasks-update", {taskID: taskData.taskID, done:taskData.done});
 
         body = JSON.stringify({

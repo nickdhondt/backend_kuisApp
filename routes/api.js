@@ -354,8 +354,7 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     })
 });
 
-
-router.post('/finishtasknew', [firebaseAuthenticator, checkTaskFormat], function (req, res, next) {
+router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -439,7 +438,7 @@ router.post('/finishtasknew', [firebaseAuthenticator, checkTaskFormat], function
                             let finishedTaskData = {
                                 taskID: receivedTask.id,
                                 userID: user.id,
-                                householdID: receivedTask.household_id,
+                                householdID: originalTask.household_id,
                                 done: receivedTask.done
                             };
                             process.emit("task-finished", finishedTaskData);
@@ -448,8 +447,6 @@ router.post('/finishtasknew', [firebaseAuthenticator, checkTaskFormat], function
                             res.end();
                         });
                     });
-
-
                 }
                 else {
                     Task.updateTask(originalTask, function () {
@@ -469,99 +466,7 @@ router.post('/finishtasknew', [firebaseAuthenticator, checkTaskFormat], function
             });
         });
     });
-});
 
-router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) => {
-        return next(err);
-    });
-
-    let format = 'we require this kind of object: {"id":"7","done":true,"finished_by":"uidstring","finished_on":"2016-10-10"}';
-
-    if (!req.body.id) return next(new Error(format));
-    let id = Number(req.body.id);
-    if (req.body.done === undefined) return next(new Error(format));
-    let done = req.body.done;
-    if (!req.body.finished_by) return next(new Error(format));
-    let finished_by = req.body.finished_by;
-    if (!req.body.finished_on) return next(new Error(format));
-    let finished_on = req.body.finished_on;
-
-    User.getUserByUID(finished_by, function (user) {
-        if (user === undefined) return next(new Error("fbUser not found"));
-        Task.getTaskByID(id, function (originalTask) {
-
-            let newFinishedtask = FinishedTask({
-                id: id,
-                name: originalTask.name,
-                dueDate: originalTask.dueDate,
-                description: originalTask.description,
-                period: originalTask.period,
-                household_id: originalTask.household_id,
-                assigned_to: originalTask.assigned_to,
-                points: originalTask.points,
-                done: done,
-                finished_by: user.id,
-                finished_on: finished_on
-            });
-
-            newFinishedtask.save(function (err) {
-                if (err) return next(err);
-
-                if (done) {
-                    user.score += originalTask.points;
-                    User.updateUser(user, function () {});
-                }
-
-                let nextDue = moment(originalTask.dueDate).add(originalTask.period, "day");
-
-                while(nextDue.isBefore(moment())) {
-                    nextDue = moment(nextDue).add(originalTask.period, "day");
-
-                    let newFinishedtask = FinishedTask({
-                        id: id,
-                        name: originalTask.name,
-                        dueDate: originalTask.dueDate,
-                        description: originalTask.description,
-                        period: originalTask.period,
-                        household_id: originalTask.household_id,
-                        assigned_to: originalTask.assigned_to,
-                        points: originalTask.points,
-                        done: false,
-                        finished_by: null,
-                        finished_on: finished_on
-                    });
-
-                    newFinishedtask.save(function (err) {});
-                }
-
-                originalTask.dueDate = nextDue.format("YYYY-MM-DD");
-
-                User.getUsersByHouseholdID(originalTask.household_id, null, function (obj, users) {
-                    let newUser = -1;
-                    for(let user of users) {
-                        if (user.id > originalTask.assigned_to) {
-                            newUser = user.id;
-                            break;
-                        }
-                    }
-
-                    if (newUser === -1) newUser = users[0].id;
-
-                    originalTask.assigned_to = newUser;
-
-                    Task.updateTask(originalTask, function () {
-
-                        let finishedTaskData = {taskID: id, userID: user.id, householdID: originalTask.household_id, done: done};
-                        process.emit("task-finished", finishedTaskData);
-
-                        res.json(originalTask);
-                        res.end();
-                    });
-                });
-            });
-        });
-    });
 });
 
 //todo mag weg?
