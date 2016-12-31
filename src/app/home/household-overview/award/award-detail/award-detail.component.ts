@@ -23,8 +23,8 @@ import {User} from "../../../../../models/user.model";
 export class AwardDetailComponent implements OnInit {
 
   @Input() award: Award;
+  @Input() user : User;
   @Input() users: User[];
-  @Input() user:User;
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean>= new EventEmitter<boolean>();
   constructor() {}
@@ -48,8 +48,5 @@ export class AwardDetailComponent implements OnInit {
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
-
-
-
 
 }

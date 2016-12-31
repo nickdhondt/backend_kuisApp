@@ -1,30 +1,22 @@
-<div [@dialog] *ngIf="visible" class="card dialog" >
-  <!--<ng-content></ng-content>-->
-  <div class="card-content">
-    <span class="card-title center">Set Award of the month</span>
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s6">
-            <input [(ngModel)]="awardname" name="name"  id="award_name" type="text" class="active" required>
-            <label for="award_name" class="">Award Name</label>
-          </div>
-          <div class="input-field col s6 ">
-            <input  id="award_description" [(ngModel)]="description" name="description" type="text" class="active" required   >
-            <label for="award_description" class="">Description</label>
-          </div>
-
-
-
+<div [@dialog] *ngIf="visible" class="card dialog">
+    <div class="card-content">
+        <span class="card-title center">New award of the month</span>
+        <div class="row no-margin">
+            <form class="col s12" #newAwardForm="ngForm">
+                <div class="row no-margin">
+                    <div class="input-field col s12 l3">
+                        <input [(ngModel)]="name" id="award_name" name="name" type="text" class="no-margin">
+                        <label for="award_name" class="active">Award Name</label>
+                    </div>
+                    <div class="input-field col s12 l7">
+                        <input [(ngModel)]="description" name="description" id="award_description" type="text" class="no-margin">
+                        <label for="award_description" class="active">Description</label>
+                    </div>
+                    <div class="input-field col s12 l2">
+                        <a class="waves-effect waves-light red btn" (click)="set()">Set</a>
+                    </div>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
-  <div class="card-action">
-    <a  (click)="close()" class="right"  aria-label="Close" style="cursor: default; margin-bottom: 10px">close</a>
-    <a (click)="save()" class="right" aria-label="Save" style="cursor: default; margin-bottom: 10px">save</a>
-
-  </div>
 </div>
-
-<div *ngIf="visible" class="overlay" (click)="close()"></div>

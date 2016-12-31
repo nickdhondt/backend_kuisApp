@@ -15,7 +15,7 @@
 
     </div>
 
-    <app-award [(award)]="household.award" [(user)]="user"></app-award>
+    <app-award [(award)]="household.award"  (click)="toggleDialog()"></app-award>
 
 </div>
 
@@ -37,3 +37,6 @@
 </div>
 
 
+<app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
+<app-award-detail *ngIf="household.award !== null" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>
+<app-new-award [(visible)]="showDialogNewAward"></app-new-award>

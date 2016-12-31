@@ -19,6 +19,7 @@ export class AwardComponent implements OnInit {
     showDialogAward: boolean=false;
     showDialogNewAward:boolean=false;
     showDialog:boolean=false;
+    showNewAwardDialog:boolean=false;
 
     constructor() {
     }

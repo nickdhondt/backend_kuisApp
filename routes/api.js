@@ -498,7 +498,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
                 assigned_to: originalTask.assigned_to,
                 points: originalTask.points,
                 done: done,
-                finished_by: finished_by,
+                finished_by: user.id,
                 finished_on: finished_on
             });
 
@@ -524,8 +524,8 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
                         household_id: originalTask.household_id,
                         assigned_to: originalTask.assigned_to,
                         points: originalTask.points,
-                        done: done,
-                        finished_by: finished_by,
+                        done: false,
+                        finished_by: null,
                         finished_on: finished_on
                     });
 
@@ -602,29 +602,33 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
 
 });
 
-router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
-    console.log(req);
-    // process.on("mysqlError", (err) => {
-    //     return next(err);
-    // });
-    // let body = req.body;
-    // let household_id = body.household_id;
-    // Award.countAwardsFromHousehold(household_id, function (rows) {
-    //     if (rows[0].awardsCount > 0) {
-    //         //update van de bestaande award
-    //         Award.updateAwardFromHousehold(body, function (body) {
-    //             res.json(body);
-    //             res.end();
-    //         })
-    //     } else {
-    //         //nieuwe award voor huishouden invoegen
-    //         Award.addAward(body, function (body) {
-    //             res.json(body);
-    //             res.end();
-    //         })
-    //     }
-    // });
+router.post('/addaward', function (req, res, next) {
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+    let body = req.body;
 
+    User.getUserByUID("5QGiaPssNbeQEYq2XRuEYGMPIa13", function (user) {
+        body.creator_id = user.id;
+        body.household_id = user.household_id;
+        Award.countAwardsFromHousehold(user.household_id, function (rows) {
+            if (rows[0].awardsCount > 0) {
+                //update van de bestaande award
+                Award.updateAwardFromHousehold(body, function (body) {
+                    console.log(body);
+                    res.json(body);
+                    res.end();
+                })
+            } else {
+                //nieuwe award voor huishouden invoegen
+                Award.addAward(body, function (body) {
+                    console.log(body)
+                    res.json(body);
+                    res.end()
+                })
+            }
+        });
+    });
 });
 
 router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
