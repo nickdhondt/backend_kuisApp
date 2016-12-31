@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http, Response, RequestOptions} from "@angular/http";
+import {Headers, Http, Response} from "@angular/http";
 import {Contract} from "../contract";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
+import {Award} from "../models/award.model";
 import enumerate = Reflect.enumerate;
 import * as moment from "moment";
 
@@ -31,6 +32,11 @@ export class ApiService {
         return Observable.throw(error.json().error || 'server error...');
     }
 
+    //DO NOT USE
+    //DO
+    //NOT
+    //USE
+    //!
     public getTasks(): Observable<Task[]> {
 
         let tokenPromise = new Promise<Task[]>((resolve, reject) => {
@@ -57,6 +63,11 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
+    //DO NOT USE
+    //DO
+    //NOT
+    //USE
+    //!
     public getTaskstodobyhousehold(term: number = 7): Observable<Task[]> {
 
         let tokenPromise = new Promise<Task[]>((resolve, reject) => {
@@ -82,6 +93,11 @@ export class ApiService {
 
     }
 
+    //DO NOT USE
+    //DO
+    //NOT
+    //USE
+    //!
     public getHousehold(): Observable<Household> {
 
 
@@ -122,6 +138,8 @@ export class ApiService {
                     {headers: this.headers})
                     .map((response: Response) => {
 
+                        console.log(response);
+
                         let user: User = response.json();
 
                         if (user.household) {
@@ -151,7 +169,6 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
-
 
     public addFinishedTask(id: number, done: boolean, finished_by: string, finished_on: string) {
 
@@ -202,6 +219,23 @@ export class ApiService {
             })
         });
 
+    }
+
+    public addAward(description:string,name:string,month:string,winner_id:number,creator_id:number,household_id:number):Observable<Award>{
+
+        let tokenPromise = new Promise<Award>((resolve,reject)=>{
+            this.auth.token.then(token=>{
+                this.headers.set("Firebase-ID-Token",token);
+                return this._http.post(
+                    this.actionUrl + "addaward",
+                    {description,name,month,winner_id,creator_id,household_id},
+                    {headers : this.headers})
+                    .map(res=>res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(data=>console.log(" Add award Data: " +data))
+            })
+        });
+        return Observable.fromPromise(tokenPromise);
     }
 }
 

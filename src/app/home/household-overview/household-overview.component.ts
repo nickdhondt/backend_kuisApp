@@ -21,12 +21,15 @@ export class HouseholdOverviewComponent implements OnInit {
     authenticatedUserUID: string;
     showDialogAward: boolean=false;
     showDialogNewAward: boolean=false;
+    user : firebase.User;
+
     // loading: boolean = true;
     //merge comment
 
     constructor(private apiService: ApiService, private auth: AuthService) {
 
         this.authenticatedUserUID = auth.uid;
+        this.user= auth.authState.auth;
 
     }
 

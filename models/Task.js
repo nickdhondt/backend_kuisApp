@@ -2,7 +2,12 @@ let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 let moment = require('moment');
 
+let Award = require("./Award");
+let User = require("./User");
+let Household = require("./Household");
+
 class Task {
+
 
     static getTasksUID(id, obj, cb) {
 

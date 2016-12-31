@@ -1,4 +1,4 @@
-<div [@dialog] *ngIf="visible" class="card dialog">
+<div [@dialog] *ngIf="visible" class="card dialog" >
   <!--<ng-content></ng-content>-->
     <div class="card-content">
     <span class="card-title center">Award of the month</span>
@@ -13,10 +13,12 @@
                             <input value="{{award.description}}" id="award_description" type="text" class="" readonly  >
                             <label for="award_description" class="active">Description</label>
                        </div>
-                    <div class="input-field col s6 offset-s3">
-                        <input value="{{award.creator_id}}" id="award_created_by" type="text" class=""  readonly  >
+                    <div class="input-field col s6 offset-s3" >
+                        <input  value="" id="award_created_by" type="text" class=""  readonly  >
                         <label for="award_created_by" class="active">Created By</label>
                     </div>
+
+
                 </div>
           </form>
     </div>

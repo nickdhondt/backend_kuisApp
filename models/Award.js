@@ -1,8 +1,14 @@
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
+let User = require("./User");
+let Task = require("./Task");
+let Household = require("./Household");
+
 class Award {
-  static getAwardByHouseholdID(id, obj, cb) {
+
+
+    static getAwardByHouseholdID(id, obj, cb) {
     conn.query("select * from `awards` where `household_id` = ? limit 1", [id],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);

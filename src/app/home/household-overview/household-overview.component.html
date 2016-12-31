@@ -7,7 +7,7 @@
     <div style="padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap">
 
         <app-user-img
-                *ngFor="let user of household.users; let i = index;"
+                *ngFor="let user of household.users | sortUsers:'score'; let i = index;"
                 [user]="user"
                 [index]="i"
                 (click)="showDialog = !showDialog; selectedUser = user;"
