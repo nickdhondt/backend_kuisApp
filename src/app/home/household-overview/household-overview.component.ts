@@ -42,7 +42,7 @@ export class HouseholdOverviewComponent implements OnInit {
         // this.getHousehold();
     }
 
-    private awardAdded(award) {
+    addAwardToHousehold(award) {
         this.household.award = award;
     }
 

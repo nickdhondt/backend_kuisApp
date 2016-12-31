@@ -346,20 +346,24 @@ var ApiService = (function () {
                 return _this._http.post(_this.actionUrl + "finishtask", { id: id, done: done, finished_by: finished_by, finished_on: finished_on }, { headers: _this.headers })
                     .map(function (res) { return res.json(); })
                     .catch(ApiService.handleError)
-                    .subscribe(function (data) { } /*console.log(data)*/);
+                    .subscribe(function (data) {
+                } /*console.log(data)*/);
             });
         });
     };
     ApiService.prototype.setAward = function (name, description) {
         var _this = this;
-        this.auth.token.then(function (token) {
-            _this.headers.set('Firebase-ID-Token', token);
-            var month = __WEBPACK_IMPORTED_MODULE_8_moment__().format("YYYY-MM-DD");
-            return _this._http.post(_this.actionUrl + "addaward", { month: month, name: name, description: description }, { headers: _this.headers })
-                .map(function (res) { return res.json(); })
-                .catch(ApiService.handleError)
-                .subscribe(function (data) { } /*console.log(data)*/);
+        var tokenPromise = new Promise(function (resolve, reject) {
+            _this.auth.token.then(function (token) {
+                _this.headers.set('Firebase-ID-Token', token);
+                var month = __WEBPACK_IMPORTED_MODULE_8_moment__().format("YYYY-MM-DD");
+                return _this._http.post(_this.actionUrl + "addaward", { month: month, name: name, description: description }, { headers: _this.headers })
+                    .map(function (res) { return res.json(); })
+                    .catch(ApiService.handleError)
+                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
+            });
         });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
     ApiService.prototype.addFinishedAward = function () {
         var _this = this;
@@ -1926,6 +1930,7 @@ var NewAwardComponent = (function () {
     function NewAwardComponent(apiService) {
         this.apiService = apiService;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.awardAdded = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.name = "";
         this.description = "";
     }
@@ -1936,9 +1941,14 @@ var NewAwardComponent = (function () {
         this.visibleChange.emit(this.visible);
     };
     NewAwardComponent.prototype.set = function () {
+        var _this = this;
         if (this.name !== "") {
-            this.apiService.setAward(this.name, this.description);
-            this.close();
+            this.apiService.setAward(this.name, this.description).subscribe(function (award) {
+                _this.awardAdded.emit(award);
+                _this.close();
+                _this.name = "";
+                _this.description = "";
+            });
         }
     };
     __decorate([
@@ -1949,6 +1959,10 @@ var NewAwardComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _a) || Object)
     ], NewAwardComponent.prototype, "visibleChange", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
+    ], NewAwardComponent.prototype, "awardAdded", void 0);
     NewAwardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-award',
@@ -1966,10 +1980,10 @@ var NewAwardComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
     ], NewAwardComponent);
     return NewAwardComponent;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-award.component.js.map
 
@@ -2017,6 +2031,9 @@ var HouseholdOverviewComponent = (function () {
     };
     HouseholdOverviewComponent.prototype.ngOnInit = function () {
         // this.getHousehold();
+    };
+    HouseholdOverviewComponent.prototype.addAwardToHousehold = function (award) {
+        this.household.award = award;
     };
     HouseholdOverviewComponent.prototype.user = function (id) {
         for (var user in this.users) {
@@ -3108,7 +3125,7 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 859:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"  (click)=\"toggleDialog()\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>Go join or make a household.</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-award-detail *ngIf=\"household.award !== null\" [(visible)]=\"showDialogAward\" [(award)]=\"household.award\" [user]=\"user(household.award.creator_id)\" ></app-award-detail>\r\n<app-new-award [(visible)]=\"showDialogNewAward\"></app-new-award>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"  (click)=\"toggleDialog()\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>Go join or make a household.</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-award-detail *ngIf=\"household.award !== null\" [(visible)]=\"showDialogAward\" [(award)]=\"household.award\" [user]=\"user(household.award.creator_id)\" ></app-award-detail>\r\n<app-new-award (awardAdded)=\"addAwardToHousehold($event)\" [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
