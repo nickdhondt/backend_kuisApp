@@ -508,7 +508,7 @@ router.post('/addaward', function (req, res, next) {
                 //nieuwe award voor huishouden invoegen
                 Award.addAward(body, function (body) {
                     res.json(body);
-                    res.end();
+                    res.end()
                 })
             }
         });
