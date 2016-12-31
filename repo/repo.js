@@ -56,7 +56,11 @@ class getUser {
                     }
                 }
             ])
-            .exec(cb(err, stats));
+            .exec(function (err, stats) {
+                if (err) next(err);
+
+                cb(stats);
+            });
 
     }
 
@@ -68,9 +72,8 @@ class getUser {
 
                 else {
 
-                    getUser.getTaskStatsFromMongo(rows[0].id, (err, statsTasks) => {
+                    getUser.getTaskStatsFromMongo(rows[0].id, (statsTasks) => {
 
-                        if (err) next(err);
 
                         statsTasks.counttasks = 1337;
 
