@@ -156,6 +156,8 @@ class getUser {
             });
 
     }
+
+
 }
 
 module.exports = getUser;

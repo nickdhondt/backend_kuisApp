@@ -71,7 +71,7 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
     //do not remove! req.params nodig voor redirect
-    let uid = res.locals.uuid || req.params.user;
+    let uid = res.locals.uid || req.params.user;
 
     console.log(uid);
 

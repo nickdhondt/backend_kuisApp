@@ -1,8 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Household} from "../../../models/household.model";
-import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
-import {isUndefined} from "util";
 
 @Component({
     selector: 'app-chat',
@@ -20,38 +18,38 @@ export class ChatComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getHousehold();
+        //this.getHousehold();
     }
 
     private toggleChat(): void {
         this.isHidden = !this.isHidden;
     }
 
-
-    private getHousehold(): void {
-
-        this.apiService
-            .getHousehold()
-            .subscribe(
-                data => {
-
-
-                    if (!isUndefined(data.users)) {
-                        data.users.sort((a: User, b: User) => {
-                            if (a.score < b.score) return 1;
-                            if (b.score < a.score) return -1;
-                            return 0;
-                        });
-                        this.household = data;
-                    }
-                    else {
-
-                    }
-
-                },
-//test
-                error => console.log("error household " + error)
-            );
-    }
+//
+//     private getHousehold(): void {
+//
+//         this.apiService
+//             .getHousehold()
+//             .subscribe(
+//                 data => {
+//
+//
+//                     if (!isUndefined(data.users)) {
+//                         data.users.sort((a: User, b: User) => {
+//                             if (a.score < b.score) return 1;
+//                             if (b.score < a.score) return -1;
+//                             return 0;
+//                         });
+//                         this.household = data;
+//                     }
+//                     else {
+//
+//                     }
+//
+//                 },
+// //test
+//                 error => console.log("error household " + error)
+//             );
+//     }
 
 }
