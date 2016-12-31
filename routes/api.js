@@ -378,7 +378,7 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
             finishedTask.save(function (err) {
                 if (err) return next(err);
 
-                //checked
+
                 if (receivedTask.done) {
                     user.score += originalTask.points;
                     User.updateUser(user, () => {
