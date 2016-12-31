@@ -6,10 +6,10 @@ let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 let moment = require("moment");
 
-let Award = require("./Award");
-let User = require("./User");
-let Household = require("./Household");
-let Task = require("./Task");
+let Award = require("../models/Award");
+let User = require("../models/User");
+let Household = require("../models/Household");
+let Task = require(".../models/Task");
 
 class getUser {
 

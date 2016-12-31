@@ -63,7 +63,7 @@ import {NewAwardComponent} from "./household-overview/award/new-award/new-award.
         TasktodoRowComponent,
         TaskRowComponent,
         AwardDetailComponent,
-        SortUsersPipe
+        SortUsersPipe,
         AwardDetailComponent,
         NewAwardComponent
     ],
