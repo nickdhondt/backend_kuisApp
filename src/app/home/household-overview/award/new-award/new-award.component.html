@@ -6,11 +6,11 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input id="award_name" type="text" class="active" required>
+            <input [(ngModel)]="awardname" name="name"  id="award_name" type="text" class="active" required>
             <label for="award_name" class="">Award Name</label>
           </div>
           <div class="input-field col s6 ">
-            <input  id="award_description" type="text" class="active" required   >
+            <input  id="award_description" [(ngModel)]="description" name="description" type="text" class="active" required   >
             <label for="award_description" class="">Description</label>
           </div>
 

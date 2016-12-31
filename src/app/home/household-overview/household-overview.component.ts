@@ -18,7 +18,7 @@ export class HouseholdOverviewComponent implements OnInit {
     @Input() users:User[]
     showDialog: boolean = false;
     authenticatedUserUID: string;
-    user : firebase.User
+    user : firebase.User;
 
     // loading: boolean = true;
     //merge comment
