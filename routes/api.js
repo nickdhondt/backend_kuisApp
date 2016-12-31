@@ -580,20 +580,29 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
                 arr: []
             });
         }
-
+       if(result[0].per === period){
+           result[0].arr.push(item);
+       }else{
+           if(result[1].per === period){
+               result[1].arr.push(item);
+           }else{
+               result[2].arr.push(item);
+           }
+       }
     }
+
+    //console.log(result);
     response = [];
     for(let periodGroup of result){
-        console.log(periodGroup);
+        //console.log(periodGroup.arr[0]);
         let number = periodGroup.arr.length;
-        let period = periodGroup.per;
-        let assignedDate = new Date('y-m-d');
+        let period = periodGroup.arr[0][2];
+        let assignedDate = new Date('Y-m-d');
         let days = Math.round(period/number);
-
         if(days === 0) days = 1;
 
-        for(let item of periodGroup){
-
+        for(let item of periodGroup.arr){
+            console.log(item);
         }
     }
 
