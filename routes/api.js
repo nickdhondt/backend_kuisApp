@@ -69,10 +69,10 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
+router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
 
     //do not remove! req.params nodig voor redirect
-    let uid = res.locals.uid || req.params.user;
+    let uid = res.locals.uid || req.params.fbUser;
 
     console.log(uid);
 
@@ -87,11 +87,11 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
 
     });
 
-    // User.getUserByUID(user, function (user) {
+    // User.getUserByUID(fbUser, function (fbUser) {
     //
-    //     if (user !== undefined && user.household_id !== null) {
-    //         Household.getHouseholdByID(user.household_id, user, (user, household) => {
-    //             user.household = household;
+    //     if (fbUser !== undefined && fbUser.household_id !== null) {
+    //         Household.getHouseholdByID(fbUser.household_id, fbUser, (fbUser, household) => {
+    //             fbUser.household = household;
     //             // TODO: haal stats op
     //             let statsTasks = {
     //                 countFinishedTasks: 672,
@@ -107,15 +107,15 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
     //                 lastAwardWonBy: "User or collection of users"
     //             };
     //
-    //             user.household = Object.assign(user.household, statsTasks, statsAwards);
+    //             fbUser.household = Object.assign(fbUser.household, statsTasks, statsAwards);
     //
-    //             Task.getTasksByHouseholdID(household.id, user, (user, tasks) => {
-    //                 user.household.tasks = tasks;
-    //                 User.getUsersByHouseholdID(user.household_id, user, (user, users) => {
-    //                     user.household.users = users;
-    //                     Task.getTasksTodoByHouseholdID(user.household_id, 7, user, (user, tasksTodo) => {
-    //                         user.household.taskstodo = tasksTodo;
-    //                         Award.getAwardByHouseholdID(user.household_id, user, (user, award) => {
+    //             Task.getTasksByHouseholdID(household.id, fbUser, (fbUser, tasks) => {
+    //                 fbUser.household.tasks = tasks;
+    //                 User.getUsersByHouseholdID(fbUser.household_id, fbUser, (fbUser, users) => {
+    //                     fbUser.household.users = users;
+    //                     Task.getTasksTodoByHouseholdID(fbUser.household_id, 7, fbUser, (fbUser, tasksTodo) => {
+    //                         fbUser.household.taskstodo = tasksTodo;
+    //                         Award.getAwardByHouseholdID(fbUser.household_id, fbUser, (fbUser, award) => {
     //
     //
     //                             if (award !== undefined) {
@@ -131,20 +131,20 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
     //
     //                                     // process.emit("award-winner", winnerID);
     //
-    //                                     Award.deleteAwardByHouseholdID(user.household.id);
+    //                                     Award.deleteAwardByHouseholdID(fbUser.household.id);
     //
     //                                     Household.resetScores(household);
     //
     //                                     award = null;
     //                                 }
     //
-    //                                 user.household.award = award;
+    //                                 fbUser.household.award = award;
     //
-    //                                 res.json(user);
+    //                                 res.json(fbUser);
     //                                 res.end();
     //                             } else {
-    //                                 user.household.award = null;
-    //                                 res.json(user);
+    //                                 fbUser.household.award = null;
+    //                                 res.json(fbUser);
     //                                 res.end();
     //                             }
     //                         })
@@ -153,7 +153,7 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
     //             })
     //         })
     //     } else {
-    //         res.json(user);
+    //         res.json(fbUser);
     //         res.end();
     //     }
     // })
@@ -365,7 +365,7 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
     //todo vervangen door res.locals.uid;
     User.getUserByUID(receivedTask.finished_by, function (user) {
 
-        if (!user) return next(new Error("user not found"));
+        if (!user) return next(new Error("fbUser not found"));
 
         Task.getTaskByID(receivedTask.id, function (originalTask) {
 
@@ -489,7 +489,7 @@ router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {
     let finished_on = req.body.finished_on;
 
     User.getUserByUID(finished_by, function (user) {
-        if (user === undefined) return next(new Error("user not found"));
+        if (user === undefined) return next(new Error("fbUser not found"));
         Task.getTaskByID(id, function (originalTask) {
 
             let newFinishedtask = FinishedTask({
@@ -619,14 +619,12 @@ router.post('/addaward', function (req, res, next) {
             if (rows[0].awardsCount > 0) {
                 //update van de bestaande award
                 Award.updateAwardFromHousehold(body, function (body) {
-                    console.log(body);
                     res.json(body);
                     res.end();
                 })
             } else {
                 //nieuwe award voor huishouden invoegen
                 Award.addAward(body, function (body) {
-                    console.log(body)
                     res.json(body);
                     res.end()
                 })
