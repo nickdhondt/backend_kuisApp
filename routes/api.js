@@ -369,17 +369,22 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
 
         Task.getTaskByID(receivedTask.id, function (originalTask) {
 
-            originalTask.done = receivedTask.done;
-            originalTask.finished_by = receivedTask.finished_by;
-            originalTask.finished_on = receivedTask.finished_on;
-
-            let finishedTask = new FinishedTask({
-                originalTask
+            let finishedTask = FinishedTask({
+                id: originalTask.id,
+                name: originalTask.name,
+                dueDate: originalTask.dueDate,
+                description: originalTask.description,
+                period: originalTask.period,
+                household_id: originalTask.household_id,
+                assigned_to: originalTask.assigned_to,
+                points: originalTask.points,
+                done: receivedTask.done,
+                finished_by: user.id,
+                finished_on: receivedTask.finished_on
             });
 
             finishedTask.save(function (err) {
                 if (err) return next(err);
-
 
                 //checked
                 if (receivedTask.done) {
@@ -396,13 +401,10 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
                     nextDue = moment(nextDue).add(originalTask.period, "day");
                     console.log(nextDue);
 
-                    //todo moet id niet task_id zijn?
-                    //dit is niet langer uniek hé, maar ik ken niks van mongo, dus het kan...
-
                     new FinishedTask({
                         id: originalTask.id,
                         name: originalTask.name,
-                        dueDate: originalTask.dueDate,
+                        dueDate: nextDue,
                         description: originalTask.description,
                         period: originalTask.period,
                         household_id: originalTask.household_id,
@@ -410,7 +412,7 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
                         points: originalTask.points,
                         done: false,
                         finished_by: null,
-                        finished_on: originalTask.finished_on
+                        finished_on: receivedTask.finished_on
                     }).save(function (err) {
 
                     });
