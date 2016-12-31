@@ -16,7 +16,8 @@ let User = require("../models/User");
 let Household = require("../models/Household");
 let Award = require("../models/Award");
 let Task = require("../models/Task");
-let getUser = require("../models/getUser");
+
+let repo = require("../repo/repo");
 
 let moment = require("moment");
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
@@ -54,17 +55,6 @@ router.get('/', function (req, res) {
     res.end();
 });
 
-router.get('/user/:user', function (req, res, next) {
-
-
-    getUser.getUserByUIDBart("yNk23UJPeQRsCdLvYQKKHonIzFa2", (user) => {
-
-        res.json(user);
-        res.end();
-
-    });
-});
-
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
@@ -77,7 +67,7 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
         return next(err);
     });
 
-    getUser.getUserByUIDBart(user, (user) => {
+    repo.getUserByUIDBart(user, (user) => {
 
         res.json(user);
         res.end();
