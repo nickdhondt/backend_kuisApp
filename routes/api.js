@@ -549,16 +549,19 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
 
 });
 
-router.post('/addaward', function (req, res, next) {
+router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
 
-    User.getUserByUID("5QGiaPssNbeQEYq2XRuEYGMPIa13", function (user) {
+    console.log(body);
+
+    User.getUserByUID(res.locals.uid, function (user) {
         body.creator_id = user.id;
         body.household_id = user.household_id;
         Award.countAwardsFromHousehold(user.household_id, function (rows) {
+
             if (rows[0].awardsCount > 0) {
                 //update van de bestaande award
                 Award.updateAwardFromHousehold(body, function (body) {

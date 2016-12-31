@@ -11,24 +11,41 @@ import {User} from "../../../../models/user.model";
 })
 export class AwardComponent implements OnInit {
 
-    currentaward:Award;
+    //currentaward:Award;
     @Input()award:Award;
-    @Input() user: User
-    @Output() showDetail = new EventEmitter();
-    @Output()showNew = new EventEmitter();
+    @Input() users: User[];
+
+    // @Output() showDetail = new EventEmitter();
+    // @Output()showNew = new EventEmitter();
+
+    @Output() addAwardToHousehold = new EventEmitter();
+
     showDialogAward: boolean=false;
     showDialogNewAward:boolean=false;
-    showDialog:boolean=false;
-    showNewAwardDialog:boolean=false;
+    //showDialog:boolean=false;
+    //showNewAwardDialog:boolean=false;
+
+    user: User;
 
     constructor() {
     }
 
     ngOnInit() {
+        for (let user in this.users) {
+            if (this.users[user].id == this.award.creator_id) {
+                console.log(this.users[user].name);
+                this.user = this.users[user];
+            }
+        }
     }
 
+    receiveAwardfromDialog(award) {
+        this.award = award;
+        this.addAwardToHousehold.emit(award);
+    }
 
-
-
-
+    // private user(id:number) {
+    //
+    //
+    // }
 }

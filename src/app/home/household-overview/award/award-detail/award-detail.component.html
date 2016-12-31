@@ -1,32 +1,27 @@
 <div [@dialog] *ngIf="visible" class="card dialog" >
   <!--<ng-content></ng-content>-->
     <div class="card-content">
-    <span class="card-title center">Award of the month</span>
-      <div class="row">
+        <span class="card-title center">{{award.name}}</span>
+        <div class="row no-margin">
           <form class="col s12">
-                <div class="row">
-                      <div class="input-field col s6">
-                        <input value="{{award.name}}" id="award_name" type="text" class="" readonly>
-                        <label for="award_name" class="active">Award Name</label>
-                      </div>
-                       <div class="input-field col s6 ">
+              <div class="row no-margin">
+
+                  <div class="input-field col s12 l9">
                             <input value="{{award.description}}" id="award_description" type="text" class="" readonly  >
                             <label for="award_description" class="active">Description</label>
                        </div>
-                    <div class="input-field col s6 offset-s3" >
-                        <input  value="" id="award_created_by" type="text" class=""  readonly  >
+                  <div class="input-field col s12 l3">
+                      <input value="{{user.name}}" id="award_created_by" type="text" class="" readonly>
                         <label for="award_created_by" class="active">Created By</label>
                     </div>
-
-
                 </div>
           </form>
     </div>
   </div>
-  <div class="card-action">
-      <a  (click)="close()" class="right"  aria-label="Save" style="cursor: default; margin-bottom: 10px">close</a>
+    <!--<div class="card-action">-->
+    <!--<a  (click)="close()" class="right"  aria-label="Save" style="cursor: default; margin-bottom: 10px">close</a>-->
 
-  </div>
+    <!--</div>-->
 </div>
 
 <div *ngIf="visible" class="overlay" (click)="close()"></div>

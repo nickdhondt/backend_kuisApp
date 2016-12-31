@@ -15,7 +15,9 @@
 
     </div>
 
-    <app-award [(award)]="household.award"  (click)="toggleDialog()"></app-award>
+    <app-award [(award)]="household.award"
+               [(users)]="household.users"
+               (addawardtohousehold)="addAwardToHousehold($event)"></app-award>
 
 </div>
 
@@ -38,5 +40,5 @@
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<app-award-detail *ngIf="household.award !== null" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>
-<app-new-award (awardAdded)="addAwardToHousehold($event)" [(visible)]="showDialogNewAward"></app-new-award>
+<!--<app-award-detail *ngIf="household.award !== null" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>-->
+<!--<app-new-award (awardAdded)="addAwardToHousehold($event)" [(visible)]="showDialogNewAward"></app-new-award>-->

@@ -1,2 +1,18 @@
-<p *ngIf="award" class="center" (click)="showDialog=!showDialog;currentaward=award">{{award.name}}</p>
-<p *ngIf="!award" class="center materialize-red-text" (click)="showNewAwardDialog=!showNewAwardDialog">Set an award for this month</p>
+<p *ngIf="award" [hidden]="showDialogAward"
+   class="center"
+   (click)="showDialogAward=!showDialogAward;currentaward=award">{{award.name}}</p>
+
+<p *ngIf="!award" [hidden]="showDialogNewAward"
+   class="center materialize-red-text"
+   (click)="showDialogNewAward=!showDialogNewAward">Set an award for this month</p>
+
+
+<app-award-detail
+        *ngIf="award !== null"
+        [(visible)]="showDialogAward"
+        [(award)]="award"
+        [user]="user"></app-award-detail>
+
+<app-new-award
+        (awardAdded)="receiveAwardfromDialog($event)"
+        [(visible)]="showDialogNewAward"></app-new-award>
