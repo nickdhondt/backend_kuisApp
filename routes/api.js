@@ -16,6 +16,7 @@ let User = require("../models/User");
 let Household = require("../models/Household");
 let Award = require("../models/Award");
 let Task = require("../models/Task");
+let getUser = require("../models/getUser");
 
 let moment = require("moment");
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
@@ -53,6 +54,18 @@ router.get('/', function (req, res) {
     res.end();
 });
 
+router.get('/user/:user', function (req, res, next) {
+
+
+    getUser.getUserByUIDBart("yNk23UJPeQRsCdLvYQKKHonIzFa2", (user) => {
+
+        res.json(user);
+        res.end();
+
+    });
+});
+
+
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
     //do not remove! req.params nodig voor redirect
@@ -64,73 +77,83 @@ router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) 
         return next(err);
     });
 
-    User.getUserByUID(user, function (user) {
-        if (user !== undefined && user.household_id !== null) {
-            Household.getHouseholdByID(user.household_id, user, (user, household) => {
-                user.household = household;
-                // TODO: haal stats op
-                let statsTasks = {
-                    countFinishedTasks: 672,
-                    countTotalScore: 5728,
-                    countTasks: 52,
-                    mostPopularTask: "Name of task"
-                };
+    getUser.getUserByUIDBart(user, (user) => {
 
-                let statsAwards = {
-                    countFinishedAwards: 65,
-                    mostAwardsWon: "User",
-                    lastAward: "Name of award",
-                    lastAwardWonBy: "User or collection of users"
-                };
+        res.json(user);
+        res.end();
 
-                user.household = Object.assign(user.household, statsTasks, statsAwards);
+    });
 
-                Task.getTasksByHouseholdID(household.id, user, (user, tasks) => {
-                    user.household.tasks = tasks;
-                    User.getUsersByHouseholdID(user.household_id, user, (user, users) => {
-                        user.household.users = users;
-                        Task.getTasksTodoByHouseholdID(user.household_id, 7, user, (user, tasksTodo) => {
-                            user.household.taskstodo = tasksTodo;
-                            Award.getAwardByHouseholdID(user.household_id, user, (user, award) => {
-
-
-                                if (award !== undefined) {
-                                    let awardTerm = "day"; // Change to "month" for production
-
-                                    let awardDate = moment(award.month, "YYYY-MM-DD");
-                                    let now = moment().subtract(1, awardTerm);
-
-                                    award.month = moment(award.month).format("YYYY-MM-DD");
-
-                                    if (awardDate.isBefore(now)) {
-                                        // TODO: verhuis award naar mongo https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L65
-
-                                        // process.emit("award-winner", winnerID);
-
-                                        Award.deleteAwardByHouseholdID(user.household.id);
-
-                                        award = null;
-                                    }
-
-                                    user.household.award = award;
-
-                                    res.json(user);
-                                    res.end();
-                                } else {
-                                    user.household.award = null;
-                                    res.json(user);
-                                    res.end();
-                                }
-                            })
-                        })
-                    });
-                })
-            })
-        } else {
-            res.json(user);
-            res.end();
-        }
-    })
+    // User.getUserByUID(user, function (user) {
+    //
+    //     if (user !== undefined && user.household_id !== null) {
+    //         Household.getHouseholdByID(user.household_id, user, (user, household) => {
+    //             user.household = household;
+    //             // TODO: haal stats op
+    //             let statsTasks = {
+    //                 countFinishedTasks: 672,
+    //                 countTotalScore: 5728,
+    //                 countTasks: 52,
+    //                 mostPopularTask: "Name of task"
+    //             };
+    //
+    //             let statsAwards = {
+    //                 countFinishedAwards: 65,
+    //                 mostAwardsWon: "User",
+    //                 lastAward: "Name of award",
+    //                 lastAwardWonBy: "User or collection of users"
+    //             };
+    //
+    //             user.household = Object.assign(user.household, statsTasks, statsAwards);
+    //
+    //             Task.getTasksByHouseholdID(household.id, user, (user, tasks) => {
+    //                 user.household.tasks = tasks;
+    //                 User.getUsersByHouseholdID(user.household_id, user, (user, users) => {
+    //                     user.household.users = users;
+    //                     Task.getTasksTodoByHouseholdID(user.household_id, 7, user, (user, tasksTodo) => {
+    //                         user.household.taskstodo = tasksTodo;
+    //                         Award.getAwardByHouseholdID(user.household_id, user, (user, award) => {
+    //
+    //
+    //                             if (award !== undefined) {
+    //                                 let awardTerm = "day"; // Change to "month" for production
+    //
+    //                                 let awardDate = moment(award.month, "YYYY-MM-DD");
+    //                                 let now = moment().subtract(1, awardTerm);
+    //
+    //                                 award.month = moment(award.month).format("YYYY-MM-DD");
+    //
+    //                                 if (awardDate.isBefore(now)) {
+    //                                     // TODO: verhuis award naar mongo https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L65
+    //
+    //                                     // process.emit("award-winner", winnerID);
+    //
+    //                                     Award.deleteAwardByHouseholdID(user.household.id);
+    //
+    //                                     Household.resetScores(household);
+    //
+    //                                     award = null;
+    //                                 }
+    //
+    //                                 user.household.award = award;
+    //
+    //                                 res.json(user);
+    //                                 res.end();
+    //                             } else {
+    //                                 user.household.award = null;
+    //                                 res.json(user);
+    //                                 res.end();
+    //                             }
+    //                         })
+    //                     })
+    //                 });
+    //             })
+    //         })
+    //     } else {
+    //         res.json(user);
+    //         res.end();
+    //     }
+    // })
 });
 
 router.post('/adduser', firebaseAuthenticator, function (req, res, next) {

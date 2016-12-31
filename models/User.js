@@ -3,6 +3,10 @@ let emitter = new (require('events').EventEmitter)();
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
+let Award = require("./Award");
+let Task = require("./Task");
+let Household = require("./Household");
+
 class User {
   static getUserByUID(uid, cb) {
     conn.query("select * from `users` where `uid` = ? limit 1", [uid],
@@ -12,7 +16,8 @@ class User {
       })
   }
 
-  static getUsersByHouseholdID(id, obj, cb) {
+
+    static getUsersByHouseholdID(id, obj, cb) {
     conn.query("select * from `users` where `household_id` = ? order by `id` asc", [id],
       function (err, rows, fields) {
         if (err) process.emit("mysqlError", err);
@@ -21,7 +26,8 @@ class User {
 
   }
 
-  static updateUser(user, cb){
+
+    static updateUser(user, cb){
       let post = [
           user.email,
           user.household_id,

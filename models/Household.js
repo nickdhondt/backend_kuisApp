@@ -1,6 +1,9 @@
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 let Award = require("./Award");
+let User = require("./User");
+let Task = require("./Task");
+
 
 class Household {
     static getHouseholdByID(id, obj, cb) {
@@ -21,6 +24,13 @@ class Household {
             });
     }
 
+    static resetScores(household, cb) {
+        conn.query("update `users` set `score` = 0 where `household_id` = ?", [household.id],
+            function (err, res) {
+                if (err) process.emit("mysqlError", err);
+                else cb();
+            });
+    }
 
     static getHouseholdByUID(uid, cb) {
         conn.query(
@@ -38,6 +48,7 @@ class Household {
                 }
             });
     }
+
 
     static getUsersbyHousehold(household, cb) {
         conn.query(

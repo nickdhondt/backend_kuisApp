@@ -36,6 +36,7 @@ const myFirebaseAuthConfig = {
         AppComponent,
         LoginComponent,
         NotFoundComponent,
+
     ],
     imports: [
         BrowserModule,
