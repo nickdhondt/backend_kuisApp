@@ -642,7 +642,7 @@ var HouseholdComponent = (function () {
             selector: 'app-household',
             template: __webpack_require__(862),
             styles: [__webpack_require__(826)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], HouseholdComponent);
     return HouseholdComponent;
@@ -1927,7 +1927,7 @@ var AwardComponent = (function () {
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_award_model__["a" /* Award */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__models_award_model__["a" /* Award */]) === 'function' && _a) || Object)
     ], AwardComponent.prototype, "award", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Array)
     ], AwardComponent.prototype, "users", void 0);
     __decorate([
@@ -2069,7 +2069,6 @@ var HouseholdOverviewComponent = (function () {
         this.authenticatedUserUID = auth.uid;
         this.fbUser = auth.authState.auth;
     }
-
     // toggleDialog() {
     //     if (this.household.award !== null) this.showDialogAward=!this.showDialogAward;
     //     else this.showDialogNewAward=!this.showDialogNewAward;
@@ -3099,14 +3098,14 @@ module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>
 /***/ 856:
 /***/ function(module, exports) {
 
-        module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n    <span class=\"card-title center\">{{award.name}}</span>\r\n      <div class=\"row no-margin\">\r\n          <form class=\"col s12\">\r\n                <div class=\"row no-margin\">\r\n\r\n                       <div class=\"input-field col s12 l9\">\r\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\r\n                            <label for=\"award_description\" class=\"active\">Description</label>\r\n                       </div>\r\n                    <div class=\"input-field col s12 l3\" >\r\n                        <input  value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\"  readonly  >\r\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\r\n                    </div>\r\n                </div>\r\n          </form>\r\n    </div>\r\n  </div>\r\n  <!--<div class=\"card-action\">-->\r\n      <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\r\n\r\n  <!--</div>-->\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+        module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">{{award.name}}</span>\r\n        <div class=\"row no-margin\">\r\n          <form class=\"col s12\">\r\n              <div class=\"row no-margin\">\r\n\r\n                  <div class=\"input-field col s12 l9\">\r\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\r\n                            <label for=\"award_description\" class=\"active\">Description</label>\r\n                       </div>\r\n                  <div class=\"input-field col s12 l3\">\r\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\r\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\r\n                    </div>\r\n                </div>\r\n          </form>\r\n    </div>\r\n  </div>\r\n    <!--<div class=\"card-action\">-->\r\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\r\n\r\n    <!--</div>-->\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 857:
 /***/ function(module, exports) {
 
-        module.exports = "\r\n\r\n<p *ngIf=\"award\" [hidden]=\"showDialogAward\"\r\n   class=\"center\"\r\n   (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</p>\r\n\r\n<p *ngIf=\"!award\" [hidden]=\"showDialogNewAward\"\r\n   class=\"center materialize-red-text\"\r\n   (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</p>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award !== null\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\" ></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+        module.exports = "<p *ngIf=\"award\" [hidden]=\"showDialogAward\"\r\n   class=\"center\"\r\n   (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</p>\r\n\r\n<p *ngIf=\"!award\" [hidden]=\"showDialogNewAward\"\r\n   class=\"center materialize-red-text\"\r\n   (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</p>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award !== null\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\"></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
@@ -3141,7 +3140,7 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 862:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\n\n    <div class=\"row\" *ngIf=\"user\">\n        <ul>\n            <li>{{user.household.countFinishedTasks}}</li>\n            <li>{{user.household.countTotalScore}}</li>\n            <li>{{user.household.mostPopularTask}}</li>\n            <li>{{user.household.tasks.length}}</li>\n        </ul>\n\n    </div>\n</div>"
+        module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\n\n    <div class=\"row\" *ngIf=\"user && user.household\">\n        <ul>\n            <li>{{user.household.countFinishedTasks}}</li>\n            <li>{{user.household.countTotalScore}}</li>\n            <li>{{user.household.mostPopularTask}}</li>\n            <li>{{user.household.tasks.length}}</li>\n        </ul>\n\n    </div>\n</div>"
 
 /***/ },
 
