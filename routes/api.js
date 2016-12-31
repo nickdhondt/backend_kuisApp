@@ -71,15 +71,15 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
     //do not remove! req.params nodig voor redirect
-    let user = res.locals.uid | req.params.user;
+    let uid = res.locals.uuid || req.params.user;
 
-    console.log(user);
+    console.log(uid);
 
     process.on("mysqlError", (err) => {
         return next(err);
     });
 
-    repo.getUserByUIDBart(user, (user) => {
+    repo.getUserByUIDBart(uid, (user) => {
 
         res.json(user);
         res.end();
