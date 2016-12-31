@@ -14,7 +14,10 @@ export class AwardComponent implements OnInit {
     currentaward:Award;
     @Input()award:Award;
     @Input() user: User
-    @Output()showDetail = new EventEmitter();
+    @Output() showDetail = new EventEmitter();
+    @Output()showNew = new EventEmitter();
+    showDialogAward: boolean=false;
+    showDialogNewAward:boolean=false;
     showDialog:boolean=false;
 
     constructor() {

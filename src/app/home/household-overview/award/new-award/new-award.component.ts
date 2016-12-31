@@ -1,18 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import {Input} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, trigger, transition, style, animate, EventEmitter} from '@angular/core';
+import {Input, Output} from "@angular/core/src/metadata/directives";
 
 @Component({
   selector: 'app-new-award',
   templateUrl: './new-award.component.html',
-  styleUrls: ['./new-award.component.scss']
+  styleUrls: ['./new-award.component.scss'],
+  animations: [
+    trigger('dialog', [
+      transition('void => *', [
+        style({transform: 'scale3d(.3, .3, .3)'}),
+        animate(100)
+      ]),
+      transition('* => void', [
+        animate(100, style({transform: 'scale3d(.0, .0, .0)'}))
+      ])
+    ])
+  ]
 })
 export class NewAwardComponent implements OnInit {
 
   showDialogNewAward:boolean=false;
   @Input() visible:boolean;
+  @Output() visibleChange: EventEmitter<boolean>= new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
+  }
+  close(){
+    this.visible = false;
+    this.visibleChange.emit(this.visible);
+
   }
 
 }

@@ -17,17 +17,16 @@ export class HouseholdOverviewComponent implements OnInit {
     @Input() household: Household;
     @Input() users:User[]
     showDialog: boolean = false;
-    selectedUser: User;
-    awardcreator:User;
     authenticatedUserUID: string;
-    showDialogAward: boolean=false;
-    showDialogNewAward:boolean=false;
+    user : firebase.User
+
     // loading: boolean = true;
     //merge comment
 
     constructor(private apiService: ApiService, private auth: AuthService) {
 
         this.authenticatedUserUID = auth.uid;
+        this.user= auth.authState.auth;
 
     }
 
@@ -35,16 +34,7 @@ export class HouseholdOverviewComponent implements OnInit {
         // this.getHousehold();
 
     }
-     finduser(id:number){
-        for(let user in this.users){
-            if(this.users[user].id == id){
-                this.awardcreator = this.users[user];
-                console.log(this.awardcreator);
-                return this.awardcreator
-            }
-        }
-        return new User()
-    }
+
 
 
     private getHousehold(): void {
