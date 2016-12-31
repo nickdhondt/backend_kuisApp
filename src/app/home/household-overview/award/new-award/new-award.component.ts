@@ -1,5 +1,6 @@
 import {Component, OnInit, trigger, transition, style, animate, EventEmitter} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
+import {Award} from "../../../../../models/award.model";
 
 @Component({
   selector: 'app-new-award',
@@ -19,6 +20,12 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 })
 export class NewAwardComponent implements OnInit {
 
+  //
+  // @Input name:string;
+  // @Input description:string;
+
+
+
   showDialogNewAward:boolean=false;
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean>= new EventEmitter<boolean>();
@@ -29,6 +36,12 @@ export class NewAwardComponent implements OnInit {
   close(){
     this.visible = false;
     this.visibleChange.emit(this.visible);
+
+  }
+  save(){
+    this.visible = false;
+    this.visibleChange.emit(this.visible);
+
 
   }
 
