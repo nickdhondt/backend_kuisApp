@@ -55,6 +55,18 @@ router.get('/', function (req, res) {
     res.end();
 });
 
+router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    User.getUserByUID(res.locals.uid, (user) => {
+        res.json(user);
+        res.end();
+    })
+
+});
 
 router.get('/userbyuid/:user', firebaseAuthenticator, function (req, res, next) {
 
