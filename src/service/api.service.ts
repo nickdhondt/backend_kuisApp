@@ -179,26 +179,36 @@ export class ApiService {
                     {headers: this.headers})
                     .map(res => res.json())
                     .catch(ApiService.handleError)
-                    .subscribe(data => {}/*console.log(data)*/);
+                    .subscribe(data => {
+                    }/*console.log(data)*/);
             })
         });
 
     }
 
-    public setAward(name:String, description:String) {
-        this.auth.token.then(token => {
-            this.headers.set('Firebase-ID-Token', token);
+    public setAward(name: String, description: String) {
+        let tokenPromise = new Promise<User>((resolve, reject) => {
 
-            let month = moment().format("YYYY-MM-DD");
+            this.auth.token.then(token => {
+                this.headers.set('Firebase-ID-Token', token);
 
-            return this._http.post(
-                this.actionUrl + "addaward",
-                {month, name, description},
-                {headers: this.headers})
-                .map(res => res.json())
-                .catch(ApiService.handleError)
-                .subscribe(data => {}/*console.log(data)*/);
-        })
+                let month = moment().format("YYYY-MM-DD");
+
+                return this._http.post(
+                    this.actionUrl + "addaward",
+                    {month, name, description},
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+
+        });
+
+        return Observable.fromPromise(tokenPromise);
     }
 
     public addFinishedAward() {
@@ -219,18 +229,18 @@ export class ApiService {
 
     }
 
-    public addAward(description:string,name:string,month:string,winner_id:number,creator_id:number,household_id:number):Observable<Award>{
+    public addAward(description: string, name: string, month: string, winner_id: number, creator_id: number, household_id: number): Observable<Award> {
 
-        let tokenPromise = new Promise<Award>((resolve,reject)=>{
-            this.auth.token.then(token=>{
-                this.headers.set("Firebase-ID-Token",token);
+        let tokenPromise = new Promise<Award>((resolve, reject) => {
+            this.auth.token.then(token => {
+                this.headers.set("Firebase-ID-Token", token);
                 return this._http.post(
                     this.actionUrl + "addaward",
-                    {description,name,month,winner_id,creator_id,household_id},
-                    {headers : this.headers})
-                    .map(res=>res.json())
+                    {description, name, month, winner_id, creator_id, household_id},
+                    {headers: this.headers})
+                    .map(res => res.json())
                     .catch(ApiService.handleError)
-                    .subscribe(data=>console.log(" Add award Data: " +data))
+                    .subscribe(data => console.log(" Add award Data: " + data))
             })
         });
         return Observable.fromPromise(tokenPromise);

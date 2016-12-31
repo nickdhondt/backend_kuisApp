@@ -20,6 +20,7 @@ import {ApiService} from "../../../../../service/api.service";
 export class NewAwardComponent implements OnInit {
     @Input() visible: boolean;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() awardAdded: EventEmitter<any>= new EventEmitter<any>();
 
     private name: String = "";
     private description: String = "";
@@ -37,7 +38,10 @@ export class NewAwardComponent implements OnInit {
 
     set() {
         if (this.name !== "") {
-            this.apiService.setAward(this.name, this.description);
+            this.apiService.setAward(this.name, this.description).subscribe((award) => {
+                // TODO: award weerkeren naar household overview
+                this.awardAdded.emit(award);
+            });
             this.close();
         }
     }
