@@ -20,10 +20,8 @@ import {Award} from "../../../../../models/award.model";
 })
 export class NewAwardComponent implements OnInit {
 
-  //
-  // @Input name:string;
-  // @Input description:string;
-
+  awardname:string;
+  description:string;
 
 
   showDialogNewAward:boolean=false;
@@ -36,11 +34,14 @@ export class NewAwardComponent implements OnInit {
   close(){
     this.visible = false;
     this.visibleChange.emit(this.visible);
+    this.description="";
+    this.awardname="";
 
   }
   save(){
     this.visible = false;
     this.visibleChange.emit(this.visible);
+
 
 
   }

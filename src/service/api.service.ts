@@ -7,6 +7,7 @@ import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
 import enumerate = Reflect.enumerate;
+import {Award} from "../models/award.model";
 
 
 @Injectable()
@@ -185,6 +186,23 @@ export class ApiService {
             })
         });
 
+    }
+
+    public addAward(description:string,name:string,month:string,winner_id:number,creator_id:number,household_id:number):Observable<Award>{
+
+        let tokenPromise = new Promise<Award>((resolve,reject)=>{
+            this.auth.token.then(token=>{
+                this.headers.set("Firebase-ID-Token",token);
+                return this._http.post(
+                    this.actionUrl + "addaward",
+                    {description,name,month,winner_id,creator_id,household_id},
+                    {headers : this.headers})
+                    .map(res=>res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(data=>console.log(" Add award Data: " +data))
+            })
+        });
+        return Observable.fromPromise(tokenPromise);
     }
 }
 
