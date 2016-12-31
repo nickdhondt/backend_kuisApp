@@ -1,0 +1,22 @@
+<div [@dialog] *ngIf="visible" class="card dialog">
+    <div class="card-content">
+        <span class="card-title center">New award of the month</span>
+        <div class="row no-margin">
+            <form class="col s12" #newAwardForm="ngForm">
+                <div class="row no-margin">
+                    <div class="input-field col s12 l3">
+                        <input [(ngModel)]="name" id="award_name" name="name" type="text" class="no-margin">
+                        <label for="award_name" class="active">Award Name</label>
+                    </div>
+                    <div class="input-field col s12 l7">
+                        <input [(ngModel)]="description" name="description" id="award_description" type="text" class="no-margin">
+                        <label for="award_description" class="active">Description</label>
+                    </div>
+                    <div class="input-field col s12 l2">
+                        <a class="waves-effect waves-light red btn" (click)="set()">Set</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
