@@ -56,6 +56,40 @@ router.get('/', function (req, res) {
     res.end();
 });
 
+router.get('/householdstats', function (req, res, next) {
+
+
+    FinishedTask
+        .aggregate([
+            {$match: {household_id: 37, done: true}},
+            {
+                $group: {
+                    _id: '$id',
+                    TotalScore: {$sum: "$points"},
+                    count: {$sum: 1},
+                    name: {$first: "$name"}
+                }
+            },
+            {$sort: {"count": -1}},
+            {
+                $group: {
+                    _id: "stats",
+                    mostpopularTask: {$first: "$name"},
+                    countFinishedTasks: {$sum: "$count"},
+                    countTotalScore: {$sum: "$TotalScore"}
+                }
+            }
+        ])
+        .exec(function (err, tasks) {
+            if (err) next(err);
+
+            res.json(tasks);
+            res.end();
+        })
+
+
+});
+
 router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
     process.on("mysqlError", (err) => {
@@ -367,6 +401,8 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
 
         Task.getTaskByID(receivedTask.id, function (originalTask) {
 
+            let points = (receivedTask.done ? originalTask.points : 0 );
+
             let finishedTask = FinishedTask({
                 id: originalTask.id,
                 name: originalTask.name,
@@ -375,7 +411,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                 period: originalTask.period,
                 household_id: originalTask.household_id,
                 assigned_to: originalTask.assigned_to,
-                points: originalTask.points,
+                points: points,
                 done: receivedTask.done,
                 finished_by: user.id,
                 finished_on: receivedTask.finished_on
@@ -406,7 +442,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                         period: originalTask.period,
                         household_id: originalTask.household_id,
                         assigned_to: originalTask.assigned_to,
-                        points: originalTask.points,
+                        points: points,
                         done: false,
                         finished_by: null,
                         finished_on: receivedTask.finished_on

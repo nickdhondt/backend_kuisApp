@@ -29,6 +29,33 @@ class getUser {
         })
     }
 
+    static getTaskStatsFromMongo(household_id, cb) {
+
+        // TODO: haal stats op uit sql
+        FinishedTask
+            .aggregate([
+                {$match: {household_id: household_id, done: true}},
+                {
+                    $group: {
+                        _id: '$id',
+                        TotalScore: {$sum: "$points"},
+                        count: {$sum: 1},
+                        name: {$first: "$name"}
+                    }
+                },
+                {$sort: {"count": -1}},
+                {
+                    $group: {
+                        _id: "stats",
+                        mostpopularTask: {$first: "$name"},
+                        countFinishedTasks: {$sum: "$count"},
+                        countTotalScore: {$sum: "$TotalScore"}
+                    }
+                }
+            ])
+            .exec(cb(err, stats));
+
+    }
 
     static addHouseholdToUser(user, cb) {
         conn.query("select * from `households` where `id` = ? limit 1", [user.household_id],
@@ -38,24 +65,24 @@ class getUser {
 
                 else {
 
-                    // TODO: haal stats op
-                    let statsTasks = {
-                        countFinishedTasks: 672,
-                        countTotalScore: 5728,
-                        countTasks: 52,
-                        mostPopularTask: "Name of task"
-                    };
+                    getUser.getTaskStatsFromMongo(rows[0].id, (err, statsTasks) => {
 
-                    let statsAwards = {
-                        countFinishedAwards: 65,
-                        mostAwardsWon: "User",
-                        lastAward: "Name of award",
-                        lastAwardWonBy: "User or collection of users"
-                    };
+                        if (err) next(err);
 
-                    user.household = Object.assign(rows[0], statsTasks, statsAwards);
+                        statsTasks.counttasks = 1337;
 
-                    getUser.addUsersToHouseholdToUser(user, cb);
+                        let statsAwards = {
+                            countFinishedAwards: 65,
+                            mostAwardsWon: "User",
+                            lastAward: "Name of award",
+                            lastAwardWonBy: "User or collection of users"
+                        };
+
+                        user.household = Object.assign(rows[0], statsTasks, statsAwards);
+
+                        getUser.addUsersToHouseholdToUser(user, cb);
+
+                    });
                 }
 
             })
