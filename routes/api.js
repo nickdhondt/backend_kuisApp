@@ -373,23 +373,28 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
             originalTask.finished_by = receivedTask.finished_by;
             originalTask.finished_on = receivedTask.finished_on;
 
-            let finishedTask = new FinishedTask(originalTask);
+            let finishedTask = new FinishedTask({
+                originalTask
+            });
 
             finishedTask.save(function (err) {
                 if (err) return next(err);
 
 
+                //checked
                 if (receivedTask.done) {
                     user.score += originalTask.points;
                     User.updateUser(user, () => {
                     });
                 }
 
+                //checked
                 let nextDue = moment(originalTask.dueDate).add(originalTask.period, "day");
 
                 while (nextDue.isBefore(moment())) {
 
                     nextDue = moment(nextDue).add(originalTask.period, "day");
+                    console.log(nextDue);
 
                     //todo moet id niet task_id zijn?
                     //dit is niet langer uniek hé, maar ik ken niks van mongo, dus het kan...
@@ -404,15 +409,17 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
                         assigned_to: originalTask.assigned_to,
                         points: originalTask.points,
                         done: false,
-                        finished_by: finished_by,
-                        finished_on: finished_on
+                        finished_by: null,
+                        finished_on: originalTask.finished_on
                     }).save(function (err) {
+
                     });
                 }
 
                 originalTask.dueDate = nextDue.format("YYYY-MM-DD");
 
-                if (originalTask.assinged_to != null) {
+                //checked
+                if (originalTask.assigned_to != null) {
 
                     User.getUsersByHouseholdID(originalTask.household_id, null, function (obj, users) {
 
@@ -460,12 +467,9 @@ router.post('/finishtasknew', [checkTaskFormat], function (req, res, next) {
                         res.end();
                     })
                 }
-
             });
         });
     });
-
-
 });
 
 router.post('/finishtask', firebaseAuthenticator, function (req, res, next) {

@@ -136,9 +136,10 @@ class getUser {
 
                             // process.emit("award-winner", winnerID);
 
-                            Award.deleteAwardByHouseholdID(user.household.id);
+                            Award.deleteAwardByHouseholdID(userwithhousehold.household.id);
 
-                            Household.resetScores(household);
+                            Household.resetScores(userwithhousehold.household, () => {
+                            });
 
                             award = null;
                         }
