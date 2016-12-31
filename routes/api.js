@@ -488,26 +488,27 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
 });
 
 router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) => {
-        return next(err);
-    });
-    let body = req.body;
-    let household_id = body.household_id;
-    Award.countAwardsFromHousehold(household_id, function (rows) {
-        if (rows[0].awardsCount > 0) {
-            //update van de bestaande award
-            Award.updateAwardFromHousehold(body, function (body) {
-                res.json(body);
-                res.end();
-            })
-        } else {
-            //nieuwe award voor huishouden invoegen
-            Award.addAward(body, function (body) {
-                res.json(body);
-                res.end();
-            })
-        }
-    });
+    console.log(req);
+    // process.on("mysqlError", (err) => {
+    //     return next(err);
+    // });
+    // let body = req.body;
+    // let household_id = body.household_id;
+    // Award.countAwardsFromHousehold(household_id, function (rows) {
+    //     if (rows[0].awardsCount > 0) {
+    //         //update van de bestaande award
+    //         Award.updateAwardFromHousehold(body, function (body) {
+    //             res.json(body);
+    //             res.end();
+    //         })
+    //     } else {
+    //         //nieuwe award voor huishouden invoegen
+    //         Award.addAward(body, function (body) {
+    //             res.json(body);
+    //             res.end();
+    //         })
+    //     }
+    // });
 
 });
 

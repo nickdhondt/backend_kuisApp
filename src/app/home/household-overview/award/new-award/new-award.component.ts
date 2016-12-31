@@ -1,6 +1,11 @@
 import {Component, OnInit, trigger, transition, style, animate, EventEmitter} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {Award} from "../../../../../models/award.model";
+import * as firebase from 'firebase';
+import * as moment from "moment";
+import {User} from "../../../../../models/user.model";
+import {ApiService} from "../../../../../service/api.service";
+import {AuthService} from "../../../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-new-award',
@@ -27,7 +32,7 @@ export class NewAwardComponent implements OnInit {
   showDialogNewAward:boolean=false;
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean>= new EventEmitter<boolean>();
-  constructor() { }
+  constructor(private apiservice:ApiService,private authservice:AuthService) { }
 
   ngOnInit() {
   }
@@ -42,6 +47,10 @@ export class NewAwardComponent implements OnInit {
     this.visible = false;
     this.visibleChange.emit(this.visible);
 
+
+
+
+    // this.apiservice.addAward(this.description,this.awardname,moment().format("YYYY-MM-DD HH:mm:ss"),null,33,37)
 
 
   }
