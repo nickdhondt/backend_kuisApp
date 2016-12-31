@@ -50,7 +50,7 @@ class getUser {
                 {
                     $group: {
                         _id: "stats",
-                        mostpopularTask: {$first: "$name"},
+                        mostPopularTask: {$first: "$name"},
                         countFinishedTasks: {$sum: "$count"},
                         countTotalScore: {$sum: "$TotalScore"}
                     }
@@ -74,9 +74,6 @@ class getUser {
                 else {
 
                     getUser.getTaskStatsFromMongo(rows[0].id, (statsTasks) => {
-
-
-                        statsTasks.counttasks = 1337;
 
                         let statsAwards = {
                             countFinishedAwards: 65,

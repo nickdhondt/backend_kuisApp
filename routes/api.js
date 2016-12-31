@@ -103,7 +103,7 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/userbyuid/:fbUser', function (req, res, next) {
+router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
 
     //do not remove! req.params nodig voor redirect
     let uid = res.locals.uid || req.params.fbUser;
@@ -211,11 +211,14 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', function (req, res, next) {
+router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
+
+    //todo controleren of uid wel ingelogde user is
     let body = req.body;
+
     User.updateUser(body, function (user) {
         res.json(user);
         res.end();
