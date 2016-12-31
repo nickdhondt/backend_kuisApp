@@ -502,9 +502,17 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
         arr.push(item.points);
         response.push(arr);
     }
+    //console.log(response);
+    response.sort(function(a,b){
+        if(a[2] < b[2])
+            return -1;
+        if(a[2] > b[2])
+            return 1;
 
-    //sorteerfunctie moet nog gemaakt worden
+        return 0;
+    });
 
+    //console.log(response);
     let result = [];
     let period = response[0][2];
     let periodArr = [];
