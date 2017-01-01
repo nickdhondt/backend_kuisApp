@@ -35,6 +35,7 @@ import { NewAwardComponent } from './household-overview/award/new-award/new-awar
 import {SortUsersPipe} from "../../pipe/sort-users.pipe";
 import { NewHouseholdComponent } from './household/new-household/new-household.component';
 import { JoinHouseholdComponent } from './household/join-household/join-household.component';
+import { JoinHouseholdDetailComponent } from './household/join-household-detail/join-household-detail.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { JoinHouseholdComponent } from './household/join-household/join-househol
         SortUsersPipe,
         NewAwardComponent,
         NewHouseholdComponent,
-        JoinHouseholdComponent
+        JoinHouseholdComponent,
+        JoinHouseholdDetailComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule

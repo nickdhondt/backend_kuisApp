@@ -23,7 +23,7 @@ import {Household} from "../../../../models/household.model";
 export class JoinHouseholdComponent implements OnInit {
   private memberemail:string ="";
   private household:Household
-  private householdName:string;
+  showDialogJoin: boolean=false;
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(private apiservice:ApiService) { }
@@ -47,6 +47,8 @@ export class JoinHouseholdComponent implements OnInit {
         },
         error=>console.log(error));
     }
+    this.visible=false;
+    this.visibleChange.emit(this.visible);
 
 
   }
