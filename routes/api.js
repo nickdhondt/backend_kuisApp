@@ -663,16 +663,6 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
                 response.push(item);
             }
         }
-
-        let jsonresult = {};
-        //json maken
-        for(let item in response){
-            let json = {};
-            json['name'] = item[0];
-            json['description'] = item[1];
-        }
-
-        console.log(jsonresult);
         res.json({body: response});
         res.end();
     });
