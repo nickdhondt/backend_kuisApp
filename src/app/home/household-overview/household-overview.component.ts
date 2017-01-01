@@ -17,10 +17,10 @@ export class HouseholdOverviewComponent implements OnInit {
     @Input() household: Household;
     @Input() users: User[];
     showDialog: boolean = false;
+    showJoinHouseholdDialog:boolean=false
     selectedUser: User;
     authenticatedUserUID: string;
-    showDialogAward: boolean=false;
-    showDialogNewAward: boolean=false;
+
     fbUser : firebase.User;
 
     // loading: boolean = true;

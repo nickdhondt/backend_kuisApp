@@ -33,13 +33,12 @@
             <p></p>
         </div>
         <div class="card-action">
-            <a href="#">Find a household</a>
-            <a href="#">Create a household</a>
+            <a (click)="showJoinHouseholdDialog=!showJoinHouseholdDialog">Find a household</a>
+            <a >Create a household</a>
         </div>
     </div>
 </div>
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<!--<app-award-detail *ngIf="household.award !== null" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>-->
-<!--<app-new-award (awardAdded)="addAwardToHousehold($event)" [(visible)]="showDialogNewAward"></app-new-award>-->
+<app-join-household [(visible)]="showJoinHouseholdDialog"></app-join-household>
