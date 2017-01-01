@@ -33,6 +33,8 @@ import {TaskRowComponent} from "./all-tasks/tasklist/task-row/task-row.component
 import { AwardDetailComponent } from './household-overview/award/award-detail/award-detail.component';
 import { NewAwardComponent } from './household-overview/award/new-award/new-award.component';
 import {SortUsersPipe} from "../../pipe/sort-users.pipe";
+import { NewHouseholdComponent } from './household/new-household/new-household.component';
+import { JoinHouseholdComponent } from './household/join-household/join-household.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import {SortUsersPipe} from "../../pipe/sort-users.pipe";
         TaskRowComponent,
         AwardDetailComponent,
         SortUsersPipe,
-        NewAwardComponent
+        NewAwardComponent,
+        NewHouseholdComponent,
+        JoinHouseholdComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule
