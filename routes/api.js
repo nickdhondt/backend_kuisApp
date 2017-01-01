@@ -581,7 +581,6 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
 });
 
 router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
-
     let assignUsers = 7;
     if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
     let household = parseInt(req.params.household);
@@ -614,43 +613,69 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
         arr: []
     });
     //users ophalen
-    let assignedUserPos = 0;
-    for(let item of response) {
-        if (item[2] !== period) {
-            period = item[2];
-            result.push({
-                per: period,
-                arr: []
-            });
+
+    User.getUsersByHouseholdID(household, null, function (obj, users) {
+        let usersFromHousehld = [];
+        for(let user of users){
+            usersFromHousehld.push(user.id);
         }
-       if(result[0].per === period){
-           result[0].arr.push(item);
-       }else{
-           if(result[1].per === period){
-               result[1].arr.push(item);
-           }else{
-               result[2].arr.push(item);
-           }
-       }
-    }
 
-    //console.log(result);
-    response = [];
-    for(let periodGroup of result){
-        //console.log(periodGroup.arr[0]);
-        let number = periodGroup.arr.length;
-        let period = periodGroup.arr[0][2];
-        let assignedDate = new Date('Y-m-d');
-        let days = Math.round(period/number);
-        if(days === 0) days = 1;
-
-        for(let item of periodGroup.arr){
-            console.log(item);
+        let assignedUserPos = 0;
+        for(let item of response) {
+            if (item[2] !== period) {
+                period = item[2];
+                result.push({
+                    per: period,
+                    arr: []
+                });
+            }
+            if(result[0].per === period){
+                result[0].arr.push(item);
+            }else{
+                if(result[1].per === period){
+                    result[1].arr.push(item);
+                }else{
+                    result[2].arr.push(item);
+                }
+            }
         }
-    }
 
-    res.json({body: response});
-    res.end();
+        //console.log(result);
+        response = [];
+        for(let periodGroup of result){
+            //console.log(periodGroup.arr[0]);
+            let number = periodGroup.arr.length;
+            let period = periodGroup.arr[0][2];
+            let assignedDate = new Date().toISOString().split('T')[0];
+            let days = Math.round(period/number);
+            if(days === 0) days = 1;
+
+            for(let item of periodGroup.arr){
+                item.push(assignedDate);
+                item.push(household);
+                if(assignUsers === 7){
+                    item.push(usersFromHousehld[assignedUserPos]);
+                    assignedUserPos++;
+                    if(assignedUserPos === users.length){
+                        assignedUserPos = 0;
+                    }
+                }
+                response.push(item);
+            }
+        }
+
+        let jsonresult = {};
+        //json maken
+        for(let item in response){
+            let json = {};
+            json['name'] = item[0];
+            json['description'] = item[1];
+        }
+
+        console.log(jsonresult);
+        res.json({body: response});
+        res.end();
+    });
 });
 
 //af: steven
