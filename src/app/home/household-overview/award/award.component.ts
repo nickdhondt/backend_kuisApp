@@ -12,7 +12,7 @@ import {User} from "../../../../models/user.model";
 export class AwardComponent implements OnInit {
 
     //currentaward:Award;
-    @Input()award:Award;
+    @Input() award: Award;
     @Input() users: User[];
 
     // @Output() showDetail = new EventEmitter();
@@ -30,7 +30,7 @@ export class AwardComponent implements OnInit {
     constructor() {
     }
 
-    ngOnInit() {
+    private findUser() {
         for (let user in this.users) {
             if (this.users[user].id == this.award.creator_id) {
                 console.log(this.users[user].name);
@@ -39,8 +39,16 @@ export class AwardComponent implements OnInit {
         }
     }
 
+    ngOnInit() {
+
+        if (this.award.creator_id) this.findUser();
+
+        else this.award = null;
+    }
+
     receiveAwardfromDialog(award) {
         this.award = award;
+        this.findUser();
         this.addAwardToHousehold.emit(award);
     }
 

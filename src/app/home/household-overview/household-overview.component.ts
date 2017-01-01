@@ -3,6 +3,7 @@ import {ApiService} from "../../../service/api.service";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
 import {AuthService} from "../../../auth/services/auth.service";
+import {Award} from "../../../models/award.model";
 
 
 @Component({
@@ -39,6 +40,7 @@ export class HouseholdOverviewComponent implements OnInit {
 
     ngOnInit() {
 
+        if (!this.household.award) this.household.award = new Award();
     }
 
     addAwardToHousehold(award) {
