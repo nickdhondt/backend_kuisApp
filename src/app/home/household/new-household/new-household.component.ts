@@ -1,5 +1,6 @@
 import {Component, OnInit, EventEmitter,style,trigger,transition,animate} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
+import {ApiService} from "../../../../service/api.service";
 
 @Component({
   selector: 'app-new-household',
@@ -23,7 +24,7 @@ export class NewHouseholdComponent implements OnInit {
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit() {
   }
@@ -36,6 +37,7 @@ export class NewHouseholdComponent implements OnInit {
     if(this.householdName){
 
       //api call om household aan te maken
+      this.apiService.addHousehold(this.householdName);
       //Emitten van nieuwe household naar overview
       //afsluiten van de dialog
 

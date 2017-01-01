@@ -285,6 +285,24 @@ export class ApiService {
         })
       });
     }
+
+    public addHousehold(name:string){
+      let tokenPromise = new Promise((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set('Firebase-ID-Token', token);
+          return this._http.post(
+            this.actionUrl + "addhousehold",
+            {name},
+            {headers:this.headers})
+            .map(res=>res.json())
+            .catch(ApiService.handleError)
+            .subscribe(
+              data=>resolve(data),
+              err=>reject(err)
+            )
+        })
+      })
+    }
 }
 
 

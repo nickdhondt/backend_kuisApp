@@ -309,17 +309,19 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 //af: steven
 //controle door: Bart
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
-    process.on("mysqlError", (err) => {
-        return next(err);
-    });
-    let body = req.body;
 
-    Household.addHousehold(body, function (household) {
+    console.log("Addhousehold = " + req.body.name);
+    // process.on("mysqlError", (err) => {
+    //     return next(err);
+    // });
+    // let body = req.body;
+    //
+    // Household.addHousehold(body, function (household) {
+    //
+    //     res.json(household);
+    //     res.end();
 
-        res.json(household);
-        res.end();
-
-    })
+    // })
 });
 
 //af: bart
