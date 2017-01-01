@@ -40,7 +40,7 @@ export class HouseholdOverviewComponent implements OnInit {
 
     ngOnInit() {
 
-        if (!this.household.award) this.household.award = new Award();
+        if (this.household && !this.household.award) this.household.award = new Award();
     }
 
     addAwardToHousehold(award) {

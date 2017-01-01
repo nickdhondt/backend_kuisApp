@@ -1951,7 +1951,6 @@ var AwardComponent = (function () {
         this.showDialogAward = false;
         this.showDialogNewAward = false;
     }
-
     AwardComponent.prototype.findUser = function () {
         for (var user in this.users) {
             if (this.users[user].id == this.award.creator_id) {
@@ -2127,7 +2126,7 @@ var HouseholdOverviewComponent = (function () {
     //     else this.showDialogNewAward=!this.showDialogNewAward;
     // }
     HouseholdOverviewComponent.prototype.ngOnInit = function () {
-        if (!this.household.award)
+        if (this.household && !this.household.award)
             this.household.award = new __WEBPACK_IMPORTED_MODULE_4__models_award_model__["a" /* Award */]();
     };
     HouseholdOverviewComponent.prototype.addAwardToHousehold = function (award) {
@@ -3162,7 +3161,7 @@ module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>
 /***/ 857:
 /***/ function(module, exports) {
 
-        module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\r\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\r\n\r\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\r\n    <a  class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a></div>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\"></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+        module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\r\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\r\n\r\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\r\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\r\n</div>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\"></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
