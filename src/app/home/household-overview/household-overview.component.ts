@@ -17,7 +17,8 @@ export class HouseholdOverviewComponent implements OnInit {
     @Input() household: Household;
     @Input() users: User[];
     showDialog: boolean = false;
-    showJoinHouseholdDialog:boolean=false
+    showJoinHouseholdDialog:boolean=false;
+    showMakeHouseholdDialog:boolean=false;
     selectedUser: User;
     authenticatedUserUID: string;
 

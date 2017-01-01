@@ -34,7 +34,7 @@
         </div>
         <div class="card-action">
             <a (click)="showJoinHouseholdDialog=!showJoinHouseholdDialog">Find a household</a>
-            <a >Create a household</a>
+            <a  (click)="showMakeHouseholdDialog=!showMakeHouseholdDialog">Create a household</a>
         </div>
     </div>
 </div>
@@ -42,3 +42,4 @@
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
 <app-join-household (householdtoHouseholdComp)="receiveHousehold($event)" [(visible)]="showJoinHouseholdDialog"></app-join-household>
+<app-new-household [(visible)]="showMakeHouseholdDialog"></app-new-household>
