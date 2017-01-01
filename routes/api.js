@@ -267,6 +267,7 @@ router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res
         return next(err);
     });
 
+
     Household.getHouseholdByEmail(email, function (household) {
         res.json(household);
         res.end();
