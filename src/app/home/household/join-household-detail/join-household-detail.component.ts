@@ -1,6 +1,8 @@
 import {Component, OnInit, transition, trigger, style, animate, EventEmitter} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {Household} from "../../../../models/household.model";
+import {ApiService} from "../../../../service/api.service";
+import {AuthService} from "../../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-join-household-detail',
@@ -20,11 +22,14 @@ import {Household} from "../../../../models/household.model";
 })
 export class JoinHouseholdDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService:ApiService,private auth:AuthService) {
+    this.user = auth.authState.auth;
+  }
 
   @Input() household:Household;
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  private user:firebase.User;
 
   ngOnInit() {
   }
@@ -32,6 +37,13 @@ export class JoinHouseholdDetailComponent implements OnInit {
   close(){
     this.visible=false;
     this.visibleChange.emit(this.visible);
+  }
+
+  join(){
+    console.log("Join Household");
+
+    this.apiService.addUsertoHousehold(this.household.id,this.user.uid);
+
   }
 
 }

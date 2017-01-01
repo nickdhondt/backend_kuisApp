@@ -268,6 +268,23 @@ export class ApiService {
 
       return Observable.fromPromise(tokenPromise);
     }
+
+
+    public addUsertoHousehold(household_id:number, uid:string){
+      let tokenPromise = new Promise((resolve, reject) => {
+        this.auth.token.then(token => {
+          this.headers.set('Firebase-ID-Token', token);
+          return this._http.post(
+            this.actionUrl + "addusertohousehold",
+            {household_id,uid},
+            {headers: this.headers})
+            .map(res => res.json())
+            .catch(ApiService.handleError)
+            .subscribe(data => {
+            }/*console.log(data)*/);
+        })
+      });
+    }
 }
 
 

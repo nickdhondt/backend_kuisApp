@@ -29,6 +29,7 @@ export class JoinHouseholdComponent implements OnInit {
   constructor(private apiservice:ApiService) { }
 
   ngOnInit() {
+    this.memberemail="";
   }
 
   close(){
@@ -49,6 +50,7 @@ export class JoinHouseholdComponent implements OnInit {
     }
     this.visible=false;
     this.visibleChange.emit(this.visible);
+    this.memberemail="";
 
 
   }

@@ -242,7 +242,9 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 //af: steven
 //controle door: Bart
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) => {
+
+
+  process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;

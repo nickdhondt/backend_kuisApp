@@ -8,14 +8,16 @@
         <div class="row no-margin">
 
           <div class="input-field col s12 l9">
-            <input value="{{household.name}}" name="memberemail"  id="household_emaail"  type="email" class="" readonly >
-            <label for="household_emaail" class="active">Household Name</label>
+            <i class="material-icons prefix">home</i>
+            <input value="{{household.name}}" name="memberemail"  id="houseold_name"  type="text" class="" readonly >
+            <label for="houseold_name" class="active">Household Name</label>
           </div>
 
         </div>
       </form>
     </div>
   </div>
+
 
   <div *ngIf="!household" class="card-content">
     <!--Household found-->
@@ -31,11 +33,14 @@
     </div>
   </div>
 
-  <div class="card-action">
-    <a  (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">close</a>
-    <a class="right" (click)="save()" aria-label="Join" style="cursor: default;margin-bottom: 10px">Search</a>
+  <div   class="card-action" >
+    <a  *ngIf="household" (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">close</a>
+    <a   *ngIf="household" class="right"  (click)="join()" aria-label="Join" style="cursor: default;margin-bottom: 10px">Join</a>
+    <a *ngIf="!household"  (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">thanks anyway</a>
+
 
   </div>
+
 </div>
 
 <div *ngIf="visible" class="overlay" (click)="close()"></div>
