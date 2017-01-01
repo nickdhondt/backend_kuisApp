@@ -19,6 +19,7 @@ import {User} from "../../../../models/user.model";
 })
 export class UserDetailComponent implements OnInit {
 
+
     @Input() user: User;
     @Input() closable = true;
     @Input() visible: boolean;

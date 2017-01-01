@@ -1,4 +1,6 @@
-import {Component, OnInit, Input,trigger,animate,transition,style} from '@angular/core';
+import {Component, OnInit, Input, trigger, animate, transition, style, EventEmitter} from '@angular/core';
+import {Output} from "@angular/core/src/metadata/directives";
+import {ApiService} from "../../../../service/api.service";
 
 @Component({
   selector: 'app-join-household',
@@ -17,11 +19,24 @@ import {Component, OnInit, Input,trigger,animate,transition,style} from '@angula
   ]
 })
 export class JoinHouseholdComponent implements OnInit {
-
+  private memberemail:string ="";
   @Input() visible:boolean;
-  constructor() { }
+  @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private apiservice:ApiService) { }
 
   ngOnInit() {
+  }
+
+  close(){
+    this.visible=false;
+    this.visibleChange.emit(this.visible)
+  }
+  save(){
+    if(this.memberemail){
+      console.log(this.memberemail);
+      this.apiservice.get
+    }
+
   }
 
 }

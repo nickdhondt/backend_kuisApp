@@ -7,21 +7,19 @@
         <div class="row no-margin">
 
           <div class="input-field col s12 l9">
-            <input value="" id="award_description" type="text" class="" readonly  >
-            <label for="award_description" class="active">Description</label>
+            <input [(ngModel)]="memberemail" name="memberemail"  id="household_emaail"  type="email" class="validate" >
+            <label for="household_emaail" class="">Household Member Email</label>
           </div>
-          <div class="input-field col s12 l3">
-            <input value="" id="award_created_by" type="text" class="" readonly>
-            <label for="award_created_by" class="active">Created By</label>
-          </div>
+
         </div>
       </form>
     </div>
   </div>
-  <!--<div class="card-action">-->
-  <!--<a  (click)="close()" class="right"  aria-label="Save" style="cursor: default; margin-bottom: 10px">close</a>-->
+  <div class="card-action">
+  <a  (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">close</a>
+    <a class="right" (click)="save()" aria-label="Join" style="cursor: default;margin-bottom: 10px">Search</a>
 
-  <!--</div>-->
+  </div>
 </div>
 
 <div *ngIf="visible" class="overlay" (click)="close()"></div>

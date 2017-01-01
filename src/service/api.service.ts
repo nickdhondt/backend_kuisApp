@@ -245,6 +245,29 @@ export class ApiService {
         });
         return Observable.fromPromise(tokenPromise);
     }
+
+    public getHouseholdbyEmail(email:string):Observable<Household>{
+
+      let tokenPromise = new Promise<Household>((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set("Firebase-ID-Token",token);
+          return this._http.get(
+            this.actionUrl +"householdbyemail/"+ email,
+            {headers:this.headers})
+            .map((response: Response) => {
+              return Household.makeHouseholdFromJSON(response.json());
+            })
+            .catch(ApiService.handleError)
+            .subscribe(
+              data => resolve(data),
+              err => reject(err)
+            );
+
+        })
+      });
+
+      return Observable.fromPromise(tokenPromise);
+    }
 }
 
 
