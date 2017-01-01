@@ -25,4 +25,4 @@
 
 <div *ngIf="visible" class="overlay" (click)="close()"></div>
 
-<app-join-household-detail [(household)]="household"  [(visible)]="showDialogJoin"></app-join-household-detail>
+<app-join-household-detail [(household)]="household"  [(visible)]="showDialogJoin" (householdjoined)="receivedhouseholdfromJoinDialog($event)" ></app-join-household-detail>

@@ -25,7 +25,9 @@ export class JoinHouseholdComponent implements OnInit {
   private household:Household
   showDialogJoin: boolean=false;
   @Input() visible:boolean;
+  @Input() receivedhousehold:Household;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() householdtoHouseholdComp = new EventEmitter();
   constructor(private apiservice:ApiService) { }
 
   ngOnInit() {
@@ -52,6 +54,12 @@ export class JoinHouseholdComponent implements OnInit {
     this.visibleChange.emit(this.visible);
     this.memberemail="";
 
+
+  }
+  receivedhouseholdfromJoinDialog(household){
+    this.receivedhousehold=household;
+    this.householdtoHouseholdComp.emit(household);
+    console.log("EventEmitter household");
 
   }
 

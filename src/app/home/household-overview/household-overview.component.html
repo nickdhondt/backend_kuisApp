@@ -41,4 +41,4 @@
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<app-join-household [(visible)]="showJoinHouseholdDialog"></app-join-household>
+<app-join-household (householdtoHouseholdComp)="receiveHousehold($event)" [(visible)]="showJoinHouseholdDialog"></app-join-household>

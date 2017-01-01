@@ -40,12 +40,18 @@ export class HouseholdOverviewComponent implements OnInit {
 
     ngOnInit() {
 
-        if (this.household && !this.household.award) this.household.award = new Award();
+
+          if (this.household && !this.household.award) this.household.award = new Award();
+
     }
 
     addAwardToHousehold(award) {
         this.household.award = award;
     }
+  receiveHousehold(household){
+        // this.household = new Household();
+        // this.apiService.getHousehold()
+  }
 
 
     // private fbUser(id:number){
