@@ -64,6 +64,8 @@ export class TaskdetailComponent implements OnInit {
     }
     delete(){
         //TODO : code to delete task
+        alert("WERKT NOG NIET!!!!!!");
+        window.location.href ="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     }
 
 }
