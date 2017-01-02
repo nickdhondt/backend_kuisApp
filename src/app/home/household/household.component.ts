@@ -9,6 +9,8 @@ import {ApiService} from "../../../service/api.service";
 })
 export class HouseholdComponent implements OnInit {
 
+    showDialogLeave:boolean=false;
+
     ngOnInit(): void {
         this.getUser();
     }

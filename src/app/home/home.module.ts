@@ -44,6 +44,7 @@ import {EvolutionLineComponent} from "./household/charts/evolution-line/evolutio
 import {TasksDonutComponent} from "./household/charts/tasks-donut/tasks-donut.component";
 import {ChartsModule} from "ng2-charts";
 import { AboutComponentComponent } from './navigation/about-component/about-component.component';
+import { LeaveHouseholdComponent } from './household/leave-household/leave-household.component';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { AboutComponentComponent } from './navigation/about-component/about-comp
         EvolutionLineComponent,
         TasksDonutComponent,
         AboutComponentComponent,
+        LeaveHouseholdComponent,
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule, ChartsModule
