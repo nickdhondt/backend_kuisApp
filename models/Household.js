@@ -14,6 +14,20 @@ class Household {
             })
     }
 
+    static getHouseholdLimitedByUID(uid, cb) {
+
+        console.log(uid);
+
+        conn.query("select `households`.* from `households` " +
+            "inner join `users` on `users`.`household_id` = `households`.`id`" +
+            "where `uid` = ? limit 1", [uid],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(rows[0]);
+            });
+
+    }
+
     static getHouseholdByEmail(email, cb) {
         conn.query("select `households`.* from `households` " +
             "inner join `users` on `users`.`household_id` = `households`.`id`" +

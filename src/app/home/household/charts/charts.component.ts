@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
+import {Household} from "../../../../models/household.model";
 
 
 @Component({
@@ -9,6 +10,7 @@ import {Component, OnInit} from "@angular/core";
 })
 export class ChartsComponent implements OnInit {
 
+    @Input() household: Household;
 
     constructor() {
 

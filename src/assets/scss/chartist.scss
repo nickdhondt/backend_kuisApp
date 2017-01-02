@@ -116,6 +116,9 @@
 
   .#{$ct-class-label} {
     @include ct-chart-label($ct-text-color, $ct-text-size);
+
+    font-weight: bold;
+    font-size: 0.8em;
   }
 
   .#{$ct-class-chart-line} .#{$ct-class-label},

@@ -48,12 +48,11 @@ $ct-point-size: 10px !default;
 $ct-point-shape: round !default;
 // Area fill transparency between 0 and 1
 $ct-area-opacity: 0.1 !default;
-
 // Bar chart bar width
 $ct-bar-width: 10px !default;
 
 // Donut width (If donut width is to big it can cause issues where the shape gets distorted)
-$ct-donut-width: 60px !default;
+$ct-donut-width: 6px !default;
 
 // If set to true it will include the default classes and generate CSS output. If you're planning to use the mixins you
 // should set this property to false
@@ -69,13 +68,13 @@ $ct-include-alternative-responsive-containers: $ct-include-classes !default;
 // Series names and colors. This can be extended or customized as desired. Just add more series and colors.
 $ct-series-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) !default;
 $ct-series-colors: (
-        #d70206,
-        #f05b4f,
-        #f4c63d,
-        #d17905,
-        #453d3f,
-        #59922b,
-        #0544d3,
+        #b71c1c,
+        #fbc02d,
+        #42a5f5,
+        #388e3c,
+        #303f9f,
+        #80cbc4,
+        #0097a7,
         #6b0392,
         #f05b4f,
         #dda458,
