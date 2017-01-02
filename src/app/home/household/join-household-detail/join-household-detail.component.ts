@@ -43,8 +43,8 @@ export class JoinHouseholdDetailComponent implements OnInit {
   join(){
     console.log("Join Household");
 
-    this.apiService.addUsertoHousehold(this.household.id,this.user.uid);
-    this.visible=false;
+     this.apiService.addUsertoHousehold(this.household.id,this.user.uid);
+     this.visible=false;
     this.visibleChange.emit(this.visible);
     this.householdjoined.emit(this.household);
 

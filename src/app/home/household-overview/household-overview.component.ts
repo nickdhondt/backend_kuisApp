@@ -50,8 +50,8 @@ export class HouseholdOverviewComponent implements OnInit {
         this.household.award = award;
     }
   receiveHousehold(household){
-        // this.household = new Household();
-        // this.apiService.getHousehold()
+
+    this.apiService.getEverything().subscribe(data=>{this.household=data.household;});
   }
 
 
