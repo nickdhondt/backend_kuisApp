@@ -3,3 +3,4 @@
 
 declare module 'socket.io-client';
 declare module 'firebase';
+declare module 'lodash';

@@ -15,48 +15,36 @@
             <!--</ul>-->
             <!--</div>-->
             <div class="row">
-                <form class="col s12">
+                <form class="col s12" #taskForm="ngForm">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input value="{{task.name}}" id="task_name" type="text" class="validate">
+                            <input [(ngModel)]="task.name" name="name" id="task_name" type="text" class="validate">
                             <label for="task_name" class="active">Task Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input value="{{task.dueDate}}" id="task_due_date" type="date" class="">
+                            <input [(ngModel)]="task.dueDate" name="dueDate" id="task_due_date" type="date" class="">
                             <label for="task_due_date" class="active">Next Due Date</label>
                         </div>
                         <div class="input-field col s12">
-                            <input value="{{task.description}}" id="task_description" type="text" class="materialize-textarea">
+                            <input [(ngModel)]="task.description" name="description" id="task_description" type="text" class="materialize-textarea">
                             <label for="task_due_date" class="active">Description</label>
                         </div>
                         <div class="input-field col s6">
-                            <input value="{{task.period}}" id="task_periodicity" type="number" class="validate">
+                            <input [(ngModel)]="task.period" name="period" id="task_periodicity" type="number" class="validate">
                             <label for="task_periodicity" class="active">Periodicity (in days)</label>
                         </div>
                         <div class="input-field col s6">
-                            <input value="{{task.points}}" id="task_points" type="number" class="validate">
+                            <input [(ngModel)]="task.points" name="points" id="task_points" type="number" class="validate">
                             <label for="task_points" class="active">Points</label>
                         </div>
                         <div class="input-field col s6">
-                            <!--todo Select user werkt nog niet-->
-                            <!--todo verder afwerken -->
-                            <!--<select class="waves-effect icon" id="task_user">-->
-                            <!--<option disabled selected>select user</option>-->
-                            <!--<option *ngFor="let user of users" value="{{user.id}}">-->
-                            <!--{{user.name}}-->
-                            <!--</option>-->
-                            <!--</select>-->
-                            <!--<label for="task_user" class="active">User</label>-->
-                            <select class="validate browser-default" id="task_user" >
+                            <!--todo Select user wanneer geen assigned-->
+                            <select class="validate browser-default" [(ngModel)]="task.assigned_to" name="assigned_to" id="task_user" >
                                 <option disabled selected>Select User</option>
-                                <option *ngFor="let user of users">{{user.name}}</option>
+                                <option *ngFor="let user of users" [ngValue]="user.id">{{user.name}}</option>
                             </select>
                             <label for="task_user" class="active">User</label>
 
-                        </div>
-                        <div class="input-field col s6">
-                            <input value="{{task.points}}" id="task_test" type="number" class="validate">
-                            <label for="task_test" class="active">Points</label>
                         </div>
                     </div>
                 </form>

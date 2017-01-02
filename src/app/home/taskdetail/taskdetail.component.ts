@@ -3,8 +3,7 @@ import {Task} from "../../../models/task.model";
 import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
 import {isUndefined} from "util";
-;
-
+import _ from "lodash";
 
 @Component({
     selector: 'app-taskdetail',
@@ -31,7 +30,7 @@ export class TaskdetailComponent implements OnInit {
     @Input() newTask:Boolean = false;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private apiservice:ApiService) {
+    constructor(private apiService:ApiService) {
 
     }
 
@@ -44,14 +43,24 @@ export class TaskdetailComponent implements OnInit {
         this.visibleChange.emit(this.visible);
     }
     add() {
-
+        // TODO: propagate to list
+        let props = _.sortBy(Object.getOwnPropertyNames(this.task));
+        let required = _.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to"]);
+        if(_.isEqual(props, required)) {
+            this.apiService.addTask(this.task).subscribe((data)=>{
+                this.close();
+            });
+        }
     }
     save(){
-        // TODO : code to save changes
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
-
-
+        let props = _.sortBy(Object.getOwnPropertyNames(this.task));
+        let required = _.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to", "id", "household_id"]);
+        console.log(_.isEqual(props, required));
+        if(_.isEqual(props, required)) {
+            this.apiService.updateTask(this.task).subscribe((data)=>{
+                this.close();
+            });
+        }
     }
     delete(){
         //TODO : code to delete task
