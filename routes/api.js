@@ -227,6 +227,7 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
         return next(err);
     });
 
+
     let body = req.body;
 
     User.getUserByUID(res.locals.uid, function (user) {

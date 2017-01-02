@@ -40,6 +40,6 @@
 </div>
 
 
-<app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
+<app-user-detail [(visible)]="showDialog" [(user)]="selectedUser" [currentUser]="currentUser"></app-user-detail>
 <app-join-household (householdtoHouseholdComp)="receiveHousehold($event)" [(visible)]="showJoinHouseholdDialog"></app-join-household>
 <app-new-household [(visible)]="showMakeHouseholdDialog"></app-new-household>

@@ -32,7 +32,7 @@
     </div>
     <div class="card-action">
         <a *ngIf="closable" (click)="close()" aria-label="Close" class="" style="cursor: default">close</a>
-        <a  (click)="save()" class="right"  aria-label="Save" style="cursor: default">save</a>
+        <a *ngIf="currentUser === user.uid" (click)="save()" class="right"  aria-label="Save" style="cursor: default">save</a>
     </div>
 </div>
 
