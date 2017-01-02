@@ -1,6 +1,8 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {ChartType, ChartEvent, ChartOptions} from "angular2-chartist";
 import * as Chartist from "chartist";
+import {ApiService} from "../../../../../service/api.service";
+import {Household} from "../../../../../models/household.model";
 import IChartistAnimations = Chartist.IChartistAnimations;
 
 
@@ -12,35 +14,35 @@ import IChartistAnimations = Chartist.IChartistAnimations;
 export class ContributionDonutComponent implements OnInit {
 
     type: ChartType;
-    data: any;
+    data: any = {
+        "labels": [],
+        "series": []
+    };
     options: ChartOptions;
     events: ChartEvent;
 
+    @Input() household: Household;
 
-    constructor() {
+
+    constructor(private apiService: ApiService) {
 
         this.events = {
             "draw": this.draw
         };
 
-
         this.options = {
             donut: true,
-            showLabel: true
+            showLabel: true,
+            donutWidth: 30,
+            labelOffset: 30,
+            labelDirection: 'explode',
         };
-        this.type = 'Pie';
-        this.data = {
-            "labels": [
-                "Bart",
-                "Brent",
-                "Nick"
-            ],
-            "series": [5, 4, 3,]
 
-        }
+        this.type = 'Pie';
     }
 
     ngOnInit() {
+        this.getContributions();
     }
 
     draw = function (data) {
@@ -82,4 +84,25 @@ export class ContributionDonutComponent implements OnInit {
         }
     };
 
+    private getContributions() {
+        this.apiService.getContributions().subscribe(
+            data => {
+
+                let result = {"labels": [], "series": []};
+                data.forEach((res) => {
+                    result["labels"].push(this.findUser(res._id).name);
+                    result["series"].push(res.count)
+                });
+
+                this.data = result;
+
+            },
+            error => console.log(error))
+    }
+
+    private findUser(id: number) {
+        for (let user in this.household.users)
+            if (this.household.users[user].id == id)
+                return this.household.users[user];
+    }
 }

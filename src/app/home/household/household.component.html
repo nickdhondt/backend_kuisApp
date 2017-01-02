@@ -12,7 +12,7 @@
             <li>{{user.household.tasks.length}}</li>
         </ul>
 
-        <app-charts></app-charts>
+        <app-charts [(household)]="user.household"></app-charts>
     </div>
 <div class="fixed-action-btn vertical click-to-toggle" style="margin-bottom: 5%">
   <a class="btn-floating btn-large red">

@@ -6,8 +6,32 @@ let Award = require("./Award");
 let User = require("./User");
 let Household = require("./Household");
 
+let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
+
 class Task {
 
+    static getContributions(id, cb) {
+
+
+        FinishedTask
+            .aggregate([
+                {$match: {household_id: 37, done: true}},
+                {
+                    $group: {
+                        _id: '$finished_by',
+                        TotalScore: {$sum: "$points"},
+                        count: {$sum: 1},
+                    }
+                },
+                {$sort: {"count": -1}},
+            ])
+            .exec(function (err, data) {
+                if (err) next(err);
+
+                cb(data);
+            })
+
+    }
 
     static getTasksUID(id, obj, cb) {
 

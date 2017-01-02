@@ -56,6 +56,26 @@ router.get('/', function (req, res) {
     res.end();
 });
 
+router.get('/contributionsbyhousehold', firebaseAuthenticator, function (req, res, next) {
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    Household.getHouseholdLimitedByUID(res.locals.uid, (household) => {
+
+        Task.getContributions(household.id, (data) => {
+
+            res.json(data);
+            res.end();
+
+        })
+
+    });
+
+});
+
+
 router.get('/householdstats', function (req, res, next) {
 
 
@@ -64,21 +84,12 @@ router.get('/householdstats', function (req, res, next) {
             {$match: {household_id: 37, done: true}},
             {
                 $group: {
-                    _id: '$id',
+                    _id: '$finished_by',
                     TotalScore: {$sum: "$points"},
                     count: {$sum: 1},
-                    name: {$first: "$name"}
                 }
             },
             {$sort: {"count": -1}},
-            {
-                $group: {
-                    _id: "stats",
-                    mostpopularTask: {$first: "$name"},
-                    countFinishedTasks: {$sum: "$count"},
-                    countTotalScore: {$sum: "$TotalScore"}
-                }
-            }
         ])
         .exec(function (err, tasks) {
             if (err) next(err);
