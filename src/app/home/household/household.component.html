@@ -26,4 +26,4 @@
 
 </div>
 
-<app-leave-household [(visible)]="showDialogLeave" [(user)]="user"></app-leave-household>
+<app-leave-household [(visible)]="showDialogLeave" [(user)]="user" (updatedUser)="updateHouseholdComponent($event)"></app-leave-household>

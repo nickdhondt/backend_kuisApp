@@ -113,8 +113,9 @@ class Household {
     }
 
     static leaveHousehold(body, cb) {
-        let post = [
+      let post = [
             body.id
+
         ];
         conn.query("update `users` set `household_id` = null, `score` = 0 where `id` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);

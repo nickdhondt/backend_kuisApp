@@ -33,4 +33,10 @@ export class HouseholdComponent implements OnInit {
                 error => console.log(error)
             );
     }
+
+  updateHouseholdComponent(user){
+   this.getUser();
+
+
+  }
 }

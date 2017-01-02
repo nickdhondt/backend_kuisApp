@@ -27,6 +27,7 @@ export class LeaveHouseholdComponent implements OnInit {
   @Input() household:Household;
   @Input() user: User;
   @Output() visibleChange:EventEmitter<boolean>= new EventEmitter<boolean>();
+  @Output() updatedUser: EventEmitter<any>=new EventEmitter();
 
   constructor(private apiService: ApiService) { }
 
@@ -40,7 +41,11 @@ export class LeaveHouseholdComponent implements OnInit {
 
   leave(){
 
-    this.apiService.leaveHousehold(this.user.household_id);
+    this.apiService.leaveHousehold(this.user.id);
+    this.visible=false;
+    this.visibleChange.emit(this.visible);
+    this.user.household_id=null;
+    this.updatedUser.emit(this.user);
 
   }
 

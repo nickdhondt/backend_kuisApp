@@ -326,8 +326,7 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
 
-        res.redirect('/api/userbyuid/' + res.locals.uid);
-
+         // res.redirect('/api/userbyuid/' + res.locals.uid);
     })
 });
 
