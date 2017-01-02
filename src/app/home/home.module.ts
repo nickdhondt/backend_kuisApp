@@ -38,6 +38,11 @@ import {JoinHouseholdComponent} from "./household/join-household/join-household.
 import {JoinHouseholdDetailComponent} from "./household/join-household-detail/join-household-detail.component";
 import {ChartsComponent} from "./household/charts/charts.component";
 import {ChartistModule} from "angular2-chartist";
+import {FinishedBarComponent} from "./household/charts/finished-bar/finished-bar.component";
+import {ContributionDonutComponent} from "./household/charts/contribution-donut/contribution-donut.component";
+import {EvolutionLineComponent} from "./household/charts/evolution-line/evolution-line.component";
+import {TasksDonutComponent} from "./household/charts/tasks-donut/tasks-donut.component";
+import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -74,9 +79,13 @@ import {ChartistModule} from "angular2-chartist";
         JoinHouseholdComponent,
         JoinHouseholdDetailComponent,
         ChartsComponent,
+        FinishedBarComponent,
+        ContributionDonutComponent,
+        EvolutionLineComponent,
+        TasksDonutComponent,
     ],
     imports: [
-        RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule
+        RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule, ChartsModule
     ],
     providers: [AuthService, ApiService, Contract],
     bootstrap: [MessageListComponent, MessageFormComponent, MessageItemComponent]

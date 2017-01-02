@@ -19,5 +19,8 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="ng2-charts" level="application" />
+    <orderEntry type="library" name="chartist" level="application" />
+    <orderEntry type="library" name="mongoose" level="application" />
   </component>
 </module>
