@@ -2,8 +2,8 @@ import {Component, OnInit, Input, Output, EventEmitter, trigger, style, animate,
 import {Task} from "../../../models/task.model";
 import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
-;
-
+import {isUndefined} from "util";
+import _ from "lodash";
 
 @Component({
     selector: 'app-taskdetail',
@@ -27,36 +27,45 @@ export class TaskdetailComponent implements OnInit {
     @Input() users: User[];
     @Input() closable = true;
     @Input() visible: boolean;
+    @Input() newTask:Boolean = false;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private apiservice:ApiService) {
+    constructor(private apiService:ApiService) {
 
     }
 
     ngOnInit() {
-
+        if (this.task === undefined) this.task = new Task();
     }
 
     close() {
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }
+    add() {
+        // TODO: propagate to list
+        let props = _.sortBy(Object.getOwnPropertyNames(this.task));
+        let required = _.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to"]);
+        if(_.isEqual(props, required)) {
+            this.apiService.addTask(this.task).subscribe((data)=>{
+                this.close();
+            });
+        }
+    }
     save(){
-        // TODO : code to save changes
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
-
-        // this.apiservice.addFinishedTask("Brent",3);
-
-
-
-
-
-
-
+        let props = _.sortBy(Object.getOwnPropertyNames(this.task));
+        let required = _.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to", "id", "household_id"]);
+        console.log(_.isEqual(props, required));
+        if(_.isEqual(props, required)) {
+            this.apiService.updateTask(this.task).subscribe((data)=>{
+                this.close();
+            });
+        }
     }
     delete(){
         //TODO : code to delete task
+        alert("WERKT NOG NIET!!!!!!");
+        window.location.href ="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     }
 
 }

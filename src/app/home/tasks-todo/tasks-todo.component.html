@@ -2,7 +2,7 @@
 
     <app-loader-small *ngIf="loading"></app-loader-small>
 
-    <app-household-overview *ngIf="user" [household]="user.household">loading...</app-household-overview>
+    <app-household-overview *ngIf="user" [household]="user.household" [currentUser]="currentUser">loading...</app-household-overview>
 
     <app-todolist *ngIf="user"
                   [tasksTodo]="user.household? user.household.taskstodo : []"

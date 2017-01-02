@@ -118,7 +118,7 @@ class Task {
     }
 
     static addTask(body, cb) {
-        var post = [
+        let post = [
             body.description,
             body.household_id,
             body.period,

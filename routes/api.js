@@ -258,14 +258,19 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
         return next(err);
     });
 
-    //todo controleren of uid wel ingelogde user is
+
     let body = req.body;
 
-    User.updateUser(body, function (user) {
-        res.json(user);
-        res.end();
-    })
+    User.getUserByUID(res.locals.uid, function (user) {
+        body.id = user.id;
+        body.uid = user.uid;
+        body.score = user.score;
 
+        User.updateUser(body, function (user) {
+            res.json(body);
+            res.end();
+        })
+    });
 });
 
 //af: steven
@@ -343,14 +348,16 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 // controle door: Bart
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
+
+
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
 
-        res.redirect('/api/userbyuid/' + res.locals.uid);
-
+         // res.redirect('/api/userbyuid/' + res.locals.uid);
     })
 });
 
@@ -410,36 +417,38 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 });
 
 //af: steven
-//controle door: Bart
+//controle door: Bart & Nick
 router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    if(body.dueDate === null || body.household_id == null){
-        let message = [];
-        message.push("geen geldige task");
-        message.push(req.body);
-        res.status(500).send(message);
-        res.end();
-    }else{
-        Task.addTask(body, function (body) {
-            res.json(body);
-            res.end();
-        })
-    }
+    User.getUserByUID(res.locals.uid, function (user) {
+        body.household_id = user.household_id;
+        if(body.dueDate === null || body.household_id == null){
+            return next(new Error("Not a valid task"))
+        }else{
+            Task.addTask(body, function (body) {
+                res.json(body);
+                res.end();
+            })
+        }
+    });
 });
 
 //af: steven
-//controle door: Bart
+//controle door: Bart & Nick
 router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
-    Task.updateTask(body, function (body) {
-        res.json(body);
-        res.end();
+    User.getUserByUID(res.locals.uid, function (user) {
+        body.household_id = user.household_id;
+        Task.updateTask(body, function (body) {
+            res.json(body);
+            res.end();
+        })
     })
 });
 
@@ -663,8 +672,6 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
         per: period,
         arr: []
     });
-    //users ophalen
-
     User.getUsersByHouseholdID(household, null, function (obj, users) {
         let usersFromHousehld = [];
         for(let user of users){
@@ -697,12 +704,13 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
             //console.log(periodGroup.arr[0]);
             let number = periodGroup.arr.length;
             let period = periodGroup.arr[0][2];
-            let assignedDate = new Date().toISOString().split('T')[0];
+            let assignedDate = new Date();
             let days = Math.round(period/number);
             if(days === 0) days = 1;
 
             for(let item of periodGroup.arr){
-                item.push(assignedDate);
+                assignedDate.setDate(assignedDate.getDate() + days);
+                item.push(assignedDate.toISOString().split('T')[0]);
                 item.push(household);
                 if(assignUsers === 7){
                     item.push(usersFromHousehld[assignedUserPos]);
@@ -711,7 +719,16 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
                         assignedUserPos = 0;
                     }
                 }
-                response.push(item);
+                json = {};
+                json['name'] = item[0];
+                json['description'] = item[1];
+                json['period'] = item[2];
+                json['points'] = item[3];
+                json['dueDate'] = item[4];
+                json['household_id'] = item[5];
+                json['assigned_to'] = item[6];
+
+                response.push(json);
             }
         }
         res.json({body: response});

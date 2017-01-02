@@ -277,22 +277,22 @@ export class ApiService {
 
     }
 
-    public addAward(description: string, name: string, month: string, winner_id: number, creator_id: number, household_id: number): Observable<Award> {
-
-        let tokenPromise = new Promise<Award>((resolve, reject) => {
-            this.auth.token.then(token => {
-                this.headers.set("Firebase-ID-Token", token);
-                return this._http.post(
-                    this.actionUrl + "addaward",
-                    {description, name, month, winner_id, creator_id, household_id},
-                    {headers: this.headers})
-                    .map(res => res.json())
-                    .catch(ApiService.handleError)
-                    .subscribe(data => console.log(" Add award Data: " + data))
-            })
-        });
-        return Observable.fromPromise(tokenPromise);
-    }
+    // public addAward(description: string, name: string, month: string, winner_id: number, creator_id: number, household_id: number): Observable<Award> {
+    //
+    //     let tokenPromise = new Promise<Award>((resolve, reject) => {
+    //         this.auth.token.then(token => {
+    //             this.headers.set("Firebase-ID-Token", token);
+    //             return this._http.post(
+    //                 this.actionUrl + "addaward",
+    //                 {description, name, month, winner_id, creator_id, household_id},
+    //                 {headers: this.headers})
+    //                 .map(res => res.json())
+    //                 .catch(ApiService.handleError)
+    //                 .subscribe(data => console.log(" Add award Data: " + data))
+    //         })
+    //     });
+    //     return Observable.fromPromise(tokenPromise);
+    // }
 
     public getHouseholdbyEmail(email:string):Observable<Household>{
 
@@ -350,6 +350,85 @@ export class ApiService {
             )
         })
       })
+    }
+
+    public updateUser(user:User){
+        let tokenPromise = new Promise((resolve,reject)=>{
+            this.auth.token.then(token=>{
+                this.headers.set('Firebase-ID-Token', token);
+                return this._http.post(
+                    this.actionUrl + "updateuser",
+                    user,
+                    {headers:this.headers})
+                    .map(res=>res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data=>resolve(data),
+                        err=>reject(err)
+                    )
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
+
+    public leaveHousehold(id:Number){
+      let tokenPromise = new Promise((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set('Firebase-ID-Token',token);
+          return this._http.post(
+            this.actionUrl + 'leavehousehold',
+            {id},
+            {headers:this.headers})
+            .map(res=>res.json())
+            .catch(ApiService.handleError)
+            .subscribe(data=>{console.log(data)})
+        })
+      })
+    }
+
+    public addTask(task:Task) {
+        let tokenPromise = new Promise<User>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+                this.headers.set('Firebase-ID-Token', token);
+                return this._http.post(
+                    this.actionUrl + "addtask",
+                    task,
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
+
+    public updateTask(task:Task) {
+        let tokenPromise = new Promise<User>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+                this.headers.set('Firebase-ID-Token', token);
+                return this._http.post(
+                    this.actionUrl + "updatetask",
+                    task,
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+
+        });
+
+        return Observable.fromPromise(tokenPromise);
     }
 }
 

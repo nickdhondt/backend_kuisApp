@@ -11,11 +11,18 @@ import {Router} from "@angular/router";
 export class NavigationComponent implements OnInit {
 
     user: firebase.User;
+    private aboutVisible:Boolean = false;
 
 
 
   ngOnInit() {
   }
+
+  openAbout(event) {
+      this.aboutVisible = !this.aboutVisible;
+      event.preventDefault();
+  }
+
   constructor(private auth:AuthService, private router:Router) {
       this.user = auth.authState.auth;
   }
