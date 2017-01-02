@@ -6,24 +6,24 @@
             <img src="{{user.imgsrc}}" class="responsive-img circle " style="max-height: 100px; max-width: 100px; overflow: hidden">
         </div>
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" #userDetailForm="ngForm">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input value="{{user.name}}" id="first_name" type="text" class="validate">
+                        <input [(ngModel)]="user.name" id="first_name" name="name" type="text" class="validate">
                         <label class="active" for="first_name">First Name</label>
                     </div>
                     <div class="input-field col s6">
-                        <input value="{{user.lname}}" id="last_name" type="text" class="validate">
+                        <input [(ngModel)]="user.lname" id="last_name" name="lname" type="text" class="validate">
                         <label class="active" for="last_name">Last Name</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="prefix material-icons">email</i>
-                        <input value="{{user.email}}" id="email" type="email" class="validate">
+                        <input [(ngModel)]="user.email" id="email" name="email" type="email" class="validate">
                         <label class="active" for="email" data-error="Email not validated" data-success="Valid Email ">E-mail</label>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">phone</i>
-                        <input value="{{user.phoneNumber}}" id="phone_number" type="number" class="validate" >
+                        <input [(ngModel)]="user.phoneNumber" name="phoneNumber" id="phone_number" type="number" class="validate" >
                         <label class="active" for="phone_number">Phone Number</label>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="card-action">
         <a *ngIf="closable" (click)="close()" aria-label="Close" class="" style="cursor: default">close</a>
-        <a  (click)="save()" class="right"  aria-label="Save" style="cursor: default">save</a>
+        <a *ngIf="currentUser === user.uid" (click)="save()" class="right"  aria-label="Save" style="cursor: default">save</a>
     </div>
 </div>
 

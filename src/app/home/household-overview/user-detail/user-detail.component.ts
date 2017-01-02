@@ -1,5 +1,6 @@
 import {Component, OnInit, trigger, transition, style, animate, Input, Output, EventEmitter} from "@angular/core";
 import {User} from "../../../../models/user.model";
+import {ApiService} from "../../../../service/api.service";
 
 @Component({
     selector: 'app-user-detail',
@@ -23,9 +24,10 @@ export class UserDetailComponent implements OnInit {
     @Input() user: User;
     @Input() closable = true;
     @Input() visible: boolean;
+    @Input() currentUser:String;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor() {
+    constructor(private apiService:ApiService) {
     }
 
     ngOnInit() {
@@ -37,8 +39,6 @@ export class UserDetailComponent implements OnInit {
     }
     save(){
         //Code om update-user uit te voeren
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
-
+        this.apiService.updateUser(this.user).subscribe((user)=>{console.log(user); this.close()})
     }
 }
