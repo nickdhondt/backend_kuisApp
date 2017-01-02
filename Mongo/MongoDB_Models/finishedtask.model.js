@@ -9,7 +9,7 @@ var Schema = mongoose.Schema;
 var finishedTaskSchema = new Schema({
     id: Number,
     name : String,
-    dueDate : String,
+    dueDate: Date,
     description: String,
     period : Number,
     household_id: Number,
@@ -17,7 +17,7 @@ var finishedTaskSchema = new Schema({
     points :Number,
     done : Boolean,
     finished_by: Number,
-    finished_on : String
+    finished_on: Date
 
 });
 

@@ -148,6 +148,30 @@ export class ApiService {
 
     }
 
+    public getContributionEvolution(): Observable<any> {
+
+        let tokenPromise = new Promise<any>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "contributionevolutionbyhousehold",
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+
+    }
+
     public getEverything(): Observable<User> {
 
 

@@ -1,15 +1,14 @@
 <div class="row">
-    <app-finished-bar></app-finished-bar>
+    <app-finished-bar class="col s12"></app-finished-bar>
 </div>
 <div class="row">
-    <app-evolution-line></app-evolution-line>
+    <app-evolution-line class="col s12"></app-evolution-line>
 </div>
-<div class="crow">
-    <div class="col s12 m6">
-        <app-contribution-donut [(household)]="household"></app-contribution-donut>
-    </div>
-    <div class="col s12 m6">
-        <app-tasks-donut [(household)]="household"></app-tasks-donut>
-    </div>
+<div class="row">
+
+    <app-contribution-donut class="col s12 m6" [(household)]="household"></app-contribution-donut>
+
+    <app-tasks-donut class="col s12 m6" [(household)]="household"></app-tasks-donut>
+
 </div>
 

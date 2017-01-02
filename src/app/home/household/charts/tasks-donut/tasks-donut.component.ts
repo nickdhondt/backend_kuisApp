@@ -90,7 +90,7 @@ export class TasksDonutComponent implements OnInit {
 
                 let result = {"labels": [], "series": []};
                 data.forEach((res) => {
-                    result["labels"].push(this.findUser(res._id).name);
+                    result["labels"].push(this.findUser(res._id));
                     result["series"].push(res.count)
                 });
 
@@ -103,6 +103,9 @@ export class TasksDonutComponent implements OnInit {
     private findUser(id: number) {
         for (let user in this.household.users)
             if (this.household.users[user].id == id)
-                return this.household.users[user];
+                return this.household.users[user].name;
+
+        console.log(id);
+        return "inactive member"
     }
 }

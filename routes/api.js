@@ -75,21 +75,52 @@ router.get('/contributionsbyhousehold', firebaseAuthenticator, function (req, re
 
 });
 
+router.get('/contributionevolutionbyhousehold', firebaseAuthenticator, function (req, res, next) {
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    Household.getHouseholdLimitedByUID(res.locals.uid, (household) => {
+
+        Task.getContributionEvolution(household.id, (data) => {
+
+            res.json(data);
+            res.end();
+
+        })
+
+    });
+});
 
 router.get('/householdstats', function (req, res, next) {
-
 
     FinishedTask
         .aggregate([
             {$match: {household_id: 37, done: true}},
+
             {
                 $group: {
-                    _id: '$finished_by',
-                    TotalScore: {$sum: "$points"},
-                    count: {$sum: 1},
+                    _id: {
+                        "year": {$year: "$finished_on"},
+                        "month": {$month: '$finished_on'},
+                        "by": '$finished_by'
+                    },
+                    count: {$sum: "$points"}
+                    // TotalScore: {$sum: "$points"},
+                    // count: {$sum: 1},
                 }
             },
-            {$sort: {"count": -1}},
+            {$sort: {"_id.month": 1}},
+            {
+                $group: {
+                    _id: "$_id.year",
+                    stats: {$push: {user: "$_id.by", year: "$_id.year", month: "$_id.month", count: "$count"}},
+
+                    // TotalScore: {$sum: "$points"},
+                    // count: {$sum: 1},
+                }
+            },
+            {$sort: {"_id": 1}},
         ])
         .exec(function (err, tasks) {
             if (err) next(err);
