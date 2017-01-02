@@ -317,6 +317,9 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 // controle door: Bart
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
+
+
+
     process.on("mysqlError", (err) => {
         return next(err);
     });

@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter, trigger,transition,style,animate} from '@angular/core';
 import {Household} from "../../../../models/household.model";
+import {User} from "../../../../models/user.model";
+import {ApiService} from "../../../../service/api.service";
 
 @Component({
   selector: 'app-leave-household',
@@ -20,11 +22,13 @@ import {Household} from "../../../../models/household.model";
 export class LeaveHouseholdComponent implements OnInit {
 
 
+
   @Input() visible:boolean;
   @Input() household:Household;
+  @Input() user: User;
   @Output() visibleChange:EventEmitter<boolean>= new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
   }
@@ -32,6 +36,12 @@ export class LeaveHouseholdComponent implements OnInit {
   close(){
     this.visible=false;
     this.visibleChange.emit(this.visible);
+  }
+
+  leave(){
+
+    this.apiService.leaveHousehold(this.user.household_id);
+
   }
 
 
