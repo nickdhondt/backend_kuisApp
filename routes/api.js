@@ -56,6 +56,40 @@ router.get('/', function (req, res) {
     res.end();
 });
 
+router.get('/householdstats', function (req, res, next) {
+
+
+    FinishedTask
+        .aggregate([
+            {$match: {household_id: 37, done: true}},
+            {
+                $group: {
+                    _id: '$id',
+                    TotalScore: {$sum: "$points"},
+                    count: {$sum: 1},
+                    name: {$first: "$name"}
+                }
+            },
+            {$sort: {"count": -1}},
+            {
+                $group: {
+                    _id: "stats",
+                    mostpopularTask: {$first: "$name"},
+                    countFinishedTasks: {$sum: "$count"},
+                    countTotalScore: {$sum: "$TotalScore"}
+                }
+            }
+        ])
+        .exec(function (err, tasks) {
+            if (err) next(err);
+
+            res.json(tasks);
+            res.end();
+        })
+
+
+});
+
 router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
     process.on("mysqlError", (err) => {
@@ -177,11 +211,14 @@ router.post('/adduser', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door:
-router.post('/updateuser', function (req, res, next) {
+router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
+
+    //todo controleren of uid wel ingelogde user is
     let body = req.body;
+
     User.updateUser(body, function (user) {
         res.json(user);
         res.end();
@@ -205,7 +242,9 @@ router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next)
 //af: steven
 //controle door: Bart
 router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) => {
+
+
+  process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
@@ -229,6 +268,7 @@ router.get('/householdbyemail/:email', firebaseAuthenticator, function (req, res
     process.on("mysqlError", (err) => {
         return next(err);
     });
+
 
     Household.getHouseholdByEmail(email, function (household) {
         res.json(household);
@@ -269,17 +309,19 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 //af: steven
 //controle door: Bart
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
-    process.on("mysqlError", (err) => {
-        return next(err);
-    });
-    let body = req.body;
 
-    Household.addHousehold(body, function (household) {
+    console.log("Addhousehold = " + req.body.name);
+    // process.on("mysqlError", (err) => {
+    //     return next(err);
+    // });
+    // let body = req.body;
+    //
+    // Household.addHousehold(body, function (household) {
+    //
+    //     res.json(household);
+    //     res.end();
 
-        res.json(household);
-        res.end();
-
-    })
+    // })
 });
 
 //af: bart
@@ -367,6 +409,8 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
 
         Task.getTaskByID(receivedTask.id, function (originalTask) {
 
+            let points = (receivedTask.done ? originalTask.points : 0 );
+
             let finishedTask = FinishedTask({
                 id: originalTask.id,
                 name: originalTask.name,
@@ -375,7 +419,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                 period: originalTask.period,
                 household_id: originalTask.household_id,
                 assigned_to: originalTask.assigned_to,
-                points: originalTask.points,
+                points: points,
                 done: receivedTask.done,
                 finished_by: user.id,
                 finished_on: receivedTask.finished_on
@@ -406,7 +450,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                         period: originalTask.period,
                         household_id: originalTask.household_id,
                         assigned_to: originalTask.assigned_to,
-                        points: originalTask.points,
+                        points: points,
                         done: false,
                         finished_by: null,
                         finished_on: receivedTask.finished_on
@@ -510,16 +554,19 @@ router.get('/deletetask/:task', firebaseAuthenticator, function (req, res, next)
 
 });
 
-router.post('/addaward', function (req, res, next) {
+router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
 
-    User.getUserByUID("5QGiaPssNbeQEYq2XRuEYGMPIa13", function (user) {
+    console.log(body);
+
+    User.getUserByUID(res.locals.uid, function (user) {
         body.creator_id = user.id;
         body.household_id = user.household_id;
         Award.countAwardsFromHousehold(user.household_id, function (rows) {
+
             if (rows[0].awardsCount > 0) {
                 //update van de bestaande award
                 Award.updateAwardFromHousehold(body, function (body) {
@@ -538,7 +585,6 @@ router.post('/addaward', function (req, res, next) {
 });
 
 router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
-
     let assignUsers = 7;
     if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
     let household = parseInt(req.params.household);
@@ -566,37 +612,64 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
     //console.log(response);
     let result = [];
     let period = response[0][2];
-    let periodArr = [];
-    periodArr.push(period);
-    result.push(periodArr);
-    User.getUsersByHouseholdID(household, null, function (obj, rows) {
-        if(rows === 0){
-            res.status(500).message("no users in household");
-            res.end();
-        }else{
-            users = rows;
-        }
+    result.push({
+        per: period,
+        arr: []
     });
-    let assignedUserPos = 0;
-    for(let item of response){
-        if(item[2] !== period){
-            period = item[2];
-            periodArr.push(period);
-            result.push(periodArr);
+    //users ophalen
+
+    User.getUsersByHouseholdID(household, null, function (obj, users) {
+        let usersFromHousehld = [];
+        for(let user of users){
+            usersFromHousehld.push(user.id);
         }
 
-        periodArr.push(period);
-        result.push(periodArr);
-    }
+        let assignedUserPos = 0;
+        for(let item of response) {
+            if (item[2] !== period) {
+                period = item[2];
+                result.push({
+                    per: period,
+                    arr: []
+                });
+            }
+            if(result[0].per === period){
+                result[0].arr.push(item);
+            }else{
+                if(result[1].per === period){
+                    result[1].arr.push(item);
+                }else{
+                    result[2].arr.push(item);
+                }
+            }
+        }
 
-    response = [];
-    for(let periodGroup of result){
+        //console.log(result);
+        response = [];
+        for(let periodGroup of result){
+            //console.log(periodGroup.arr[0]);
+            let number = periodGroup.arr.length;
+            let period = periodGroup.arr[0][2];
+            let assignedDate = new Date().toISOString().split('T')[0];
+            let days = Math.round(period/number);
+            if(days === 0) days = 1;
 
-    }
-
-    res.json({body: response});
-    res.end();
-
+            for(let item of periodGroup.arr){
+                item.push(assignedDate);
+                item.push(household);
+                if(assignUsers === 7){
+                    item.push(usersFromHousehld[assignedUserPos]);
+                    assignedUserPos++;
+                    if(assignedUserPos === users.length){
+                        assignedUserPos = 0;
+                    }
+                }
+                response.push(item);
+            }
+        }
+        res.json({body: response});
+        res.end();
+    });
 });
 
 //af: steven

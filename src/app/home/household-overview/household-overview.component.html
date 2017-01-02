@@ -15,7 +15,9 @@
 
     </div>
 
-    <app-award [(award)]="household.award"  (click)="toggleDialog()"></app-award>
+    <app-award [(award)]="household.award"
+               [(users)]="household.users"
+               (addawardtohousehold)="addAwardToHousehold($event)"></app-award>
 
 </div>
 
@@ -27,16 +29,17 @@
         <div class="card-content">
             <span class="card-title">No household found</span>
             <p>It seems like you don't belong to a household yet.</p>
-            <p>Go join or make a household.</p>
+            <p>A household is where your tasks are ketp and where you can compete with others!</p>
+            <p></p>
         </div>
         <div class="card-action">
-            <a href="#">Fuck you</a>
-            <a href="#">OK</a>
+            <a (click)="showJoinHouseholdDialog=!showJoinHouseholdDialog">Find a household</a>
+            <a  (click)="showMakeHouseholdDialog=!showMakeHouseholdDialog">Create a household</a>
         </div>
     </div>
 </div>
 
 
 <app-user-detail [(visible)]="showDialog" [(user)]="selectedUser"></app-user-detail>
-<app-award-detail *ngIf="household.award !== null" [(visible)]="showDialogAward" [(award)]="household.award" [user]="user(household.award.creator_id)" ></app-award-detail>
-<app-new-award (awardAdded)="addAwardToHousehold($event)" [(visible)]="showDialogNewAward"></app-new-award>
+<app-join-household (householdtoHouseholdComp)="receiveHousehold($event)" [(visible)]="showJoinHouseholdDialog"></app-join-household>
+<app-new-household [(visible)]="showMakeHouseholdDialog"></app-new-household>

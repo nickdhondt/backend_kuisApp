@@ -245,6 +245,64 @@ export class ApiService {
         });
         return Observable.fromPromise(tokenPromise);
     }
+
+    public getHouseholdbyEmail(email:string):Observable<Household>{
+
+      let tokenPromise = new Promise<Household>((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set("Firebase-ID-Token",token);
+          return this._http.get(
+            this.actionUrl +"householdbyemail/"+ email,
+            {headers:this.headers})
+            .map((response: Response) => {
+              return Household.makeHouseholdFromJSON(response.json());
+            })
+            .catch(ApiService.handleError)
+            .subscribe(
+              data => resolve(data),
+              err => reject(err)
+            );
+
+        })
+      });
+
+      return Observable.fromPromise(tokenPromise);
+    }
+
+
+    public addUsertoHousehold(household_id:number, uid:string){
+      let tokenPromise = new Promise((resolve, reject) => {
+        this.auth.token.then(token => {
+          this.headers.set('Firebase-ID-Token', token);
+          return this._http.post(
+            this.actionUrl + "addusertohousehold",
+            {household_id,uid},
+            {headers: this.headers})
+            .map(res => res.json())
+            .catch(ApiService.handleError)
+            .subscribe(data => {
+            }/*console.log(data)*/);
+        })
+      });
+    }
+
+    public addHousehold(name:string){
+      let tokenPromise = new Promise((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set('Firebase-ID-Token', token);
+          return this._http.post(
+            this.actionUrl + "addhousehold",
+            {name},
+            {headers:this.headers})
+            .map(res=>res.json())
+            .catch(ApiService.handleError)
+            .subscribe(
+              data=>resolve(data),
+              err=>reject(err)
+            )
+        })
+      })
+    }
 }
 
 

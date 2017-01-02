@@ -1,3 +1,15 @@
-<p>
-  household works!
-</p>
+<div class="container">
+
+    <app-loader-small *ngIf="loading"></app-loader-small>
+
+    <app-household-overview *ngIf="user" [household]="user.household">loading...</app-household-overview>
+
+    <div class="row" *ngIf="user && user.household">
+        <ul>
+            <li>{{user.household.countFinishedTasks}}</li>
+            <li>{{user.household.countTotalScore}}</li>
+            <li>{{user.household.mostPopularTask}}</li>
+            <li>{{user.household.tasks.length}}</li>
+        </ul>
+    </div>
+</div>

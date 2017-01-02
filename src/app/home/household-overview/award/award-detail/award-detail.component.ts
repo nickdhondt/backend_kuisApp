@@ -1,7 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter,trigger,transition,style,animate} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, trigger, transition, style, animate} from "@angular/core";
 import {Award} from "../../../../../models/award.model";
-import {isBoolean} from "util";
-import {ApiService} from "../../../../../service/api.service";
 import {User} from "../../../../../models/user.model";
 
 @Component({
@@ -24,7 +22,7 @@ export class AwardDetailComponent implements OnInit {
 
   @Input() award: Award;
   @Input() user : User;
-  @Input() users: User[];
+    //@Input() users: User[];
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean>= new EventEmitter<boolean>();
   constructor() {}
@@ -34,16 +32,16 @@ export class AwardDetailComponent implements OnInit {
 
   }
 
-  private finduser(id:number){
-    for(let u in this.users){
-      if(this.user[u].id==id){
-        console.log("creator found");
-
-        return this.user[u];
-      }
-      return new User();
-    }
-  }
+    // private finduser(id:number){
+    //   for(let u in this.users){
+    //     if(this.user[u].id==id){
+    //       console.log("creator found");
+    //
+    //       return this.user[u];
+    //     }
+    //     return new User();
+    //   }
+    // }
   close(){
     this.visible = false;
     this.visibleChange.emit(this.visible);
