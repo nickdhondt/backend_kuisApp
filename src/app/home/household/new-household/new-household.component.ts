@@ -38,8 +38,12 @@ export class NewHouseholdComponent implements OnInit {
 
       //api call om household aan te maken
       this.apiService.addHousehold(this.householdName);
+      //current user toevoegen aan dit household
+
       //Emitten van nieuwe household naar overview
       //afsluiten van de dialog
+      this.visible=false;
+      this.visibleChange.emit(this.visible);
 
     }else {
       console.log("no name")
