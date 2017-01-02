@@ -347,6 +347,10 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
+
+    public addTask(task:Task) {
+
+    }
 }
 
 

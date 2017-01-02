@@ -6,5 +6,12 @@
                   [tasks]="user.household? user.household.tasks : []"
                   [users]="user.household? user.household.users : undefined">
     </app-tasklist>
+    <div class="fixed-action-btn vertical click-to-toggle" style="margin-bottom: 4em">
+        <a class="btn-floating btn-large red" (click)="dialogVisible=!dialogVisible">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
 
 </div>
+
+<app-taskdetail *ngIf="user" [(visible)]="dialogVisible" [(users)]="user.household.users" [newTask]="true"></app-taskdetail>

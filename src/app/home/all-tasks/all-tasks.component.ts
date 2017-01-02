@@ -9,6 +9,8 @@ import {User} from "../../../models/user.model";
 })
 export class AllTasksComponent implements OnInit {
 
+    dialogVisible:Boolean = false;
+
     ngOnInit(): void {
         this.getUser();
     }
