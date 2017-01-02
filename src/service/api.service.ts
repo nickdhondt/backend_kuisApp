@@ -364,7 +364,28 @@ export class ApiService {
     }
 
     public addTask(task:Task) {
+        let tokenPromise = new Promise<User>((resolve, reject) => {
 
+            this.auth.token.then(token => {
+                this.headers.set('Firebase-ID-Token', token);
+
+                let month = moment().format("YYYY-MM-DD");
+
+                return this._http.post(
+                    this.actionUrl + "addaward",
+                    task,
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+
+        });
+
+        return Observable.fromPromise(tokenPromise);
     }
 }
 
