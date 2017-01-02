@@ -6,6 +6,8 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let socket = require("socket.io");
 
+let cors = require('cors');
+
 let index = require('./routes/index');
 let api = require('./routes/api');
 
@@ -48,6 +50,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 // app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");

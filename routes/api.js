@@ -316,18 +316,17 @@ router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 //controle door: Bart
 router.post('/addhousehold', firebaseAuthenticator, function (req, res) {
 
-    console.log("Addhousehold = " + req.body.name);
-    // process.on("mysqlError", (err) => {
-    //     return next(err);
-    // });
-    // let body = req.body;
-    //
-    // Household.addHousehold(body, function (household) {
-    //
-    //     res.json(household);
-    //     res.end();
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+    let body = req.body;
 
-    // })
+    Household.addHousehold(body, function (household) {
+
+        res.json(household);
+        res.end();
+
+    })
 });
 
 //af: bart
