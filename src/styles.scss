@@ -1,3 +1,4 @@
+@import "assets/scss/chartist.scss";
 
 @media only screen and (min-width: 993px) {
     header, footer, main {
@@ -89,7 +90,5 @@ a {
   @extend .flex-wrap;
   justify-content: flex-end;
 }
-
-
 
 

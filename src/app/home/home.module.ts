@@ -37,6 +37,7 @@ import {NewHouseholdComponent} from "./household/new-household/new-household.com
 import {JoinHouseholdComponent} from "./household/join-household/join-household.component";
 import {JoinHouseholdDetailComponent} from "./household/join-household-detail/join-household-detail.component";
 import {ChartsComponent} from "./household/charts/charts.component";
+import {ChartistModule} from "angular2-chartist";
 
 
 @NgModule({
@@ -72,10 +73,10 @@ import {ChartsComponent} from "./household/charts/charts.component";
         NewHouseholdComponent,
         JoinHouseholdComponent,
         JoinHouseholdDetailComponent,
-        ChartsComponent
+        ChartsComponent,
     ],
     imports: [
-        RouterModule, AppRoutingModule, CommonModule, FormsModule
+        RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule
     ],
     providers: [AuthService, ApiService, Contract],
     bootstrap: [MessageListComponent, MessageFormComponent, MessageItemComponent]
