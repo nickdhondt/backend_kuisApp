@@ -30,12 +30,13 @@ import {FooterComponent} from "./footer/footer.component";
 import {TasktodoRowComponent} from "./tasks-todo/todolist/tasktodo-row/tasktodo-row.component";
 import {SortPipe} from "../../pipe/sort.pipe";
 import {TaskRowComponent} from "./all-tasks/tasklist/task-row/task-row.component";
-import { AwardDetailComponent } from './household-overview/award/award-detail/award-detail.component';
-import { NewAwardComponent } from './household-overview/award/new-award/new-award.component';
+import {AwardDetailComponent} from "./household-overview/award/award-detail/award-detail.component";
+import {NewAwardComponent} from "./household-overview/award/new-award/new-award.component";
 import {SortUsersPipe} from "../../pipe/sort-users.pipe";
-import { NewHouseholdComponent } from './household/new-household/new-household.component';
-import { JoinHouseholdComponent } from './household/join-household/join-household.component';
-import { JoinHouseholdDetailComponent } from './household/join-household-detail/join-household-detail.component';
+import {NewHouseholdComponent} from "./household/new-household/new-household.component";
+import {JoinHouseholdComponent} from "./household/join-household/join-household.component";
+import {JoinHouseholdDetailComponent} from "./household/join-household-detail/join-household-detail.component";
+import {ChartsComponent} from "./household/charts/charts.component";
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { JoinHouseholdDetailComponent } from './household/join-household-detail/
         NewAwardComponent,
         NewHouseholdComponent,
         JoinHouseholdComponent,
-        JoinHouseholdDetailComponent
+        JoinHouseholdDetailComponent,
+        ChartsComponent
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule
