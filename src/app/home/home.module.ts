@@ -43,6 +43,7 @@ import {ContributionDonutComponent} from "./household/charts/contribution-donut/
 import {EvolutionLineComponent} from "./household/charts/evolution-line/evolution-line.component";
 import {TasksDonutComponent} from "./household/charts/tasks-donut/tasks-donut.component";
 import {ChartsModule} from "ng2-charts";
+import { AboutComponentComponent } from './navigation/about-component/about-component.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import {ChartsModule} from "ng2-charts";
         ContributionDonutComponent,
         EvolutionLineComponent,
         TasksDonutComponent,
+        AboutComponentComponent,
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule, ChartsModule

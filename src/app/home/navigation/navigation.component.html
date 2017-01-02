@@ -35,5 +35,7 @@
     <li>
         <div class="divider"></div>
     </li>
-    <li><a href="#" class="waves-effect waves-teal">About</a></li>
+    <li><a href="" class="waves-effect waves-teal" (click)="openAbout($event)">About</a></li>
 </ul>
+
+<app-about-component [(visible)]="aboutVisible"></app-about-component>
