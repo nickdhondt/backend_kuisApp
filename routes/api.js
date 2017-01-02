@@ -227,14 +227,18 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
         return next(err);
     });
 
-    //todo controleren of uid wel ingelogde user is
     let body = req.body;
 
-    User.updateUser(body, function (user) {
-        res.json(user);
-        res.end();
-    })
+    User.getUserByUID(res.locals.uid, function (user) {
+        body.id = user.id;
+        body.uid = user.uid;
+        body.score = user.score;
 
+        User.updateUser(body, function (user) {
+            res.json(body);
+            res.end();
+        })
+    });
 });
 
 //af: steven
