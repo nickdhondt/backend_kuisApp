@@ -348,6 +348,21 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
+    public leaveHousehold(id:Number){
+      let tokenPromise = new Promise((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set('Firebase-ID-Token',token);
+          return this._http.post(
+            this.actionUrl + 'leavehousehold',
+            {id},
+            {headers:this.headers})
+            .map(res=>res.json())
+            .catch(ApiService.handleError)
+            .subscribe(data=>{console.log(data)})
+        })
+      })
+    }
+
     public addTask(task:Task) {
 
     }

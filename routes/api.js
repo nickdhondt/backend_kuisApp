@@ -317,14 +317,16 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 // controle door: Bart
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
+
+
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
     Household.leaveHousehold(body, function (body) {
 
-        res.redirect('/api/userbyuid/' + res.locals.uid);
-
+         // res.redirect('/api/userbyuid/' + res.locals.uid);
     })
 });
 
@@ -637,8 +639,6 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
         per: period,
         arr: []
     });
-    //users ophalen
-
     User.getUsersByHouseholdID(household, null, function (obj, users) {
         let usersFromHousehld = [];
         for(let user of users){
@@ -671,12 +671,13 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
             //console.log(periodGroup.arr[0]);
             let number = periodGroup.arr.length;
             let period = periodGroup.arr[0][2];
-            let assignedDate = new Date().toISOString().split('T')[0];
+            let assignedDate = new Date();
             let days = Math.round(period/number);
             if(days === 0) days = 1;
 
             for(let item of periodGroup.arr){
-                item.push(assignedDate);
+                assignedDate.setDate(assignedDate.getDate() + days);
+                item.push(assignedDate.toISOString().split('T')[0]);
                 item.push(household);
                 if(assignUsers === 7){
                     item.push(usersFromHousehld[assignedUserPos]);
@@ -685,7 +686,16 @@ router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
                         assignedUserPos = 0;
                     }
                 }
-                response.push(item);
+                json = {};
+                json['name'] = item[0];
+                json['description'] = item[1];
+                json['period'] = item[2];
+                json['points'] = item[3];
+                json['dueDate'] = item[4];
+                json['household_id'] = item[5];
+                json['assigned_to'] = item[6];
+
+                response.push(json);
             }
         }
         res.json({body: response});
