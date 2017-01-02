@@ -1,6 +1,6 @@
 webpackJsonp([0,3],{
 
-/***/ 1177:
+/***/ 1178:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9,19 +9,19 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 1177;
+webpackEmptyContext.id = 1178;
 
 
 /***/ },
 
-/***/ 1178:
+/***/ 1179:
 /***/ function(module, exports) {
 
 /* (ignored) */
 
 /***/ },
 
-/***/ 1179:
+/***/ 1180:
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(490);
@@ -70,15 +70,15 @@ var Contract = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contract__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ApiService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -342,6 +342,30 @@ var ApiService = (function () {
         });
     };
     ApiService.prototype.addTask = function (task) {
+        var _this = this;
+        var tokenPromise = new Promise(function (resolve, reject) {
+            _this.auth.token.then(function (token) {
+                _this.headers.set('Firebase-ID-Token', token);
+                return _this._http.post(_this.actionUrl + "addtask", task, { headers: _this.headers })
+                    .map(function (res) { return res.json(); })
+                    .catch(ApiService.handleError)
+                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
+            });
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
+    };
+    ApiService.prototype.updateTask = function (task) {
+        var _this = this;
+        var tokenPromise = new Promise(function (resolve, reject) {
+            _this.auth.token.then(function (token) {
+                _this.headers.set('Firebase-ID-Token', token);
+                return _this._http.post(_this.actionUrl + "updatetask", task, { headers: _this.headers })
+                    .map(function (res) { return res.json(); })
+                    .catch(ApiService.handleError)
+                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
+            });
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
     ApiService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
@@ -388,11 +412,11 @@ var Task = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(124);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SocketService; });
@@ -453,7 +477,7 @@ var SocketService = (function () {
 
 /***/ },
 
-/***/ 252:
+/***/ 253:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -506,8 +530,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(869),
-            styles: [__webpack_require__(852)]
+            template: __webpack_require__(870),
+            styles: [__webpack_require__(853)]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -626,8 +650,8 @@ var AllTasksComponent = (function () {
     AllTasksComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-all-tasks',
-            template: __webpack_require__(870),
-            styles: [__webpack_require__(853)]
+            template: __webpack_require__(871),
+            styles: [__webpack_require__(854)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], AllTasksComponent);
@@ -666,8 +690,8 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(879),
-            styles: [__webpack_require__(857)]
+            template: __webpack_require__(880),
+            styles: [__webpack_require__(858)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], HomeComponent);
@@ -720,8 +744,8 @@ var HouseholdComponent = (function () {
     HouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-household',
-            template: __webpack_require__(891),
-            styles: [__webpack_require__(845)]
+            template: __webpack_require__(892),
+            styles: [__webpack_require__(846)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], HouseholdComponent);
@@ -771,8 +795,8 @@ var TasksTodoComponent = (function () {
     TasksTodoComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasks-todo',
-            template: __webpack_require__(899),
-            styles: [__webpack_require__(864)]
+            template: __webpack_require__(900),
+            styles: [__webpack_require__(865)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], TasksTodoComponent);
@@ -834,8 +858,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-login',
-            template: __webpack_require__(903),
-            styles: [__webpack_require__(867)]
+            template: __webpack_require__(904),
+            styles: [__webpack_require__(868)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], LoginComponent);
@@ -870,8 +894,8 @@ var NotFoundComponent = (function () {
     NotFoundComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-not-found',
-            template: __webpack_require__(904),
-            styles: [__webpack_require__(868)]
+            template: __webpack_require__(905),
+            styles: [__webpack_require__(869)]
         }), 
         __metadata('design:paramtypes', [])
     ], NotFoundComponent);
@@ -885,11 +909,11 @@ var NotFoundComponent = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(71);
@@ -945,11 +969,11 @@ var AuthGuard = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(71);
@@ -1004,10 +1028,10 @@ var UnauthGuard = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1221,7 +1245,7 @@ var Household = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(48);
@@ -1314,7 +1338,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskRowComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1361,8 +1385,8 @@ var TaskRowComponent = (function () {
     TaskRowComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-task-row',
-            template: __webpack_require__(871),
-            styles: [__webpack_require__(833)],
+            template: __webpack_require__(872),
+            styles: [__webpack_require__(834)],
         }), 
         __metadata('design:paramtypes', [])
     ], TaskRowComponent);
@@ -1438,8 +1462,8 @@ var TasklistComponent = (function () {
     TasklistComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasklist',
-            template: __webpack_require__(872),
-            styles: [__webpack_require__(854)],
+            template: __webpack_require__(873),
+            styles: [__webpack_require__(855)],
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], TasklistComponent);
@@ -1485,8 +1509,8 @@ var ChatComponent = (function () {
     ChatComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-chat',
-            template: __webpack_require__(873),
-            styles: [__webpack_require__(834)]
+            template: __webpack_require__(874),
+            styles: [__webpack_require__(835)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], ChatComponent);
@@ -1538,8 +1562,8 @@ var MessageFormComponent = (function () {
     MessageFormComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-message-form',
-            template: __webpack_require__(874),
-            styles: [__webpack_require__(835)],
+            template: __webpack_require__(875),
+            styles: [__webpack_require__(836)],
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */]) === 'function' && _b) || Object])
     ], MessageFormComponent);
@@ -1578,8 +1602,8 @@ var MessageItemComponent = (function () {
     MessageItemComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-message-item',
-            template: __webpack_require__(875),
-            styles: [__webpack_require__(836)]
+            template: __webpack_require__(876),
+            styles: [__webpack_require__(837)]
         }), 
         __metadata('design:paramtypes', [])
     ], MessageItemComponent);
@@ -1647,8 +1671,8 @@ var MessageListComponent = (function () {
     MessageListComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-message-list',
-            template: __webpack_require__(876),
-            styles: [__webpack_require__(837)]
+            template: __webpack_require__(877),
+            styles: [__webpack_require__(838)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */]) === 'function' && _b) || Object])
     ], MessageListComponent);
@@ -1683,8 +1707,8 @@ var FooterComponent = (function () {
     FooterComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-footer',
-            template: __webpack_require__(877),
-            styles: [__webpack_require__(855)]
+            template: __webpack_require__(878),
+            styles: [__webpack_require__(856)]
         }), 
         __metadata('design:paramtypes', [])
     ], FooterComponent);
@@ -1718,8 +1742,8 @@ var HeaderComponent = (function () {
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-header',
-            template: __webpack_require__(878),
-            styles: [__webpack_require__(856)]
+            template: __webpack_require__(879),
+            styles: [__webpack_require__(857)]
         }), 
         __metadata('design:paramtypes', [])
     ], HeaderComponent);
@@ -1779,7 +1803,7 @@ var HeaderComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__household_charts_contribution_donut_contribution_donut_component__ = __webpack_require__(611);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__household_charts_evolution_line_evolution_line_component__ = __webpack_require__(612);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__household_charts_tasks_donut_tasks_donut_component__ = __webpack_require__(614);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng2_charts__ = __webpack_require__(830);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng2_charts__ = __webpack_require__(831);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ng2_charts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__navigation_about_component_about_component_component__ = __webpack_require__(619);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__household_leave_household_leave_household_component__ = __webpack_require__(617);
@@ -1904,7 +1928,7 @@ var HomeModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1958,8 +1982,8 @@ var AwardDetailComponent = (function () {
     AwardDetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-award-detail',
-            template: __webpack_require__(880),
-            styles: [__webpack_require__(838)],
+            template: __webpack_require__(881),
+            styles: [__webpack_require__(839)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -1986,7 +2010,7 @@ var AwardDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__ = __webpack_require__(113);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2043,8 +2067,8 @@ var AwardComponent = (function () {
     AwardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-award',
-            template: __webpack_require__(881),
-            styles: [__webpack_require__(858)]
+            template: __webpack_require__(882),
+            styles: [__webpack_require__(859)]
         }), 
         __metadata('design:paramtypes', [])
     ], AwardComponent);
@@ -2115,8 +2139,8 @@ var NewAwardComponent = (function () {
     NewAwardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-award',
-            template: __webpack_require__(882),
-            styles: [__webpack_require__(839)],
+            template: __webpack_require__(883),
+            styles: [__webpack_require__(840)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2146,7 +2170,7 @@ var NewAwardComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_award_model__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_award_model__ = __webpack_require__(253);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HouseholdOverviewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2204,8 +2228,8 @@ var HouseholdOverviewComponent = (function () {
     HouseholdOverviewComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-household-overview',
-            template: __webpack_require__(883),
-            styles: [__webpack_require__(859)]
+            template: __webpack_require__(884),
+            styles: [__webpack_require__(860)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object])
     ], HouseholdOverviewComponent);
@@ -2276,8 +2300,8 @@ var UserDetailComponent = (function () {
     UserDetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-detail',
-            template: __webpack_require__(884),
-            styles: [__webpack_require__(860)],
+            template: __webpack_require__(885),
+            styles: [__webpack_require__(861)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2333,8 +2357,8 @@ var UserImgComponent = (function () {
     UserImgComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-img',
-            template: __webpack_require__(885),
-            styles: [__webpack_require__(861)]
+            template: __webpack_require__(886),
+            styles: [__webpack_require__(862)]
         }), 
         __metadata('design:paramtypes', [])
     ], UserImgComponent);
@@ -2375,8 +2399,8 @@ var ChartsComponent = (function () {
     ChartsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-charts',
-            template: __webpack_require__(886),
-            styles: [__webpack_require__(840)],
+            template: __webpack_require__(887),
+            styles: [__webpack_require__(841)],
         }), 
         __metadata('design:paramtypes', [])
     ], ChartsComponent);
@@ -2392,7 +2416,7 @@ var ChartsComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(56);
@@ -2488,8 +2512,8 @@ var ContributionDonutComponent = (function () {
     ContributionDonutComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-contribution-donut',
-            template: __webpack_require__(887),
-            styles: [__webpack_require__(841)]
+            template: __webpack_require__(888),
+            styles: [__webpack_require__(842)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], ContributionDonutComponent);
@@ -2545,8 +2569,8 @@ var EvolutionLineComponent = (function () {
     EvolutionLineComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-evolution-line',
-            template: __webpack_require__(888),
-            styles: [__webpack_require__(842)]
+            template: __webpack_require__(889),
+            styles: [__webpack_require__(843)]
         }), 
         __metadata('design:paramtypes', [])
     ], EvolutionLineComponent);
@@ -2601,8 +2625,8 @@ var FinishedBarComponent = (function () {
     FinishedBarComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-finished-bar',
-            template: __webpack_require__(889),
-            styles: [__webpack_require__(843)]
+            template: __webpack_require__(890),
+            styles: [__webpack_require__(844)]
         }), 
         __metadata('design:paramtypes', [])
     ], FinishedBarComponent);
@@ -2617,7 +2641,7 @@ var FinishedBarComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(56);
@@ -2713,8 +2737,8 @@ var TasksDonutComponent = (function () {
     TasksDonutComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasks-donut',
-            template: __webpack_require__(890),
-            styles: [__webpack_require__(844)]
+            template: __webpack_require__(891),
+            styles: [__webpack_require__(845)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], TasksDonutComponent);
@@ -2790,8 +2814,8 @@ var JoinHouseholdDetailComponent = (function () {
     JoinHouseholdDetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-join-household-detail',
-            template: __webpack_require__(892),
-            styles: [__webpack_require__(846)],
+            template: __webpack_require__(893),
+            styles: [__webpack_require__(847)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2887,8 +2911,8 @@ var JoinHouseholdComponent = (function () {
     JoinHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-join-household',
-            template: __webpack_require__(893),
-            styles: [__webpack_require__(847)],
+            template: __webpack_require__(894),
+            styles: [__webpack_require__(848)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2974,8 +2998,8 @@ var LeaveHouseholdComponent = (function () {
     LeaveHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-leave-household',
-            template: __webpack_require__(894),
-            styles: [__webpack_require__(848)],
+            template: __webpack_require__(895),
+            styles: [__webpack_require__(849)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3054,8 +3078,8 @@ var NewHouseholdComponent = (function () {
     NewHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-household',
-            template: __webpack_require__(895),
-            styles: [__webpack_require__(849)],
+            template: __webpack_require__(896),
+            styles: [__webpack_require__(850)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3115,8 +3139,8 @@ var AboutComponentComponent = (function () {
     AboutComponentComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-about-component',
-            template: __webpack_require__(896),
-            styles: [__webpack_require__(850)],
+            template: __webpack_require__(897),
+            styles: [__webpack_require__(851)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3177,8 +3201,8 @@ var NavigationComponent = (function () {
     NavigationComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-navigation',
-            template: __webpack_require__(897),
-            styles: [__webpack_require__(862)]
+            template: __webpack_require__(898),
+            styles: [__webpack_require__(863)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], NavigationComponent);
@@ -3196,6 +3220,8 @@ var NavigationComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(828);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskdetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3209,10 +3235,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-;
+
 var TaskdetailComponent = (function () {
-    function TaskdetailComponent(apiservice) {
-        this.apiservice = apiservice;
+    function TaskdetailComponent(apiService) {
+        this.apiService = apiService;
         this.closable = true;
         this.newTask = false;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -3226,11 +3252,26 @@ var TaskdetailComponent = (function () {
         this.visibleChange.emit(this.visible);
     };
     TaskdetailComponent.prototype.add = function () {
+        var _this = this;
+        // TODO: propagate to list
+        var props = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(Object.getOwnPropertyNames(this.task));
+        var required = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to"]);
+        if (__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEqual(props, required)) {
+            this.apiService.addTask(this.task).subscribe(function (data) {
+                _this.close();
+            });
+        }
     };
     TaskdetailComponent.prototype.save = function () {
-        // TODO : code to save changes
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
+        var _this = this;
+        var props = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(Object.getOwnPropertyNames(this.task));
+        var required = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to", "id", "household_id"]);
+        console.log(__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEqual(props, required));
+        if (__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEqual(props, required)) {
+            this.apiService.updateTask(this.task).subscribe(function (data) {
+                _this.close();
+            });
+        }
     };
     TaskdetailComponent.prototype.delete = function () {
         //TODO : code to delete task
@@ -3262,8 +3303,8 @@ var TaskdetailComponent = (function () {
     TaskdetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-taskdetail',
-            template: __webpack_require__(898),
-            styles: [__webpack_require__(863)],
+            template: __webpack_require__(899),
+            styles: [__webpack_require__(864)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3291,7 +3332,7 @@ var TaskdetailComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(16);
@@ -3388,8 +3429,8 @@ var TasktodoRowComponent = (function () {
     TasktodoRowComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasktodo-row',
-            template: __webpack_require__(900),
-            styles: [__webpack_require__(851)],
+            template: __webpack_require__(901),
+            styles: [__webpack_require__(852)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibleState', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('finished', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
@@ -3469,8 +3510,8 @@ var TodolistComponent = (function () {
     TodolistComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-todolist',
-            template: __webpack_require__(901),
-            styles: [__webpack_require__(865)]
+            template: __webpack_require__(902),
+            styles: [__webpack_require__(866)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], TodolistComponent);
@@ -3519,8 +3560,8 @@ var LoaderSmallComponent = (function () {
     LoaderSmallComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-loader-small',
-            template: __webpack_require__(902),
-            styles: [__webpack_require__(866)]
+            template: __webpack_require__(903),
+            styles: [__webpack_require__(867)]
         }), 
         __metadata('design:paramtypes', [])
     ], LoaderSmallComponent);
@@ -3748,7 +3789,7 @@ var TasksFilterPipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(676);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(1176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(1177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__);
 
 
@@ -3770,13 +3811,6 @@ var TasksFilterPipe = (function () {
 
 /***/ },
 
-/***/ 833:
-/***/ function(module, exports) {
-
-module.exports = ""
-
-/***/ },
-
 /***/ 834:
 /***/ function(module, exports) {
 
@@ -3787,35 +3821,35 @@ module.exports = ""
 /***/ 835:
 /***/ function(module, exports) {
 
-module.exports = ".chat-form {\n  height: 50px; }\n  .chat-form input {\n    width: 92% !important; }\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 836:
 /***/ function(module, exports) {
 
-module.exports = ".card-action {\n  font-size: 0.8em;\n  font-style: italic; }\n\n.card-content, .card-action {\n  padding: 10px;\n  font-size: 0.8em; }\n"
+module.exports = ".chat-form {\n  height: 50px; }\n  .chat-form input {\n    width: 92% !important; }\n"
 
 /***/ },
 
 /***/ 837:
 /***/ function(module, exports) {
 
-module.exports = "::-webkit-scrollbar {\n  width: 0px;\n  /* remove scrollbar space */\n  background: transparent;\n  /* optional: just make scrollbar invisible */ }\n\n/* optional: show position indicator in red */\n::-webkit-scrollbar-thumb {\n  background: #FF0000; }\n\n.chat-list {\n  margin: 20px 0;\n  overflow-y: auto;\n  height: 300px; }\n  .chat-list li:not(:first-of-type) {\n    margin: 20px 0 0 0; }\n"
+module.exports = ".card-action {\n  font-size: 0.8em;\n  font-style: italic; }\n\n.card-content, .card-action {\n  padding: 10px;\n  font-size: 0.8em; }\n"
 
 /***/ },
 
 /***/ 838:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: transparent;\n  z-index: 999; }\n\n@media (min-width: 993px) {\n  .overlay {\n    left: 300px; } }\n"
+module.exports = "::-webkit-scrollbar {\n  width: 0px;\n  /* remove scrollbar space */\n  background: transparent;\n  /* optional: just make scrollbar invisible */ }\n\n/* optional: show position indicator in red */\n::-webkit-scrollbar-thumb {\n  background: #FF0000; }\n\n.chat-list {\n  margin: 20px 0;\n  overflow-y: auto;\n  height: 300px; }\n  .chat-list li:not(:first-of-type) {\n    margin: 20px 0 0 0; }\n"
 
 /***/ },
 
 /***/ 839:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: transparent;\n  z-index: 999; }\n\n@media (min-width: 993px) {\n  .overlay {\n    left: 300px; } }\n"
 
 /***/ },
 
@@ -3864,7 +3898,7 @@ module.exports = ""
 /***/ 846:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
+module.exports = ""
 
 /***/ },
 
@@ -3892,28 +3926,28 @@ module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  lef
 /***/ 850:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\np:not(:last-of-type) {\n  margin-bottom: 1em; }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
 
 /***/ },
 
 /***/ 851:
 /***/ function(module, exports) {
 
-module.exports = "\n"
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\np:not(:last-of-type) {\n  margin-bottom: 1em; }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
 
 /***/ },
 
 /***/ 852:
 /***/ function(module, exports) {
 
-module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
+module.exports = "\n"
 
 /***/ },
 
 /***/ 853:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
 
 /***/ },
 
@@ -3934,21 +3968,21 @@ module.exports = ""
 /***/ 856:
 /***/ function(module, exports) {
 
-module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
+module.exports = ""
 
 /***/ },
 
 /***/ 857:
 /***/ function(module, exports) {
 
-module.exports = "/*h1{*/\n/*font-size: 35px;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*header, main, footer,aside {*/\n/*padding-left: 350px;*/\n/*}*/\n\n/*@media only screen and (max-width : 992px) {*/\n/*header, main, footer {*/\n/*padding-left: 0;*/\n\n/*}*/\n/*app-header{*/\n/*display: block;*/\n/*}*/\n/*}*/\n\n/*aside app-chat {*/\n/*position: absolute;*/\n\n/*top:0px;*/\n/*bottom: 0px;*/\n/*right: 0px;*/\n/*width: 250px;*/\n/*border-left: 1px solid gray;*/\n\n/*}*/"
+module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
 
 /***/ },
 
 /***/ 858:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*h1{*/\n/*font-size: 35px;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*header, main, footer,aside {*/\n/*padding-left: 350px;*/\n/*}*/\n\n/*@media only screen and (max-width : 992px) {*/\n/*header, main, footer {*/\n/*padding-left: 0;*/\n\n/*}*/\n/*app-header{*/\n/*display: block;*/\n/*}*/\n/*}*/\n\n/*aside app-chat {*/\n/*position: absolute;*/\n\n/*top:0px;*/\n/*bottom: 0px;*/\n/*right: 0px;*/\n/*width: 250px;*/\n/*border-left: 1px solid gray;*/\n\n/*}*/"
 
 /***/ },
 
@@ -3962,35 +3996,35 @@ module.exports = ""
 /***/ 860:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
+module.exports = ""
 
 /***/ },
 
 /***/ 861:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
 /***/ 862:
 /***/ function(module, exports) {
 
-module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 863:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
+module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
 
 /***/ },
 
 /***/ 864:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
@@ -4025,140 +4059,140 @@ module.exports = ""
 /***/ 869:
 /***/ function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 870:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-tasklist *ngIf=\"user\"\n                  [tasks]=\"user.household? user.household.tasks : []\"\n                  [users]=\"user.household? user.household.users : undefined\">\n    </app-tasklist>\n    <div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\n        <a class=\"btn-floating btn-large red\" (click)=\"dialogVisible=!dialogVisible\">\n            <i class=\"material-icons\">add</i>\n        </a>\n    </div>\n\n</div>\n\n<app-taskdetail *ngIf=\"user\" [(visible)]=\"dialogVisible\" [(users)]=\"user.household.users\" [newTask]=\"true\"></app-taskdetail>"
+module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ },
 
 /***/ 871:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n    <div class=\"col flex-down-center\">\n\n        <p class=\"text-small\">repeats every</p>\n        <p class=\"text-large\">{{task.period}}</p>\n        <p class=\"text-small \">{{task.period == 1 ? 'day':'days'}}</p>\n\n    </div>\n    <div class=\"col flex-down-spacebetween\" style=\"flex-grow: 1;\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text truncate\">{{task.description}} </p>\n        <span class=\"\">{{task.points}} points</span>\n    </div>\n    <div class=\"col flex-down-left\" style=\"align-items: flex-end\">\n\n        <a class=\"tooltipped\"\n           (click)=\"showDetailClick()\"\n           materialize=\"tooltip\"\n           data-position=\"bottom\"\n           data-delay=\"20\"\n           data-tooltip=\"edit\">\n            <i class=\"material-icons \">mode_edit</i></a>\n\n\n    </div>\n</div>\n\n"
+module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-tasklist *ngIf=\"user\"\n                  [tasks]=\"user.household? user.household.tasks : []\"\n                  [users]=\"user.household? user.household.users : undefined\">\n    </app-tasklist>\n    <div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\n        <a class=\"btn-floating btn-large red\" (click)=\"dialogVisible=!dialogVisible\">\n            <i class=\"material-icons\">add</i>\n        </a>\n    </div>\n\n</div>\n\n<app-taskdetail *ngIf=\"user\" [(visible)]=\"dialogVisible\" [(users)]=\"user.household.users\" [newTask]=\"true\"></app-taskdetail>"
 
 /***/ },
 
 /***/ 872:
 /***/ function(module, exports) {
 
-module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\n"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n    <div class=\"col flex-down-center\">\n\n        <p class=\"text-small\">repeats every</p>\n        <p class=\"text-large\">{{task.period}}</p>\n        <p class=\"text-small \">{{task.period == 1 ? 'day':'days'}}</p>\n\n    </div>\n    <div class=\"col flex-down-spacebetween\" style=\"flex-grow: 1;\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text truncate\">{{task.description}} </p>\n        <span class=\"\">{{task.points}} points</span>\n    </div>\n    <div class=\"col flex-down-left\" style=\"align-items: flex-end\">\n\n        <a class=\"tooltipped\"\n           (click)=\"showDetailClick()\"\n           materialize=\"tooltip\"\n           data-position=\"bottom\"\n           data-delay=\"20\"\n           data-tooltip=\"edit\">\n            <i class=\"material-icons \">mode_edit</i></a>\n\n\n    </div>\n</div>\n\n"
 
 /***/ },
 
 /***/ 873:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
+module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\n"
 
 /***/ },
 
 /***/ 874:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
+module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
 
 /***/ },
 
 /***/ 875:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
 
 /***/ },
 
 /***/ 876:
 /***/ function(module, exports) {
 
-module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
+module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 877:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container \">\n    <div class=\"row\">\n        <div class=\"col l6 s12\">\n            <h5 class=\"white-text\">Footer Content</h5>\n            <p class=\"grey-text text-lighten-4\">You can use rows and columns here to organize your footer\n                content.</p>\n        </div>\n        <div class=\"col l4 offset-l2 s12\">\n            <h5 class=\"white-text\">Links</h5>\n            <ul>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 1</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 2</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 3</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 4</a></li>\n            </ul>\n        </div>\n    </div>\n</div>\n<div class=\"footer-copyright\">\n    <div class=\"container\">\n        © 2014 Copyright Text\n        <a class=\"grey-text text-lighten-4 right\" href=\"#!\">More Links</a>\n    </div>\n</div>\n"
+module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
 
 /***/ },
 
 /***/ 878:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
+module.exports = "<div class=\"container \">\n    <div class=\"row\">\n        <div class=\"col l6 s12\">\n            <h5 class=\"white-text\">Footer Content</h5>\n            <p class=\"grey-text text-lighten-4\">You can use rows and columns here to organize your footer\n                content.</p>\n        </div>\n        <div class=\"col l4 offset-l2 s12\">\n            <h5 class=\"white-text\">Links</h5>\n            <ul>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 1</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 2</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 3</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 4</a></li>\n            </ul>\n        </div>\n    </div>\n</div>\n<div class=\"footer-copyright\">\n    <div class=\"container\">\n        © 2014 Copyright Text\n        <a class=\"grey-text text-lighten-4 right\" href=\"#!\">More Links</a>\n    </div>\n</div>\n"
 
 /***/ },
 
 /***/ 879:
 /***/ function(module, exports) {
 
-module.exports = "<header>\n    <app-navigation></app-navigation>\n</header>\n\n<main>\n    <div class=\"row\">\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\n            <router-outlet></router-outlet>\n        </div>\n        <aside class=\"chat-bottom card\">\n            <app-chat></app-chat>\n        </aside>\n    </div>\n</main>\n\n<footer class=\"red darken-4\">\n    <app-footer></app-footer>\n</footer>"
+module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
 
 /***/ },
 
 /***/ 880:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<header>\n    <app-navigation></app-navigation>\n</header>\n\n<main>\n    <div class=\"row\">\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\n            <router-outlet></router-outlet>\n        </div>\n        <aside class=\"chat-bottom card\">\n            <app-chat></app-chat>\n        </aside>\n    </div>\n</main>\n\n<footer class=\"red darken-4\">\n    <app-footer></app-footer>\n</footer>"
 
 /***/ },
 
 /***/ 881:
 /***/ function(module, exports) {
 
-module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 882:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">New award of the month</span>\n        <div class=\"row no-margin\">\n            <form class=\"col s12\" #newAwardForm=\"ngForm\">\n                <div class=\"row no-margin\">\n                    <div class=\"input-field col s12 l3\">\n                        <input [(ngModel)]=\"name\" id=\"award_name\" name=\"name\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_name\" class=\"active\">Award Name</label>\n                    </div>\n                    <div class=\"input-field col s12 l7\">\n                        <input [(ngModel)]=\"description\" name=\"description\" id=\"award_description\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_description\" class=\"active\">Description</label>\n                    </div>\n                    <div class=\"input-field col s12 l2\">\n                        <a class=\"waves-effect waves-light red btn\" (click)=\"set()\">Set</a>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>"
+module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
 /***/ 883:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n<div *ngIf=\"household\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\n\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\n\n        <app-user-img\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\n                [user]=\"user\"\n                [index]=\"i\"\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\n        ></app-user-img>\n\n    </div>\n\n    <app-award [(award)]=\"household.award\"\n               [(users)]=\"household.users\"\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\n\n</div>\n\n<div *ngIf=\"!household\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No household found</span>\n            <p>It seems like you don't belong to a household yet.</p>\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\n            <p></p>\n        </div>\n        <div class=\"card-action\">\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\n        </div>\n    </div>\n</div>\n\n\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\" [currentUser]=\"currentUser\"></app-user-detail>\n<app-join-household (householdtoHouseholdComp)=\"receiveHousehold($event)\" [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\n<app-new-household [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">New award of the month</span>\n        <div class=\"row no-margin\">\n            <form class=\"col s12\" #newAwardForm=\"ngForm\">\n                <div class=\"row no-margin\">\n                    <div class=\"input-field col s12 l3\">\n                        <input [(ngModel)]=\"name\" id=\"award_name\" name=\"name\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_name\" class=\"active\">Award Name</label>\n                    </div>\n                    <div class=\"input-field col s12 l7\">\n                        <input [(ngModel)]=\"description\" name=\"description\" id=\"award_description\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_description\" class=\"active\">Description</label>\n                    </div>\n                    <div class=\"input-field col s12 l2\">\n                        <a class=\"waves-effect waves-light red btn\" (click)=\"set()\">Set</a>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 884:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">Member Details</span>\n        <div class=\"row center-align\" >\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img circle \" style=\"max-height: 100px; max-width: 100px; overflow: hidden\">\n        </div>\n        <div class=\"row\">\n            <form class=\"col s12\" #userDetailForm=\"ngForm\">\n                <div class=\"row\">\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.name\" id=\"first_name\" name=\"name\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"first_name\">First Name</label>\n                    </div>\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.lname\" id=\"last_name\" name=\"lname\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"last_name\">Last Name</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"prefix material-icons\">email</i>\n                        <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\n                        <label class=\"active\" for=\"email\" data-error=\"Email not validated\" data-success=\"Valid Email \">E-mail</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"material-icons prefix\">phone</i>\n                        <input [(ngModel)]=\"user.phoneNumber\" name=\"phoneNumber\" id=\"phone_number\" type=\"number\" class=\"validate\" >\n                        <label class=\"active\" for=\"phone_number\">Phone Number</label>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n        <a *ngIf=\"currentUser === user.uid\" (click)=\"save()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default\">save</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n<div *ngIf=\"household\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\n\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\n\n        <app-user-img\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\n                [user]=\"user\"\n                [index]=\"i\"\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\n        ></app-user-img>\n\n    </div>\n\n    <app-award [(award)]=\"household.award\"\n               [(users)]=\"household.users\"\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\n\n</div>\n\n<div *ngIf=\"!household\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No household found</span>\n            <p>It seems like you don't belong to a household yet.</p>\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\n            <p></p>\n        </div>\n        <div class=\"card-action\">\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\n        </div>\n    </div>\n</div>\n\n\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\" [currentUser]=\"currentUser\"></app-user-detail>\n<app-join-household (householdtoHouseholdComp)=\"receiveHousehold($event)\" [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\n<app-new-household [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\n"
 
 /***/ },
 
 /***/ 885:
 /***/ function(module, exports) {
 
-module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"position: relative\">\n\n        <div class=\"chip\"\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\n             style=\"position: absolute; top:-10px; left:0;\">\n            {{user.score}}\n        </div>\n\n        <div class=\"hoverable circle z-depth-1\"\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img\">\n        </div>\n    </div>\n\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\n\n</figure>\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">Member Details</span>\n        <div class=\"row center-align\" >\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img circle \" style=\"max-height: 100px; max-width: 100px; overflow: hidden\">\n        </div>\n        <div class=\"row\">\n            <form class=\"col s12\" #userDetailForm=\"ngForm\">\n                <div class=\"row\">\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.name\" id=\"first_name\" name=\"name\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"first_name\">First Name</label>\n                    </div>\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.lname\" id=\"last_name\" name=\"lname\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"last_name\">Last Name</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"prefix material-icons\">email</i>\n                        <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\n                        <label class=\"active\" for=\"email\" data-error=\"Email not validated\" data-success=\"Valid Email \">E-mail</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"material-icons prefix\">phone</i>\n                        <input [(ngModel)]=\"user.phoneNumber\" name=\"phoneNumber\" id=\"phone_number\" type=\"number\" class=\"validate\" >\n                        <label class=\"active\" for=\"phone_number\">Phone Number</label>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n        <a *ngIf=\"currentUser === user.uid\" (click)=\"save()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default\">save</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 886:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <app-finished-bar></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line></app-evolution-line>\r\n</div>\r\n<div class=\"crow\">\r\n    <div class=\"col s12 m6\">\r\n        <app-contribution-donut [(household)]=\"household\"></app-contribution-donut>\r\n    </div>\r\n    <div class=\"col s12 m6\">\r\n        <app-tasks-donut [(household)]=\"household\"></app-tasks-donut>\r\n    </div>\r\n</div>\r\n\r\n"
+module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"position: relative\">\n\n        <div class=\"chip\"\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\n             style=\"position: absolute; top:-10px; left:0;\">\n            {{user.score}}\n        </div>\n\n        <div class=\"hoverable circle z-depth-1\"\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img\">\n        </div>\n    </div>\n\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\n\n</figure>\n"
 
 /***/ },
 
 /***/ 887:
 /***/ function(module, exports) {
 
-module.exports = "<x-chartist [events]=\"events\"\r\n            [options]=\"options\"\r\n            [(data)]=\"data\"\r\n            [type]=\"type\">\r\n</x-chartist>\r\n"
+module.exports = "<div class=\"row\">\r\n    <app-finished-bar></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line></app-evolution-line>\r\n</div>\r\n<div class=\"crow\">\r\n    <div class=\"col s12 m6\">\r\n        <app-contribution-donut [(household)]=\"household\"></app-contribution-donut>\r\n    </div>\r\n    <div class=\"col s12 m6\">\r\n        <app-tasks-donut [(household)]=\"household\"></app-tasks-donut>\r\n    </div>\r\n</div>\r\n\r\n"
 
 /***/ },
 
 /***/ 888:
 /***/ function(module, exports) {
 
-module.exports = "<x-chartist id=\"chart\"\r\n            [data]=\"data\"\r\n            [type]=\"type\">\r\n</x-chartist>"
+module.exports = "<x-chartist [events]=\"events\"\r\n            [options]=\"options\"\r\n            [(data)]=\"data\"\r\n            [type]=\"type\">\r\n</x-chartist>\r\n"
 
 /***/ },
 
@@ -4172,107 +4206,114 @@ module.exports = "<x-chartist id=\"chart\"\r\n            [data]=\"data\"\r\n   
 /***/ 890:
 /***/ function(module, exports) {
 
-module.exports = "<x-chartist [events]=\"events\"\r\n            [options]=\"options\"\r\n            [(data)]=\"data\"\r\n            [type]=\"type\">\r\n</x-chartist>\r\n"
+module.exports = "<x-chartist id=\"chart\"\r\n            [data]=\"data\"\r\n            [type]=\"type\">\r\n</x-chartist>"
 
 /***/ },
 
 /***/ 891:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\r\n\r\n    <div class=\"row\" *ngIf=\"user && user.household\">\r\n        <ul>\r\n            <li>{{user.household.countFinishedTasks}}</li>\r\n            <li>{{user.household.countTotalScore}}</li>\r\n            <li>{{user.household.mostPopularTask}}</li>\r\n            <li>{{user.household.tasks.length}}</li>\r\n        </ul>\r\n\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n<div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
+module.exports = "<x-chartist [events]=\"events\"\r\n            [options]=\"options\"\r\n            [(data)]=\"data\"\r\n            [type]=\"type\">\r\n</x-chartist>\r\n"
 
 /***/ },
 
 /***/ 892:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div *ngIf=\"household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input value=\"{{household.name}}\" name=\"memberemail\"  id=\"houseold_name\"  type=\"text\" class=\"\" readonly >\n            <label for=\"houseold_name\" class=\"active\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n\n  <div *ngIf=\"!household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Sorry</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <p>We couldn't find a the household you're looking for</p>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div   class=\"card-action\" >\n    <a  *ngIf=\"household\" (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a   *ngIf=\"household\" class=\"right\"  (click)=\"join()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Join</a>\n    <a *ngIf=\"!household\"  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">thanks anyway</a>\n\n\n  </div>\n\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
+module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\r\n\r\n    <div class=\"row\" *ngIf=\"user && user.household\">\r\n        <ul>\r\n            <li>{{user.household.countFinishedTasks}}</li>\r\n            <li>{{user.household.countTotalScore}}</li>\r\n            <li>{{user.household.mostPopularTask}}</li>\r\n            <li>{{user.household.tasks.length}}</li>\r\n        </ul>\r\n\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n<div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
 
 /***/ },
 
 /***/ 893:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">email</i>\n            <input [(ngModel)]=\"memberemail\" name=\"memberemail\"  id=\"household_emaail\"  type=\"email\" class=\"validate\" >\n            <label for=\"household_emaail\" class=\"\">Household Member Email</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n  <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"save();showDialogJoin=!showDialogJoin;foundhousehold=household\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Search</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n\n<app-join-household-detail [(household)]=\"household\"  [(visible)]=\"showDialogJoin\" (householdjoined)=\"receivedhouseholdfromJoinDialog($event)\" ></app-join-household-detail>\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div *ngIf=\"household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input value=\"{{household.name}}\" name=\"memberemail\"  id=\"houseold_name\"  type=\"text\" class=\"\" readonly >\n            <label for=\"houseold_name\" class=\"active\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n\n  <div *ngIf=\"!household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Sorry</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <p>We couldn't find a the household you're looking for</p>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div   class=\"card-action\" >\n    <a  *ngIf=\"household\" (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a   *ngIf=\"household\" class=\"right\"  (click)=\"join()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Join</a>\n    <a *ngIf=\"!household\"  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">thanks anyway</a>\n\n\n  </div>\n\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
 
 /***/ },
 
 /***/ 894:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Please Confirm</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <div class=\"row no-margin\">\r\n            <p>Are youe sure you want to leave?</p>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">no</a>\r\n    <a class=\"right\" (click)=\"leave()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">yes</a>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">email</i>\n            <input [(ngModel)]=\"memberemail\" name=\"memberemail\"  id=\"household_emaail\"  type=\"email\" class=\"validate\" >\n            <label for=\"household_emaail\" class=\"\">Household Member Email</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n  <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"save();showDialogJoin=!showDialogJoin;foundhousehold=household\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Search</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n\n<app-join-household-detail [(household)]=\"household\"  [(visible)]=\"showDialogJoin\" (householdjoined)=\"receivedhouseholdfromJoinDialog($event)\" ></app-join-household-detail>\n"
 
 /***/ },
 
 /***/ 895:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Make Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input [(ngModel)]=\"householdName\" name=\"householdname\"  id=\"household_name\"  type=\"text\" class=\"validate\" required >\n            <label for=\"household_name\" class=\"\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"create();\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">create household</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Please Confirm</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <div class=\"row no-margin\">\r\n            <p>Are youe sure you want to leave?</p>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">no</a>\r\n    <a class=\"right\" (click)=\"leave()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">yes</a>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
 
 /***/ },
 
 /***/ 896:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0</a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Make Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input [(ngModel)]=\"householdName\" name=\"householdname\"  id=\"household_name\"  type=\"text\" class=\"validate\" required >\n            <label for=\"household_name\" class=\"\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"create();\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">create household</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
 
 /***/ },
 
 /***/ 897:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"top-nav yellow darken-2\">\n    <div class=\"container\">\n        <div class=\"nav-wrapper\">\n            <a\n                    materialize=\"sideNav\"\n                    data-activates=\"nav-mobile\"\n                    class=\"button-collapse top-nav full hide-on-large-only\">\n                <i class=\"material-icons\">menu</i>\n            </a>\n            <a href=\"home\" class=\"page-title\">The cleansing</a>\n        </div>\n    </div>\n</nav>\n\n<ul id=\"nav-mobile\" class=\"side-nav fixed\">\n    <li>\n        <div class=\"userView\">\n            <div class=\"background yellow darken-2\">\n\n            </div>\n            <img class=\"circle\" src=\"/assets/web_hi_res_205.png\">\n            <span class=\"name white-text\">{{user.displayName}}</span>\n            <span class=\"email white-text\">{{user.email}}</span>\n        </div>\n    </li>\n\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">exit_to_app</i>Sign out</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"\" class=\"waves-effect waves-teal\" (click)=\"openAbout($event)\">About</a></li>\n</ul>\n\n<app-about-component [(visible)]=\"aboutVisible\"></app-about-component>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0</a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 898:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n        <!--<ng-content></ng-content>-->\n        <div class=\"card-content\">\n            <span class=\"card-title\">{{task.name}}</span>\n\n\n            <!--<div class=\"fixed-action-btn horizontal\">-->\n            <!--<a class=\"btn-floating btn-large red\">-->\n            <!--<i class=\"large material-icons\">mode_edit</i>-->\n            <!--</a>-->\n            <!--<ul>-->\n            <!--<li><a class=\"btn-floating red\" onclick=\"Materialize.toast('Task Changes Saved',4000,'rounded')\" ><i class=\"material-icons\">save</i></a> </li>-->\n            <!--<li><a class=\"btn-floating yellow darken-1\" onclick=\"Materialize.toast('Task Deleted',4000,'rounded')\"><i class=\"material-icons\">delete</i></a> </li>-->\n            <!--</ul>-->\n            <!--</div>-->\n            <div class=\"row\">\n                <form class=\"col s12\">\n                    <div class=\"row\">\n                        <div class=\"input-field col s6\">\n                            <input value=\"{{task.name}}\" id=\"task_name\" type=\"text\" class=\"validate\">\n                            <label for=\"task_name\" class=\"active\">Task Name</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input value=\"{{task.dueDate}}\" id=\"task_due_date\" type=\"date\" class=\"\">\n                            <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\n                        </div>\n                        <div class=\"input-field col s12\">\n                            <input value=\"{{task.description}}\" id=\"task_description\" type=\"text\" class=\"materialize-textarea\">\n                            <label for=\"task_due_date\" class=\"active\">Description</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input value=\"{{task.period}}\" id=\"task_periodicity\" type=\"number\" class=\"validate\">\n                            <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input value=\"{{task.points}}\" id=\"task_points\" type=\"number\" class=\"validate\">\n                            <label for=\"task_points\" class=\"active\">Points</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <!--todo Select user werkt nog niet-->\n                            <!--todo verder afwerken -->\n                            <!--<select class=\"waves-effect icon\" id=\"task_user\">-->\n                            <!--<option disabled selected>select user</option>-->\n                            <!--<option *ngFor=\"let user of users\" value=\"{{user.id}}\">-->\n                            <!--{{user.name}}-->\n                            <!--</option>-->\n                            <!--</select>-->\n                            <!--<label for=\"task_user\" class=\"active\">User</label>-->\n                            <select class=\"validate browser-default\" id=\"task_user\" >\n                                <option disabled selected>Select User</option>\n                                <option *ngFor=\"let user of users\">{{user.name}}</option>\n                            </select>\n                            <label for=\"task_user\" class=\"active\">User</label>\n\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input value=\"{{task.points}}\" id=\"task_test\" type=\"number\" class=\"validate\">\n                            <label for=\"task_test\" class=\"active\">Points</label>\n                        </div>\n                    </div>\n                </form>\n            </div>\n        </div>\n\n        <div *ngIf=\"!newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Delete Task\" class=\"right\">delete task</a>\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\n\n        </div>\n        <div *ngIf=\"newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\n\n        </div>\n    </div>\n\n    <div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<nav class=\"top-nav yellow darken-2\">\n    <div class=\"container\">\n        <div class=\"nav-wrapper\">\n            <a\n                    materialize=\"sideNav\"\n                    data-activates=\"nav-mobile\"\n                    class=\"button-collapse top-nav full hide-on-large-only\">\n                <i class=\"material-icons\">menu</i>\n            </a>\n            <a href=\"home\" class=\"page-title\">The cleansing</a>\n        </div>\n    </div>\n</nav>\n\n<ul id=\"nav-mobile\" class=\"side-nav fixed\">\n    <li>\n        <div class=\"userView\">\n            <div class=\"background yellow darken-2\">\n\n            </div>\n            <img class=\"circle\" src=\"/assets/web_hi_res_205.png\">\n            <span class=\"name white-text\">{{user.displayName}}</span>\n            <span class=\"email white-text\">{{user.email}}</span>\n        </div>\n    </li>\n\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">exit_to_app</i>Sign out</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"\" class=\"waves-effect waves-teal\" (click)=\"openAbout($event)\">About</a></li>\n</ul>\n\n<app-about-component [(visible)]=\"aboutVisible\"></app-about-component>"
 
 /***/ },
 
 /***/ 899:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\" [currentUser]=\"currentUser\">loading...</app-household-overview>\n\n    <app-todolist *ngIf=\"user\"\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\n                  [users]=\"user.household? user.household.users : undefined\">loading...\n    </app-todolist>\n\n</div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n        <!--<ng-content></ng-content>-->\n        <div class=\"card-content\">\n            <span class=\"card-title\">{{task.name}}</span>\n\n\n            <!--<div class=\"fixed-action-btn horizontal\">-->\n            <!--<a class=\"btn-floating btn-large red\">-->\n            <!--<i class=\"large material-icons\">mode_edit</i>-->\n            <!--</a>-->\n            <!--<ul>-->\n            <!--<li><a class=\"btn-floating red\" onclick=\"Materialize.toast('Task Changes Saved',4000,'rounded')\" ><i class=\"material-icons\">save</i></a> </li>-->\n            <!--<li><a class=\"btn-floating yellow darken-1\" onclick=\"Materialize.toast('Task Deleted',4000,'rounded')\"><i class=\"material-icons\">delete</i></a> </li>-->\n            <!--</ul>-->\n            <!--</div>-->\n            <div class=\"row\">\n                <form class=\"col s12\" #taskForm=\"ngForm\">\n                    <div class=\"row\">\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\n                            <label for=\"task_name\" class=\"active\">Task Name</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.dueDate\" name=\"dueDate\" id=\"task_due_date\" type=\"date\" class=\"\">\n                            <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\n                        </div>\n                        <div class=\"input-field col s12\">\n                            <input [(ngModel)]=\"task.description\" name=\"description\" id=\"task_description\" type=\"text\" class=\"materialize-textarea\">\n                            <label for=\"task_due_date\" class=\"active\">Description</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.period\" name=\"period\" id=\"task_periodicity\" type=\"number\" class=\"validate\">\n                            <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.points\" name=\"points\" id=\"task_points\" type=\"number\" class=\"validate\">\n                            <label for=\"task_points\" class=\"active\">Points</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <!--todo Select user wanneer geen assigned-->\n                            <select class=\"validate browser-default\" [(ngModel)]=\"task.assigned_to\" name=\"assigned_to\" id=\"task_user\" >\n                                <option disabled selected>Select User</option>\n                                <option *ngFor=\"let user of users\" [ngValue]=\"user.id\">{{user.name}}</option>\n                            </select>\n                            <label for=\"task_user\" class=\"active\">User</label>\n\n                        </div>\n                    </div>\n                </form>\n            </div>\n        </div>\n\n        <div *ngIf=\"!newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Delete Task\" class=\"right\">delete task</a>\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\n\n        </div>\n        <div *ngIf=\"newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\n\n        </div>\n    </div>\n\n    <div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 900:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\n\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\" [currentUser]=\"currentUser\">loading...</app-household-overview>\n\n    <app-todolist *ngIf=\"user\"\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\n                  [users]=\"user.household? user.household.users : undefined\">loading...\n    </app-todolist>\n\n</div>"
 
 /***/ },
 
 /***/ 901:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\n\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\n\n        <!--<div style=\"position:absolute; z-index: 10\">-->\n        <!--<a class=\"btn\">test</a>-->\n        <!--</div>-->\n\n        <app-tasktodo-row\n                (cancel)=\"cancel($event, i)\"\n                (finish)=\"finish($event, i)\"\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"tasktodo\"\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\n\n\n    </div>\n</div>\n\n<div *ngIf=\"tasksTodo.length == 0\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have nothing to do, go make some tasks!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 902:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    <div class=\"preloader-wrapper small active\">\n        <div class=\"spinner-layer spinner-blue\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-red\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-yellow\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-green\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\n\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\n\n        <!--<div style=\"position:absolute; z-index: 10\">-->\n        <!--<a class=\"btn\">test</a>-->\n        <!--</div>-->\n\n        <app-tasktodo-row\n                (cancel)=\"cancel($event, i)\"\n                (finish)=\"finish($event, i)\"\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"tasktodo\"\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\n\n\n    </div>\n</div>\n\n<div *ngIf=\"tasksTodo.length == 0\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have nothing to do, go make some tasks!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
 
 /***/ },
 
 /***/ 903:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\n        <article class=\"card\">\n            <div class=\"card-content\">\n                <h1 class=\"card-title\">{{title}}</h1>\n            </div>\n            <div class=\"card-action\">\n                <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\n                <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\n            </div>\n\n        </article>\n    </div>\n</div>"
+module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    <div class=\"preloader-wrapper small active\">\n        <div class=\"spinner-layer spinner-blue\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-red\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-yellow\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-green\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 904:
 /***/ function(module, exports) {
 
+module.exports = "<div class=\"row\">\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\n        <article class=\"card\">\n            <div class=\"card-content\">\n                <h1 class=\"card-title\">{{title}}</h1>\n            </div>\n            <div class=\"card-action\">\n                <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\n                <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\n            </div>\n\n        </article>\n    </div>\n</div>"
+
+/***/ },
+
+/***/ 905:
+/***/ function(module, exports) {
+
 module.exports = "<p>\n  not-found works!\n</p>\n"
 
 /***/ }
 
-},[1179]);
+},[1180]);
 //# sourceMappingURL=main.bundle.map
