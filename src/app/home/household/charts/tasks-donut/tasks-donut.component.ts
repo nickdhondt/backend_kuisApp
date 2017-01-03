@@ -36,6 +36,7 @@ export class TasksDonutComponent implements OnInit {
             donutWidth: 30,
             labelOffset: 30,
             labelDirection: 'explode',
+            chartPadding: 20,
         };
 
         this.type = 'Pie';
@@ -64,6 +65,7 @@ export class TasksDonutComponent implements OnInit {
                     to: '0px',
                     easing: Chartist.Svg.Easing.easeOutQuint,
                     // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+                    fill: 'freeze'
                 }
             };
 

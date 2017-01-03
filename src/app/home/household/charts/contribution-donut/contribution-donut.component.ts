@@ -36,6 +36,7 @@ export class ContributionDonutComponent implements OnInit {
             donutWidth: 30,
             labelOffset: 30,
             labelDirection: 'explode',
+            chartPadding: 20,
         };
         this.type = 'Pie';
     }
