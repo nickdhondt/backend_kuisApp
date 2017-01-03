@@ -2813,7 +2813,7 @@ var EvolutionLineComponent = (function () {
         return "inactive member";
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_household_model__["a" /* Household */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__models_household_model__["a" /* Household */]) === 'function' && _a) || Object)
     ], EvolutionLineComponent.prototype, "household", void 0);
     EvolutionLineComponent = __decorate([
@@ -2821,7 +2821,7 @@ var EvolutionLineComponent = (function () {
             selector: 'app-evolution-line',
             template: __webpack_require__(890),
             styles: [__webpack_require__(844)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], EvolutionLineComponent);
     return EvolutionLineComponent;
