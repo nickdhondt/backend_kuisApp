@@ -205,13 +205,23 @@ class Task {
             "`points`, " +
             "`name`, " +
             "`dueDate`, " +
-            "`assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err, res) {
+            "`assigned_to`) values ?", [post], function (err, res) {
             if (err) process.emit("mysqlError", err);
 
-            console.log(res);
-
-            cb("Tasks added");
+            cb(res.insertId);
         });
+    }
+
+    static getImportedTasks(householdID, id, cb){
+
+        conn.query("select * from `tasks` " +
+            "where `household_id` = ?" +
+            "AND `id` > ?", [householdID, id], function (err, rows) {
+            if (err) process.emit("mysqlError", err);
+
+            cb(rows);
+        });
+
     }
 
     static getTaskByID(id, cb) {
