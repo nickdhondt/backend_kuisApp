@@ -3,4 +3,6 @@ ul li a:hover i{
 }
 i{
   transition: color 0.5s ease;
+  position: relative;
+  top:6px;
 }
