@@ -61,7 +61,9 @@ export class TaskdetailComponent implements OnInit {
     }
 
     ngOnChanges() {
-        if (this.task !== undefined) this.task.dueDate = moment(this.task.dueDate).format("YYYY-MM-DD");
+        if (this.task !== undefined) {
+            this.task.dueDate = moment(this.task.dueDate).format("YYYY-MM-DD");
+        }
     }
 
     close() {
