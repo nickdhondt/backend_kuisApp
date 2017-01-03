@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, trigger,transition,style,animate} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, trigger, transition, style, animate} from "@angular/core";
 import {Household} from "../../../../models/household.model";
 import {User} from "../../../../models/user.model";
 import {ApiService} from "../../../../service/api.service";
@@ -41,11 +41,16 @@ export class LeaveHouseholdComponent implements OnInit {
 
   leave(){
 
-    this.apiService.leaveHousehold(this.user.id);
-    this.visible=false;
-    this.visibleChange.emit(this.visible);
-    this.user.household_id=null;
-    this.updatedUser.emit(this.user);
+      this.apiService.leaveHousehold(this.user.id).subscribe(
+          user => {
+              this.visible = false;
+              this.visibleChange.emit(this.visible);
+              this.updatedUser.emit(user);
+              console.log(user);
+          },
+          error => console.log(error)
+      );
+
 
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, trigger, animate, transition, style, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, trigger, animate, transition, style, EventEmitter} from "@angular/core";
 import {Output} from "@angular/core/src/metadata/directives";
 import {ApiService} from "../../../../service/api.service";
 import {Household} from "../../../../models/household.model";
@@ -22,10 +22,9 @@ import {Household} from "../../../../models/household.model";
 })
 export class JoinHouseholdComponent implements OnInit {
   private memberemail:string ="";
-  private household:Household
+    private household: Household;
   showDialogJoin: boolean=false;
   @Input() visible:boolean;
-  @Input() receivedhousehold:Household;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() householdtoHouseholdComp = new EventEmitter();
   constructor(private apiservice:ApiService) { }
@@ -41,6 +40,7 @@ export class JoinHouseholdComponent implements OnInit {
   save(){
     if(this.memberemail){
       console.log(this.memberemail);
+
       this.apiservice.getHouseholdbyEmail(this.memberemail).subscribe(
         data=>{
 
@@ -53,18 +53,9 @@ export class JoinHouseholdComponent implements OnInit {
     this.visible=false;
     this.visibleChange.emit(this.visible);
     this.memberemail="";
-
-
-  }
-  receivedhouseholdfromJoinDialog(household){
-    this.receivedhousehold=household;
-    this.householdtoHouseholdComp.emit(household);
-    console.log("EventEmitter household");
-
   }
 
-
-
-
-
+    receivedhouseholdfromJoinDialog(user) {
+        this.householdtoHouseholdComp.emit(user);
+  }
 }

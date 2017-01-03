@@ -59,7 +59,7 @@ class getUser {
             .exec(function (err, stats) {
                 if (err) next(err);
 
-                delete stats[0]._id
+                //delete stats[0]._id;
                 cb(stats[0]);
             });
 

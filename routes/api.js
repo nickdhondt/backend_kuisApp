@@ -93,6 +93,7 @@ router.get('/contributionevolutionbyhousehold', firebaseAuthenticator, function 
 });
 
 router.get('/taskstatsbyhousehold', firebaseAuthenticator, function (req, res, next) {
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -290,6 +291,7 @@ router.post('/addusertohousehold', firebaseAuthenticator, function (req, res, ne
 
         repo.getUserByUIDBart(uid, (user) => {
 
+
             res.json(user);
             res.end();
 
@@ -335,12 +337,20 @@ router.get('/household', firebaseAuthenticator, function (req, res, next) {
 router.post('/leavehousehold', firebaseAuthenticator, function (req, res) {
 
 
-
     process.on("mysqlError", (err) => {
         return next(err);
     });
+
     let body = req.body;
+
     Household.leaveHousehold(body, function (body) {
+
+        repo.getUserByUIDBart(res.locals.uid, (user) => {
+
+            res.json(user);
+            res.end();
+
+        });
 
          // res.redirect('/api/userbyuid/' + res.locals.uid);
     })
@@ -601,7 +611,6 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     });
     let body = req.body;
 
-    console.log(body);
 
     User.getUserByUID(res.locals.uid, function (user) {
         body.creator_id = user.id;

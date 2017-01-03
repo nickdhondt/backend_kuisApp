@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter,style,trigger,transition,animate} from '@angular/core';
+import {Component, OnInit, EventEmitter, style, trigger, transition, animate} from "@angular/core";
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {ApiService} from "../../../../service/api.service";
 
@@ -23,6 +23,7 @@ export class NewHouseholdComponent implements OnInit {
   private householdName:string="";
   @Input() visible:boolean;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() userReceived: EventEmitter<any> = new EventEmitter();
 
   constructor(private apiService:ApiService) { }
 
@@ -37,7 +38,23 @@ export class NewHouseholdComponent implements OnInit {
     if(this.householdName){
 
       //api call om household aan te maken
-      this.apiService.addHousehold(this.householdName);
+        this.apiService.addHousehold(this.householdName).subscribe(
+            household => {
+
+                console.log(household);
+
+                this.apiService.addUsertoHousehold(household.id).subscribe(
+                    user => {
+
+                        this.userReceived.emit(user);
+
+                    },
+                    error => console.log(error)
+                )
+
+            },
+            error => console.log(error)
+        );
       //current user toevoegen aan dit household
 
       //Emitten van nieuwe household naar overview

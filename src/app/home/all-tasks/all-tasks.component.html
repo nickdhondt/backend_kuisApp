@@ -13,5 +13,6 @@
     </div>
 
 </div>
-
+<div *ngIf="user && user.household">
 <app-taskdetail *ngIf="user" [(visible)]="dialogVisible" [(users)]="user.household.users" [newTask]="true"></app-taskdetail>
+</div>

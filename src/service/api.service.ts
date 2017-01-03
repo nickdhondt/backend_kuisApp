@@ -341,38 +341,69 @@ export class ApiService {
     }
 
 
-    public addUsertoHousehold(household_id:number, uid:string){
-      let tokenPromise = new Promise((resolve, reject) => {
+    public addUsertoHousehold(household_id: number): Observable<User> {
+
+        let tokenPromise = new Promise<User>((resolve, reject) => {
         this.auth.token.then(token => {
           this.headers.set('Firebase-ID-Token', token);
           return this._http.post(
             this.actionUrl + "addusertohousehold",
-            {household_id,uid},
+              {household_id: household_id},
             {headers: this.headers})
-            .map(res => res.json())
-            .catch(ApiService.handleError)
-            .subscribe(data => {
-            }/*console.log(data)*/);
+              .map((response: Response) => {
+
+                  let user: User = response.json();
+
+                  if (user.household) {
+                      for (let u in user.household.users) {
+                          user.household.users[u] = User.makeUserFromJSON(user.household.users[u]);
+                      }
+
+                      for (let t in user.household.tasks) {
+                          user.household.tasks[t] = Task.makeTaskFromJSON(user.household.tasks[t]);
+                      }
+
+                      for (let t in user.household.taskstodo) {
+                          user.household.taskstodo[t] = Task.makeTaskFromJSON(user.household.taskstodo[t]);
+                      }
+                  }
+
+
+                  return user;
+              })
+              .catch(ApiService.handleError)
+              .subscribe(
+                  data => resolve(data),
+                  err => reject(err)
+              );
         })
       });
+
+        return Observable.fromPromise(tokenPromise);
     }
 
-    public addHousehold(name:string){
-      let tokenPromise = new Promise((resolve,reject)=>{
+    public addHousehold(name: string): Observable<Household> {
+
+        let tokenPromise = new Promise<Household>((resolve, reject) => {
         this.auth.token.then(token=>{
           this.headers.set('Firebase-ID-Token', token);
           return this._http.post(
             this.actionUrl + "addhousehold",
             {name},
             {headers:this.headers})
-            .map(res=>res.json())
-            .catch(ApiService.handleError)
-            .subscribe(
-              data=>resolve(data),
-              err=>reject(err)
-            )
+              .map((response: Response) => {
+
+                  return Household.makeHouseholdFromJSON(response.json());
+              })
+              .catch(ApiService.handleError)
+              .subscribe(
+                  data => resolve(data),
+                  err => reject(err)
+              );
         })
-      })
+        });
+
+        return Observable.fromPromise(tokenPromise);
     }
 
     public updateUser(user:User){
@@ -395,19 +426,44 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
-    public leaveHousehold(id:Number){
-      let tokenPromise = new Promise((resolve,reject)=>{
+    public leaveHousehold(id: Number): Observable<User> {
+        let tokenPromise = new Promise<User>((resolve, reject) => {
         this.auth.token.then(token=>{
           this.headers.set('Firebase-ID-Token',token);
           return this._http.post(
             this.actionUrl + 'leavehousehold',
             {id},
             {headers:this.headers})
-            .map(res=>res.json())
-            .catch(ApiService.handleError)
-            .subscribe(data=>{console.log(data)})
+              .map((response: Response) => {
+
+                  let user: User = response.json();
+
+                  if (user.household) {
+                      for (let u in user.household.users) {
+                          user.household.users[u] = User.makeUserFromJSON(user.household.users[u]);
+                      }
+
+                      for (let t in user.household.tasks) {
+                          user.household.tasks[t] = Task.makeTaskFromJSON(user.household.tasks[t]);
+                      }
+
+                      for (let t in user.household.taskstodo) {
+                          user.household.taskstodo[t] = Task.makeTaskFromJSON(user.household.taskstodo[t]);
+                      }
+                  }
+
+
+                  return user;
+              })
+              .catch(ApiService.handleError)
+              .subscribe(
+                  data => resolve(data),
+                  err => reject(err)
+              );
         })
-      })
+        });
+
+        return Observable.fromPromise(tokenPromise);
     }
 
     public addTask(task:Task) {

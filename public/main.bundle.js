@@ -79,9 +79,9 @@ var Contract = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(173);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(56);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(49);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
@@ -334,18 +334,36 @@ var ApiService = (function () {
         });
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
-    ApiService.prototype.addUsertoHousehold = function (household_id, uid) {
+    ApiService.prototype.addUsertoHousehold = function (household_id) {
         var _this = this;
         var tokenPromise = new Promise(function (resolve, reject) {
             _this.auth.token.then(function (token) {
                 _this.headers.set('Firebase-ID-Token', token);
-                return _this._http.post(_this.actionUrl + "addusertohousehold", { household_id: household_id, uid: uid }, { headers: _this.headers })
-                    .map(function (res) { return res.json(); })
+                return _this._http.post(_this.actionUrl + "addusertohousehold", {household_id: household_id}, {headers: _this.headers})
+                    .map(function (response) {
+                        var user = response.json();
+                        if (user.household) {
+                            for (var u in user.household.users) {
+                                user.household.users[u] = __WEBPACK_IMPORTED_MODULE_7__models_user_model__["a" /* User */].makeUserFromJSON(user.household.users[u]);
+                            }
+                            for (var t in user.household.tasks) {
+                                user.household.tasks[t] = __WEBPACK_IMPORTED_MODULE_5__models_task_model__["a" /* Task */].makeTaskFromJSON(user.household.tasks[t]);
+                            }
+                            for (var t in user.household.taskstodo) {
+                                user.household.taskstodo[t] = __WEBPACK_IMPORTED_MODULE_5__models_task_model__["a" /* Task */].makeTaskFromJSON(user.household.taskstodo[t]);
+                            }
+                        }
+                        return user;
+                    })
                     .catch(ApiService.handleError)
                     .subscribe(function (data) {
-                } /*console.log(data)*/);
+                        return resolve(data);
+                    }, function (err) {
+                        return reject(err);
+                    });
             });
         });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
     ApiService.prototype.addHousehold = function (name) {
         var _this = this;
@@ -353,11 +371,14 @@ var ApiService = (function () {
             _this.auth.token.then(function (token) {
                 _this.headers.set('Firebase-ID-Token', token);
                 return _this._http.post(_this.actionUrl + "addhousehold", { name: name }, { headers: _this.headers })
-                    .map(function (res) { return res.json(); })
+                    .map(function (response) {
+                        return __WEBPACK_IMPORTED_MODULE_6__models_household_model__["a" /* Household */].makeHouseholdFromJSON(response.json());
+                    })
                     .catch(ApiService.handleError)
                     .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
             });
         });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
     ApiService.prototype.updateUser = function (user) {
         var _this = this;
@@ -378,11 +399,30 @@ var ApiService = (function () {
             _this.auth.token.then(function (token) {
                 _this.headers.set('Firebase-ID-Token', token);
                 return _this._http.post(_this.actionUrl + 'leavehousehold', { id: id }, { headers: _this.headers })
-                    .map(function (res) { return res.json(); })
+                    .map(function (response) {
+                        var user = response.json();
+                        if (user.household) {
+                            for (var u in user.household.users) {
+                                user.household.users[u] = __WEBPACK_IMPORTED_MODULE_7__models_user_model__["a" /* User */].makeUserFromJSON(user.household.users[u]);
+                            }
+                            for (var t in user.household.tasks) {
+                                user.household.tasks[t] = __WEBPACK_IMPORTED_MODULE_5__models_task_model__["a" /* Task */].makeTaskFromJSON(user.household.tasks[t]);
+                            }
+                            for (var t in user.household.taskstodo) {
+                                user.household.taskstodo[t] = __WEBPACK_IMPORTED_MODULE_5__models_task_model__["a" /* Task */].makeTaskFromJSON(user.household.taskstodo[t]);
+                            }
+                        }
+                        return user;
+                    })
                     .catch(ApiService.handleError)
-                    .subscribe(function (data) { console.log(data); });
+                    .subscribe(function (data) {
+                        return resolve(data);
+                    }, function (err) {
+                        return reject(err);
+                    });
             });
         });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
     ApiService.prototype.addTask = function (task) {
         var _this = this;
@@ -785,7 +825,7 @@ var HouseholdComponent = (function () {
         }, function (error) { return console.log(error); });
     };
     HouseholdComponent.prototype.updateHouseholdComponent = function (user) {
-        this.getUser();
+        this.user = user;
     };
     HouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -836,7 +876,6 @@ var TasksTodoComponent = (function () {
             .subscribe(function (data) {
             _this.user = data;
             _this.loading = false;
-            _this.currentUser = _this.user.uid;
         }, function (error) { return console.log(error); });
     };
     TasksTodoComponent = __decorate([
@@ -1079,7 +1118,7 @@ var UnauthGuard = (function () {
         var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(124);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthService; });
@@ -1193,50 +1232,51 @@ var AuthService = (function () {
         "use strict";
         /* harmony export (binding) */
         __webpack_require__.d(exports, "a", function () {
-            return Household;
+            return User;
         });
-        var Household = (function () {
-            function Household() {
+        /**
+         * Created by Bart on 27/12/2016.
+         */
+        var User = (function () {
+            function User() {
             }
 
-            Household.makeHouseholdFromJSON = function (item) {
-                var household = new Household();
-                household.id = item.id;
-                household.name = item.name;
-                // household.taskstodo = item.taskstodo;
-                // household.countFinishedTasks = item.countFinishedTasks;
-                // household.countFinishedAwards = item.countFinishedAwards;
-                // household.countTotalScore = item.countTotalScore;
-                // household.countTasks = item.countTasks;
-                // household.mostPopularTask = item.mostPopularTask;
-                // household.mostAwardsWon = item.mostAwardsWon;
-                // household.lastAward = item.lastAward;
-                // household.lastAwardWonBy = item.lastAwardWonBy;
-                // household.tasks = item.tasks;
-                household.users = item.users;
-                household.award = item.award;
-                return household;
+            User.makeUserFromJSON = function (item) {
+                var user = new User();
+                user.id = item.id;
+                user.name = item.name;
+                user.lname = item.lname;
+                user.email = item.email;
+                user.household_id = item.household_id;
+                user.score = item.score;
+                user.phoneNumber = item.phoneNumber;
+                user.uid = item.uid;
+                user.imgsrc = item.imgsrc;
+                return user;
             };
-            return Household;
+            return User;
         }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user.model.js.map
 
         /***/
     },
 
-    /***/ 490:
-/***/ function(module, exports) {
+    /***/ 490: /***/ function (module, exports) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
+        function webpackEmptyContext(req) {
+            throw new Error("Cannot find module '" + req + "'.");
+        }
+
+        webpackEmptyContext.keys = function () {
+            return [];
+        };
+        webpackEmptyContext.resolve = webpackEmptyContext;
+        module.exports = webpackEmptyContext;
         webpackEmptyContext.id = 490;
 
 
-/***/ },
+        /***/
+    },
 
     /***/ 491: /***/ function (module, exports, __webpack_require__) {
 
@@ -1264,33 +1304,38 @@ module.exports = webpackEmptyContext;
         /***/
     },
 
-    /***/ 50:
-/***/ function(module, exports, __webpack_require__) {
+    /***/ 56: /***/ function (module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
-/**
- * Created by Bart on 27/12/2016.
- */
-var User = (function () {
-    function User() {
-    }
-    User.makeUserFromJSON = function (item) {
-        var user = new User();
-        user.id = item.id;
-        user.name = item.name;
-        user.lname = item.lname;
-        user.email = item.email;
-        user.household_id = item.household_id;
-        user.score = item.score;
-        user.phoneNumber = item.phoneNumber;
-        user.uid = item.uid;
-        user.imgsrc = item.imgsrc;
-        return user;
-    };
-    return User;
-}());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user.model.js.map
+        "use strict";
+        /* harmony export (binding) */
+        __webpack_require__.d(exports, "a", function () {
+            return Household;
+        });
+        var Household = (function () {
+            function Household() {
+            }
+
+            Household.makeHouseholdFromJSON = function (item) {
+                var household = new Household();
+                household.id = item.id;
+                household.name = item.name;
+                // household.taskstodo = item.taskstodo;
+                // household.countFinishedTasks = item.countFinishedTasks;
+                // household.countFinishedAwards = item.countFinishedAwards;
+                // household.countTotalScore = item.countTotalScore;
+                // household.countTasks = item.countTasks;
+                // household.mostPopularTask = item.mostPopularTask;
+                // household.mostAwardsWon = item.mostAwardsWon;
+                // household.lastAward = item.lastAward;
+                // household.lastAwardWonBy = item.lastAwardWonBy;
+                // household.tasks = item.tasks;
+                household.users = item.users;
+                household.award = item.award;
+                return household;
+            };
+            return Household;
+        }());
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.model.js.map
 
 /***/ },
 
@@ -1320,7 +1365,7 @@ var User = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(174);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_17_angular2_modal__ = __webpack_require__(51);
+        var __WEBPACK_IMPORTED_MODULE_17_angular2_modal__ = __webpack_require__(50);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_18_angular2_modal_plugins_bootstrap__ = __webpack_require__(649);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
@@ -1399,7 +1444,7 @@ var AppModule = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(173);
         /* harmony import */
@@ -1470,7 +1515,7 @@ var TaskRowComponent = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasklistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1547,7 +1592,7 @@ var TasklistComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChatComponent; });
@@ -2038,7 +2083,7 @@ var HomeModule = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(255);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2152,7 +2197,7 @@ var AwardComponent = (function () {
         }
     };
     AwardComponent.prototype.ngOnInit = function () {
-        if (this.award.creator_id)
+        if (this.award && this.award.creator_id)
             this.findUser();
         else
             this.award = null;
@@ -2281,10 +2326,9 @@ var NewAwardComponent = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(48);
+        var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(56);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_4__models_award_model__ = __webpack_require__(255);
+        var __WEBPACK_IMPORTED_MODULE_3__models_award_model__ = __webpack_require__(255);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HouseholdOverviewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2299,26 +2343,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var HouseholdOverviewComponent = (function () {
-    // loading: boolean = true;
-    //merge comment
-    function HouseholdOverviewComponent(apiService, auth) {
+    function HouseholdOverviewComponent(apiService) {
         this.apiService = apiService;
-        this.auth = auth;
         this.showDialog = false;
         this.showJoinHouseholdDialog = false;
         this.showMakeHouseholdDialog = false;
-        this.authenticatedUserUID = auth.uid;
-        this.fbUser = auth.authState.auth;
+        this.receivedHousehold = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
-    // toggleDialog() {
-    //     if (this.household.award !== null) this.showDialogAward=!this.showDialogAward;
-    //     else this.showDialogNewAward=!this.showDialogNewAward;
-    // }
+
+    HouseholdOverviewComponent.prototype.sendUserToUpper = function (household) {
+        this.receivedHousehold.emit(household);
+    };
     HouseholdOverviewComponent.prototype.ngOnInit = function () {
         if (this.household && !this.household.award)
-            this.household.award = new __WEBPACK_IMPORTED_MODULE_4__models_award_model__["a" /* Award */]();
+            this.household.award = new __WEBPACK_IMPORTED_MODULE_3__models_award_model__["a" /* Award */]();
     };
     HouseholdOverviewComponent.prototype.addAwardToHousehold = function (award) {
         this.household.award = award;
@@ -2336,16 +2375,16 @@ var HouseholdOverviewComponent = (function () {
         __metadata('design:type', Array)
     ], HouseholdOverviewComponent.prototype, "users", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
-        __metadata('design:type', Object)
-    ], HouseholdOverviewComponent.prototype, "currentUser", void 0);
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
+    ], HouseholdOverviewComponent.prototype, "receivedHousehold", void 0);
     HouseholdOverviewComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-household-overview',
             template: __webpack_require__(885),
             styles: [__webpack_require__(861)]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object])
+        }),
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
     ], HouseholdOverviewComponent);
     return HouseholdOverviewComponent;
     var _a, _b, _c;
@@ -2360,9 +2399,11 @@ var HouseholdOverviewComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(48);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2376,11 +2417,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UserDetailComponent = (function () {
-    function UserDetailComponent(apiService) {
+    function UserDetailComponent(apiService, auth) {
         this.apiService = apiService;
+        this.auth = auth;
         this.closable = true;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.currentUser = auth.uid;
     }
     UserDetailComponent.prototype.ngOnInit = function () {
     };
@@ -2406,10 +2450,6 @@ var UserDetailComponent = (function () {
         __metadata('design:type', Boolean)
     ], UserDetailComponent.prototype, "visible", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
-        __metadata('design:type', Object)
-    ], UserDetailComponent.prototype, "currentUser", void 0);
-    __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
     ], UserDetailComponent.prototype, "visibleChange", void 0);
@@ -2429,11 +2469,11 @@ var UserDetailComponent = (function () {
                     ])
                 ])
             ]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
+        }),
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object])
     ], UserDetailComponent);
     return UserDetailComponent;
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
 }());
 //# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-detail.component.js.map
 
@@ -2445,7 +2485,7 @@ var UserDetailComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserImgComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2492,7 +2532,7 @@ var UserImgComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChartsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2540,7 +2580,7 @@ var ChartsComponent = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(56);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContributionDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2660,7 +2700,7 @@ var ContributionDonutComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
         /* harmony import */
@@ -2898,7 +2938,7 @@ var FinishedBarComponent = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(56);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasksDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3018,7 +3058,7 @@ var TasksDonutComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(113);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(56);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(48);
@@ -3053,11 +3093,16 @@ var JoinHouseholdDetailComponent = (function () {
         this.visibleChange.emit(this.visible);
     };
     JoinHouseholdDetailComponent.prototype.join = function () {
+        var _this = this;
         console.log("Join Household");
-        this.apiService.addUsertoHousehold(this.household.id, this.user.uid);
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
-        this.householdjoined.emit(this.household);
+        this.apiService.addUsertoHousehold(this.household.id)
+            .subscribe(function (user) {
+                _this.visible = false;
+                _this.visibleChange.emit(_this.visible);
+                _this.householdjoined.emit(user);
+            }, function (error) {
+                return console.log(error);
+            });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__["a" /* Input */])(), 
@@ -3109,8 +3154,6 @@ var JoinHouseholdDetailComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(113);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-        /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return JoinHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3121,7 +3164,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -3153,22 +3195,16 @@ var JoinHouseholdComponent = (function () {
         this.visibleChange.emit(this.visible);
         this.memberemail = "";
     };
-    JoinHouseholdComponent.prototype.receivedhouseholdfromJoinDialog = function (household) {
-        this.receivedhousehold = household;
-        this.householdtoHouseholdComp.emit(household);
-        console.log("EventEmitter household");
+    JoinHouseholdComponent.prototype.receivedhouseholdfromJoinDialog = function (user) {
+        this.householdtoHouseholdComp.emit(user);
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Boolean)
     ], JoinHouseholdComponent.prototype, "visible", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
-        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__models_household_model__["a" /* Household */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__models_household_model__["a" /* Household */]) === 'function' && _a) || Object)
-    ], JoinHouseholdComponent.prototype, "receivedhousehold", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__["b" /* Output */])(), 
-        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__["b" /* Output */])(),
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _a) || Object)
     ], JoinHouseholdComponent.prototype, "visibleChange", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__["b" /* Output */])(), 
@@ -3190,11 +3226,11 @@ var JoinHouseholdComponent = (function () {
                     ])
                 ])
             ]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
+        }),
+        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], JoinHouseholdComponent);
     return JoinHouseholdComponent;
-    var _a, _b, _c;
+    var _a, _b;
 }());
 //# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household.component.js.map
 
@@ -3206,9 +3242,9 @@ var JoinHouseholdComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(49);
+        var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LeaveHouseholdComponent; });
@@ -3238,11 +3274,15 @@ var LeaveHouseholdComponent = (function () {
         this.visibleChange.emit(this.visible);
     };
     LeaveHouseholdComponent.prototype.leave = function () {
-        this.apiService.leaveHousehold(this.user.id);
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
-        this.user.household_id = null;
-        this.updatedUser.emit(this.user);
+        var _this = this;
+        this.apiService.leaveHousehold(this.user.id).subscribe(function (user) {
+            _this.visible = false;
+            _this.visibleChange.emit(_this.visible);
+            _this.updatedUser.emit(user);
+            console.log(user);
+        }, function (error) {
+            return console.log(error);
+        });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
@@ -3316,6 +3356,7 @@ var NewHouseholdComponent = (function () {
         this.apiService = apiService;
         this.householdName = "";
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.userReceived = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
     NewHouseholdComponent.prototype.ngOnInit = function () {
     };
@@ -3324,9 +3365,19 @@ var NewHouseholdComponent = (function () {
         this.visibleChange.emit(this.visible);
     };
     NewHouseholdComponent.prototype.create = function () {
+        var _this = this;
         if (this.householdName) {
             //api call om household aan te maken
-            this.apiService.addHousehold(this.householdName);
+            this.apiService.addHousehold(this.householdName).subscribe(function (household) {
+                console.log(household);
+                _this.apiService.addUsertoHousehold(household.id).subscribe(function (user) {
+                    _this.userReceived.emit(user);
+                }, function (error) {
+                    return console.log(error);
+                });
+            }, function (error) {
+                return console.log(error);
+            });
             //current user toevoegen aan dit household
             //Emitten van nieuwe household naar overview
             //afsluiten van de dialog
@@ -3345,6 +3396,10 @@ var NewHouseholdComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__["b" /* Output */])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _a) || Object)
     ], NewHouseholdComponent.prototype, "visibleChange", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__["b" /* Output */])(),
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
+    ], NewHouseholdComponent.prototype, "userReceived", void 0);
     NewHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-household',
@@ -3361,11 +3416,11 @@ var NewHouseholdComponent = (function () {
                     ])
                 ])
             ]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
+        }),
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
     ], NewHouseholdComponent);
     return NewHouseholdComponent;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-household.component.js.map
 
@@ -3612,7 +3667,7 @@ var TaskdetailComponent = (function () {
         var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(49);
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(103);
@@ -3741,7 +3796,7 @@ var TasktodoRowComponent = (function () {
         /* harmony import */
         var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
         /* harmony import */
-        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(50);
+        var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TodolistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4358,7 +4413,7 @@ module.exports = ""
 /***/ 872:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-tasklist *ngIf=\"user\"\r\n                  [tasks]=\"user.household? user.household.tasks : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">\r\n    </app-tasklist>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n        <a class=\"btn-floating btn-large red\" (click)=\"dialogVisible=!dialogVisible\">\r\n            <i class=\"material-icons\">add</i>\r\n        </a>\r\n    </div>\r\n\r\n</div>\r\n\r\n<app-taskdetail *ngIf=\"user\" [(visible)]=\"dialogVisible\" [(users)]=\"user.household.users\" [newTask]=\"true\"></app-taskdetail>"
+        module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-tasklist *ngIf=\"user\"\r\n                  [tasks]=\"user.household? user.household.tasks : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">\r\n    </app-tasklist>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n        <a class=\"btn-floating btn-large red\" (click)=\"dialogVisible=!dialogVisible\">\r\n            <i class=\"material-icons\">add</i>\r\n        </a>\r\n    </div>\r\n\r\n</div>\r\n<div *ngIf=\"user && user.household\">\r\n<app-taskdetail *ngIf=\"user\" [(visible)]=\"dialogVisible\" [(users)]=\"user.household.users\" [newTask]=\"true\"></app-taskdetail>\r\n</div>"
 
 /***/ },
 
@@ -4449,7 +4504,7 @@ module.exports = ""
 /***/ 885:
 /***/ function(module, exports) {
 
-        module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\" [currentUser]=\"currentUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"receiveHousehold($event)\" [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
+        module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\" [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
 
 /***/ },
 
@@ -4505,7 +4560,7 @@ module.exports = ""
 /***/ 893:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\r\n\r\n    <div class=\"row\" *ngIf=\"user && user.household\">\r\n        <ul>\r\n            <li>{{user.household.countFinishedTasks}}</li>\r\n            <li>{{user.household.countTotalScore}}</li>\r\n            <li>{{user.household.mostPopularTask}}</li>\r\n            <li>{{user.household.tasks.length}}</li>\r\n        </ul>\r\n\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n<div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
+        module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\"  *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\r\n\r\n    <div class=\"row\" *ngIf=\"user && user.household\">\r\n        <ul>\r\n            <li>{{user.household.countFinishedTasks}}</li>\r\n            <li>{{user.household.countTotalScore}}</li>\r\n            <li>{{user.household.mostPopularTask}}</li>\r\n            <li>{{user.household.tasks.length}}</li>\r\n        </ul>\r\n\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n<div class=\"fixed-action-btn vertical click-to-toggle\" *ngIf=\"user && user.household\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
 
 /***/ },
 
@@ -4561,7 +4616,7 @@ module.exports = ""
 /***/ 901:
 /***/ function(module, exports) {
 
-        module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview *ngIf=\"user\" [household]=\"user.household\" [currentUser]=\"currentUser\">loading...</app-household-overview>\r\n\r\n    <app-todolist *ngIf=\"user\"\r\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">loading...\r\n    </app-todolist>\r\n\r\n</div>"
+        module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...</app-household-overview>\r\n\r\n    <app-todolist *ngIf=\"user\"\r\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">loading...\r\n    </app-todolist>\r\n\r\n</div>"
 
 /***/ },
 

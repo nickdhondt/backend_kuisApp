@@ -1,4 +1,4 @@
-import {Component, OnInit, transition, trigger, style, animate, EventEmitter, NgZone} from '@angular/core';
+import {Component, OnInit, transition, trigger, style, animate, EventEmitter, NgZone} from "@angular/core";
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {Household} from "../../../../models/household.model";
 import {ApiService} from "../../../../service/api.service";
@@ -43,11 +43,15 @@ export class JoinHouseholdDetailComponent implements OnInit {
   join(){
     console.log("Join Household");
 
-     this.apiService.addUsertoHousehold(this.household.id,this.user.uid);
-     this.visible=false;
-    this.visibleChange.emit(this.visible);
-    this.householdjoined.emit(this.household);
-
+      this.apiService.addUsertoHousehold(this.household.id)
+          .subscribe(
+              user => {
+                  this.visible = false;
+                  this.visibleChange.emit(this.visible);
+                  this.householdjoined.emit(user);
+              },
+              error => console.log(error)
+          );
 
   }
 

@@ -51,7 +51,7 @@ class Task {
     static getTaskStats(id, cb) {
         FinishedTask
             .aggregate([
-                {$match: {household_id: 37, done: true}},
+                {$match: {household_id: id, done: true}},
                 {$sort: {"finished_on": -1}},
                 {
                     $group: {

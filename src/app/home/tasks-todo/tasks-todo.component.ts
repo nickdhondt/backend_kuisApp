@@ -14,12 +14,9 @@ export class TasksTodoComponent implements OnInit {
     }
 
     user: User;
-    currentUser:String;
     loading: Boolean = true;
 
     constructor(private apiSevice: ApiService) {
-
-
     }
 
     getUser() {
@@ -29,7 +26,6 @@ export class TasksTodoComponent implements OnInit {
                 data => {
                     this.user = data;
                     this.loading = false;
-                    this.currentUser = this.user.uid;
                 },
                 error => console.log(error)
             );

@@ -41,7 +41,7 @@ export class AwardComponent implements OnInit {
 
     ngOnInit() {
 
-        if (this.award.creator_id) this.findUser();
+        if (this.award && this.award.creator_id) this.findUser();
 
         else this.award = null;
     }

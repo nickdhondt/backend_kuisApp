@@ -1,6 +1,7 @@
 import {Component, OnInit, trigger, transition, style, animate, Input, Output, EventEmitter} from "@angular/core";
 import {User} from "../../../../models/user.model";
 import {ApiService} from "../../../../service/api.service";
+import {AuthService} from "../../../../auth/services/auth.service";
 
 @Component({
     selector: 'app-user-detail',
@@ -24,10 +25,11 @@ export class UserDetailComponent implements OnInit {
     @Input() user: User;
     @Input() closable = true;
     @Input() visible: boolean;
-    @Input() currentUser:String;
+    currentUser: String;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private apiService:ApiService) {
+    constructor(private apiService: ApiService, private auth: AuthService) {
+        this.currentUser = auth.uid;
     }
 
     ngOnInit() {

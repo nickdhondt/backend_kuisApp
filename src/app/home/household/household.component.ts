@@ -35,8 +35,6 @@ export class HouseholdComponent implements OnInit {
     }
 
   updateHouseholdComponent(user){
-   this.getUser();
-
-
+      this.user = user;
   }
 }
