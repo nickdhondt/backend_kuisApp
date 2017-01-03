@@ -37,7 +37,7 @@ export class TaskdetailComponent implements OnInit {
     constructor(private apiService:ApiService, private location:PlatformLocation) {
 
         location.onPopState((event)=>{
-            this.close();
+            this.back();
         })
     }
 
@@ -66,10 +66,18 @@ export class TaskdetailComponent implements OnInit {
         }
     }
 
-    close() {
+    back(){
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }
+    close() {
+
+        let stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
+
+        this.back();
+    }
+
     add() {
         // TODO: propagate to list
         if(this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {

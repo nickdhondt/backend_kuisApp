@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from "@angular/core";
 import {ApiService} from "../../../../service/api.service";
 import {Task} from "../../../../models/task.model";
 import {User} from "../../../../models/user.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class TodolistComponent implements OnInit {
     showDialog: boolean = false;
     selectedTask: Task;
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService, public router:Router) {
     }
 
     ngOnInit() {
@@ -38,7 +39,7 @@ export class TodolistComponent implements OnInit {
         this.selectedTask = task;
         this.showDialog = !this.showDialog;
 
-        let stateObj = { foo: "bar" };
+        let stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "task");
 
     }

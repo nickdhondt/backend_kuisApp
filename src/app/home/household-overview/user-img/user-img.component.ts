@@ -16,6 +16,7 @@ export class UserImgComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
 }

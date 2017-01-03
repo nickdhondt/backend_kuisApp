@@ -3,6 +3,7 @@ import {ApiService} from "../../../service/api.service";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
 import {Award} from "../../../models/award.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -23,7 +24,7 @@ export class HouseholdOverviewComponent implements OnInit {
 
     fbUser : firebase.User;
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService, public router:Router) {
 
     }
 
@@ -31,7 +32,7 @@ export class HouseholdOverviewComponent implements OnInit {
 
         this.showDialog = !this.showDialog; this.selectedUser = user;
 
-        let stateObj = { foo: "bar" };
+        let stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "user");
 
     }
