@@ -1,6 +1,9 @@
 ul li a:hover i{
   color: indianred;
 }
+ul li {
+  margin-bottom: 5px;
+}
 i .material-icons{
   transition: color 0.5s ease;
   position: relative;
@@ -15,4 +18,8 @@ i .material-icons{
 }
 .fa-briefcase{
   color: whitesmoke;
+}
+.col{
+  margin-top: 30px;
+
 }
