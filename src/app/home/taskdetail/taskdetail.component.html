@@ -2,7 +2,7 @@
     <div [@dialog] *ngIf="visible" class="card dialog">
         <!--<ng-content></ng-content>-->
         <div class="card-content">
-            <span class="card-title">{{task.name}}</span>
+            <span class="card-title">{{taskLocal.name}}</span>
 
             <div class="row">
                 <form class="col s12" #taskForm="ngForm">
@@ -11,21 +11,21 @@
                             <div style="padding-bottom:10px">
                                 <label for="task_name" class="active">Task Name</label>
                             </div>
-                            <input [(ngModel)]="task.name" name="name" id="task_name" type="text" class="validate">
+                            <input [(ngModel)]="taskLocal.name" name="name" id="task_name" type="text" class="validate">
                         </div>
                         <div class="input-field col s6">
                             <div style="padding-bottom:10px">
                                 <label for="task_due_date" class="active">Next Due Date</label>
                             </div>
                             <input
-                                    materialize="pickadate" [(ngModel)]="task.dueDate" name="dueDate" id="task_due_date"
+                                    materialize="pickadate" [(ngModel)]="taskLocal.dueDate" name="dueDate" id="task_due_date"
                                    type="date" class="datepicker browser-default">
                         </div>
                         <div class="input-field col s12">
                             <div style="padding-bottom:10px">
                                 <label for="task_description" class="active">Description</label>
                             </div>
-                            <input [(ngModel)]="task.description" name="description" id="task_description" type="text"
+                            <input [(ngModel)]="taskLocal.description" name="description" id="task_description" type="text"
                                    class="">
 
                         </div>
@@ -33,7 +33,7 @@
                             <div style="padding-bottom:10px">
                                 <label for="task_periodicity" class="active">Periodicity (in days)</label>
                             </div>
-                            <input [(ngModel)]="task.period" name="period" id="task_periodicity" type="number"
+                            <input [(ngModel)]="taskLocal.period" name="period" id="task_periodicity" type="number"
                                    class="validate">
 
                         </div>
@@ -41,7 +41,7 @@
                             <div style="padding-bottom:10px">
                                 <label for="task_points" class="active">Points</label>
                             </div>
-                            <input [(ngModel)]="task.points" name="points" id="task_points" type="number"
+                            <input [(ngModel)]="taskLocal.points" name="points" id="task_points" type="number"
                                    class="validate">
 
                         </div>
@@ -51,7 +51,7 @@
                             <label for="task_user" class="active">User</label>
                             </div>
                             <select materialize="material_select"
-                                    class="validate" [(ngModel)]="task.assigned_to" name="assigned_to" id="task_user">
+                                    class="validate" [(ngModel)]="taskLocal.assigned_to" name="assigned_to" id="task_user">
                                 <option disabled selected>Select User</option>
                                 <option *ngFor="let user of usersLocal" [ngValue]="user.id">{{user.name}}</option>
                             </select>

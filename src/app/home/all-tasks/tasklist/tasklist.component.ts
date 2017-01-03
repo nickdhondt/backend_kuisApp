@@ -21,10 +21,9 @@ export class TasklistComponent implements OnInit {
     constructor(private apiService: ApiService, private router: Router) {
     }
 
-    addTaskToList(task) {
+    private listNeedsUpdate(data) {
         console.log("oooh boy");
-        console.log(task);
-        this.tasks.push(task);
+        console.log(data);
     }
 
     ngOnInit() {
