@@ -22,29 +22,32 @@
                             <label for="task_name" class="active">Task Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input [(ngModel)]="task.dueDate" name="dueDate" id="task_due_date" type="date" class="">
+                            <input materialize="pickadate" [(ngModel)]="task.dueDate" name="dueDate" id="task_due_date"
+                                   type="date" class="datepicker">
                             <label for="task_due_date" class="active">Next Due Date</label>
                         </div>
                         <div class="input-field col s12">
-                            <input [(ngModel)]="task.description" name="description" id="task_description" type="text" class="">
-                            <label for="task_due_date" class="active">Description</label>
+                            <input [(ngModel)]="task.description" name="description" id="task_description" type="text"
+                                   class="">
+                            <label for="task_description" class="active">Description</label>
                         </div>
                         <div class="input-field col s6">
-                            <input [(ngModel)]="task.period" name="period" id="task_periodicity" type="number" class="validate">
+                            <input [(ngModel)]="task.period" name="period" id="task_periodicity" type="number"
+                                   class="validate">
                             <label for="task_periodicity" class="active">Periodicity (in days)</label>
                         </div>
                         <div class="input-field col s6">
-                            <input [(ngModel)]="task.points" name="points" id="task_points" type="number" class="validate">
+                            <input [(ngModel)]="task.points" name="points" id="task_points" type="number"
+                                   class="validate">
                             <label for="task_points" class="active">Points</label>
                         </div>
                         <div class="input-field col s6">
-                            <!--todo Select user wanneer geen assigned-->
-                            <select class="validate browser-default" [(ngModel)]="task.assigned_to" name="assigned_to" id="task_user" >
+                            <select class="validate" materialize="material_select" [(ngModel)]="task.assigned_to"
+                                    name="assigned_to" id="task_user">
                                 <option disabled selected>Select User</option>
                                 <option *ngFor="let user of usersLocal" [ngValue]="user.id">{{user.name}}</option>
                             </select>
                             <label for="task_user" class="active">User</label>
-
                         </div>
                     </div>
                 </form>
@@ -63,5 +66,6 @@
 
         </div>
     </div>
+</div>
 
-    <div *ngIf="visible" class="overlay" (click)="close()"></div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

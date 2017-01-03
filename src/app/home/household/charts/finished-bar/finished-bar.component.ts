@@ -99,7 +99,7 @@ export class FinishedBarComponent implements OnInit {
                 });
 
 
-                labels = labels.map(l=>{return l.format("MM/YY")});
+                labels = labels.map(l=>{return l.format("MMM")});
                 labels.reverse();
 
                 series[0].data.reverse();

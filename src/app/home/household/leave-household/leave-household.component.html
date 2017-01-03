@@ -2,23 +2,16 @@
   <!--<ng-content></ng-content>-->
   <div class="card-content">
     <span class="card-title center">Please Confirm</span>
-    <div class="row no-margin">
+    <div class="row">
       <form class="col s12">
-        <div class="row no-margin">
-
-          <div class="row no-margin">
             <p>Are youe sure you want to leave?</p>
-          </div>
-
-
-        </div>
       </form>
     </div>
   </div>
   <div class="card-action">
-    <a  (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">no</a>
-    <a class="right" (click)="leave()" aria-label="Join" style="cursor: default;margin-bottom: 10px">yes</a>
-
+      <a></a>
+      <a (click)="leave()" class="right" aria-label="Join">yes</a>
+      <a (click)="close()" class="right" aria-label="close">no</a>
   </div>
 </div>
 

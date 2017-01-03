@@ -2,7 +2,7 @@
 
 <div *ngIf="household">
 
-    <h2 class="center-align grey-text light text-darken-1">{{household.name}}</h2>
+    <h2 class="truncate center-align grey-text light text-darken-1">{{household.name}}</h2>
 
     <div style="padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap">
 
@@ -10,7 +10,7 @@
                 *ngFor="let user of household.users | sortUsers:'score'; let i = index;"
                 [user]="user"
                 [index]="i"
-                (click)="showDialog = !showDialog; selectedUser = user;"
+                (click)="openUserPopup(user)"
         ></app-user-img>
 
     </div>
@@ -23,7 +23,7 @@
 
 <div *ngIf="!household">
 
-    <h2 class="center-align grey-text light text-darken-1">my household</h2>
+    <h2 class="truncate center-align grey-text light text-darken-1">my household</h2>
 
     <div class="card">
         <div class="card-content">

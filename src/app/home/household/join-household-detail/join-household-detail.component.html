@@ -4,40 +4,30 @@
     <!--Household found-->
     <span class="card-title center">Join Household</span>
     <div class="row no-margin">
-      <form class="col s12">
-        <div class="row no-margin">
-
-          <div class="input-field col s12 l9">
+      <form class="input-field col s12 l9">
             <i class="material-icons prefix">home</i>
             <input value="{{household.name}}" name="memberemail"  id="houseold_name"  type="text" class="" readonly >
             <label for="houseold_name" class="active">Household Name</label>
-          </div>
-
-        </div>
       </form>
     </div>
   </div>
-
 
   <div *ngIf="!household" class="card-content">
     <!--Household found-->
     <span class="card-title center">Sorry</span>
-    <div class="row no-margin">
+    <div class="row">
       <form class="col s12">
-        <div class="row no-margin">
-
           <p>We couldn't find a the household you're looking for</p>
-
-        </div>
       </form>
     </div>
   </div>
 
-  <div   class="card-action" >
-    <a  *ngIf="household" (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">close</a>
-    <a   *ngIf="household" class="right"  (click)="join()" aria-label="Join" style="cursor: default;margin-bottom: 10px">Join</a>
-    <a *ngIf="!household"  (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">thanks anyway</a>
+  <div class="card-action" >
 
+      <a></a>
+      <a  *ngIf="household" (click)="close()" aria-label="close">close</a>
+      <a  *ngIf="!household"  (click)="close()" class="right"  aria-label="close">thanks anyway</a>
+      <a  *ngIf="household" class="right"  (click)="join()" aria-label="Join">Join</a>
 
   </div>
 

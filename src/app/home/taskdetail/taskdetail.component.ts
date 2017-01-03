@@ -2,9 +2,9 @@ import {Component, OnInit, Input, Output, EventEmitter, trigger, style, animate,
 import {Task} from "../../../models/task.model";
 import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
-import {isUndefined} from "util";
 import _ from "lodash";
 import * as moment from "moment";
+import {PlatformLocation} from "@angular/common";
 
 @Component({
     selector: 'app-taskdetail',
@@ -34,8 +34,11 @@ export class TaskdetailComponent implements OnInit {
 
     private usersLocal:User[];
 
-    constructor(private apiService:ApiService) {
+    constructor(private apiService:ApiService, private location:PlatformLocation) {
 
+        location.onPopState((event)=>{
+            this.close();
+        })
     }
 
     ngOnInit() {
@@ -58,7 +61,9 @@ export class TaskdetailComponent implements OnInit {
     }
 
     ngOnChanges() {
-        if (this.task !== undefined) this.task.dueDate = moment(this.task.dueDate).format("YYYY-MM-DD");
+        if (this.task !== undefined) {
+            this.task.dueDate = moment(this.task.dueDate).format("YYYY-MM-DD");
+        }
     }
 
     close() {

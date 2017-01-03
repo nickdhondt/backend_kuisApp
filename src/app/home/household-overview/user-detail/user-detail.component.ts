@@ -2,6 +2,7 @@ import {Component, OnInit, trigger, transition, style, animate, Input, Output, E
 import {User} from "../../../../models/user.model";
 import {ApiService} from "../../../../service/api.service";
 import {AuthService} from "../../../../auth/services/auth.service";
+import {PlatformLocation} from "@angular/common";
 
 @Component({
     selector: 'app-user-detail',
@@ -28,8 +29,12 @@ export class UserDetailComponent implements OnInit {
     currentUser: String;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private apiService: ApiService, private auth: AuthService) {
+    constructor(private apiService: ApiService, private auth: AuthService, private location:PlatformLocation) {
         this.currentUser = auth.uid;
+
+        location.onPopState((event)=>{
+            this.close();
+        })
     }
 
     ngOnInit() {
