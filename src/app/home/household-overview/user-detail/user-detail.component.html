@@ -3,17 +3,22 @@
     <div class="card-content">
         <span class="card-title center">Member Details</span>
         <div class="row center-align" >
-            <img src="{{user.imgsrc}}" class="responsive-img circle " style="max-height: 100px; max-width: 100px; overflow: hidden">
+            <div class="hoverable circle z-depth-1"
+                 style="max-width: 75px; max-height: 75px; overflow: hidden; margin:auto">
+                <img
+                        src="{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}"
+                        class="responsive-img center">
+            </div>
         </div>
         <div class="row">
             <form class="col s12" #userDetailForm="ngForm">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input [(ngModel)]="user.name" id="first_name" name="name" type="text" class="validate">
+                        <input [disabled] [(ngModel)]="user.name" id="first_name" name="name" type="text" class="validate">
                         <label class="active" for="first_name">First Name</label>
                     </div>
                     <div class="input-field col s6">
-                        <input [(ngModel)]="user.lname" id="last_name" name="lname" type="text" class="validate">
+                        <input [disabled] [(ngModel)]="user.lname" id="last_name" name="lname" type="text" class="validate">
                         <label class="active" for="last_name">Last Name</label>
                     </div>
                     <div class="input-field col s12">

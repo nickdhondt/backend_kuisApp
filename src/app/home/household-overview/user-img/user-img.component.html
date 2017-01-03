@@ -5,12 +5,12 @@
         <div class="chip"
              [ngClass]="index == 0 ? 'yellow darken-2 white-text':''"
              style="position: absolute; top:-10px; left:0;">
-            {{user.score}}
+            {{user.score || '0'}}
         </div>
 
         <div class="hoverable circle z-depth-1"
              style="max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px">
-            <img src="{{user.imgsrc}}" class="responsive-img">
+            <img src="{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}" class="responsive-img">
         </div>
     </div>
 

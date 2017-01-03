@@ -23,13 +23,20 @@ export class AboutComponentComponent implements OnInit {
 
     constructor(private location:PlatformLocation) {
         location.onPopState((event)=>{
-            this.close();
+            this.back();
         })
     }
 
-    close() {
+    back(){
         this.visible = false;
         this.visibleChange.emit(this.visible);
+    }
+    close() {
+
+        let stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
+
+        this.back();
     }
 
     ngOnInit() {

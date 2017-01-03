@@ -1,9 +1,9 @@
-import {Component, OnInit, Input, EventEmitter} from "@angular/core";
+import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
 import {Award} from "../../../models/award.model";
-import {Output} from "@angular/core/src/metadata/directives";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -22,11 +22,9 @@ export class HouseholdOverviewComponent implements OnInit {
     selectedUser: User;
     @Output() receivedHousehold: EventEmitter<any> = new EventEmitter();
 
-    authenticatedUserUID: string;
-    @Output() sendNewHousehold:EventEmitter<any>=new EventEmitter();
     fbUser : firebase.User;
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService, public router:Router) {
 
     }
 
@@ -34,7 +32,7 @@ export class HouseholdOverviewComponent implements OnInit {
 
         this.showDialog = !this.showDialog; this.selectedUser = user;
 
-        let stateObj = { foo: "bar" };
+        let stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "user");
 
     }
@@ -45,6 +43,7 @@ export class HouseholdOverviewComponent implements OnInit {
     ngOnInit() {
           if (this.household && !this.household.award) this.household.award = new Award();
     }
+
     addAwardToHousehold(award) {
         this.household.award = award;
     }

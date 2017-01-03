@@ -33,16 +33,25 @@ export class UserDetailComponent implements OnInit {
         this.currentUser = auth.uid;
 
         location.onPopState((event)=>{
-            this.close();
+            this.back();
         })
     }
 
     ngOnInit() {
     }
 
-    close() {
+    disabled = "disabled";
+
+    back(){
         this.visible = false;
         this.visibleChange.emit(this.visible);
+    }
+    close() {
+
+        let stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
+
+        this.back();
     }
     save(){
         //Code om update-user uit te voeren

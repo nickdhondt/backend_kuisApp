@@ -22,8 +22,9 @@ export class NavigationComponent implements OnInit {
       this.aboutVisible = !this.aboutVisible;
       event.preventDefault();
 
-      let stateObj = { foo: "bar" };
+      let stateObj = { foo: this.router.url };
       history.pushState(stateObj, "popup", "about");
+
   }
 
   constructor(private auth:AuthService, private router:Router) {
