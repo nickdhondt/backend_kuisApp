@@ -17,6 +17,7 @@ import {ApiService} from "../../../../../service/api.service";
 import * as firebase from 'firebase';
 import {SocketService} from "../../../../../service/socket.service";
 import {take} from "rxjs/operator/take";
+import {UpdateHouseholdOverviewService} from "../../../../../service/update-household-overview.service";
 
 
 @Component({
@@ -55,6 +56,8 @@ export class TasktodoRowComponent implements OnInit {
     }
 
     finishClick() {
+        console.log("request update");
+        this.updateHouseholdOverviewService.updateHouseholdNeeded();
         this.state = 'finished';
         this.isDestroyed = true;
         this.finish.emit(this.task);
@@ -73,14 +76,14 @@ export class TasktodoRowComponent implements OnInit {
         this.apiService.addFinishedTask(this.task.id, false, userUid, moment().format("YYYY-MM-DD HH:mm:ss"));
     }
 
-    constructor(private apiService:ApiService, private socketService:SocketService) {
+    constructor(private apiService:ApiService, private socketService:SocketService, private updateHouseholdOverviewService:UpdateHouseholdOverviewService) {
     }
 
     ngOnInit() {
         this.socketService.taskUpdates().subscribe((data) => {
             if (!this.isDestroyed && data.taskID === this.task.id) {
-                console.log(this.task);
                 if (data.done) {
+                    this.updateHouseholdOverviewService.updateHouseholdNeeded();
                     this.state = "finished";
                     this.finish.emit(this.task);
                 } else {
