@@ -733,7 +733,7 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
                 t.dueDate = assignedDate.format('YYYY-MM-DD');
                 t.household_id = users[0].household_id;
 
-                if(!assignUsers){
+                if(assignUsers){
                     t.assigned_to = users[assignedUserPos].id;
                     assignedUserPos++;
                     if(assignedUserPos == users.length)
@@ -864,9 +864,12 @@ router.post('/addtasks',  function (req, res, next) {
         arr.push(t.dueDate);
         arr.push(t.assigned_to);
 
+
         arrayToSend.push(arr);
 
     });
+
+    console.log(arrayToSend);
 
     Task.addTasks(arrayToSend, function (firstID) {
 
