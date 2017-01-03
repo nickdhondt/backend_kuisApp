@@ -74,8 +74,8 @@ export class TaskdetailComponent implements OnInit {
         this.visibleChange.emit(this.visible);
     }
     close() {
-        // let stateObj = { foo: history.state.foo };
-        // history.replaceState(stateObj, "back", history.state.foo);
+        let stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
 
         this.back();
     }
