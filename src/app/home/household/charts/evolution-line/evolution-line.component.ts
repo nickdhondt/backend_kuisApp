@@ -5,7 +5,7 @@ import {ApiService} from "../../../../../service/api.service";
 import * as moment from "moment";
 import * as Chartist from "chartist";
 import IChartistAnimations = Chartist.IChartistAnimations;
-require('chartist-plugin-legend');
+// require('chartist-plugin-legend');
 
 @Component({
     selector: 'app-evolution-line',
@@ -23,6 +23,7 @@ export class EvolutionLineComponent implements OnInit {
     @Input() household: Household;
 
     constructor(private apiService: ApiService) {
+
         this.type = 'Line';
 
         this.data = new Promise(resolve => {
@@ -146,7 +147,8 @@ export class EvolutionLineComponent implements OnInit {
         return "inactive member"
     }
 
-    draw = function (data) {
+    private draw = function (data) {
+
         if (data.type === 'line' || data.type === 'area') {
             data.element.animate({
                 d: {
@@ -170,5 +172,6 @@ export class EvolutionLineComponent implements OnInit {
                 }
             });
         }
+
     };
 }

@@ -1,3 +1,4 @@
+import * as moment from "moment";
 /**
  * Created by Bart on 26/12/2016.
  */
@@ -7,7 +8,8 @@ export class Task {
 
     public id: number;
     public name: string;
-    public dueDate: Date;
+    // public dueDate: Date;
+    public dueDate: String;
     public description: string;
     public period: number;
     public assigned_to: number;
@@ -23,7 +25,8 @@ export class Task {
 
         task.id = item.id;
         task.name = item.name;
-        task.dueDate = new Date(Date.parse(item.dueDate));
+        // task.dueDate = new Date(Date.parse(item.dueDate));
+        task.dueDate = moment(item.dueDate).format("YYYY-MM-DD");
         task.description = item.description;
         task.period = item.period;
         task.assigned_to = item.assigned_to;
