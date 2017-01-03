@@ -3,6 +3,7 @@ module.exports = function(mysql) {
         host: 'bart.cf',
         user: 'kuisapp_user',
         password: 'Th3Cl3@ns1ng',
-        database: 'kuisapp'
+        database: 'kuisapp',
+        timezone: 'utc-00:00'
     })
 };

@@ -141,6 +141,8 @@ export class ApiService {
                     {headers: this.headers})
                     .map((response: Response) => {
 
+                    console.log(response.json());
+
                         let user: User = response.json();
 
                         if (user.household) {
@@ -214,40 +216,7 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
-    public addFinishedAward() {
-        let data = 'Test';
-        let tokenPromise = new Promise((resolve, reject) => {
-            this.auth.token.then(token => {
-                this.headers.set("Firebase-ID-Token", token);
-                return this._http.post(
-                    this.actionUrl + "finishaward",
-                    {data},
-                    {headers: this.headers})
-                    .map(res => res.json())
-                    .catch(ApiService.handleError)
-                    .subscribe(data => console.log(data));
 
-            })
-        });
-
-    }
-
-    // public addAward(description: string, name: string, month: string, winner_id: number, creator_id: number, household_id: number): Observable<Award> {
-    //
-    //     let tokenPromise = new Promise<Award>((resolve, reject) => {
-    //         this.auth.token.then(token => {
-    //             this.headers.set("Firebase-ID-Token", token);
-    //             return this._http.post(
-    //                 this.actionUrl + "addaward",
-    //                 {description, name, month, winner_id, creator_id, household_id},
-    //                 {headers: this.headers})
-    //                 .map(res => res.json())
-    //                 .catch(ApiService.handleError)
-    //                 .subscribe(data => console.log(" Add award Data: " + data))
-    //         })
-    //     });
-    //     return Observable.fromPromise(tokenPromise);
-    // }
 
     public getHouseholdbyEmail(email:string):Observable<Household>{
 

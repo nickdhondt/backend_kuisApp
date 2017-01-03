@@ -127,14 +127,6 @@ class Task {
             })
     }
 
-    static getTasksByHouseholdID(id, obj, cb) {
-        conn.query("select * from `tasks` where `household_id` = ?", [id],
-            function (err, rows, fields) {
-                if (err) process.emit("mysqlError", err);
-                else cb(obj, rows);
-            })
-    }
-
     static getTasksTodoByHouseholdID(id, term, obj, cb) {
         let dueDate = new moment().add(term, "days").format("YYYY-MM-DD");
 
