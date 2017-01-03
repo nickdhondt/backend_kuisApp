@@ -31,98 +31,6 @@ export class ApiService {
         return Observable.throw(error.json().error || 'server error...');
     }
 
-    //DO NOT USE
-    //DO
-    //NOT
-    //USE
-    //!
-    public getTasks(): Observable<Task[]> {
-
-        let tokenPromise = new Promise<Task[]>((resolve, reject) => {
-
-            this.auth.token.then(token => {
-
-                this.headers.set('Firebase-ID-Token', token);
-
-                return this._http.get(
-                    this.actionUrl + "tasksbytoken",
-
-                    {headers: this.headers})
-                    .map((response: Response) => {
-                        let tasks: Task[] = [];
-                        response.json().forEach(item => tasks.push(Task.makeTaskFromJSON(item)));
-                        return tasks;
-                    })
-                    .catch(ApiService.handleError)
-                    .subscribe(data => resolve(data), err => reject(err));
-            })
-
-        });
-
-        return Observable.fromPromise(tokenPromise);
-    }
-
-    //DO NOT USE
-    //DO
-    //NOT
-    //USE
-    //!
-    public getTaskstodobyhousehold(term: number = 7): Observable<Task[]> {
-
-        let tokenPromise = new Promise<Task[]>((resolve, reject) => {
-
-            this.auth.token.then(token => {
-
-                this.headers.set('Firebase-ID-Token', token);
-
-                return this._http.get(
-                    this.actionUrl + "taskstodobyhousehold/" + null + "/" + term,
-                    {headers: this.headers})
-                    .map((response: Response) => {
-                        let tasks: Task[] = [];
-                        response.json().forEach(item => tasks.push(Task.makeTaskFromJSON(item)));
-                        return tasks;
-                    })
-                    .catch(ApiService.handleError)
-                    .subscribe(data => resolve(data), err => reject(err));
-            })
-        });
-
-        return Observable.fromPromise(tokenPromise);
-
-    }
-
-    //DO NOT USE
-    //DO
-    //NOT
-    //USE
-    //!
-    public getHousehold(): Observable<Household> {
-
-
-        let tokenPromise = new Promise<Household>((resolve, reject) => {
-
-            this.auth.token.then(token => {
-
-                this.headers.set('Firebase-ID-Token', token);
-
-                return this._http.get(
-                    this.actionUrl + "household",
-                    {headers: this.headers})
-                    .map((response: Response) => {
-                        return Household.makeHouseholdFromJSON(response.json());
-                    })
-                    .catch(ApiService.handleError)
-                    .subscribe(
-                        data => resolve(data),
-                        err => reject(err)
-                    );
-            })
-        });
-
-        return Observable.fromPromise(tokenPromise);
-    }
-
     public getContributions(): Observable<any> {
 
         let tokenPromise = new Promise<any>((resolve, reject) => {
@@ -133,6 +41,30 @@ export class ApiService {
 
                 return this._http.get(
                     this.actionUrl + "contributionsbyhousehold",
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+
+    }
+
+    public getFinishedCanceledStats(): Observable<any> {
+
+        let tokenPromise = new Promise<any>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "finishedcanceledstats",
                     {headers: this.headers})
                     .map(res => res.json())
                     .catch(ApiService.handleError)

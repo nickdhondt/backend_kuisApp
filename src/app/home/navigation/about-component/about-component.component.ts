@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, trigger, animate, style, transition, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, trigger, animate, style, transition, EventEmitter, Output} from "@angular/core";
+import {PlatformLocation} from "@angular/common";
 
 @Component({
     selector: 'app-about-component',
@@ -20,7 +21,10 @@ export class AboutComponentComponent implements OnInit {
     @Input() visible: boolean;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor() {
+    constructor(private location:PlatformLocation) {
+        location.onPopState((event)=>{
+            this.close();
+        })
     }
 
     close() {

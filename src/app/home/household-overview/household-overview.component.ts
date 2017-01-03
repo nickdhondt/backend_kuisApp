@@ -27,6 +27,14 @@ export class HouseholdOverviewComponent implements OnInit {
 
     }
 
+    openUserPopup(user:User){
+
+        this.showDialog = !this.showDialog; this.selectedUser = user;
+
+        let stateObj = { foo: "bar" };
+        history.pushState(stateObj, "popup", "user");
+
+    }
     sendUserToUpper(household) {
         this.receivedHousehold.emit(household);
     }

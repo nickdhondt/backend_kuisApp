@@ -25,31 +25,6 @@ export class ChatComponent implements OnInit {
         this.isHidden = !this.isHidden;
     }
 
-//
-//     private getHousehold(): void {
-//
-//         this.apiService
-//             .getHousehold()
-//             .subscribe(
-//                 data => {
-//
-//
-//                     if (!isUndefined(data.users)) {
-//                         data.users.sort((a: User, b: User) => {
-//                             if (a.score < b.score) return 1;
-//                             if (b.score < a.score) return -1;
-//                             return 0;
-//                         });
-//                         this.household = data;
-//                     }
-//                     else {
-//
-//                     }
-//
-//                 },
-// //test
-//                 error => console.log("error household " + error)
-//             );
-//     }
+
 
 }

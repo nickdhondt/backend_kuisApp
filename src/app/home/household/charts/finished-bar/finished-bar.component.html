@@ -1,4 +1,11 @@
-<x-chartist id="chart"
-            [data]="data"
-            [type]="type">
-</x-chartist>
+<div class="card">
+
+    <div class="card-content">
+        <span class="card-title">Finished vs canceled</span>
+        <x-chartist [events]="events"
+                    [options]="options"
+                    [(data)]="data"
+                    [type]="type">
+        </x-chartist>
+    </div>
+</div>

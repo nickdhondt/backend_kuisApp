@@ -34,8 +34,13 @@ export class TodolistComponent implements OnInit {
     }
 
     private showDetail(task) {
+
         this.selectedTask = task;
         this.showDialog = !this.showDialog;
+
+        let stateObj = { foo: "bar" };
+        history.pushState(stateObj, "popup", "task");
+
     }
 
     private cancel(task: Task, index: number) {
