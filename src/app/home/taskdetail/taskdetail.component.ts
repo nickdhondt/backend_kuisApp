@@ -5,6 +5,7 @@ import {ApiService} from "../../../service/api.service";
 import _ from "lodash";
 import * as moment from "moment";
 import {PlatformLocation} from "@angular/common";
+import {UpdateTaskListService} from "../../../service/update-task-list.service";
 
 @Component({
     selector: 'app-taskdetail',
@@ -30,12 +31,11 @@ export class TaskdetailComponent implements OnInit {
     @Input() visible: boolean;
     @Input() newTask:Boolean = false;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() needsUpdate = new EventEmitter();
 
     private usersLocal:User[];
     private taskLocal:Task;
 
-    constructor(private apiService:ApiService, private location:PlatformLocation) {
+    constructor(private apiService:ApiService, private location:PlatformLocation, private updateTaskListService:UpdateTaskListService) {
 
         location.onPopState((event)=>{
             this.back();
@@ -81,11 +81,9 @@ export class TaskdetailComponent implements OnInit {
     }
 
     add() {
-        // TODO: propagate to list
         if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             this.apiService.addTask(this.taskLocal).subscribe((data)=>{
-                console.log("update");
-                this.needsUpdate.emit(true);
+                this.updateTaskListService.updateListNeeded();
                 this.close();
             });
         }
@@ -94,15 +92,14 @@ export class TaskdetailComponent implements OnInit {
         this.task = this.taskLocal;
         if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             this.apiService.updateTask(this.task).subscribe((data)=>{
-                console.log(this.task);
+                this.updateTaskListService.updateListNeeded();
                 this.close();
             });
         }
     }
     deleteTask(){
-        // TODO: propagate to list
         this.apiService.deleteTask(this.task.id).subscribe((data)=>{
-            this.task = null;
+            this.updateTaskListService.updateListNeeded();
             this.close()
         });
     }
