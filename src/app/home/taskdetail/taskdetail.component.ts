@@ -30,9 +30,10 @@ export class TaskdetailComponent implements OnInit {
     @Input() visible: boolean;
     @Input() newTask:Boolean = false;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() newTaskEvent: EventEmitter<any> = new EventEmitter();
+    @Output() needsUpdate = new EventEmitter();
 
     private usersLocal:User[];
+    private taskLocal:Task;
 
     constructor(private apiService:ApiService, private location:PlatformLocation) {
 
@@ -43,6 +44,7 @@ export class TaskdetailComponent implements OnInit {
 
     ngOnInit() {
         if (this.task === undefined) this.task = new Task();
+        this.taskLocal = _.clone(this.task);
 
         let doMeUserSet:Boolean = false;
 
@@ -61,8 +63,9 @@ export class TaskdetailComponent implements OnInit {
     }
 
     ngOnChanges() {
-        if (this.task !== undefined) {
+        if (this.task !== undefined && this.task !== null) {
             this.task.dueDate = moment(this.task.dueDate).format("YYYY-MM-DD");
+            this.taskLocal = _.clone(this.task);
         }
     }
 
@@ -71,25 +74,27 @@ export class TaskdetailComponent implements OnInit {
         this.visibleChange.emit(this.visible);
     }
     close() {
-
-        let stateObj = { foo: history.state.foo };
-        history.replaceState(stateObj, "back", history.state.foo);
+        // let stateObj = { foo: history.state.foo };
+        // history.replaceState(stateObj, "back", history.state.foo);
 
         this.back();
     }
 
     add() {
         // TODO: propagate to list
-        if(this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
-            this.apiService.addTask(this.task).subscribe((data)=>{
-                this.newTaskEvent.emit(this.task);
+        if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+            this.apiService.addTask(this.taskLocal).subscribe((data)=>{
+                console.log("update");
+                this.needsUpdate.emit(true);
                 this.close();
             });
         }
     }
     save(){
-        if(this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
+        this.task = this.taskLocal;
+        if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             this.apiService.updateTask(this.task).subscribe((data)=>{
+                console.log(this.task);
                 this.close();
             });
         }

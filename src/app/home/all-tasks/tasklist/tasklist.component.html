@@ -41,4 +41,4 @@
     </div>
 </div>
 
-<app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask" [(users)]="users" (newTaskEvent)="addTaskToList()"></app-taskdetail>
+<app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask" [(users)]="users" (needsUpdate)="listNeedsUpdate($event)"></app-taskdetail>
