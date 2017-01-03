@@ -23,12 +23,6 @@ let http = require("http");
 let mongoose = require("mongoose");
 
 
-
-
-
-
-
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://kuisapp.firebaseio.com"
