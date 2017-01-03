@@ -2,24 +2,19 @@
   <!--<ng-content></ng-content>-->
   <div class="card-content">
     <span class="card-title center">Join Household</span>
-    <div class="row no-margin">
-      <form class="col s12">
-        <div class="row no-margin">
-
+    <div class="row">
+      <form>
           <div class="input-field col s12 l9">
             <i class="material-icons prefix">email</i>
             <input [(ngModel)]="memberemail" name="memberemail"  id="household_emaail"  type="email" class="validate" >
             <label for="household_emaail" class="">Household Member Email</label>
           </div>
-
-        </div>
       </form>
     </div>
   </div>
   <div class="card-action">
-  <a  (click)="close()" class="right"  aria-label="close" style="cursor: default; margin-bottom: 10px">close</a>
-    <a class="right" (click)="save();showDialogJoin=!showDialogJoin;foundhousehold=household" aria-label="Join" style="cursor: default;margin-bottom: 10px">Search</a>
-
+  <a  (click)="close()" aria-label="close">close</a>
+    <a class="right" (click)="save();showDialogJoin=!showDialogJoin;foundhousehold=household" aria-label="Join">Search</a>
   </div>
 </div>
 

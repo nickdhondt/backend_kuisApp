@@ -36,4 +36,4 @@
     </div>
 </div>
 
-<app-taskdetail [(visible)]="showDialog" [(task)]="selectedTask" [(users)]="users"></app-taskdetail>
+<app-taskdetail *ngIf="selectedTask" [(visible)]="showDialog" [(task)]="selectedTask" [(users)]="users"></app-taskdetail>
