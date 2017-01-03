@@ -110,10 +110,48 @@ router.get('/taskstatsbyhousehold', firebaseAuthenticator, function (req, res, n
     });
 });
 
+router.get('/finishedcanceledstats', function (req, res, next) {
+
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
+    Household.getHouseholdLimitedByUID(res.locals.uid, (household) => {
+
+    Task.getFinishedCanceld(37, (data)=>{
+
+        res.json(data);
+        res.end();
+
+    })
+    })
+});
+
 router.get('/householdstats', function (req, res, next) {
 
-    res.json(moment());
-    res.end();
+
+    FinishedTask
+        .aggregate([
+            {$match: {household_id: 37}},
+            {
+                $group: {
+                    _id: {
+                        "year": {$year: "$finished_on"},
+                        "month": {$month: '$finished_on'},
+
+                        "done": "$done"
+                    },
+                    count: {$sum: 1},
+                }
+            },
+            {$sort: {"_id.year":-1, "_id.month": -1}},
+        ])
+        .exec(function (err, tasks) {
+            if (err) next(err);
+
+            res.json(tasks);
+            res.end();
+        })
 
 });
 

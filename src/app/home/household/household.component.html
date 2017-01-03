@@ -5,14 +5,7 @@
     <app-household-overview (receivedHousehold)="user = $event" *ngIf="user" [household]="user.household">loading...
     </app-household-overview>
 
-    <div class="row" *ngIf="user && user.household">
-        <ul>
-            <li>{{user.household.countFinishedTasks}}</li>
-            <li>{{user.household.countTotalScore}}</li>
-            <li>{{user.household.mostPopularTask}}</li>
-            <li>{{user.household.tasks.length}}</li>
-        </ul>
-
+    <div *ngIf="user && user.household">
         <app-charts [(household)]="user.household"></app-charts>
     </div>
     <div class="fixed-action-btn vertical click-to-toggle" *ngIf="user && user.household" style="margin-bottom: 4em">

@@ -10,6 +10,31 @@ let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 
 class Task {
 
+    static getFinishedCanceld(id, cb){
+
+        FinishedTask
+            .aggregate([
+                {$match: {household_id: 37}},
+                {
+                    $group: {
+                        _id: {
+                            "year": {$year: "$finished_on"},
+                            "month": {$month: '$finished_on'},
+
+                            "done": "$done"
+                        },
+                        count: {$sum: 1},
+                    }
+                },
+                {$sort: {"_id.year":-1, "_id.month": -1}},
+            ])
+            .exec(function (err, tasks) {
+                if (err) next(err);
+
+                cb(tasks);
+            })
+    }
+
     static getContributionEvolution(id, cb) {
 
         FinishedTask
