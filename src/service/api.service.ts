@@ -441,6 +441,28 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
+
+    public deleteTask(id:Number): Observable<Task[]> {
+
+        let tokenPromise = new Promise<Task[]>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "deleteTask/" + id,
+
+                    {headers: this.headers})
+                    // .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(data => resolve(data), err => reject(err));
+            })
+
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
 }
 
 
