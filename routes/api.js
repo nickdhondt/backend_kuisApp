@@ -685,12 +685,9 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
 
     User.getUsersFromHouseholdbyUID(res.locals.uid, (users) => {
 
-
-
         let json = require('../importjson/importJson.json');
 
         let result = [];
-
         let tasklist = [];
 
         Object.keys(json).map(room=>{
@@ -845,7 +842,7 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
 
 //af: steven
 //controle door: bart the almighty (en nee, het werkte niet)
-router.post('/addtasks', function (req, res, next) {
+router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
 
     process.on("mysqlError", (err) => {
         return next(err);
