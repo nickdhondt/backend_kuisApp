@@ -4,6 +4,7 @@ import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
 import {isUndefined} from "util";
 import _ from "lodash";
+import * as moment from "moment";
 
 @Component({
     selector: 'app-taskdetail',
@@ -29,6 +30,9 @@ export class TaskdetailComponent implements OnInit {
     @Input() visible: boolean;
     @Input() newTask:Boolean = false;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() newTaskEvent: EventEmitter<any> = new EventEmitter();
+
+    private usersLocal:User[];
 
     constructor(private apiService:ApiService) {
 
@@ -36,6 +40,25 @@ export class TaskdetailComponent implements OnInit {
 
     ngOnInit() {
         if (this.task === undefined) this.task = new Task();
+
+        let doMeUserSet:Boolean = false;
+
+        for(let user of this.users) {
+            if (user.id === null) doMeUserSet = true;
+        }
+
+        if (this.users !== undefined && !doMeUserSet) {
+            this.usersLocal = _.map(this.users, _.clone);
+            let doMeUser = new User;
+            doMeUser.name = "everyone";
+            doMeUser.id = null;
+
+            this.usersLocal.push(doMeUser);
+        }
+    }
+
+    ngOnChanges() {
+        if (this.task !== undefined) this.task.dueDate = moment(this.task.dueDate).format("YYYY-MM-DD");
     }
 
     close() {
@@ -44,28 +67,26 @@ export class TaskdetailComponent implements OnInit {
     }
     add() {
         // TODO: propagate to list
-        let props = _.sortBy(Object.getOwnPropertyNames(this.task));
-        let required = _.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to"]);
-        if(_.isEqual(props, required)) {
+        if(this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
             this.apiService.addTask(this.task).subscribe((data)=>{
+                this.newTaskEvent.emit(this.task);
                 this.close();
             });
         }
     }
     save(){
-        let props = _.sortBy(Object.getOwnPropertyNames(this.task));
-        let required = _.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to", "id", "household_id"]);
-        console.log(_.isEqual(props, required));
-        if(_.isEqual(props, required)) {
+        if(this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
             this.apiService.updateTask(this.task).subscribe((data)=>{
                 this.close();
             });
         }
     }
-    delete(){
-        //TODO : code to delete task
-        alert("WERKT NOG NIET!!!!!!");
-        window.location.href ="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    deleteTask(){
+        // TODO: propagate to list
+        this.apiService.deleteTask(this.task.id).subscribe((data)=>{
+            this.task = null;
+            this.close()
+        });
     }
 
 }

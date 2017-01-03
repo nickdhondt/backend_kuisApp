@@ -5,7 +5,7 @@ import {ApiService} from "../../../../../service/api.service";
 import * as moment from "moment";
 import * as Chartist from "chartist";
 import IChartistAnimations = Chartist.IChartistAnimations;
-require('chartist-plugin-legend');
+// require('chartist-plugin-legend');
 
 @Component({
     selector: 'app-evolution-line',
