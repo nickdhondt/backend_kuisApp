@@ -3,6 +3,7 @@ import {ApiService} from "../../../service/api.service";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
 import {Award} from "../../../models/award.model";
+import {Output} from "@angular/core/src/metadata/directives";
 
 
 @Component({
@@ -21,6 +22,8 @@ export class HouseholdOverviewComponent implements OnInit {
     selectedUser: User;
     @Output() receivedHousehold: EventEmitter<any> = new EventEmitter();
 
+    authenticatedUserUID: string;
+    @Output() sendNewHousehold:EventEmitter<any>=new EventEmitter();
     fbUser : firebase.User;
 
     constructor(private apiService: ApiService) {
@@ -41,6 +44,12 @@ export class HouseholdOverviewComponent implements OnInit {
 
     receiveHousehold(household){
     this.apiService.getEverything().subscribe(data=>{this.household=data.household;});
+  receiveHousehold(household){
+
+    this.apiService.getEverything().subscribe(data=>{
+      this.household=data.household;
+      this.sendNewHousehold.emit(data.household_id)});
+    // this.sendNewHousehold.emit(this.household.id);
   }
 
 }
