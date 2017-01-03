@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
 import {User} from "../../../models/user.model";
+import {UpdateTaskListService} from "../../../service/update-task-list.service";
 
 @Component({
   selector: 'app-all-tasks',
@@ -18,8 +19,11 @@ export class AllTasksComponent implements OnInit {
     user: User;
     loading: Boolean = true;
 
-    constructor(private apiSevice: ApiService) {
-
+    constructor(private apiSevice: ApiService, private updateTaskListService:UpdateTaskListService) {
+        updateTaskListService.listUpdated$.subscribe((data) => {
+            console.log("ooooh boy");
+            this.getUser();
+        })
     }
 
     getUser() {
