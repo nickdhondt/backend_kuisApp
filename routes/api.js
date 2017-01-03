@@ -92,43 +92,27 @@ router.get('/contributionevolutionbyhousehold', firebaseAuthenticator, function 
     });
 });
 
-router.get('/householdstats', function (req, res, next) {
+router.get('/taskstatsbyhousehold', firebaseAuthenticator, function (req, res, next) {
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
 
-    FinishedTask
-        .aggregate([
-            {$match: {household_id: 37, done: true}},
+    Household.getHouseholdLimitedByUID(res.locals.uid, (household) => {
 
-            {
-                $group: {
-                    _id: {
-                        "year": {$year: "$finished_on"},
-                        "month": {$month: '$finished_on'},
-                        "by": '$finished_by'
-                    },
-                    count: {$sum: "$points"}
-                    // TotalScore: {$sum: "$points"},
-                    // count: {$sum: 1},
-                }
-            },
-            {$sort: {"_id.month": 1}},
-            {
-                $group: {
-                    _id: "$_id.year",
-                    stats: {$push: {user: "$_id.by", year: "$_id.year", month: "$_id.month", count: "$count"}},
+        Task.getTaskStats(household.id, (data) => {
 
-                    // TotalScore: {$sum: "$points"},
-                    // count: {$sum: 1},
-                }
-            },
-            {$sort: {"_id": 1}},
-        ])
-        .exec(function (err, tasks) {
-            if (err) next(err);
-
-            res.json(tasks);
+            res.json(data);
             res.end();
+
         })
 
+    });
+});
+
+router.get('/householdstats', function (req, res, next) {
+
+    res.json(moment());
+    res.end();
 
 });
 
@@ -141,8 +125,9 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
     User.getUserByUID(res.locals.uid, (user) => {
         res.json(user);
         res.end();
-    })
+    });
 
+    //changes, so many changes
 });
 
 router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {

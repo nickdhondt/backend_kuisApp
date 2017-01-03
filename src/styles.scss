@@ -95,10 +95,47 @@ a {
   justify-content: flex-end;
 }
 
-//.ct-chart-donut .ct-label{
-//  fill: white;
-//  font-weight: bold;
-//  font-size: 0.8em;
-//}
+.ct-legend {
+  position: relative;
+  z-index: 10;
+  margin: 10px 25px;
 
+  li {
+    position: relative;
+    padding-left: 23px;
+    margin-bottom: 3px;
+    display: inline-flex;
+    margin-left: 25px;
+    font-size: $ct-text-size;
+    color: $ct-text-color;
+    font-weight: bold;
+  }
+
+  li:before {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: 0;
+    content: '';
+    border: 3px solid transparent;
+    border-radius: 2px;
+  }
+
+  li.inactive:before {
+    background: transparent;
+  }
+
+  &.ct-legend-inside {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  @for $i from 0 to length($ct-series-colors) {
+    .ct-series-#{$i}:before {
+      background-color: nth($ct-series-colors, $i + 1);
+      border-color: nth($ct-series-colors, $i + 1);
+    }
+  }
+}
 

@@ -59,12 +59,11 @@ export class TasksDonutComponent implements OnInit {
             let animationDefinition: IChartistAnimations = {
                 'stroke-dashoffset': {
                     id: 'anim' + data.index,
-                    dur: 1000,
+                    dur: 500,
                     from: -pathLength + 'px',
                     to: '0px',
                     easing: Chartist.Svg.Easing.easeOutQuint,
                     // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
-                    fill: 'freeze'
                 }
             };
 
@@ -85,13 +84,24 @@ export class TasksDonutComponent implements OnInit {
     };
 
     private getContributions() {
-        this.apiService.getContributions().subscribe(
+        this.apiService.getTaskStats().subscribe(
             data => {
 
                 let result = {"labels": [], "series": []};
+                let index = 0;
                 data.forEach((res) => {
-                    result["labels"].push(this.findUser(res._id));
-                    result["series"].push(res.count)
+                    index++;
+
+                    if (index < 9) {
+                        result["labels"].push(res.name);
+                        result["series"].push(res.count);
+                    }
+                    else {
+                        result["series"][result["series"].length - 1] += res.count;
+                        result["labels"][result["labels"].length - 1] = data.length - 9 + " others";
+                        //result["series"].push(res.count)
+                    }
+
                 });
 
                 this.data = result;

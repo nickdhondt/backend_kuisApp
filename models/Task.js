@@ -38,7 +38,7 @@ class Task {
                         // count: {$sum: 1},
                     }
                 },
-                {$sort: {"_id": 1}},
+                {$sort: {"_id": -1, "stats.user": -1}},
             ])
             .exec(function (err, tasks) {
                 if (err) next(err);
@@ -48,12 +48,34 @@ class Task {
 
     }
 
+    static getTaskStats(id, cb) {
+        FinishedTask
+            .aggregate([
+                {$match: {household_id: 37, done: true}},
+                {$sort: {"finished_on": -1}},
+                {
+                    $group: {
+                        _id: '$id',
+                        name: {$first: "$name"},
+                        count: {$sum: 1},
+                    }
+                },
+                // {$sort: {"_id": -1}},
+            ])
+            .exec(function (err, data) {
+                if (err) next(err);
+
+                cb(data);
+            })
+
+    }
+
     static getContributions(id, cb) {
 
 
         FinishedTask
             .aggregate([
-                {$match: {household_id: 37, done: true}},
+                {$match: {household_id: id, done: true}},
                 {
                     $group: {
                         _id: '$finished_by',
@@ -61,7 +83,7 @@ class Task {
                         count: {$sum: 1},
                     }
                 },
-                {$sort: {"count": -1}},
+                {$sort: {"_id": -1}},
             ])
             .exec(function (err, data) {
                 if (err) next(err);

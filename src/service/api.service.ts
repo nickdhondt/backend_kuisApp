@@ -6,7 +6,6 @@ import {AuthService} from "../auth/services/auth.service";
 import {Task} from "../models/task.model";
 import {Household} from "../models/household.model";
 import {User} from "../models/user.model";
-import {Award} from "../models/award.model";
 import * as moment from "moment";
 import enumerate = Reflect.enumerate;
 
@@ -134,6 +133,30 @@ export class ApiService {
 
                 return this._http.get(
                     this.actionUrl + "contributionsbyhousehold",
+                    {headers: this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+
+    }
+
+    public getTaskStats(): Observable<any> {
+
+        let tokenPromise = new Promise<any>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "taskstatsbyhousehold",
                     {headers: this.headers})
                     .map(res => res.json())
                     .catch(ApiService.handleError)

@@ -4,7 +4,7 @@ import * as Chartist from "chartist";
 import {ApiService} from "../../../../../service/api.service";
 import {Household} from "../../../../../models/household.model";
 import IChartistAnimations = Chartist.IChartistAnimations;
-
+require('chartist-plugin-legend');
 
 @Component({
     selector: 'app-contribution-donut',
@@ -29,15 +29,14 @@ export class ContributionDonutComponent implements OnInit {
         this.events = {
             "draw": this.draw
         };
-
         this.options = {
             donut: true,
             showLabel: true,
+            plugins: [Chartist.plugins.legend()],
             donutWidth: 30,
             labelOffset: 30,
             labelDirection: 'explode',
         };
-
         this.type = 'Pie';
     }
 
@@ -89,13 +88,19 @@ export class ContributionDonutComponent implements OnInit {
             data => {
 
                 let result = {"labels": [], "series": []};
+
+                data.sort((d1, d2) => {
+                    console.log(d1._id);
+                    if (d1._id > d2._id) return -1;
+                    if (d1._id < d2._id) return 1;
+                    return 0;
+                });
                 data.forEach((res) => {
                     result["labels"].push(this.findUser(res._id));
-                    result["series"].push(res.count)
+                    result["series"].push(res.count);
                 });
 
                 this.data = result;
-
             },
             error => console.log(error))
     }
