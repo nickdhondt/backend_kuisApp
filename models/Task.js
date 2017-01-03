@@ -198,8 +198,18 @@ class Task {
     }
 
     static addTasks(post, cb) {
-        conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", [post], function (err, res) {
+        conn.query("insert into `tasks` " +
+            "(`description`, " +
+            "`household_id`, " +
+            "`period`, " +
+            "`points`, " +
+            "`name`, " +
+            "`dueDate`, " +
+            "`assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
+
+            console.log(res);
+
             cb("Tasks added");
         });
     }

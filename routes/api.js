@@ -672,14 +672,19 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     });
 });
 
-router.get('/importtasks/:household/:assignusers?',  function (req, res, next) {
+router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, function (req, res, next) {
 
     //let assignUsers = 7;
     //if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
 
+    process.on("mysqlError", (err) => {
+        return next(err);
+    });
+
     let assignUsers = req.params.assignusers ? true : false;
 
-    User.getUsersFromHouseholdbyUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", (users) => {
+    User.getUsersFromHouseholdbyUID(res.locals.uid, (users) => {
+
 
 
         let json = require('../importjson/importJson.json');
@@ -839,29 +844,46 @@ router.get('/importtasks/:household/:assignusers?',  function (req, res, next) {
 });
 
 //af: steven
-//controle door:
+//controle door: bart the almighty (en nee, het werkte niet)
 router.post('/addtasks', function (req, res, next) {
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
+
     let arrayToSend = [];
-    for (let i = 0; i < body.length; i++) {
+
+    body.map(t=>{
+
         let arr = [];
-        arr.push(body[i].description);
-        arr.push(body[i].household_id);
-        arr.push(body[i].period);
-        arr.push(body[i].points);
-        arr.push(body[i].name);
-        arr.push(body[i].dueDate);
-        arr.push(body[i].assigned_to);
+        arr.push(t.description);
+        arr.push(t.household_id);
+        arr.push(t.period);
+        arr.push(t.points);
+        arr.push(t.name);
+        arr.push(t.dueDate);
+        arr.push(t.assigned_to);
+
         arrayToSend.push(arr);
-    }
+
+    });
+    // for (let i = 0; i < body.length; i++) {
+    //     let arr = [];
+    //     arr.push(body[i].description);
+    //     arr.push(body[i].household_id);
+    //     arr.push(body[i].period);
+    //     arr.push(body[i].points);
+    //     arr.push(body[i].name);
+    //     arr.push(body[i].dueDate);
+    //     arr.push(body[i].assigned_to);
+    //     arrayToSend.push(arr);
+    // }
 
     console.log(arrayToSend);
 
     Task.addTasks(arrayToSend, function (body) {
-        console.log("tasks added");
+        console.log(body);
         res.json(body);
         res.end();
     })
