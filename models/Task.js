@@ -198,10 +198,30 @@ class Task {
     }
 
     static addTasks(post, cb) {
-        conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", [post], function (err, res) {
+        conn.query("insert into `tasks` " +
+            "(`description`, " +
+            "`household_id`, " +
+            "`period`, " +
+            "`points`, " +
+            "`name`, " +
+            "`dueDate`, " +
+            "`assigned_to`) values ?", [post], function (err, res) {
             if (err) process.emit("mysqlError", err);
-            cb("Tasks added");
+
+            cb(res.insertId);
         });
+    }
+
+    static getImportedTasks(householdID, id, cb){
+
+        conn.query("select * from `tasks` " +
+            "where `household_id` = ?" +
+            "AND `id` > ?", [householdID, id], function (err, rows) {
+            if (err) process.emit("mysqlError", err);
+
+            cb(rows);
+        });
+
     }
 
     static getTaskByID(id, cb) {

@@ -17,6 +17,15 @@ class User {
     }
 
 
+    static getUsersFromHouseholdbyUID(uid, cb){
+
+        conn.query("SELECT * from `users` where `household_id` = (select `household_id` from `users` where `uid` = ?) order by `id` asc", [uid],
+            function (err, rows, fields) {
+                if (err) process.emit("mysqlError", err);
+                else cb(rows);
+            })
+    };
+
     static getUsersByHouseholdID(id, obj, cb) {
         conn.query("select * from `users` where `household_id` = ? order by `id` asc", [id],
             function (err, rows, fields) {

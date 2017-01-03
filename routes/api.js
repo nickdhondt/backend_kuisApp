@@ -672,129 +672,212 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     });
 });
 
-router.get('/importtasks/:household/:assignusers?', function (req, res, next) {
-    let assignUsers = 7;
-    if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
-    let household = parseInt(req.params.household);
-    let json = JSON.parse(fs.readFileSync("./importjson/importJson.json"));
-    let response = [];
+router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, function (req, res, next) {
 
-    for(var item of json.all){
-        let arr = [];
-        arr.push(item.name);
-        arr.push(item.description);
-        arr.push(item.period);
-        arr.push(item.points);
-        response.push(arr);
-    }
-    //console.log(response);
-    response.sort(function(a,b){
-        if(a[2] < b[2])
-            return -1;
-        if(a[2] > b[2])
-            return 1;
+    //let assignUsers = 7;
+    //if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
 
-        return 0;
+    process.on("mysqlError", (err) => {
+        return next(err);
     });
 
-    //console.log(response);
-    let result = [];
-    let period = response[0][2];
-    result.push({
-        per: period,
-        arr: []
-    });
-    User.getUsersByHouseholdID(household, null, function (obj, users) {
-        let usersFromHousehld = [];
-        for(let user of users){
-            usersFromHousehld.push(user.id);
-        }
+    let assignUsers = req.params.assignusers ? true : false;
 
+    User.getUsersFromHouseholdbyUID(res.locals.uid, (users) => {
+
+        let json = require('../importjson/importJson.json');
+
+        let result = [];
+        let tasklist = [];
+
+        Object.keys(json).map(room=>{
+            tasklist = tasklist.concat(json[room]);
+        });
+
+        tasklist = tasklist.map((t)=>{
+            t.period = parseInt(t.period);
+            t.points = parseInt(t.points);
+
+            return t;
+        });
+
+        tasklist.sort((a,b)=>{
+            if(a.period < b.period) return -1;
+            if(a.period > b.period) return 1;
+            return 0;
+        });
+
+        let periodgroups = [];
         let assignedUserPos = 0;
-        for(let item of response) {
-            if (item[2] !== period) {
-                period = item[2];
-                result.push({
-                    per: period,
-                    arr: []
-                });
-            }
-            if(result[0].per === period){
-                result[0].arr.push(item);
-            }else{
-                if(result[1].per === period){
-                    result[1].arr.push(item);
-                }else{
-                    result[2].arr.push(item);
-                }
-            }
-        }
 
-        //console.log(result);
-        response = [];
-        for(let periodGroup of result){
-            //console.log(periodGroup.arr[0]);
-            let number = periodGroup.arr.length;
-            let period = periodGroup.arr[0][2];
-            let assignedDate = new Date();
-            let days = Math.round(period/number);
+        tasklist.map(t=>{
+
+            if(!periodgroups[t.period])
+                periodgroups[t.period] = [];
+
+            periodgroups[t.period].push(t);
+
+        });
+
+        Object.keys(periodgroups).map(key=>{
+
+            let number = periodgroups[key].length;
+            let assignedDate = moment();
+            let days = Math.round(key/number);
+
             if(days === 0) days = 1;
 
-            for(let item of periodGroup.arr){
-                assignedDate.setDate(assignedDate.getDate() + days);
-                item.push(assignedDate.toISOString().split('T')[0]);
-                item.push(household);
-                if(assignUsers === 7){
-                    item.push(usersFromHousehld[assignedUserPos]);
-                    assignedUserPos++;
-                    if(assignedUserPos === users.length){
-                        assignedUserPos = 0;
-                    }
-                }
-                json = {};
-                json['name'] = item[0];
-                json['description'] = item[1];
-                json['period'] = item[2];
-                json['points'] = item[3];
-                json['dueDate'] = item[4];
-                json['household_id'] = item[5];
-                json['assigned_to'] = item[6];
+            periodgroups[key].map(t=>{
 
-                response.push(json);
-            }
-        }
-        res.json({body: response});
+                assignedDate = assignedDate.add(days, 'days');
+                t.dueDate = assignedDate.format('YYYY-MM-DD');
+                t.household_id = users[0].household_id;
+
+                if(!assignUsers){
+                    t.assigned_to = users[assignedUserPos].id;
+                    assignedUserPos++;
+                    if(assignedUserPos == users.length)
+                        assignedUserPos = 0;
+                }
+                result.push(t);
+            });
+        });
+
+        res.json(result);
         res.end();
+
     });
+    // let household = parseInt(req.params.household);
+    // let json = JSON.parse(fs.readFileSync("./importjson/importJson.json"));
+    // let response = [];
+    //
+    // for(var item of json.all){
+    //     let arr = [];
+    //     arr.push(item.name);
+    //     arr.push(item.description);
+    //     arr.push(item.period);
+    //     arr.push(item.points);
+    //     response.push(arr);
+    // }
+    // //console.log(response);
+    // response.sort(function(a,b){
+    //     if(a[2] < b[2])
+    //         return -1;
+    //     if(a[2] > b[2])
+    //         return 1;
+    //
+    //     return 0;
+    // });
+    //
+    // //console.log(response);
+    // let result = [];
+    // let period = response[0][2];
+    // result.push({
+    //     per: period,
+    //     arr: []
+    // });
+    // User.getUsersByHouseholdID(household, null, function (obj, users) {
+    //     let usersFromHousehld = [];
+    //     for(let user of users){
+    //         usersFromHousehld.push(user.id);
+    //     }
+    //
+    //     let assignedUserPos = 0;
+    //     for(let item of response) {
+    //         if (item[2] !== period) {
+    //             period = item[2];
+    //             result.push({
+    //                 per: period,
+    //                 arr: []
+    //             });
+    //         }
+    //         if(result[0].per === period){
+    //             result[0].arr.push(item);
+    //         }else{
+    //             if(result[1].per === period){
+    //                 result[1].arr.push(item);
+    //             }else{
+    //                 result[2].arr.push(item);
+    //             }
+    //         }
+    //     }
+    //
+    //     //console.log(result);
+    //     response = [];
+    //     for(let periodGroup of result){
+    //         //console.log(periodGroup.arr[0]);
+    //         let number = periodGroup.arr.length;
+    //         let period = periodGroup.arr[0][2];
+    //         let assignedDate = new Date();
+    //         let days = Math.round(period/number);
+    //         if(days === 0) days = 1;
+    //
+    //         for(let item of periodGroup.arr){
+    //             assignedDate.setDate(assignedDate.getDate() + days);
+    //             item.push(assignedDate.toISOString().split('T')[0]);
+    //             item.push(household);
+    //             if(assignUsers === 7){
+    //                 item.push(usersFromHousehld[assignedUserPos]);
+    //                 assignedUserPos++;
+    //                 if(assignedUserPos === users.length){
+    //                     assignedUserPos = 0;
+    //                 }
+    //             }
+    //             json = {};
+    //             json['name'] = item[0];
+    //             json['description'] = item[1];
+    //             json['period'] = item[2];
+    //             json['points'] = item[3];
+    //             json['dueDate'] = item[4];
+    //             json['household_id'] = item[5];
+    //             json['assigned_to'] = item[6];
+    //
+    //             response.push(json);
+    //         }
+    //     }
+    //     res.json({body: response});
+    //     res.end();
+    // });
 });
 
 //af: steven
-//controle door:
-router.post('/addtasks', function (req, res, next) {
+//controle door: bart the almighty (en nee, het werkte niet)
+router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
+
+    Household.getHouseholdLimitedByUID(res.locals.uid, household=>{
+
     let arrayToSend = [];
-    for (let i = 0; i < body.length; i++) {
+
+    body.map(t=>{
+
         let arr = [];
-        arr.push(body[i].description);
-        arr.push(body[i].household_id);
-        arr.push(body[i].period);
-        arr.push(body[i].points);
-        arr.push(body[i].name);
-        arr.push(body[i].dueDate);
-        arr.push(body[i].assigned_to);
+        arr.push(t.description);
+        arr.push(t.household_id);
+        arr.push(t.period);
+        arr.push(t.points);
+        arr.push(t.name);
+        arr.push(t.dueDate);
+        arr.push(t.assigned_to);
+
         arrayToSend.push(arr);
-    }
 
-    console.log(arrayToSend);
+    });
 
-    Task.addTasks(arrayToSend, function (body) {
-        console.log("tasks added");
-        res.json(body);
-        res.end();
+    Task.addTasks(arrayToSend, function (firstID) {
+
+        Task.getImportedTasks(household.id, firstID, (tasks)=>{
+
+            res.json(tasks);
+            res.end();
+        });
     })
+
+    });
 });
 // router.use(apiNotFound);
 // router.use(apiErrorHandling);
