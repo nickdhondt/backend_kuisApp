@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
+import {Component, OnInit, Input, EventEmitter} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
 import {Household} from "../../../models/household.model";
 import {User} from "../../../models/user.model";
@@ -45,19 +45,14 @@ export class HouseholdOverviewComponent implements OnInit {
     ngOnInit() {
           if (this.household && !this.household.award) this.household.award = new Award();
     }
-
     addAwardToHousehold(award) {
         this.household.award = award;
     }
 
-    receiveHousehold(household){
-    this.apiService.getEverything().subscribe(data=>{this.household=data.household;});
-  receiveHousehold(household){
-
-    this.apiService.getEverything().subscribe(data=>{
-      this.household=data.household;
-      this.sendNewHousehold.emit(data.household_id)});
-    // this.sendNewHousehold.emit(this.household.id);
-  }
+    receiveHousehold(household) {
+      this.apiService.getEverything().subscribe(data=> {
+        this.household = data.household;
+      });
+    }
 
 }
