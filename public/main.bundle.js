@@ -1,6 +1,6 @@
 webpackJsonp([0,3],{
 
-/***/ 1179:
+/***/ 1181:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9,22 +9,22 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 1179;
+webpackEmptyContext.id = 1181;
 
 
 /***/ },
 
-/***/ 1180:
+/***/ 1182:
 /***/ function(module, exports) {
 
 /* (ignored) */
 
 /***/ },
 
-/***/ 1181:
+/***/ 1183:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(491);
+module.exports = __webpack_require__(493);
 
 
 /***/ },
@@ -70,14 +70,14 @@ var Contract = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contract__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ApiService; });
@@ -396,7 +396,7 @@ var ApiService = (function () {
 
 /***/ },
 
-/***/ 174:
+/***/ 175:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -429,16 +429,16 @@ var Task = (function () {
 
 /***/ },
 
-/***/ 175:
+/***/ 176:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(126);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SocketService; });
@@ -499,7 +499,45 @@ var SocketService = (function () {
 
 /***/ },
 
-/***/ 255:
+/***/ 177:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UpdateHouseholdOverviewService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UpdateHouseholdOverviewService = (function () {
+    function UpdateHouseholdOverviewService() {
+        this.updateHouseholdNeededSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs__["Subject"]();
+        this.householdUpdated$ = this.updateHouseholdNeededSource.asObservable();
+    }
+    UpdateHouseholdOverviewService.prototype.updateHouseholdNeeded = function () {
+        console.log("request received");
+        this.updateHouseholdNeededSource.next(true);
+    };
+    UpdateHouseholdOverviewService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [])
+    ], UpdateHouseholdOverviewService);
+    return UpdateHouseholdOverviewService;
+}());
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/update-household-overview.service.js.map
+
+/***/ },
+
+/***/ 257:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -530,37 +568,44 @@ var Award = (function () {
 
 /***/ },
 
-/***/ 39:
+/***/ 258:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
-/**
- * Created by Bart on 27/12/2016.
- */
-var User = (function () {
-    function User() {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UpdateTaskListService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UpdateTaskListService = (function () {
+    function UpdateTaskListService() {
+        this.updateListNeededSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs__["Subject"]();
+        this.listUpdated$ = this.updateListNeededSource.asObservable();
     }
-    User.makeUserFromJSON = function (item) {
-        var user = new User();
-        user.id = item.id;
-        user.name = item.name;
-        user.lname = item.lname;
-        user.email = item.email;
-        user.household_id = item.household_id;
-        user.score = item.score;
-        user.phoneNumber = item.phoneNumber;
-        user.uid = item.uid;
-        user.imgsrc = item.imgsrc;
-        return user;
+    UpdateTaskListService.prototype.updateListNeeded = function () {
+        this.updateListNeededSource.next(true);
     };
-    return User;
+    UpdateTaskListService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [])
+    ], UpdateTaskListService);
+    return UpdateTaskListService;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user.model.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/update-task-list.service.js.map
 
 /***/ },
 
-/***/ 392:
+/***/ 394:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -582,8 +627,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(871),
-            styles: [__webpack_require__(854)]
+            template: __webpack_require__(873),
+            styles: [__webpack_require__(856)]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -593,20 +638,20 @@ var AppComponent = (function () {
 
 /***/ },
 
-/***/ 393:
+/***/ 395:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home_component__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_component__ = __webpack_require__(398);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_guard_auth_guard__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home_component__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_component__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_guard_auth_guard__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__auth_guard_unauth_guard__ = __webpack_require__(401);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_tasks_todo_tasks_todo_component__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_all_tasks_all_tasks_component__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_household_household_component__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__not_found_not_found_component__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__auth_guard_unauth_guard__ = __webpack_require__(403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_tasks_todo_tasks_todo_component__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_all_tasks_all_tasks_component__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_household_household_component__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__not_found_not_found_component__ = __webpack_require__(401);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -663,12 +708,13 @@ var AppRoutingModule = (function () {
 
 /***/ },
 
-/***/ 394:
+/***/ 396:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__ = __webpack_require__(258);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AllTasksComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -681,11 +727,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var AllTasksComponent = (function () {
-    function AllTasksComponent(apiSevice) {
+    function AllTasksComponent(apiSevice, updateTaskListService) {
+        var _this = this;
         this.apiSevice = apiSevice;
+        this.updateTaskListService = updateTaskListService;
         this.dialogVisible = false;
         this.loading = true;
+        updateTaskListService.listUpdated$.subscribe(function (data) {
+            console.log("ooooh boy");
+            _this.getUser();
+        });
     }
     AllTasksComponent.prototype.ngOnInit = function () {
         this.getUser();
@@ -702,25 +755,25 @@ var AllTasksComponent = (function () {
     AllTasksComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-all-tasks',
-            template: __webpack_require__(872),
-            styles: [__webpack_require__(855)]
+            template: __webpack_require__(874),
+            styles: [__webpack_require__(857)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__["a" /* UpdateTaskListService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__["a" /* UpdateTaskListService */]) === 'function' && _b) || Object])
     ], AllTasksComponent);
     return AllTasksComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/all-tasks.component.js.map
 
 /***/ },
 
-/***/ 395:
+/***/ 397:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -742,8 +795,8 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(881),
-            styles: [__webpack_require__(859)]
+            template: __webpack_require__(883),
+            styles: [__webpack_require__(861)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], HomeComponent);
@@ -754,12 +807,13 @@ var HomeComponent = (function () {
 
 /***/ },
 
-/***/ 396:
+/***/ 398:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__ = __webpack_require__(177);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -772,14 +826,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HouseholdComponent = (function () {
-    function HouseholdComponent(apiSevice) {
+    function HouseholdComponent(apiSevice, updateHouseholdOverviewService) {
         this.apiSevice = apiSevice;
+        this.updateHouseholdOverviewService = updateHouseholdOverviewService;
         this.showDialogLeave = false;
         this.loading = true;
     }
     HouseholdComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.getUser();
+        this.updateHouseholdOverviewService.householdUpdated$.subscribe(function (data) {
+            _this.getUser();
+        });
     };
     HouseholdComponent.prototype.getUser = function () {
         var _this = this;
@@ -796,24 +856,25 @@ var HouseholdComponent = (function () {
     HouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-household',
-            template: __webpack_require__(893),
-            styles: [__webpack_require__(847)]
+            template: __webpack_require__(895),
+            styles: [__webpack_require__(849)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]) === 'function' && _b) || Object])
     ], HouseholdComponent);
     return HouseholdComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.component.js.map
 
 /***/ },
 
-/***/ 397:
+/***/ 399:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__ = __webpack_require__(177);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasksTodoComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -826,13 +887,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var TasksTodoComponent = (function () {
-    function TasksTodoComponent(apiSevice) {
+    function TasksTodoComponent(apiSevice, updateHouseholdOverviewService) {
         this.apiSevice = apiSevice;
+        this.updateHouseholdOverviewService = updateHouseholdOverviewService;
         this.loading = true;
     }
     TasksTodoComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.getUser();
+        this.updateHouseholdOverviewService.householdUpdated$.subscribe(function (data) {
+            _this.getUser();
+        });
     };
     TasksTodoComponent.prototype.getUser = function () {
         var _this = this;
@@ -841,30 +908,64 @@ var TasksTodoComponent = (function () {
             .subscribe(function (data) {
             _this.user = data;
             _this.loading = false;
+            _this.currentUser = _this.user.uid;
         }, function (error) { return console.log(error); });
+    };
+    TasksTodoComponent.prototype.receivenewHousehold = function (id) {
+        console.log("ReceivenewHousehold" + id);
     };
     TasksTodoComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasks-todo',
-            template: __webpack_require__(901),
-            styles: [__webpack_require__(866)]
+            template: __webpack_require__(903),
+            styles: [__webpack_require__(868)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]) === 'function' && _b) || Object])
     ], TasksTodoComponent);
     return TasksTodoComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-todo.component.js.map
 
 /***/ },
 
-/***/ 398:
+/***/ 40:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
+/**
+ * Created by Bart on 27/12/2016.
+ */
+var User = (function () {
+    function User() {
+    }
+    User.makeUserFromJSON = function (item) {
+        var user = new User();
+        user.id = item.id;
+        user.name = item.name;
+        user.lname = item.lname;
+        user.email = item.email;
+        user.household_id = item.household_id;
+        user.score = item.score;
+        user.phoneNumber = item.phoneNumber;
+        user.uid = item.uid;
+        user.imgsrc = item.imgsrc;
+        return user;
+    };
+    return User;
+}());
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user.model.js.map
+
+/***/ },
+
+/***/ 400:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -909,8 +1010,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-login',
-            template: __webpack_require__(905),
-            styles: [__webpack_require__(869)]
+            template: __webpack_require__(907),
+            styles: [__webpack_require__(871)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], LoginComponent);
@@ -921,7 +1022,7 @@ var LoginComponent = (function () {
 
 /***/ },
 
-/***/ 399:
+/***/ 401:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -945,8 +1046,8 @@ var NotFoundComponent = (function () {
     NotFoundComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-not-found',
-            template: __webpack_require__(906),
-            styles: [__webpack_require__(870)]
+            template: __webpack_require__(908),
+            styles: [__webpack_require__(872)]
         }), 
         __metadata('design:paramtypes', [])
     ], NotFoundComponent);
@@ -956,19 +1057,19 @@ var NotFoundComponent = (function () {
 
 /***/ },
 
-/***/ 400:
+/***/ 402:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(291);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1016,19 +1117,19 @@ var AuthGuard = (function () {
 
 /***/ },
 
-/***/ 401:
+/***/ 403:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_take__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(291);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UnauthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1072,7 +1173,7 @@ var UnauthGuard = (function () {
 
 /***/ },
 
-/***/ 490:
+/***/ 492:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -1081,21 +1182,21 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 490;
+webpackEmptyContext.id = 492;
 
 
 /***/ },
 
-/***/ 491:
+/***/ 493:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(633);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(571);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(627);
 
 
 
@@ -1109,17 +1210,17 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ },
 
-/***/ 50:
+/***/ 51:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(415);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(417);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1227,7 +1328,7 @@ var AuthService = (function () {
 
 /***/ },
 
-/***/ 51:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1259,29 +1360,31 @@ var Household = (function () {
 
 /***/ },
 
-/***/ 595:
+/***/ 597:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(415);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__(398);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth_guard_auth_guard__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_routes__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_guard_unauth_guard__ = __webpack_require__(401);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(417);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth_guard_auth_guard__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_routes__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_guard_unauth_guard__ = __webpack_require__(403);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_module__ = __webpack_require__(604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__not_found_not_found_component__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_module__ = __webpack_require__(606);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__not_found_not_found_component__ = __webpack_require__(401);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__contract__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_modal__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angular2_modal_plugins_bootstrap__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_update_task_list_service__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_update_household_overview_service__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_modal__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angular2_modal_plugins_bootstrap__ = __webpack_require__(651);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1292,6 +1395,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1338,10 +1443,10 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5_angularfire2__["d" /* AngularFireModule */].initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
                 __WEBPACK_IMPORTED_MODULE_11__angular_common__["CommonModule"],
                 __WEBPACK_IMPORTED_MODULE_12__home_home_module__["a" /* HomeModule */],
-                __WEBPACK_IMPORTED_MODULE_17_angular2_modal__["m" /* ModalModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_18_angular2_modal_plugins_bootstrap__["a" /* BootstrapModalModule */],
+                __WEBPACK_IMPORTED_MODULE_19_angular2_modal__["m" /* ModalModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_20_angular2_modal_plugins_bootstrap__["a" /* BootstrapModalModule */],
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_8__auth_guard_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_10__auth_guard_unauth_guard__["a" /* UnauthGuard */], __WEBPACK_IMPORTED_MODULE_14__contract__["a" /* Contract */], __WEBPACK_IMPORTED_MODULE_15__service_api_service__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_16__service_socket_service__["a" /* SocketService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_8__auth_guard_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_10__auth_guard_unauth_guard__["a" /* UnauthGuard */], __WEBPACK_IMPORTED_MODULE_14__contract__["a" /* Contract */], __WEBPACK_IMPORTED_MODULE_15__service_api_service__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_16__service_socket_service__["a" /* SocketService */], __WEBPACK_IMPORTED_MODULE_17__service_update_task_list_service__["a" /* UpdateTaskListService */], __WEBPACK_IMPORTED_MODULE_18__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]],
         }), 
         __metadata('design:paramtypes', [])
@@ -1352,13 +1457,13 @@ var AppModule = (function () {
 
 /***/ },
 
-/***/ 596:
+/***/ 598:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskRowComponent; });
@@ -1406,8 +1511,8 @@ var TaskRowComponent = (function () {
     TaskRowComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-task-row',
-            template: __webpack_require__(873),
-            styles: [__webpack_require__(835)],
+            template: __webpack_require__(875),
+            styles: [__webpack_require__(837)],
         }), 
         __metadata('design:paramtypes', [])
     ], TaskRowComponent);
@@ -1418,13 +1523,14 @@ var TaskRowComponent = (function () {
 
 /***/ },
 
-/***/ 597:
+/***/ 599:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasklistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1438,15 +1544,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TasklistComponent = (function () {
-    function TasklistComponent(apiService) {
+    function TasklistComponent(apiService, router) {
         this.apiService = apiService;
+        this.router = router;
         this.showDialog = false;
     }
-    TasklistComponent.prototype.addTaskToList = function (task) {
+    TasklistComponent.prototype.listNeedsUpdate = function (data) {
         console.log("oooh boy");
-        console.log(task);
-        this.tasks.push(task);
+        console.log(data);
     };
     TasklistComponent.prototype.ngOnInit = function () {
         //this.getTasks();
@@ -1461,7 +1568,7 @@ var TasklistComponent = (function () {
     TasklistComponent.prototype.showDetail = function (task) {
         this.selectedTask = task;
         this.showDialog = !this.showDialog;
-        var stateObj = { foo: "bar" };
+        var stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "task");
     };
     TasklistComponent.prototype.getTasks = function () {
@@ -1490,24 +1597,24 @@ var TasklistComponent = (function () {
     TasklistComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasklist',
-            template: __webpack_require__(874),
-            styles: [__webpack_require__(856)],
+            template: __webpack_require__(876),
+            styles: [__webpack_require__(858)],
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], TasklistComponent);
     return TasklistComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasklist.component.js.map
 
 /***/ },
 
-/***/ 598:
+/***/ 600:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChatComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1537,8 +1644,8 @@ var ChatComponent = (function () {
     ChatComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-chat',
-            template: __webpack_require__(875),
-            styles: [__webpack_require__(836)]
+            template: __webpack_require__(877),
+            styles: [__webpack_require__(838)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
     ], ChatComponent);
@@ -1549,12 +1656,12 @@ var ChatComponent = (function () {
 
 /***/ },
 
-/***/ 599:
+/***/ 601:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(176);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MessageFormComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1590,8 +1697,8 @@ var MessageFormComponent = (function () {
     MessageFormComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-message-form',
-            template: __webpack_require__(876),
-            styles: [__webpack_require__(837)],
+            template: __webpack_require__(878),
+            styles: [__webpack_require__(839)],
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */]) === 'function' && _b) || Object])
     ], MessageFormComponent);
@@ -1602,7 +1709,7 @@ var MessageFormComponent = (function () {
 
 /***/ },
 
-/***/ 600:
+/***/ 602:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1630,8 +1737,8 @@ var MessageItemComponent = (function () {
     MessageItemComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-message-item',
-            template: __webpack_require__(877),
-            styles: [__webpack_require__(838)]
+            template: __webpack_require__(879),
+            styles: [__webpack_require__(840)]
         }), 
         __metadata('design:paramtypes', [])
     ], MessageItemComponent);
@@ -1641,12 +1748,12 @@ var MessageItemComponent = (function () {
 
 /***/ },
 
-/***/ 601:
+/***/ 603:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(176);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MessageListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1699,8 +1806,8 @@ var MessageListComponent = (function () {
     MessageListComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-message-list',
-            template: __webpack_require__(878),
-            styles: [__webpack_require__(839)]
+            template: __webpack_require__(880),
+            styles: [__webpack_require__(841)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_socket_service__["a" /* SocketService */]) === 'function' && _b) || Object])
     ], MessageListComponent);
@@ -1711,7 +1818,7 @@ var MessageListComponent = (function () {
 
 /***/ },
 
-/***/ 602:
+/***/ 604:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1735,8 +1842,8 @@ var FooterComponent = (function () {
     FooterComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-footer',
-            template: __webpack_require__(879),
-            styles: [__webpack_require__(857)]
+            template: __webpack_require__(881),
+            styles: [__webpack_require__(859)]
         }), 
         __metadata('design:paramtypes', [])
     ], FooterComponent);
@@ -1746,7 +1853,7 @@ var FooterComponent = (function () {
 
 /***/ },
 
-/***/ 603:
+/***/ 605:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1770,8 +1877,8 @@ var HeaderComponent = (function () {
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-header',
-            template: __webpack_require__(880),
-            styles: [__webpack_require__(858)]
+            template: __webpack_require__(882),
+            styles: [__webpack_require__(860)]
         }), 
         __metadata('design:paramtypes', [])
     ], HeaderComponent);
@@ -1781,60 +1888,60 @@ var HeaderComponent = (function () {
 
 /***/ },
 
-/***/ 604:
+/***/ 606:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_component__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routes__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tasks_todo_tasks_todo_component__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__all_tasks_all_tasks_component__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__household_household_component__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_navigation_component__ = __webpack_require__(621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__header_header_component__ = __webpack_require__(603);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_component__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routes__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tasks_todo_tasks_todo_component__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__all_tasks_all_tasks_component__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__household_household_component__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_navigation_component__ = __webpack_require__(623);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__header_header_component__ = __webpack_require__(605);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__contract__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tasks_todo_todolist_todolist_component__ = __webpack_require__(624);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__chat_chat_component__ = __webpack_require__(598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__chat_message_list_message_list_component__ = __webpack_require__(601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__chat_message_form_message_form_component__ = __webpack_require__(599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__chat_message_item_message_item_component__ = __webpack_require__(600);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_forms__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_materialize__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tasks_todo_todolist_todolist_component__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__chat_chat_component__ = __webpack_require__(600);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__chat_message_list_message_list_component__ = __webpack_require__(603);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__chat_message_form_message_form_component__ = __webpack_require__(601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__chat_message_item_message_item_component__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_forms__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_materialize__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_materialize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_angular2_materialize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__all_tasks_tasklist_tasklist_component__ = __webpack_require__(597);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__taskdetail_taskdetail_component__ = __webpack_require__(622);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__household_overview_household_overview_component__ = __webpack_require__(608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__loader_small_loader_small_component__ = __webpack_require__(626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__household_overview_user_img_user_img_component__ = __webpack_require__(610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__household_overview_user_detail_user_detail_component__ = __webpack_require__(609);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__household_overview_award_award_component__ = __webpack_require__(606);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipe_tasks_filter_pipe__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__footer_footer_component__ = __webpack_require__(602);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__tasks_todo_todolist_tasktodo_row_tasktodo_row_component__ = __webpack_require__(623);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pipe_sort_pipe__ = __webpack_require__(629);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__all_tasks_tasklist_task_row_task_row_component__ = __webpack_require__(596);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__household_overview_award_award_detail_award_detail_component__ = __webpack_require__(605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__household_overview_award_new_award_new_award_component__ = __webpack_require__(607);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pipe_sort_users_pipe__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__household_new_household_new_household_component__ = __webpack_require__(619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__household_join_household_join_household_component__ = __webpack_require__(617);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__household_join_household_detail_join_household_detail_component__ = __webpack_require__(616);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__household_charts_charts_component__ = __webpack_require__(611);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_angular2_chartist__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__all_tasks_tasklist_tasklist_component__ = __webpack_require__(599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__taskdetail_taskdetail_component__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__household_overview_household_overview_component__ = __webpack_require__(610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__loader_small_loader_small_component__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__household_overview_user_img_user_img_component__ = __webpack_require__(612);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__household_overview_user_detail_user_detail_component__ = __webpack_require__(611);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__household_overview_award_award_component__ = __webpack_require__(608);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipe_tasks_filter_pipe__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__footer_footer_component__ = __webpack_require__(604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__tasks_todo_todolist_tasktodo_row_tasktodo_row_component__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pipe_sort_pipe__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__all_tasks_tasklist_task_row_task_row_component__ = __webpack_require__(598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__household_overview_award_award_detail_award_detail_component__ = __webpack_require__(607);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__household_overview_award_new_award_new_award_component__ = __webpack_require__(609);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pipe_sort_users_pipe__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__household_new_household_new_household_component__ = __webpack_require__(621);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__household_join_household_join_household_component__ = __webpack_require__(619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__household_join_household_detail_join_household_detail_component__ = __webpack_require__(618);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__household_charts_charts_component__ = __webpack_require__(613);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_angular2_chartist__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_angular2_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39_angular2_chartist__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__household_charts_finished_bar_finished_bar_component__ = __webpack_require__(614);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__household_charts_contribution_donut_contribution_donut_component__ = __webpack_require__(612);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__household_charts_evolution_line_evolution_line_component__ = __webpack_require__(613);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__household_charts_tasks_donut_tasks_donut_component__ = __webpack_require__(615);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng2_charts__ = __webpack_require__(832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__household_charts_finished_bar_finished_bar_component__ = __webpack_require__(616);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__household_charts_contribution_donut_contribution_donut_component__ = __webpack_require__(614);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__household_charts_evolution_line_evolution_line_component__ = __webpack_require__(615);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__household_charts_tasks_donut_tasks_donut_component__ = __webpack_require__(617);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng2_charts__ = __webpack_require__(834);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__navigation_about_component_about_component_component__ = __webpack_require__(620);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__household_leave_household_leave_household_component__ = __webpack_require__(618);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__navigation_about_component_about_component_component__ = __webpack_require__(622);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__household_leave_household_leave_household_component__ = __webpack_require__(620);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HomeModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1951,13 +2058,13 @@ var HomeModule = (function () {
 
 /***/ },
 
-/***/ 605:
+/***/ 607:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2010,8 +2117,8 @@ var AwardDetailComponent = (function () {
     AwardDetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-award-detail',
-            template: __webpack_require__(882),
-            styles: [__webpack_require__(840)],
+            template: __webpack_require__(884),
+            styles: [__webpack_require__(842)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2033,12 +2140,12 @@ var AwardDetailComponent = (function () {
 
 /***/ },
 
-/***/ 606:
+/***/ 608:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__ = __webpack_require__(115);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2095,8 +2202,8 @@ var AwardComponent = (function () {
     AwardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-award',
-            template: __webpack_require__(883),
-            styles: [__webpack_require__(860)]
+            template: __webpack_require__(885),
+            styles: [__webpack_require__(862)]
         }), 
         __metadata('design:paramtypes', [])
     ], AwardComponent);
@@ -2107,7 +2214,7 @@ var AwardComponent = (function () {
 
 /***/ },
 
-/***/ 607:
+/***/ 609:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2167,8 +2274,8 @@ var NewAwardComponent = (function () {
     NewAwardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-award',
-            template: __webpack_require__(884),
-            styles: [__webpack_require__(841)],
+            template: __webpack_require__(886),
+            styles: [__webpack_require__(843)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2190,14 +2297,15 @@ var NewAwardComponent = (function () {
 
 /***/ },
 
-/***/ 608:
+/***/ 610:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_award_model__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_award_model__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HouseholdOverviewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2212,9 +2320,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HouseholdOverviewComponent = (function () {
-    function HouseholdOverviewComponent(apiService) {
+    function HouseholdOverviewComponent(apiService, router) {
         this.apiService = apiService;
+        this.router = router;
         this.showDialog = false;
         this.showJoinHouseholdDialog = false;
         this.showMakeHouseholdDialog = false;
@@ -2223,7 +2333,7 @@ var HouseholdOverviewComponent = (function () {
     HouseholdOverviewComponent.prototype.openUserPopup = function (user) {
         this.showDialog = !this.showDialog;
         this.selectedUser = user;
-        var stateObj = { foo: "bar" };
+        var stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "user");
     };
     HouseholdOverviewComponent.prototype.sendUserToUpper = function (household) {
@@ -2238,7 +2348,9 @@ var HouseholdOverviewComponent = (function () {
     };
     HouseholdOverviewComponent.prototype.receiveHousehold = function (household) {
         var _this = this;
-        this.apiService.getEverything().subscribe(function (data) { _this.household = data.household; });
+        this.apiService.getEverything().subscribe(function (data) {
+            _this.household = data.household;
+        });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
@@ -2255,26 +2367,26 @@ var HouseholdOverviewComponent = (function () {
     HouseholdOverviewComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-household-overview',
-            template: __webpack_require__(885),
-            styles: [__webpack_require__(861)]
+            template: __webpack_require__(887),
+            styles: [__webpack_require__(863)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]) === 'function' && _d) || Object])
     ], HouseholdOverviewComponent);
     return HouseholdOverviewComponent;
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household-overview.component.js.map
 
 /***/ },
 
-/***/ 609:
+/***/ 611:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2299,16 +2411,22 @@ var UserDetailComponent = (function () {
         this.location = location;
         this.closable = true;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.disabled = "disabled";
         this.currentUser = auth.uid;
         location.onPopState(function (event) {
-            _this.close();
+            _this.back();
         });
     }
     UserDetailComponent.prototype.ngOnInit = function () {
     };
-    UserDetailComponent.prototype.close = function () {
+    UserDetailComponent.prototype.back = function () {
         this.visible = false;
         this.visibleChange.emit(this.visible);
+    };
+    UserDetailComponent.prototype.close = function () {
+        var stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
+        this.back();
     };
     UserDetailComponent.prototype.save = function () {
         var _this = this;
@@ -2334,8 +2452,8 @@ var UserDetailComponent = (function () {
     UserDetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-detail',
-            template: __webpack_require__(886),
-            styles: [__webpack_require__(862)],
+            template: __webpack_require__(888),
+            styles: [__webpack_require__(864)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2357,12 +2475,12 @@ var UserDetailComponent = (function () {
 
 /***/ },
 
-/***/ 610:
+/***/ 612:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserImgComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2391,8 +2509,8 @@ var UserImgComponent = (function () {
     UserImgComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-img',
-            template: __webpack_require__(887),
-            styles: [__webpack_require__(863)]
+            template: __webpack_require__(889),
+            styles: [__webpack_require__(865)]
         }), 
         __metadata('design:paramtypes', [])
     ], UserImgComponent);
@@ -2403,12 +2521,12 @@ var UserImgComponent = (function () {
 
 /***/ },
 
-/***/ 611:
+/***/ 613:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChartsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2433,8 +2551,8 @@ var ChartsComponent = (function () {
     ChartsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-charts',
-            template: __webpack_require__(888),
-            styles: [__webpack_require__(842)],
+            template: __webpack_require__(890),
+            styles: [__webpack_require__(844)],
         }), 
         __metadata('design:paramtypes', [])
     ], ChartsComponent);
@@ -2445,7 +2563,7 @@ var ChartsComponent = (function () {
 
 /***/ },
 
-/***/ 612:
+/***/ 614:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2453,7 +2571,7 @@ var ChartsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(52);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContributionDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2468,7 +2586,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-__webpack_require__(416);
+__webpack_require__(418);
 var ContributionDonutComponent = (function () {
     function ContributionDonutComponent(apiService) {
         this.apiService = apiService;
@@ -2558,8 +2676,8 @@ var ContributionDonutComponent = (function () {
     ContributionDonutComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-contribution-donut',
-            template: __webpack_require__(889),
-            styles: [__webpack_require__(843)]
+            template: __webpack_require__(891),
+            styles: [__webpack_require__(845)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], ContributionDonutComponent);
@@ -2570,12 +2688,12 @@ var ContributionDonutComponent = (function () {
 
 /***/ },
 
-/***/ 613:
+/***/ 615:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
@@ -2728,8 +2846,8 @@ var EvolutionLineComponent = (function () {
     EvolutionLineComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-evolution-line',
-            template: __webpack_require__(890),
-            styles: [__webpack_require__(844)]
+            template: __webpack_require__(892),
+            styles: [__webpack_require__(846)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], EvolutionLineComponent);
@@ -2740,12 +2858,12 @@ var EvolutionLineComponent = (function () {
 
 /***/ },
 
-/***/ 614:
+/***/ 616:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chartist__ = __webpack_require__(98);
@@ -2766,7 +2884,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-__webpack_require__(416);
+__webpack_require__(418);
 var FinishedBarComponent = (function () {
     function FinishedBarComponent(apiService) {
         var _this = this;
@@ -2891,8 +3009,8 @@ var FinishedBarComponent = (function () {
     FinishedBarComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-finished-bar',
-            template: __webpack_require__(891),
-            styles: [__webpack_require__(845)]
+            template: __webpack_require__(893),
+            styles: [__webpack_require__(847)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], FinishedBarComponent);
@@ -2903,7 +3021,7 @@ var FinishedBarComponent = (function () {
 
 /***/ },
 
-/***/ 615:
+/***/ 617:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2911,7 +3029,7 @@ var FinishedBarComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(52);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasksDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3015,8 +3133,8 @@ var TasksDonutComponent = (function () {
     TasksDonutComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasks-donut',
-            template: __webpack_require__(892),
-            styles: [__webpack_require__(846)]
+            template: __webpack_require__(894),
+            styles: [__webpack_require__(848)]
         }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], TasksDonutComponent);
@@ -3027,15 +3145,15 @@ var TasksDonutComponent = (function () {
 
 /***/ },
 
-/***/ 616:
+/***/ 618:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return JoinHouseholdDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3095,8 +3213,8 @@ var JoinHouseholdDetailComponent = (function () {
     JoinHouseholdDetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-join-household-detail',
-            template: __webpack_require__(894),
-            styles: [__webpack_require__(848)],
+            template: __webpack_require__(896),
+            styles: [__webpack_require__(850)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3118,7 +3236,7 @@ var JoinHouseholdDetailComponent = (function () {
 
 /***/ },
 
-/***/ 617:
+/***/ 619:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3184,8 +3302,8 @@ var JoinHouseholdComponent = (function () {
     JoinHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-join-household',
-            template: __webpack_require__(895),
-            styles: [__webpack_require__(849)],
+            template: __webpack_require__(897),
+            styles: [__webpack_require__(851)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3207,13 +3325,13 @@ var JoinHouseholdComponent = (function () {
 
 /***/ },
 
-/***/ 618:
+/***/ 620:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LeaveHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3273,8 +3391,8 @@ var LeaveHouseholdComponent = (function () {
     LeaveHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-leave-household',
-            template: __webpack_require__(896),
-            styles: [__webpack_require__(850)],
+            template: __webpack_require__(898),
+            styles: [__webpack_require__(852)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3296,7 +3414,7 @@ var LeaveHouseholdComponent = (function () {
 
 /***/ },
 
-/***/ 619:
+/***/ 621:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3364,8 +3482,8 @@ var NewHouseholdComponent = (function () {
     NewHouseholdComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-new-household',
-            template: __webpack_require__(897),
-            styles: [__webpack_require__(851)],
+            template: __webpack_require__(899),
+            styles: [__webpack_require__(853)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3387,7 +3505,7 @@ var NewHouseholdComponent = (function () {
 
 /***/ },
 
-/***/ 620:
+/***/ 622:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3411,12 +3529,17 @@ var AboutComponentComponent = (function () {
         this.location = location;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         location.onPopState(function (event) {
-            _this.close();
+            _this.back();
         });
     }
-    AboutComponentComponent.prototype.close = function () {
+    AboutComponentComponent.prototype.back = function () {
         this.visible = false;
         this.visibleChange.emit(this.visible);
+    };
+    AboutComponentComponent.prototype.close = function () {
+        var stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
+        this.back();
     };
     AboutComponentComponent.prototype.ngOnInit = function () {
         console.log(this.visible);
@@ -3432,8 +3555,8 @@ var AboutComponentComponent = (function () {
     AboutComponentComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-about-component',
-            template: __webpack_require__(898),
-            styles: [__webpack_require__(852)],
+            template: __webpack_require__(900),
+            styles: [__webpack_require__(854)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3455,13 +3578,13 @@ var AboutComponentComponent = (function () {
 
 /***/ },
 
-/***/ 621:
+/***/ 623:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NavigationComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3487,7 +3610,7 @@ var NavigationComponent = (function () {
     NavigationComponent.prototype.openAbout = function (event) {
         this.aboutVisible = !this.aboutVisible;
         event.preventDefault();
-        var stateObj = { foo: "bar" };
+        var stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "about");
     };
     NavigationComponent.prototype.logout = function () {
@@ -3496,8 +3619,8 @@ var NavigationComponent = (function () {
     NavigationComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-navigation',
-            template: __webpack_require__(899),
-            styles: [__webpack_require__(864)]
+            template: __webpack_require__(901),
+            styles: [__webpack_require__(866)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], NavigationComponent);
@@ -3508,19 +3631,20 @@ var NavigationComponent = (function () {
 
 /***/ },
 
-/***/ 622:
+/***/ 624:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(829);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(831);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_update_task_list_service__ = __webpack_require__(258);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskdetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3538,22 +3662,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TaskdetailComponent = (function () {
-    function TaskdetailComponent(apiService, location) {
+    function TaskdetailComponent(apiService, location, updateTaskListService) {
         var _this = this;
         this.apiService = apiService;
         this.location = location;
+        this.updateTaskListService = updateTaskListService;
         this.closable = true;
         this.newTask = false;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.newTaskEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         location.onPopState(function (event) {
-            _this.close();
+            _this.back();
         });
     }
     TaskdetailComponent.prototype.ngOnInit = function () {
         if (this.task === undefined)
             this.task = new __WEBPACK_IMPORTED_MODULE_1__models_task_model__["a" /* Task */]();
+        this.taskLocal = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.clone(this.task);
         var doMeUserSet = false;
         for (var _i = 0, _a = this.users; _i < _a.length; _i++) {
             var user = _a[_i];
@@ -3569,37 +3695,43 @@ var TaskdetailComponent = (function () {
         }
     };
     TaskdetailComponent.prototype.ngOnChanges = function () {
-        if (this.task !== undefined) {
+        if (this.task !== undefined && this.task !== null) {
             this.task.dueDate = __WEBPACK_IMPORTED_MODULE_5_moment__(this.task.dueDate).format("YYYY-MM-DD");
+            this.taskLocal = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.clone(this.task);
         }
     };
-    TaskdetailComponent.prototype.close = function () {
+    TaskdetailComponent.prototype.back = function () {
         this.visible = false;
         this.visibleChange.emit(this.visible);
     };
+    TaskdetailComponent.prototype.close = function () {
+        // let stateObj = { foo: history.state.foo };
+        // history.replaceState(stateObj, "back", history.state.foo);
+        this.back();
+    };
     TaskdetailComponent.prototype.add = function () {
         var _this = this;
-        // TODO: propagate to list
-        if (this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
-            this.apiService.addTask(this.task).subscribe(function (data) {
-                _this.newTaskEvent.emit(_this.task);
+        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+            this.apiService.addTask(this.taskLocal).subscribe(function (data) {
+                _this.updateTaskListService.updateListNeeded();
                 _this.close();
             });
         }
     };
     TaskdetailComponent.prototype.save = function () {
         var _this = this;
-        if (this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
+        this.task = this.taskLocal;
+        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             this.apiService.updateTask(this.task).subscribe(function (data) {
+                _this.updateTaskListService.updateListNeeded();
                 _this.close();
             });
         }
     };
     TaskdetailComponent.prototype.deleteTask = function () {
         var _this = this;
-        // TODO: propagate to list
         this.apiService.deleteTask(this.task.id).subscribe(function (data) {
-            _this.task = null;
+            _this.updateTaskListService.updateListNeeded();
             _this.close();
         });
     };
@@ -3627,15 +3759,11 @@ var TaskdetailComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
     ], TaskdetailComponent.prototype, "visibleChange", void 0);
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
-        __metadata('design:type', (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _c) || Object)
-    ], TaskdetailComponent.prototype, "newTaskEvent", void 0);
     TaskdetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-taskdetail',
-            template: __webpack_require__(900),
-            styles: [__webpack_require__(865)],
+            template: __webpack_require__(902),
+            styles: [__webpack_require__(867)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3648,7 +3776,7 @@ var TaskdetailComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__angular_common__["PlatformLocation"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__angular_common__["PlatformLocation"]) === 'function' && _e) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__angular_common__["PlatformLocation"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__angular_common__["PlatformLocation"]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__service_update_task_list_service__["a" /* UpdateTaskListService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__service_update_task_list_service__["a" /* UpdateTaskListService */]) === 'function' && _e) || Object])
     ], TaskdetailComponent);
     return TaskdetailComponent;
     var _a, _b, _c, _d, _e;
@@ -3657,19 +3785,20 @@ var TaskdetailComponent = (function () {
 
 /***/ },
 
-/***/ 623:
+/***/ 625:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_socket_service__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_socket_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_update_household_overview_service__ = __webpack_require__(177);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasktodoRowComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3687,10 +3816,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TasktodoRowComponent = (function () {
-    function TasktodoRowComponent(apiService, socketService) {
+    function TasktodoRowComponent(apiService, socketService, updateHouseholdOverviewService) {
         this.apiService = apiService;
         this.socketService = socketService;
+        this.updateHouseholdOverviewService = updateHouseholdOverviewService;
         this.showDetail = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.finish = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.cancel = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -3700,6 +3831,8 @@ var TasktodoRowComponent = (function () {
         this.showDetail.emit(this.task);
     };
     TasktodoRowComponent.prototype.finishClick = function () {
+        console.log("request update");
+        this.updateHouseholdOverviewService.updateHouseholdNeeded();
         this.state = 'finished';
         this.isDestroyed = true;
         this.finish.emit(this.task);
@@ -3717,8 +3850,8 @@ var TasktodoRowComponent = (function () {
         var _this = this;
         this.socketService.taskUpdates().subscribe(function (data) {
             if (!_this.isDestroyed && data.taskID === _this.task.id) {
-                console.log(_this.task);
                 if (data.done) {
+                    _this.updateHouseholdOverviewService.updateHouseholdNeeded();
                     _this.state = "finished";
                     _this.finish.emit(_this.task);
                 }
@@ -3760,8 +3893,8 @@ var TasktodoRowComponent = (function () {
     TasktodoRowComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasktodo-row',
-            template: __webpack_require__(902),
-            styles: [__webpack_require__(853)],
+            template: __webpack_require__(904),
+            styles: [__webpack_require__(855)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibleState', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('finished', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
@@ -3775,22 +3908,23 @@ var TasktodoRowComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__service_socket_service__["a" /* SocketService */]) === 'function' && _d) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__service_socket_service__["a" /* SocketService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_7__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]) === 'function' && _e) || Object])
     ], TasktodoRowComponent);
     return TasktodoRowComponent;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasktodo-row.component.js.map
 
 /***/ },
 
-/***/ 624:
+/***/ 626:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TodolistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3804,9 +3938,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TodolistComponent = (function () {
-    function TodolistComponent(apiService) {
+    function TodolistComponent(apiService, router) {
         this.apiService = apiService;
+        this.router = router;
         this.showDialog = false;
     }
     TodolistComponent.prototype.ngOnInit = function () {
@@ -3821,7 +3957,7 @@ var TodolistComponent = (function () {
     TodolistComponent.prototype.showDetail = function (task) {
         this.selectedTask = task;
         this.showDialog = !this.showDialog;
-        var stateObj = { foo: "bar" };
+        var stateObj = { foo: this.router.url };
         history.pushState(stateObj, "popup", "task");
     };
     TodolistComponent.prototype.cancel = function (task, index) {
@@ -3843,24 +3979,24 @@ var TodolistComponent = (function () {
     TodolistComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-todolist',
-            template: __webpack_require__(903),
-            styles: [__webpack_require__(867)]
+            template: __webpack_require__(905),
+            styles: [__webpack_require__(869)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], TodolistComponent);
     return TodolistComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/todolist.component.js.map
 
 /***/ },
 
-/***/ 625:
+/***/ 627:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_component__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(595);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_component__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(597);
 /* unused harmony namespace reexport */
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
@@ -3869,7 +4005,7 @@ var TodolistComponent = (function () {
 
 /***/ },
 
-/***/ 626:
+/***/ 628:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3893,8 +4029,8 @@ var LoaderSmallComponent = (function () {
     LoaderSmallComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-loader-small',
-            template: __webpack_require__(904),
-            styles: [__webpack_require__(868)]
+            template: __webpack_require__(906),
+            styles: [__webpack_require__(870)]
         }), 
         __metadata('design:paramtypes', [])
     ], LoaderSmallComponent);
@@ -3904,7 +4040,7 @@ var LoaderSmallComponent = (function () {
 
 /***/ },
 
-/***/ 627:
+/***/ 629:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3920,7 +4056,7 @@ var environment = {
 
 /***/ },
 
-/***/ 628:
+/***/ 630:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3986,7 +4122,7 @@ var SortUsersPipe = (function () {
 
 /***/ },
 
-/***/ 629:
+/***/ 631:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4052,7 +4188,7 @@ var SortPipe = (function () {
 
 /***/ },
 
-/***/ 630:
+/***/ 632:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4088,41 +4224,41 @@ var TasksFilterPipe = (function () {
 
 /***/ },
 
-/***/ 631:
+/***/ 633:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__ = __webpack_require__(676);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__ = __webpack_require__(678);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__ = __webpack_require__(669);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__ = __webpack_require__(671);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__ = __webpack_require__(665);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__ = __webpack_require__(667);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__ = __webpack_require__(671);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__ = __webpack_require__(673);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__ = __webpack_require__(670);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__ = __webpack_require__(672);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__ = __webpack_require__(670);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__ = __webpack_require__(669);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__ = __webpack_require__(675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__ = __webpack_require__(677);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__ = __webpack_require__(664);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__ = __webpack_require__(666);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__ = __webpack_require__(663);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__ = __webpack_require__(665);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__ = __webpack_require__(673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__ = __webpack_require__(675);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__ = __webpack_require__(668);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__ = __webpack_require__(674);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__ = __webpack_require__(676);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__ = __webpack_require__(672);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__ = __webpack_require__(674);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(679);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(1178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(1180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__);
 
 
@@ -4144,59 +4280,45 @@ var TasksFilterPipe = (function () {
 
 /***/ },
 
-/***/ 835:
-/***/ function(module, exports) {
-
-module.exports = ""
-
-/***/ },
-
-/***/ 836:
-/***/ function(module, exports) {
-
-module.exports = ""
-
-/***/ },
-
 /***/ 837:
 /***/ function(module, exports) {
 
-module.exports = ".chat-form {\n  height: 50px; }\n  .chat-form input {\n    width: 92% !important; }\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 838:
 /***/ function(module, exports) {
 
-module.exports = ".card-action {\n  font-size: 0.8em;\n  font-style: italic; }\n\n.card-content, .card-action {\n  padding: 10px;\n  font-size: 0.8em; }\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 839:
 /***/ function(module, exports) {
 
-module.exports = "::-webkit-scrollbar {\n  width: 0px;\n  /* remove scrollbar space */\n  background: transparent;\n  /* optional: just make scrollbar invisible */ }\n\n/* optional: show position indicator in red */\n::-webkit-scrollbar-thumb {\n  background: #FF0000; }\n\n.chat-list {\n  margin: 20px 0;\n  overflow-y: auto;\n  height: 300px; }\n  .chat-list li:not(:first-of-type) {\n    margin: 20px 0 0 0; }\n"
+module.exports = ".chat-form {\n  height: 50px; }\n  .chat-form input {\n    width: 92% !important; }\n"
 
 /***/ },
 
 /***/ 840:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: transparent;\n  z-index: 999; }\n\n@media (min-width: 993px) {\n  .overlay {\n    left: 300px; } }\n"
+module.exports = ".card-action {\n  font-size: 0.8em;\n  font-style: italic; }\n\n.card-content, .card-action {\n  padding: 10px;\n  font-size: 0.8em; }\n"
 
 /***/ },
 
 /***/ 841:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "::-webkit-scrollbar {\n  width: 0px;\n  /* remove scrollbar space */\n  background: transparent;\n  /* optional: just make scrollbar invisible */ }\n\n/* optional: show position indicator in red */\n::-webkit-scrollbar-thumb {\n  background: #FF0000; }\n\n.chat-list {\n  margin: 20px 0;\n  overflow-y: auto;\n  height: 300px; }\n  .chat-list li:not(:first-of-type) {\n    margin: 20px 0 0 0; }\n"
 
 /***/ },
 
 /***/ 842:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: transparent;\n  z-index: 999; }\n\n@media (min-width: 993px) {\n  .overlay {\n    left: 300px; } }\n"
 
 /***/ },
 
@@ -4238,14 +4360,14 @@ module.exports = ""
 /***/ 848:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 849:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
+module.exports = ""
 
 /***/ },
 
@@ -4266,35 +4388,35 @@ module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  lef
 /***/ 852:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\np:not(:last-of-type) {\n  margin-bottom: 1em; }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
 
 /***/ },
 
 /***/ 853:
 /***/ function(module, exports) {
 
-module.exports = "\n"
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
 
 /***/ },
 
 /***/ 854:
 /***/ function(module, exports) {
 
-module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
+module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 999; }\n\n.dialog {\n  z-index: 1000;\n  position: fixed;\n  right: 0;\n  left: 0;\n  top: 20px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 90%;\n  max-width: 520px;\n  /*background-color: #fff;*/\n  /*padding: 12px;*/\n  /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/ }\n\np:not(:last-of-type) {\n  margin-bottom: 1em; }\n\n@media (min-width: 768px) {\n  .dialog {\n    top: 40px; } }\n"
 
 /***/ },
 
 /***/ 855:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "\n"
 
 /***/ },
 
 /***/ 856:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
 
 /***/ },
 
@@ -4308,21 +4430,21 @@ module.exports = ""
 /***/ 858:
 /***/ function(module, exports) {
 
-module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
+module.exports = ""
 
 /***/ },
 
 /***/ 859:
 /***/ function(module, exports) {
 
-module.exports = "/*h1{*/\n/*font-size: 35px;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*header, main, footer,aside {*/\n/*padding-left: 350px;*/\n/*}*/\n\n/*@media only screen and (max-width : 992px) {*/\n/*header, main, footer {*/\n/*padding-left: 0;*/\n\n/*}*/\n/*app-header{*/\n/*display: block;*/\n/*}*/\n/*}*/\n\n/*aside app-chat {*/\n/*position: absolute;*/\n\n/*top:0px;*/\n/*bottom: 0px;*/\n/*right: 0px;*/\n/*width: 250px;*/\n/*border-left: 1px solid gray;*/\n\n/*}*/"
+module.exports = "ul li a:hover i{\r\n  color: indianred;\r\n}\r\ni .material-icons{\r\n  -webkit-transition: color 0.5s ease;\r\n  transition: color 0.5s ease;\r\n  position: relative;\r\n  top:6px;\r\n}\r\n.fa{\r\n  margin-left: 10px;\r\n  position: relative;\r\n  top:-1px;\r\n  float: right;\r\n  right: 40%;\r\n}\r\n.fa-briefcase{\r\n  color: whitesmoke;\r\n}\r\n"
 
 /***/ },
 
 /***/ 860:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
 
 /***/ },
 
@@ -4336,7 +4458,7 @@ module.exports = ""
 /***/ 862:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
+module.exports = ""
 
 /***/ },
 
@@ -4350,28 +4472,28 @@ module.exports = ""
 /***/ 864:
 /***/ function(module, exports) {
 
-module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
 /***/ 865:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
+module.exports = ""
 
 /***/ },
 
 /***/ 866:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
 
 /***/ },
 
 /***/ 867:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
@@ -4399,254 +4521,268 @@ module.exports = ""
 /***/ 871:
 /***/ function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = ".container{\r\n  background: url(\"../../assets/login_background.jpg\") no-repeat center;\r\n\r\n  height: 100vh;\r\n  min-width: 100vw;\r\n  max-width: 100vw;\r\n  margin: 0;\r\n  padding: 0;\r\n  top: 0;\r\n  left:0;\r\n  right: 0;\r\n  overflow: hidden;\r\n}\r\nbutton{\r\n  display: block;\r\n  margin: 0 auto;\r\n  margin-bottom: 15px;\r\n\r\n  width: 250px;\r\n}\r\n.row{\r\n\r\n}\r\n"
 
 /***/ },
 
 /***/ 872:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-tasklist *ngIf=\"user\"\r\n                  [tasks]=\"user.household? user.household.tasks : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">\r\n    </app-tasklist>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n        <a class=\"btn-floating btn-large red\" (click)=\"dialogVisible=!dialogVisible\">\r\n            <i class=\"material-icons\">add</i>\r\n        </a>\r\n    </div>\r\n\r\n</div>\r\n<div *ngIf=\"user && user.household\">\r\n<app-taskdetail *ngIf=\"user\" [(visible)]=\"dialogVisible\" [(users)]=\"user.household.users\" [newTask]=\"true\"></app-taskdetail>\r\n</div>"
+module.exports = ""
 
 /***/ },
 
 /***/ 873:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n    <div class=\"col flex-down-center\">\n\n        <p class=\"text-small\">repeats every</p>\n        <p class=\"text-large\">{{task.period}}</p>\n        <p class=\"text-small \">{{task.period == 1 ? 'day':'days'}}</p>\n\n    </div>\n    <div class=\"col flex-down-spacebetween\" style=\"flex-grow: 1;\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text truncate\">{{task.description}} </p>\n        <span class=\"\">{{task.points}} points</span>\n    </div>\n    <div class=\"col flex-down-left\" style=\"align-items: flex-end\">\n\n        <a class=\"tooltipped\"\n           (click)=\"showDetailClick()\"\n           materialize=\"tooltip\"\n           data-position=\"bottom\"\n           data-delay=\"20\"\n           data-tooltip=\"edit\">\n            <i class=\"material-icons \">mode_edit</i></a>\n\n\n    </div>\n</div>\n\n"
+module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ },
 
 /***/ 874:
 /***/ function(module, exports) {
 
-module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\" (newTaskEvent)=\"addTaskToList()\"></app-taskdetail>\n"
+module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-tasklist *ngIf=\"user\"\r\n                  [tasks]=\"user.household? user.household.tasks : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">\r\n    </app-tasklist>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" style=\"margin-bottom: 4em\">\r\n        <a class=\"btn-floating btn-large red\" (click)=\"dialogVisible=!dialogVisible\">\r\n            <i class=\"material-icons\">add</i>\r\n        </a>\r\n    </div>\r\n\r\n</div>\r\n<div *ngIf=\"user && user.household\">\r\n<app-taskdetail *ngIf=\"user\" [(visible)]=\"dialogVisible\" [(users)]=\"user.household.users\" [newTask]=\"true\"></app-taskdetail>\r\n</div>"
 
 /***/ },
 
 /***/ 875:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n    <div class=\"col flex-down-center\">\n\n        <p class=\"text-small\">repeats every</p>\n        <p class=\"text-large\">{{task.period}}</p>\n        <p class=\"text-small \">{{task.period == 1 ? 'day':'days'}}</p>\n\n    </div>\n    <div class=\"col flex-down-spacebetween\" style=\"flex-grow: 1;\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text truncate\">{{task.description}} </p>\n        <span class=\"\">{{task.points}} points</span>\n    </div>\n    <div class=\"col flex-down-left\" style=\"align-items: flex-end\">\n\n        <a class=\"tooltipped\"\n           (click)=\"showDetailClick()\"\n           materialize=\"tooltip\"\n           data-position=\"bottom\"\n           data-delay=\"20\"\n           data-tooltip=\"edit\">\n            <i class=\"material-icons \">mode_edit</i></a>\n\n\n    </div>\n</div>\n\n"
 
 /***/ },
 
 /***/ 876:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
+module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\n"
 
 /***/ },
 
 /***/ 877:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
 
 /***/ },
 
 /***/ 878:
 /***/ function(module, exports) {
 
-module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
+module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
 
 /***/ },
 
 /***/ 879:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container \">\n    <div class=\"row\">\n        <div class=\"col l6 s12\">\n            <h5 class=\"white-text\">Footer Content</h5>\n            <p class=\"grey-text text-lighten-4\">You can use rows and columns here to organize your footer\n                content.</p>\n        </div>\n        <div class=\"col l4 offset-l2 s12\">\n            <h5 class=\"white-text\">Links</h5>\n            <ul>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 1</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 2</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 3</a></li>\n                <li><a class=\"grey-text text-lighten-3\" href=\"#!\">Link 4</a></li>\n            </ul>\n        </div>\n    </div>\n</div>\n<div class=\"footer-copyright\">\n    <div class=\"container\">\n        © 2014 Copyright Text\n        <a class=\"grey-text text-lighten-4 right\" href=\"#!\">More Links</a>\n    </div>\n</div>\n"
+module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 880:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
+module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
 
 /***/ },
 
 /***/ 881:
 /***/ function(module, exports) {
 
-module.exports = "<header>\n    <app-navigation></app-navigation>\n</header>\n\n<main>\n    <div class=\"row\">\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\n            <router-outlet></router-outlet>\n        </div>\n        <aside class=\"chat-bottom card\">\n            <app-chat></app-chat>\n        </aside>\n    </div>\n</main>\n\n<footer class=\"red darken-4\">\n    <app-footer></app-footer>\n</footer>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col l6 s12\">\r\n      <h5 class=\"white-text\">Get the App!!</h5>\r\n      <h6 class=\"white-text\">The Cleansing is now available on Google Play for free</h6>\r\n      <a href='https://play.google.com/store/apps/details?id=be.nmct.kuisapp.kuisapp&ah=8zvnTGQYVEygASM8wViDlGrCSnk&hl=nl&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target=\"_blank\"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style=\"width: 30%;height: 30%;\"/></a>\r\n    </div>\r\n    <div class=\"col l4 offset-l2 s12\">\r\n      <h5 class=\"white-text\">Contact Us</h5>\r\n      <ul class=\"white-text\">\r\n        <li>Bart Delrue <a class=\"grey-text text-lighten-3\" href=\"https://be.linkedin.com/in/bart-delrue-040672117\" target=\"_blank\" ><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a><a href=\"http://bart.cf\" target=\"_blank\"><i class=\"fa fa-briefcase\" aria-hidden=\"true\"></i></a> </li>\r\n        <li>Nick Dhondt<a class=\"grey-text text-lighten-3\" href=\"https://be.linkedin.com/in/nick-d-hondt-22958a117\" target=\"_blank\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a><a href=\"http://nickdhondt.github.io/\" target=\"_blank\"><i class=\"fa fa-briefcase\" aria-hidden=\"true\"></i></a></li>\r\n        <li>Brent Vanwildemeersch<a class=\"grey-text text-lighten-3\" href=\"\" target=\"_blank\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a><a href=\"http://student.howest.be/brent.vanwildemeer1/Portofolio/\" target=\"_blank\"><i class=\"fa fa-briefcase\" aria-hidden=\"true\"></i></a></li>\r\n        <li>Steven Mollie<a class=\"grey-text text-lighten-3\" href=\"https://be.linkedin.com/in/steven-mollie-80668811a\" target=\"_blank\"><i class=\"fa fa-linkedin-square\" aria-hidden=\"true\"></i></a><a href=\"\" target=\"_blank\"><i class=\"fa fa-briefcase\" aria-hidden=\"true\"></i></a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"footer-copyright center-align\">\r\n  <div class=\"container white-text\">\r\n    © 2016 TheCleansing All Rights Reserved\r\n  </div>\r\n</div>\r\n"
 
 /***/ },
 
 /***/ 882:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
 
 /***/ },
 
 /***/ 883:
 /***/ function(module, exports) {
 
-module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>\r\n\r\n<main>\r\n    <div class=\"row\">\r\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <aside class=\"chat-bottom card\">\r\n            <app-chat></app-chat>\r\n        </aside>\r\n    </div>\r\n</main>\r\n\r\n<footer class=\"background yellow darken-3\">\r\n    <app-footer></app-footer>\r\n</footer>\r\n"
 
 /***/ },
 
 /***/ 884:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">New award of the month</span>\n        <div class=\"row no-margin\">\n            <form class=\"col s12\" #newAwardForm=\"ngForm\">\n                <div class=\"row no-margin\">\n                    <div class=\"input-field col s12 l3\">\n                        <input [(ngModel)]=\"name\" id=\"award_name\" name=\"name\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_name\" class=\"active\">Award Name</label>\n                    </div>\n                    <div class=\"input-field col s12 l7\">\n                        <input [(ngModel)]=\"description\" name=\"description\" id=\"award_description\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_description\" class=\"active\">Description</label>\n                    </div>\n                    <div class=\"input-field col s12 l2\">\n                        <a class=\"waves-effect waves-light red btn\" (click)=\"set()\">Set</a>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 885:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"openUserPopup(user)\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\"\r\n                    [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
+module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
 /***/ 886:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">Member Details</span>\n        <div class=\"row center-align\" >\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img circle \" style=\"max-height: 100px; max-width: 100px; overflow: hidden\">\n        </div>\n        <div class=\"row\">\n            <form class=\"col s12\" #userDetailForm=\"ngForm\">\n                <div class=\"row\">\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.name\" id=\"first_name\" name=\"name\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"first_name\">First Name</label>\n                    </div>\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.lname\" id=\"last_name\" name=\"lname\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"last_name\">Last Name</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"prefix material-icons\">email</i>\n                        <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\n                        <label class=\"active\" for=\"email\" data-error=\"Email not validated\" data-success=\"Valid Email \">E-mail</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"material-icons prefix\">phone</i>\n                        <input [(ngModel)]=\"user.phoneNumber\" name=\"phoneNumber\" id=\"phone_number\" type=\"number\" class=\"validate\" >\n                        <label class=\"active\" for=\"phone_number\">Phone Number</label>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n        <a *ngIf=\"currentUser === user.uid\" (click)=\"save()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default\">save</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">New award of the month</span>\r\n        <a class=\"right\" (click)=\"close()\">X</a>\r\n        <div class=\"row no-margin\">\r\n\r\n            <form class=\"col s12\" #newAwardForm=\"ngForm\">\r\n                <div class=\"row no-margin\">\r\n                    <div class=\"input-field col s12 l3\">\r\n                        <input [(ngModel)]=\"name\" id=\"award_name\" name=\"name\" type=\"text\" class=\"no-margin\">\r\n                        <label for=\"award_name\" class=\"active\">Award Name</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12 l6\">\r\n                        <input [(ngModel)]=\"description\" name=\"description\" id=\"award_description\" type=\"text\" class=\"no-margin\">\r\n                        <label for=\"award_description\" class=\"active\">Description</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12 l2\">\r\n                        <a class=\"waves-effect waves-light red btn\" (click)=\"set()\">Set</a>\r\n                    </div>\r\n\r\n\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ },
 
 /***/ 887:
 /***/ function(module, exports) {
 
-module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"position: relative\">\n\n        <div class=\"chip\"\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\n             style=\"position: absolute; top:-10px; left:0;\">\n            {{user.score}}\n        </div>\n\n        <div class=\"hoverable circle z-depth-1\"\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img\">\n        </div>\n    </div>\n\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\n\n</figure>\n"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"openUserPopup(user)\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\"\r\n                    [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
 
 /***/ },
 
 /***/ 888:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\r\n</div>\r\n<div class=\"row\">\r\n\r\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\r\n\r\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\r\n\r\n</div>\r\n\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">Member Details</span>\r\n        <div class=\"row center-align\" >\r\n            <div class=\"hoverable circle z-depth-1\"\r\n                 style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin:auto\">\r\n                <img\r\n                        src=\"{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}\"\r\n                        class=\"responsive-img center\">\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <form class=\"col s12\" #userDetailForm=\"ngForm\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input [disabled] [(ngModel)]=\"user.name\" id=\"first_name\" name=\"name\" type=\"text\" class=\"validate\">\r\n                        <label class=\"active\" for=\"first_name\">First Name</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input [disabled] [(ngModel)]=\"user.lname\" id=\"last_name\" name=\"lname\" type=\"text\" class=\"validate\">\r\n                        <label class=\"active\" for=\"last_name\">Last Name</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12\">\r\n                        <i class=\"prefix material-icons\">email</i>\r\n                        <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\r\n                        <label class=\"active\" for=\"email\" data-error=\"Email not validated\" data-success=\"Valid Email \">E-mail</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12\">\r\n                        <i class=\"material-icons prefix\">phone</i>\r\n                        <input [(ngModel)]=\"user.phoneNumber\" name=\"phoneNumber\" id=\"phone_number\" type=\"number\" class=\"validate\" >\r\n                        <label class=\"active\" for=\"phone_number\">Phone Number</label>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-action\">\r\n        <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n        <a *ngIf=\"currentUser === user.uid\" (click)=\"save()\" class=\"right\"  aria-label=\"Save\">save</a>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 889:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
+module.exports = "<figure class=\"\" style=\"margin: 0\">\r\n\r\n    <div style=\"position: relative\">\r\n\r\n        <div class=\"chip\"\r\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\r\n             style=\"position: absolute; top:-10px; left:0;\">\r\n            {{user.score || '0'}}\r\n        </div>\r\n\r\n        <div class=\"hoverable circle z-depth-1\"\r\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\r\n            <img src=\"{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}\" class=\"responsive-img\">\r\n        </div>\r\n    </div>\r\n\r\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\r\n\r\n</figure>\r\n"
 
 /***/ },
 
 /***/ 890:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution evolution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\r\n</div>\r\n<div class=\"row\">\r\n\r\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\r\n\r\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\r\n\r\n</div>\r\n\r\n"
 
 /***/ },
 
 /***/ 891:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished vs canceled</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 892:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished tasks</span>\r\n\r\n        <x-chartist  [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution evolution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 893:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...\r\n    </app-household-overview>\r\n\r\n    <div *ngIf=\"user && user.household\">\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" *ngIf=\"user && user.household\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished vs canceled</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 894:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div *ngIf=\"household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input value=\"{{household.name}}\" name=\"memberemail\"  id=\"houseold_name\"  type=\"text\" class=\"\" readonly >\n            <label for=\"houseold_name\" class=\"active\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n\n  <div *ngIf=\"!household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Sorry</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <p>We couldn't find a the household you're looking for</p>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div   class=\"card-action\" >\n    <a  *ngIf=\"household\" (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a   *ngIf=\"household\" class=\"right\"  (click)=\"join()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Join</a>\n    <a *ngIf=\"!household\"  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">thanks anyway</a>\n\n\n  </div>\n\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished tasks</span>\r\n\r\n        <x-chartist  [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 895:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">email</i>\n            <input [(ngModel)]=\"memberemail\" name=\"memberemail\"  id=\"household_emaail\"  type=\"email\" class=\"validate\" >\n            <label for=\"household_emaail\" class=\"\">Household Member Email</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n  <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"save();showDialogJoin=!showDialogJoin;foundhousehold=household\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Search</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n\n<app-join-household-detail [(household)]=\"household\"  [(visible)]=\"showDialogJoin\" (householdjoined)=\"receivedhouseholdfromJoinDialog($event)\" ></app-join-household-detail>\n"
+module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...\r\n    </app-household-overview>\r\n\r\n    <div *ngIf=\"user && user.household\">\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" *ngIf=\"user && user.household\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
 
 /***/ },
 
 /***/ 896:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Please Confirm</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <div class=\"row no-margin\">\r\n            <p>Are youe sure you want to leave?</p>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">no</a>\r\n    <a class=\"right\" (click)=\"leave()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">yes</a>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div *ngIf=\"household\" class=\"card-content\">\r\n    <!--Household found-->\r\n    <span class=\"card-title center\">Join Household</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"input-field col s12 l9\">\r\n            <i class=\"material-icons prefix\">home</i>\r\n            <input value=\"{{household.name}}\" name=\"memberemail\"  id=\"houseold_name\"  type=\"text\" class=\"\" readonly >\r\n            <label for=\"houseold_name\" class=\"active\">Household Name</label>\r\n      </form>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"!household\" class=\"card-content\">\r\n    <!--Household found-->\r\n    <span class=\"card-title center\">Sorry</span>\r\n    <div class=\"row\">\r\n      <form class=\"col s12\">\r\n          <p>We couldn't find a the household you're looking for</p>\r\n      </form>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"card-action\" >\r\n\r\n      <a></a>\r\n      <a  *ngIf=\"household\" (click)=\"close()\" aria-label=\"close\">close</a>\r\n      <a  *ngIf=\"!household\"  (click)=\"close()\" class=\"right\"  aria-label=\"close\">thanks anyway</a>\r\n      <a  *ngIf=\"household\" class=\"right\"  (click)=\"join()\" aria-label=\"Join\">Join</a>\r\n\r\n  </div>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
 
 /***/ },
 
 /***/ 897:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Make Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input [(ngModel)]=\"householdName\" name=\"householdname\"  id=\"household_name\"  type=\"text\" class=\"validate\" required >\n            <label for=\"household_name\" class=\"\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"create();\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">create household</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Join Household</span>\r\n    <div class=\"row\">\r\n      <form>\r\n          <div class=\"input-field col s12 l9\">\r\n            <i class=\"material-icons prefix\">email</i>\r\n            <input [(ngModel)]=\"memberemail\" name=\"memberemail\"  id=\"household_emaail\"  type=\"email\" class=\"validate\" >\r\n            <label for=\"household_emaail\" class=\"\">Household Member Email</label>\r\n          </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n  <a  (click)=\"close()\" aria-label=\"close\">close</a>\r\n    <a class=\"right\" (click)=\"save();showDialogJoin=!showDialogJoin;foundhousehold=household\" aria-label=\"Join\">Search</a>\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n\r\n<app-join-household-detail [(household)]=\"household\"  [(visible)]=\"showDialogJoin\" (householdjoined)=\"receivedhouseholdfromJoinDialog($event)\" ></app-join-household-detail>\r\n"
 
 /***/ },
 
 /***/ 898:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Please Confirm</span>\r\n    <div class=\"row\">\r\n      <form class=\"col s12\">\r\n            <p>Are youe sure you want to leave?</p>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n      <a></a>\r\n      <a (click)=\"leave()\" class=\"right\" aria-label=\"Join\">yes</a>\r\n      <a (click)=\"close()\" class=\"right\" aria-label=\"close\">no</a>\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
 
 /***/ },
 
 /***/ 899:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"top-nav yellow darken-2\">\n    <div class=\"container\">\n        <div class=\"nav-wrapper\">\n            <a\n                    materialize=\"sideNav\"\n                    data-activates=\"nav-mobile\"\n                    class=\"button-collapse top-nav full hide-on-large-only\">\n                <i class=\"material-icons\">menu</i>\n            </a>\n            <a href=\"home\" class=\"page-title\">The cleansing</a>\n        </div>\n    </div>\n</nav>\n\n<ul id=\"nav-mobile\" class=\"side-nav fixed\">\n    <li>\n        <div class=\"userView\">\n            <div class=\"background yellow darken-2\">\n\n            </div>\n            <img class=\"circle\" src=\"/assets/web_hi_res_205.png\">\n            <span class=\"name white-text\">{{user.displayName}}</span>\n            <span class=\"email white-text\">{{user.email}}</span>\n        </div>\n    </li>\n\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">exit_to_app</i>Sign out</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"\" class=\"waves-effect waves-teal\" (click)=\"openAbout($event)\">About</a></li>\n</ul>\n\n<app-about-component [(visible)]=\"aboutVisible\"></app-about-component>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Make Household</span>\r\n    <form class=\"row no-margin\">\r\n          <div class=\"input-field col s12 l9\">\r\n            <i class=\"material-icons prefix\">home</i>\r\n            <input [(ngModel)]=\"householdName\" name=\"householdname\"  id=\"household_name\"  type=\"text\" class=\"validate\" required >\r\n            <label for=\"household_name\" class=\"\">Household Name</label>\r\n          </div>\r\n  </form>\r\n  </div>\r\n  <div class=\"card-action\">\r\n    <a (click)=\"close()\" aria-label=\"close\" >close</a>\r\n    <a class=\"right\" (click)=\"create();\" aria-label=\"Join\">create household</a>\r\n  </div>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
 
 /***/ },
 
 /***/ 900:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n        <!--<ng-content></ng-content>-->\n        <div class=\"card-content\">\n            <span class=\"card-title\">{{task.name}}</span>\n\n\n            <!--<div class=\"fixed-action-btn horizontal\">-->\n            <!--<a class=\"btn-floating btn-large red\">-->\n            <!--<i class=\"large material-icons\">mode_edit</i>-->\n            <!--</a>-->\n            <!--<ul>-->\n            <!--<li><a class=\"btn-floating red\" onclick=\"Materialize.toast('Task Changes Saved',4000,'rounded')\" ><i class=\"material-icons\">save</i></a> </li>-->\n            <!--<li><a class=\"btn-floating yellow darken-1\" onclick=\"Materialize.toast('Task Deleted',4000,'rounded')\"><i class=\"material-icons\">delete</i></a> </li>-->\n            <!--</ul>-->\n            <!--</div>-->\n            <div class=\"row\">\n                <form class=\"col s12\" #taskForm=\"ngForm\">\n                    <div class=\"row\">\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\n                            <label for=\"task_name\" class=\"active\">Task Name</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input materialize=\"pickadate\" [(ngModel)]=\"task.dueDate\" name=\"dueDate\" id=\"task_due_date\"\n                                   type=\"date\" class=\"datepicker\">\n                            <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\n                        </div>\n                        <div class=\"input-field col s12\">\n                            <input [(ngModel)]=\"task.description\" name=\"description\" id=\"task_description\" type=\"text\"\n                                   class=\"\">\n                            <label for=\"task_description\" class=\"active\">Description</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.period\" name=\"period\" id=\"task_periodicity\" type=\"number\"\n                                   class=\"validate\">\n                            <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.points\" name=\"points\" id=\"task_points\" type=\"number\"\n                                   class=\"validate\">\n                            <label for=\"task_points\" class=\"active\">Points</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <select class=\"validate\" materialize=\"material_select\" [(ngModel)]=\"task.assigned_to\"\n                                    name=\"assigned_to\" id=\"task_user\">\n                                <option disabled selected>Select User</option>\n                                <option *ngFor=\"let user of usersLocal\" [ngValue]=\"user.id\">{{user.name}}</option>\n                            </select>\n                            <label for=\"task_user\" class=\"active\">User</label>\n                        </div>\n                    </div>\n                </form>\n            </div>\n        </div>\n\n        <div *ngIf=\"!newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Delete Task\" (click)=\"deleteTask()\" class=\"right\">delete task</a>\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\n\n        </div>\n        <div *ngIf=\"newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\n\n        </div>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 901:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...\r\n    </app-household-overview>\r\n\r\n    <app-todolist *ngIf=\"user\"\r\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\">loading...\r\n    </app-todolist>\r\n\r\n</div>"
+module.exports = "<nav class=\"top-nav yellow darken-2\">\r\n    <div class=\"container\">\r\n        <div class=\"nav-wrapper\">\r\n            <a\r\n                    materialize=\"sideNav\"\r\n                    data-activates=\"nav-mobile\"\r\n                    class=\"button-collapse top-nav full hide-on-large-only\">\r\n                <i class=\"material-icons\">menu</i>\r\n            </a>\r\n            <a href=\"home\" class=\"page-title\">The cleansing</a>\r\n        </div>\r\n    </div>\r\n</nav>\r\n\r\n<ul id=\"nav-mobile\" class=\"side-nav fixed\">\r\n    <li>\r\n        <div class=\"userView\">\r\n            <div class=\"background yellow darken-2\">\r\n\r\n            </div>\r\n            <img class=\"circle\" src=\"/assets/web_hi_res_205.png\">\r\n            <span class=\"name white-text\">{{user.displayName}}</span>\r\n            <span class=\"email white-text\">{{user.email}}</span>\r\n        </div>\r\n    </li>\r\n\r\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\r\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\r\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\r\n    <li>\r\n        <div class=\"divider\"></div>\r\n    </li>\r\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">exit_to_app</i>Sign out</a></li>\r\n    <li><a href=\"\" class=\"waves-effect\" (click)=\"openAbout($event)\"><i class=\"material-icons\">info_outline</i>About</a></li>\r\n    <li>\r\n        <div class=\"divider\"></div>\r\n    </li>\r\n\r\n</ul>\r\n\r\n<app-about-component [(visible)]=\"aboutVisible\"></app-about-component>"
 
 /***/ },
 
 /***/ 902:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n        <!--<ng-content></ng-content>-->\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">{{taskLocal.name}}</span>\r\n\r\n            <div class=\"row\">\r\n                <form class=\"col s12\" #taskForm=\"ngForm\">\r\n                    <div class=\"row\">\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_name\" class=\"active\">Task Name</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\r\n                            </div>\r\n                            <input\r\n                                    materialize=\"pickadate\" [(ngModel)]=\"taskLocal.dueDate\" name=\"dueDate\" id=\"task_due_date\"\r\n                                   type=\"date\"  class=\"datepicker\">\r\n                        </div>\r\n                        <div class=\"input-field col s12\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_description\" class=\"active\">Description</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.description\" name=\"description\" id=\"task_description\" type=\"text\"\r\n                                   class=\"\">\r\n\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.period\" name=\"period\" id=\"task_periodicity\" type=\"number\"\r\n                                   class=\"validate\">\r\n\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_points\" class=\"active\">Points</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.points\" name=\"points\" id=\"task_points\" type=\"number\"\r\n                                   class=\"validate\">\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                            <label for=\"task_user\" class=\"active\">User</label>\r\n                            </div>\r\n                            <select materialize=\"material_select\"\r\n                                    class=\"validate\" [(ngModel)]=\"taskLocal.assigned_to\" name=\"assigned_to\" id=\"task_user\">\r\n                                <option disabled selected>Select User</option>\r\n                                <option *ngFor=\"let user of usersLocal\" [ngValue]=\"user.id\">{{user.name}}</option>\r\n                            </select>\r\n\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n\r\n        <div *ngIf=\"!newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Delete Task\" (click)=\"deleteTask()\" class=\"right\">delete task</a>\r\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\r\n\r\n        </div>\r\n        <div *ngIf=\"newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n\r\n"
 
 /***/ },
 
 /***/ 903:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\n\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\n\n        <!--<div style=\"position:absolute; z-index: 10\">-->\n        <!--<a class=\"btn\">test</a>-->\n        <!--</div>-->\n\n        <app-tasktodo-row\n                (cancel)=\"cancel($event, i)\"\n                (finish)=\"finish($event, i)\"\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"tasktodo\"\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\n\n\n    </div>\n</div>\n\n<div *ngIf=\"tasksTodo.length == 0\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have nothing to do, go make some tasks!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
+module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...\r\n    </app-household-overview>\r\n\r\n    <app-todolist *ngIf=\"user\"\r\n                  [tasksTodo]=\"user.household? user.household.taskstodo : []\"\r\n                  [users]=\"user.household? user.household.users : undefined\"\r\n                  (sendNewHousehold)=\"receivenewHousehold($event)\">loading...\r\n    </app-todolist>\r\n\r\n</div>\r\n"
 
 /***/ },
 
 /***/ 904:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    <div class=\"preloader-wrapper small active\">\n        <div class=\"spinner-layer spinner-blue\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-red\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-yellow\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-green\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 905:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\n        <article class=\"card\">\n            <div class=\"card-content\">\n                <h1 class=\"card-title\">{{title}}</h1>\n            </div>\n            <div class=\"card-action\">\n                <button class=\"btn\" (click)=\"loginFacebook()\">Login With Facebook</button>\n                <button class=\"btn\" (click)=\"loginGoogle()\">Login With Google</button>\n            </div>\n\n        </article>\n    </div>\n</div>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n\r\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\r\n\r\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\r\n\r\n        <!--<div style=\"position:absolute; z-index: 10\">-->\r\n        <!--<a class=\"btn\">test</a>-->\r\n        <!--</div>-->\r\n\r\n        <app-tasktodo-row\r\n                (cancel)=\"cancel($event, i)\"\r\n                (finish)=\"finish($event, i)\"\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"tasktodo\"\r\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasksTodo.length == 0\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have nothing to do, go make some tasks!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail *ngIf=\"selectedTask\" [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
 
 /***/ },
 
 /***/ 906:
 /***/ function(module, exports) {
 
+module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    <div class=\"preloader-wrapper small active\">\n        <div class=\"spinner-layer spinner-blue\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-red\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-yellow\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n\n        <div class=\"spinner-layer spinner-green\">\n            <div class=\"circle-clipper left\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"gap-patch\">\n                <div class=\"circle\"></div>\n            </div>\n            <div class=\"circle-clipper right\">\n                <div class=\"circle\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
+
+/***/ },
+
+/***/ 907:
+/***/ function(module, exports) {
+
+module.exports = "\r\n\r\n\r\n<div class=\"container \">\r\n  <div class=\"content-login\">\r\n  <div class=\"row \">\r\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\r\n      <h4 class=\"center-align\">The Cleansing</h4>\r\n      </div>\r\n  </div>\r\n  <div class=\"row \">\r\n  <div class=\"col s12 m6 l4 offset-m4 offset-l4 \">\r\n  <button class=\"btn center-align\" (click)=\"loginFacebook()\">Login With Facebook</button>\r\n  <button class=\"btn center-align\" (click)=\"loginGoogle()\">Login With Google</button>\r\n\r\n\r\n\r\n  </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
+
+/***/ },
+
+/***/ 908:
+/***/ function(module, exports) {
+
 module.exports = "<p>\n  not-found works!\n</p>\n"
 
 /***/ }
 
-},[1181]);
+},[1183]);
 //# sourceMappingURL=main.bundle.map
