@@ -842,14 +842,14 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
 
 //af: steven
 //controle door: bart the almighty (en nee, het werkte niet)
-router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtasks',  function (req, res, next) {
 
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
 
-    Household.getHouseholdLimitedByUID(res.locals.uid, household=>{
+    Household.getHouseholdLimitedByUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", household=>{
 
     let arrayToSend = [];
 
@@ -869,6 +869,8 @@ router.post('/addtasks', firebaseAuthenticator, function (req, res, next) {
     });
 
     Task.addTasks(arrayToSend, function (firstID) {
+
+        console.log(firstID);
 
         Task.getImportedTasks(household.id, firstID, (tasks)=>{
 

@@ -31,7 +31,7 @@ class Task {
             .exec(function (err, tasks) {
                 if (err) next(err);
 
-                cb(tasks);
+                else cb(tasks);
             })
     }
 
@@ -68,7 +68,7 @@ class Task {
             .exec(function (err, tasks) {
                 if (err) next(err);
 
-                cb(tasks);
+                else cb(tasks);
             })
 
     }
@@ -90,7 +90,7 @@ class Task {
             .exec(function (err, data) {
                 if (err) next(err);
 
-                cb(data);
+                else cb(data);
             })
 
     }
@@ -113,7 +113,7 @@ class Task {
             .exec(function (err, data) {
                 if (err) next(err);
 
-                cb(data);
+                else cb(data);
             })
 
     }
@@ -160,7 +160,7 @@ class Task {
             "where id = ?", [id],
             function (err, result) {
                 if (err) process.emit("mysqlError", err);
-                cb(result.rowsAffected);
+                else cb(result.rowsAffected);
             });
     }
 
@@ -176,7 +176,7 @@ class Task {
         ];
         conn.query("insert into `tasks` (`description`, `household_id`, `period`, `points`, `name`, `dueDate`, `assigned_to`) values (?, ?, ?, ?, ?, ?, ?)", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            cb(body);
+            else cb(body);
         });
     }
 
@@ -193,7 +193,7 @@ class Task {
         ];
         conn.query("update `tasks` set `description` = ?, `household_id` = ?, period = ?, points = ?, name = ?, dueDate = ?, assigned_to = ? where `id` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
-            cb(body);
+            else cb(body);
         });
     }
 
@@ -208,18 +208,18 @@ class Task {
             "`assigned_to`) values ?", [post], function (err, res) {
             if (err) process.emit("mysqlError", err);
 
-            cb(res.insertId);
+            else cb(res.insertId);
         });
     }
 
     static getImportedTasks(householdID, id, cb){
 
         conn.query("select * from `tasks` " +
-            "where `household_id` = ?" +
-            "AND `id` > ?", [householdID, id], function (err, rows) {
+            "where `household_id` = ? " +
+            "and `id` >= ?" , [householdID, id], function (err, rows, fields) {
             if (err) process.emit("mysqlError", err);
 
-            cb(rows);
+            else cb(rows);
         });
 
     }
