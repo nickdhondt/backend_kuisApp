@@ -3711,7 +3711,8 @@ var TaskdetailComponent = (function () {
     };
     TaskdetailComponent.prototype.add = function () {
         var _this = this;
-        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+            console.log(this.taskLocal);
             this.apiService.addTask(this.taskLocal).subscribe(function (data) {
                 _this.updateTaskListService.updateListNeeded();
                 _this.close();
@@ -3721,7 +3722,7 @@ var TaskdetailComponent = (function () {
     TaskdetailComponent.prototype.save = function () {
         var _this = this;
         this.task = this.taskLocal;
-        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             this.apiService.updateTask(this.task).subscribe(function (data) {
                 _this.updateTaskListService.updateListNeeded();
                 _this.close();
@@ -4521,7 +4522,7 @@ module.exports = ""
 /***/ 871:
 /***/ function(module, exports) {
 
-module.exports = ".container{\r\n  background: url(\"../../assets/login_background.jpg\") no-repeat center;\r\n\r\n  height: 100vh;\r\n  min-width: 100vw;\r\n  max-width: 100vw;\r\n  margin: 0;\r\n  padding: 0;\r\n  top: 0;\r\n  left:0;\r\n  right: 0;\r\n  overflow: hidden;\r\n}\r\nbutton{\r\n  display: block;\r\n  margin: 0 auto;\r\n  margin-bottom: 15px;\r\n\r\n  width: 250px;\r\n}\r\n.row{\r\n\r\n}\r\n"
+module.exports = ".container{\r\n  background: url(\"../../assets/login_background.jpg\") no-repeat center;\r\n\r\n  height: 100vh;\r\n  min-width: 100vw;\r\n  max-width: 100vw;\r\n  margin: 0;\r\n  padding: 0;\r\n  top: 0;\r\n  left:0;\r\n  right: 0;\r\n  overflow: hidden;\r\n}\r\nbutton{\r\n  display: block;\r\n  margin: 0 auto;\r\n  margin-bottom: 15px;\r\n\r\n  width: 250px;\r\n}\r\n.content-login{\r\n  margin-top: 15%;\r\n}\r\n\r\nh4{\r\n  font-size:4rem ;\r\n  font-family: 'Raleway', sans-serif;\r\n}\r\n"
 
 /***/ },
 
@@ -4773,7 +4774,7 @@ module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    
 /***/ 907:
 /***/ function(module, exports) {
 
-module.exports = "\r\n\r\n\r\n<div class=\"container \">\r\n  <div class=\"content-login\">\r\n  <div class=\"row \">\r\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\r\n      <h4 class=\"center-align\">The Cleansing</h4>\r\n      </div>\r\n  </div>\r\n  <div class=\"row \">\r\n  <div class=\"col s12 m6 l4 offset-m4 offset-l4 \">\r\n  <button class=\"btn center-align\" (click)=\"loginFacebook()\">Login With Facebook</button>\r\n  <button class=\"btn center-align\" (click)=\"loginGoogle()\">Login With Google</button>\r\n\r\n\r\n\r\n  </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n\r\n\r\n<div class=\"container \">\r\n  <div class=\"content-login\">\r\n  <div class=\"row \">\r\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\r\n      <h4 class=\"center-align white-text\">The Cleansing</h4>\r\n      </div>\r\n  </div>\r\n  <div class=\"row \">\r\n  <div class=\"col s12 m6 l4 offset-m4 offset-l4 \">\r\n  <button class=\"btn center-align\" (click)=\"loginFacebook()\">Login With Facebook</button>\r\n  <button class=\"btn center-align\" (click)=\"loginGoogle()\">Login With Google</button>\r\n\r\n\r\n\r\n  </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ },
 
