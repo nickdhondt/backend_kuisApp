@@ -29,7 +29,7 @@ module.exports = __webpack_require__(491);
 
 /***/ },
 
-/***/ 124:
+/***/ 126:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61,7 +61,7 @@ var Contract = (function () {
     ], Contract);
     return Contract;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contract.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contract.js.map
 
 /***/ },
 
@@ -71,14 +71,14 @@ var Contract = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contract__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contract__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ApiService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -115,77 +115,25 @@ var ApiService = (function () {
         console.error(error);
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].throw(error.json().error || 'server error...');
     };
-    //DO NOT USE
-    //DO
-    //NOT
-    //USE
-    //!
-    ApiService.prototype.getTasks = function () {
-        var _this = this;
-        var tokenPromise = new Promise(function (resolve, reject) {
-            _this.auth.token.then(function (token) {
-                _this.headers.set('Firebase-ID-Token', token);
-                return _this._http.get(_this.actionUrl + "tasksbytoken", { headers: _this.headers })
-                    .map(function (response) {
-                    var tasks = [];
-                    response.json().forEach(function (item) { return tasks.push(__WEBPACK_IMPORTED_MODULE_5__models_task_model__["a" /* Task */].makeTaskFromJSON(item)); });
-                    return tasks;
-                })
-                    .catch(ApiService.handleError)
-                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
-            });
-        });
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
-    };
-    //DO NOT USE
-    //DO
-    //NOT
-    //USE
-    //!
-    ApiService.prototype.getTaskstodobyhousehold = function (term) {
-        var _this = this;
-        if (term === void 0) { term = 7; }
-        var tokenPromise = new Promise(function (resolve, reject) {
-            _this.auth.token.then(function (token) {
-                _this.headers.set('Firebase-ID-Token', token);
-                return _this._http.get(_this.actionUrl + "taskstodobyhousehold/" + null + "/" + term, { headers: _this.headers })
-                    .map(function (response) {
-                    var tasks = [];
-                    response.json().forEach(function (item) { return tasks.push(__WEBPACK_IMPORTED_MODULE_5__models_task_model__["a" /* Task */].makeTaskFromJSON(item)); });
-                    return tasks;
-                })
-                    .catch(ApiService.handleError)
-                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
-            });
-        });
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
-    };
-    //DO NOT USE
-    //DO
-    //NOT
-    //USE
-    //!
-    ApiService.prototype.getHousehold = function () {
-        var _this = this;
-        var tokenPromise = new Promise(function (resolve, reject) {
-            _this.auth.token.then(function (token) {
-                _this.headers.set('Firebase-ID-Token', token);
-                return _this._http.get(_this.actionUrl + "household", { headers: _this.headers })
-                    .map(function (response) {
-                    return __WEBPACK_IMPORTED_MODULE_6__models_household_model__["a" /* Household */].makeHouseholdFromJSON(response.json());
-                })
-                    .catch(ApiService.handleError)
-                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
-            });
-        });
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
-    };
     ApiService.prototype.getContributions = function () {
         var _this = this;
         var tokenPromise = new Promise(function (resolve, reject) {
             _this.auth.token.then(function (token) {
                 _this.headers.set('Firebase-ID-Token', token);
                 return _this._http.get(_this.actionUrl + "contributionsbyhousehold", { headers: _this.headers })
+                    .map(function (res) { return res.json(); })
+                    .catch(ApiService.handleError)
+                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
+            });
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
+    };
+    ApiService.prototype.getFinishedCanceledStats = function () {
+        var _this = this;
+        var tokenPromise = new Promise(function (resolve, reject) {
+            _this.auth.token.then(function (token) {
+                _this.headers.set('Firebase-ID-Token', token);
+                return _this._http.get(_this.actionUrl + "finishedcanceledstats", { headers: _this.headers })
                     .map(function (res) { return res.json(); })
                     .catch(ApiService.handleError)
                     .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
@@ -425,6 +373,18 @@ var ApiService = (function () {
         });
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
+    ApiService.prototype.deleteTask = function (id) {
+        var _this = this;
+        var tokenPromise = new Promise(function (resolve, reject) {
+            _this.auth.token.then(function (token) {
+                _this.headers.set('Firebase-ID-Token', token);
+                return _this._http.get(_this.actionUrl + "deleteTask/" + id, { headers: _this.headers })
+                    .catch(ApiService.handleError)
+                    .subscribe(function (data) { return resolve(data); }, function (err) { return reject(err); });
+            });
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
+    };
     ApiService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__contract__["a" /* Contract */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__contract__["a" /* Contract */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object])
@@ -432,15 +392,18 @@ var ApiService = (function () {
     return ApiService;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/api.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/api.service.js.map
 
 /***/ },
 
-/***/ 173:
+/***/ 174:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Task; });
+
 /**
  * Created by Bart on 26/12/2016.
  */
@@ -451,7 +414,8 @@ var Task = (function () {
         var task = new Task();
         task.id = item.id;
         task.name = item.name;
-        task.dueDate = new Date(Date.parse(item.dueDate));
+        // task.dueDate = new Date(Date.parse(item.dueDate));
+        task.dueDate = __WEBPACK_IMPORTED_MODULE_0_moment__(item.dueDate).format("YYYY-MM-DD");
         task.description = item.description;
         task.period = item.period;
         task.assigned_to = item.assigned_to;
@@ -461,22 +425,22 @@ var Task = (function () {
     };
     return Task;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task.model.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task.model.js.map
 
 /***/ },
 
-/***/ 174:
+/***/ 175:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(126);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SocketService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -531,7 +495,7 @@ var SocketService = (function () {
     return SocketService;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/socket.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/socket.service.js.map
 
 /***/ },
 
@@ -562,7 +526,37 @@ var Award = (function () {
     };
     return Award;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.model.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.model.js.map
+
+/***/ },
+
+/***/ 39:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
+/**
+ * Created by Bart on 27/12/2016.
+ */
+var User = (function () {
+    function User() {
+    }
+    User.makeUserFromJSON = function (item) {
+        var user = new User();
+        user.id = item.id;
+        user.name = item.name;
+        user.lname = item.lname;
+        user.email = item.email;
+        user.household_id = item.household_id;
+        user.score = item.score;
+        user.phoneNumber = item.phoneNumber;
+        user.uid = item.uid;
+        user.imgsrc = item.imgsrc;
+        return user;
+    };
+    return User;
+}());
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user.model.js.map
 
 /***/ },
 
@@ -595,7 +589,7 @@ var AppComponent = (function () {
     ], AppComponent);
     return AppComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.component.js.map
 
 /***/ },
 
@@ -665,7 +659,7 @@ var AppRoutingModule = (function () {
     ], AppRoutingModule);
     return AppRoutingModule;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.routes.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.routes.js.map
 
 /***/ },
 
@@ -716,7 +710,7 @@ var AllTasksComponent = (function () {
     return AllTasksComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/all-tasks.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/all-tasks.component.js.map
 
 /***/ },
 
@@ -725,7 +719,7 @@ var AllTasksComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -756,7 +750,7 @@ var HomeComponent = (function () {
     return HomeComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.component.js.map
 
 /***/ },
 
@@ -810,7 +804,7 @@ var HouseholdComponent = (function () {
     return HouseholdComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.component.js.map
 
 /***/ },
 
@@ -860,7 +854,7 @@ var TasksTodoComponent = (function () {
     return TasksTodoComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-todo.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-todo.component.js.map
 
 /***/ },
 
@@ -869,7 +863,7 @@ var TasksTodoComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -923,7 +917,7 @@ var LoginComponent = (function () {
     return LoginComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/login.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/login.component.js.map
 
 /***/ },
 
@@ -958,7 +952,7 @@ var NotFoundComponent = (function () {
     ], NotFoundComponent);
     return NotFoundComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/not-found.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/not-found.component.js.map
 
 /***/ },
 
@@ -974,7 +968,7 @@ var NotFoundComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1018,7 +1012,7 @@ var AuthGuard = (function () {
     return AuthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.guard.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.guard.js.map
 
 /***/ },
 
@@ -1034,7 +1028,7 @@ var AuthGuard = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UnauthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1074,11 +1068,48 @@ var UnauthGuard = (function () {
     return UnauthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/unauth.guard.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/unauth.guard.js.map
 
 /***/ },
 
-/***/ 48:
+/***/ 490:
+/***/ function(module, exports) {
+
+function webpackEmptyContext(req) {
+	throw new Error("Cannot find module '" + req + "'.");
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = 490;
+
+
+/***/ },
+
+/***/ 491:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(625);
+
+
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["enableProdMode"])();
+}
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/main.js.map
+
+/***/ },
+
+/***/ 50:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1086,8 +1117,8 @@ var UnauthGuard = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthService; });
@@ -1192,78 +1223,11 @@ var AuthService = (function () {
     return AuthService;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.service.js.map
 
 /***/ },
 
-/***/ 49:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
-/**
- * Created by Bart on 27/12/2016.
- */
-var User = (function () {
-    function User() {
-    }
-    User.makeUserFromJSON = function (item) {
-        var user = new User();
-        user.id = item.id;
-        user.name = item.name;
-        user.lname = item.lname;
-        user.email = item.email;
-        user.household_id = item.household_id;
-        user.score = item.score;
-        user.phoneNumber = item.phoneNumber;
-        user.uid = item.uid;
-        user.imgsrc = item.imgsrc;
-        return user;
-    };
-    return User;
-}());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user.model.js.map
-
-/***/ },
-
-/***/ 490:
-/***/ function(module, exports) {
-
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 490;
-
-
-/***/ },
-
-/***/ 491:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(631);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(625);
-
-
-
-
-
-if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["enableProdMode"])();
-}
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/main.js.map
-
-/***/ },
-
-/***/ 56:
+/***/ 51:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1291,7 +1255,7 @@ var Household = (function () {
     };
     return Household;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.model.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.model.js.map
 
 /***/ },
 
@@ -1299,24 +1263,24 @@ var Household = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(415);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__(398);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth_guard_auth_guard__ = __webpack_require__(400);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_routes__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_guard_unauth_guard__ = __webpack_require__(401);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_module__ = __webpack_require__(604);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__not_found_not_found_component__ = __webpack_require__(399);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__contract__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__contract__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_modal__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_modal__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angular2_modal_plugins_bootstrap__ = __webpack_require__(649);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1384,7 +1348,7 @@ var AppModule = (function () {
     ], AppModule);
     return AppModule;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.module.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.module.js.map
 
 /***/ },
 
@@ -1393,9 +1357,9 @@ var AppModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskRowComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1450,7 +1414,7 @@ var TaskRowComponent = (function () {
     return TaskRowComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task-row.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task-row.component.js.map
 
 /***/ },
 
@@ -1460,7 +1424,7 @@ var TaskRowComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasklistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1479,6 +1443,11 @@ var TasklistComponent = (function () {
         this.apiService = apiService;
         this.showDialog = false;
     }
+    TasklistComponent.prototype.addTaskToList = function (task) {
+        console.log("oooh boy");
+        console.log(task);
+        this.tasks.push(task);
+    };
     TasklistComponent.prototype.ngOnInit = function () {
         //this.getTasks();
     };
@@ -1492,6 +1461,8 @@ var TasklistComponent = (function () {
     TasklistComponent.prototype.showDetail = function (task) {
         this.selectedTask = task;
         this.showDialog = !this.showDialog;
+        var stateObj = { foo: "bar" };
+        history.pushState(stateObj, "popup", "task");
     };
     TasklistComponent.prototype.getTasks = function () {
         // this.apiService
@@ -1527,7 +1498,7 @@ var TasklistComponent = (function () {
     return TasklistComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasklist.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasklist.component.js.map
 
 /***/ },
 
@@ -1536,7 +1507,7 @@ var TasklistComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChatComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1574,7 +1545,7 @@ var ChatComponent = (function () {
     return ChatComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/chat.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/chat.component.js.map
 
 /***/ },
 
@@ -1583,7 +1554,7 @@ var ChatComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(175);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MessageFormComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1627,7 +1598,7 @@ var MessageFormComponent = (function () {
     return MessageFormComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-form.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-form.component.js.map
 
 /***/ },
 
@@ -1666,7 +1637,7 @@ var MessageItemComponent = (function () {
     ], MessageItemComponent);
     return MessageItemComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-item.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-item.component.js.map
 
 /***/ },
 
@@ -1675,7 +1646,7 @@ var MessageItemComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(175);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MessageListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1736,7 +1707,7 @@ var MessageListComponent = (function () {
     return MessageListComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-list.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-list.component.js.map
 
 /***/ },
 
@@ -1771,7 +1742,7 @@ var FooterComponent = (function () {
     ], FooterComponent);
     return FooterComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/footer.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/footer.component.js.map
 
 /***/ },
 
@@ -1806,7 +1777,7 @@ var HeaderComponent = (function () {
     ], HeaderComponent);
     return HeaderComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/header.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/header.component.js.map
 
 /***/ },
 
@@ -1816,7 +1787,7 @@ var HeaderComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_component__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_services_auth_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routes__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tasks_todo_tasks_todo_component__ = __webpack_require__(397);
@@ -1825,8 +1796,8 @@ var HeaderComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_navigation_component__ = __webpack_require__(621);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__header_header_component__ = __webpack_require__(603);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__contract__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__contract__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tasks_todo_todolist_todolist_component__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__chat_chat_component__ = __webpack_require__(598);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__chat_message_list_message_list_component__ = __webpack_require__(601);
@@ -1976,7 +1947,7 @@ var HomeModule = (function () {
     ], HomeModule);
     return HomeModule;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.module.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.module.js.map
 
 /***/ },
 
@@ -1986,7 +1957,7 @@ var HomeModule = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2058,7 +2029,7 @@ var AwardDetailComponent = (function () {
     return AwardDetailComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award-detail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award-detail.component.js.map
 
 /***/ },
 
@@ -2068,7 +2039,7 @@ var AwardDetailComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__ = __webpack_require__(115);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2132,7 +2103,7 @@ var AwardComponent = (function () {
     return AwardComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.component.js.map
 
 /***/ },
 
@@ -2215,7 +2186,7 @@ var NewAwardComponent = (function () {
     return NewAwardComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-award.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-award.component.js.map
 
 /***/ },
 
@@ -2225,7 +2196,7 @@ var NewAwardComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_award_model__ = __webpack_require__(255);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HouseholdOverviewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2249,6 +2220,12 @@ var HouseholdOverviewComponent = (function () {
         this.showMakeHouseholdDialog = false;
         this.receivedHousehold = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
+    HouseholdOverviewComponent.prototype.openUserPopup = function (user) {
+        this.showDialog = !this.showDialog;
+        this.selectedUser = user;
+        var stateObj = { foo: "bar" };
+        history.pushState(stateObj, "popup", "user");
+    };
     HouseholdOverviewComponent.prototype.sendUserToUpper = function (household) {
         this.receivedHousehold.emit(household);
     };
@@ -2286,7 +2263,7 @@ var HouseholdOverviewComponent = (function () {
     return HouseholdOverviewComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household-overview.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household-overview.component.js.map
 
 /***/ },
 
@@ -2295,9 +2272,10 @@ var HouseholdOverviewComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2312,13 +2290,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UserDetailComponent = (function () {
-    function UserDetailComponent(apiService, auth) {
+    function UserDetailComponent(apiService, auth, location) {
+        var _this = this;
         this.apiService = apiService;
         this.auth = auth;
+        this.location = location;
         this.closable = true;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.currentUser = auth.uid;
+        location.onPopState(function (event) {
+            _this.close();
+        });
     }
     UserDetailComponent.prototype.ngOnInit = function () {
     };
@@ -2364,12 +2348,12 @@ var UserDetailComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common__["PlatformLocation"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_common__["PlatformLocation"]) === 'function' && _e) || Object])
     ], UserDetailComponent);
     return UserDetailComponent;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-detail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-detail.component.js.map
 
 /***/ },
 
@@ -2378,7 +2362,7 @@ var UserDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserImgComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2415,7 +2399,7 @@ var UserImgComponent = (function () {
     return UserImgComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-img.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-img.component.js.map
 
 /***/ },
 
@@ -2424,7 +2408,7 @@ var UserImgComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChartsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2457,7 +2441,7 @@ var ChartsComponent = (function () {
     return ChartsComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/charts.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/charts.component.js.map
 
 /***/ },
 
@@ -2466,10 +2450,10 @@ var ChartsComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContributionDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2582,7 +2566,7 @@ var ContributionDonutComponent = (function () {
     return ContributionDonutComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contribution-donut.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contribution-donut.component.js.map
 
 /***/ },
 
@@ -2591,11 +2575,11 @@ var ContributionDonutComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chartist__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chartist__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_chartist__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return EvolutionLineComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2612,7 +2596,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-__webpack_require__(416);
+// require('chartist-plugin-legend');
 var EvolutionLineComponent = (function () {
     function EvolutionLineComponent(apiService) {
         var _this = this;
@@ -2752,7 +2736,7 @@ var EvolutionLineComponent = (function () {
     return EvolutionLineComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/evolution-line.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/evolution-line.component.js.map
 
 /***/ },
 
@@ -2761,6 +2745,12 @@ var EvolutionLineComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chartist__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_chartist__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FinishedBarComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2772,43 +2762,144 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+__webpack_require__(416);
 var FinishedBarComponent = (function () {
-    function FinishedBarComponent() {
+    function FinishedBarComponent(apiService) {
+        var _this = this;
+        this.apiService = apiService;
+        this.draw = function (data) {
+            if (data.type === 'bar') {
+                data.element.attr({
+                    style: 'stroke-width: 0px'
+                });
+                var strokeWidth = 10;
+                if (data.seriesIndex === 0) {
+                    data.element.animate({
+                        y2: {
+                            begin: 0,
+                            dur: 500,
+                            from: data.y1,
+                            to: data.y2,
+                            easing: __WEBPACK_IMPORTED_MODULE_3_chartist__["Svg"].Easing.easeOutSine,
+                        },
+                        'stroke-width': {
+                            begin: 0,
+                            dur: 1,
+                            from: 1,
+                            to: strokeWidth,
+                            fill: 'freeze',
+                        }
+                    }, false);
+                }
+                if (data.seriesIndex === 1) {
+                    data.element.animate({
+                        y2: {
+                            begin: 500,
+                            dur: 500,
+                            from: data.y1,
+                            to: data.y2,
+                            easing: __WEBPACK_IMPORTED_MODULE_3_chartist__["Svg"].Easing.easeOutSine,
+                        },
+                        'stroke-width': {
+                            begin: 500,
+                            dur: 1,
+                            from: 0,
+                            to: strokeWidth,
+                            fill: 'freeze',
+                        }
+                    }, false);
+                }
+            }
+        };
         this.type = 'Bar';
-        this.data = {
-            "labels": [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec"
-            ],
-            "series": [
-                [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
-                [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
-            ]
+        this.data = new Promise(function (resolve) {
+            _this.getStats(resolve);
+        });
+        this.options = {
+            showArea: false,
+            showPoint: false,
+            showLine: true,
+            plugins: [__WEBPACK_IMPORTED_MODULE_3_chartist__["plugins"].legend()],
+            axisX: {
+                showGrid: false,
+                labelInterpolationFnc: function (value, index) {
+                    return index % 2 === 0 ? value : null;
+                }
+            },
+            axisY: {
+                showGrid: true,
+                showLabel: true
+            }
+        };
+        this.events = {
+            "draw": this.draw
         };
     }
     FinishedBarComponent.prototype.ngOnInit = function () {
     };
+    FinishedBarComponent.prototype.getStats = function (resolve) {
+        this.apiService.getFinishedCanceledStats().subscribe(function (data) {
+            var labels = [];
+            var series = [{ "name": "canceled", "data": [] }, { "name": "finished", "data": [] }];
+            for (var i = 0; i <= 12; i++) {
+                labels.push(__WEBPACK_IMPORTED_MODULE_2_moment__().subtract(i, 'months'));
+            }
+            data = data.map(function (m) {
+                return {
+                    moment: __WEBPACK_IMPORTED_MODULE_2_moment__({ y: m._id.year, M: m._id.month - 1 }),
+                    done: m._id.done,
+                    count: m.count
+                };
+            });
+            labels.forEach(function (l) {
+                var res = data.filter(function (d) {
+                    return d.moment.year() == l.year() && d.moment.month() == l.month();
+                });
+                if (res.length == 0) {
+                    series[0].data.push(0);
+                    series[1].data.push(0);
+                }
+                if (res.length == 1 && !res[0].done) {
+                    series[0].data.push(res[0].count);
+                    series[1].data.push(0);
+                }
+                if (res.length == 1 && res[0].done) {
+                    series[0].data.push(0);
+                    series[1].data.push(res[0].count);
+                }
+                if (res.length == 2) {
+                    res[0].done ? series[1].data.push(res[0].count) : series[0].data.push(res[0].count);
+                    res[1].done ? series[1].data.push(res[1].count) : series[0].data.push(res[1].count);
+                }
+            });
+            labels = labels.map(function (l) { return l.format("MMM"); });
+            labels.reverse();
+            series[0].data.reverse();
+            series[1].data.reverse();
+            console.log({ labels: labels, series: series });
+            resolve({ labels: labels, series: series });
+        }, function (error) { return console.log(error); });
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_household_model__["a" /* Household */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__models_household_model__["a" /* Household */]) === 'function' && _a) || Object)
+    ], FinishedBarComponent.prototype, "household", void 0);
     FinishedBarComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-finished-bar',
             template: __webpack_require__(891),
             styles: [__webpack_require__(845)]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__service_api_service__["a" /* ApiService */]) === 'function' && _b) || Object])
     ], FinishedBarComponent);
     return FinishedBarComponent;
+    var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/finished-bar.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/finished-bar.component.js.map
 
 /***/ },
 
@@ -2817,10 +2908,10 @@ var FinishedBarComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasksDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2932,7 +3023,7 @@ var TasksDonutComponent = (function () {
     return TasksDonutComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-donut.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-donut.component.js.map
 
 /***/ },
 
@@ -2941,10 +3032,10 @@ var TasksDonutComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(50);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return JoinHouseholdDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3023,7 +3114,7 @@ var JoinHouseholdDetailComponent = (function () {
     return JoinHouseholdDetailComponent;
     var _a, _b, _c, _d, _e, _f;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household-detail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/join-household-detail.component.js.map
 
 /***/ },
 
@@ -3032,7 +3123,7 @@ var JoinHouseholdDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return JoinHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3112,7 +3203,7 @@ var JoinHouseholdComponent = (function () {
     return JoinHouseholdComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/join-household.component.js.map
 
 /***/ },
 
@@ -3121,8 +3212,8 @@ var JoinHouseholdComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LeaveHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3201,7 +3292,7 @@ var LeaveHouseholdComponent = (function () {
     return LeaveHouseholdComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/leave-household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/leave-household.component.js.map
 
 /***/ },
 
@@ -3210,7 +3301,7 @@ var LeaveHouseholdComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NewHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3292,7 +3383,7 @@ var NewHouseholdComponent = (function () {
     return NewHouseholdComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-household.component.js.map
 
 /***/ },
 
@@ -3301,6 +3392,7 @@ var NewHouseholdComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AboutComponentComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3312,9 +3404,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AboutComponentComponent = (function () {
-    function AboutComponentComponent() {
+    function AboutComponentComponent(location) {
+        var _this = this;
+        this.location = location;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        location.onPopState(function (event) {
+            _this.close();
+        });
     }
     AboutComponentComponent.prototype.close = function () {
         this.visible = false;
@@ -3348,12 +3446,12 @@ var AboutComponentComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common__["PlatformLocation"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_common__["PlatformLocation"]) === 'function' && _b) || Object])
     ], AboutComponentComponent);
     return AboutComponentComponent;
-    var _a;
+    var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/about-component.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/about-component.component.js.map
 
 /***/ },
 
@@ -3362,7 +3460,7 @@ var AboutComponentComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(71);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NavigationComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3389,6 +3487,8 @@ var NavigationComponent = (function () {
     NavigationComponent.prototype.openAbout = function (event) {
         this.aboutVisible = !this.aboutVisible;
         event.preventDefault();
+        var stateObj = { foo: "bar" };
+        history.pushState(stateObj, "popup", "about");
     };
     NavigationComponent.prototype.logout = function () {
         this.auth.logout();
@@ -3404,7 +3504,7 @@ var NavigationComponent = (function () {
     return NavigationComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/navigation.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/navigation.component.js.map
 
 /***/ },
 
@@ -3413,10 +3513,14 @@ var NavigationComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(829);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(829);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskdetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3431,16 +3535,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var TaskdetailComponent = (function () {
-    function TaskdetailComponent(apiService) {
+    function TaskdetailComponent(apiService, location) {
+        var _this = this;
         this.apiService = apiService;
+        this.location = location;
         this.closable = true;
         this.newTask = false;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.newTaskEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        location.onPopState(function (event) {
+            _this.close();
+        });
     }
     TaskdetailComponent.prototype.ngOnInit = function () {
         if (this.task === undefined)
             this.task = new __WEBPACK_IMPORTED_MODULE_1__models_task_model__["a" /* Task */]();
+        var doMeUserSet = false;
+        for (var _i = 0, _a = this.users; _i < _a.length; _i++) {
+            var user = _a[_i];
+            if (user.id === null)
+                doMeUserSet = true;
+        }
+        if (this.users !== undefined && !doMeUserSet) {
+            this.usersLocal = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.map(this.users, __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.clone);
+            var doMeUser = new __WEBPACK_IMPORTED_MODULE_2__models_user_model__["a" /* User */];
+            doMeUser.name = "everyone";
+            doMeUser.id = null;
+            this.usersLocal.push(doMeUser);
+        }
+    };
+    TaskdetailComponent.prototype.ngOnChanges = function () {
+        if (this.task !== undefined) {
+            this.task.dueDate = __WEBPACK_IMPORTED_MODULE_5_moment__(this.task.dueDate).format("YYYY-MM-DD");
+        }
     };
     TaskdetailComponent.prototype.close = function () {
         this.visible = false;
@@ -3449,29 +3580,28 @@ var TaskdetailComponent = (function () {
     TaskdetailComponent.prototype.add = function () {
         var _this = this;
         // TODO: propagate to list
-        var props = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(Object.getOwnPropertyNames(this.task));
-        var required = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to"]);
-        if (__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEqual(props, required)) {
+        if (this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
             this.apiService.addTask(this.task).subscribe(function (data) {
+                _this.newTaskEvent.emit(_this.task);
                 _this.close();
             });
         }
     };
     TaskdetailComponent.prototype.save = function () {
         var _this = this;
-        var props = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(Object.getOwnPropertyNames(this.task));
-        var required = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(["period", "points", "description", "name", "dueDate", "assigned_to", "id", "household_id"]);
-        console.log(__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEqual(props, required));
-        if (__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEqual(props, required)) {
+        if (this.task.name !== undefined && this.task.dueDate !== undefined && this.task.assigned_to !== undefined && this.task.period !== undefined && this.task.points !== undefined) {
             this.apiService.updateTask(this.task).subscribe(function (data) {
                 _this.close();
             });
         }
     };
-    TaskdetailComponent.prototype.delete = function () {
-        //TODO : code to delete task
-        alert("WERKT NOG NIET!!!!!!");
-        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    TaskdetailComponent.prototype.deleteTask = function () {
+        var _this = this;
+        // TODO: propagate to list
+        this.apiService.deleteTask(this.task.id).subscribe(function (data) {
+            _this.task = null;
+            _this.close();
+        });
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
@@ -3497,6 +3627,10 @@ var TaskdetailComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _b) || Object)
     ], TaskdetailComponent.prototype, "visibleChange", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
+        __metadata('design:type', (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === 'function' && _c) || Object)
+    ], TaskdetailComponent.prototype, "newTaskEvent", void 0);
     TaskdetailComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-taskdetail',
@@ -3514,12 +3648,12 @@ var TaskdetailComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object])
+        __metadata('design:paramtypes', [(typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__angular_common__["PlatformLocation"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6__angular_common__["PlatformLocation"]) === 'function' && _e) || Object])
     ], TaskdetailComponent);
     return TaskdetailComponent;
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/taskdetail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/taskdetail.component.js.map
 
 /***/ },
 
@@ -3528,14 +3662,14 @@ var TaskdetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_socket_service__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_socket_service__ = __webpack_require__(175);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasktodoRowComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3646,7 +3780,7 @@ var TasktodoRowComponent = (function () {
     return TasktodoRowComponent;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasktodo-row.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasktodo-row.component.js.map
 
 /***/ },
 
@@ -3656,7 +3790,7 @@ var TasktodoRowComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TodolistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3687,6 +3821,8 @@ var TodolistComponent = (function () {
     TodolistComponent.prototype.showDetail = function (task) {
         this.selectedTask = task;
         this.showDialog = !this.showDialog;
+        var stateObj = { foo: "bar" };
+        history.pushState(stateObj, "popup", "task");
     };
     TodolistComponent.prototype.cancel = function (task, index) {
         var _this = this;
@@ -3715,7 +3851,7 @@ var TodolistComponent = (function () {
     return TodolistComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/todolist.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/todolist.component.js.map
 
 /***/ },
 
@@ -3729,7 +3865,7 @@ var TodolistComponent = (function () {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
 
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/index.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/index.js.map
 
 /***/ },
 
@@ -3764,7 +3900,7 @@ var LoaderSmallComponent = (function () {
     ], LoaderSmallComponent);
     return LoaderSmallComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/loader-small.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/loader-small.component.js.map
 
 /***/ },
 
@@ -3780,7 +3916,7 @@ var LoaderSmallComponent = (function () {
 var environment = {
     production: false
 };
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/environment.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/environment.js.map
 
 /***/ },
 
@@ -3846,7 +3982,7 @@ var SortUsersPipe = (function () {
     ], SortUsersPipe);
     return SortUsersPipe;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/sort-users.pipe.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/sort-users.pipe.js.map
 
 /***/ },
 
@@ -3912,7 +4048,7 @@ var SortPipe = (function () {
     ], SortPipe);
     return SortPipe;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/sort.pipe.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/sort.pipe.js.map
 
 /***/ },
 
@@ -3948,7 +4084,7 @@ var TasksFilterPipe = (function () {
     ], TasksFilterPipe);
     return TasksFilterPipe;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-filter.pipe.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-filter.pipe.js.map
 
 /***/ },
 
@@ -4004,7 +4140,7 @@ var TasksFilterPipe = (function () {
 
 
 
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/polyfills.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/polyfills.js.map
 
 /***/ },
 
@@ -4137,14 +4273,14 @@ module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  lef
 /***/ 853:
 /***/ function(module, exports) {
 
-module.exports = "\r\n"
+module.exports = "\n"
 
 /***/ },
 
 /***/ 854:
 /***/ function(module, exports) {
 
-module.exports = "/*@media all and (min-width: 992px){*/\r\n/*body{*/\r\n/*background-color: yellow;*/\r\n/*}*/\r\n/*app-header{*/\r\n/*display: none;*/\r\n/*}*/\r\n/*}*/"
+module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
 
 /***/ },
 
@@ -4172,14 +4308,14 @@ module.exports = ""
 /***/ 858:
 /***/ function(module, exports) {
 
-module.exports = "/*.brand-logo{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*}*/"
+module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
 
 /***/ },
 
 /***/ 859:
 /***/ function(module, exports) {
 
-module.exports = "/*h1{*/\r\n/*font-size: 35px;*/\r\n/*}*/\r\n/*app-header{*/\r\n/*display: none;*/\r\n/*}*/\r\n/*header, main, footer,aside {*/\r\n/*padding-left: 350px;*/\r\n/*}*/\r\n\r\n/*@media only screen and (max-width : 992px) {*/\r\n/*header, main, footer {*/\r\n/*padding-left: 0;*/\r\n\r\n/*}*/\r\n/*app-header{*/\r\n/*display: block;*/\r\n/*}*/\r\n/*}*/\r\n\r\n/*aside app-chat {*/\r\n/*position: absolute;*/\r\n\r\n/*top:0px;*/\r\n/*bottom: 0px;*/\r\n/*right: 0px;*/\r\n/*width: 250px;*/\r\n/*border-left: 1px solid gray;*/\r\n\r\n/*}*/"
+module.exports = "/*h1{*/\n/*font-size: 35px;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*header, main, footer,aside {*/\n/*padding-left: 350px;*/\n/*}*/\n\n/*@media only screen and (max-width : 992px) {*/\n/*header, main, footer {*/\n/*padding-left: 0;*/\n\n/*}*/\n/*app-header{*/\n/*display: block;*/\n/*}*/\n/*}*/\n\n/*aside app-chat {*/\n/*position: absolute;*/\n\n/*top:0px;*/\n/*bottom: 0px;*/\n/*right: 0px;*/\n/*width: 250px;*/\n/*border-left: 1px solid gray;*/\n\n/*}*/"
 
 /***/ },
 
@@ -4200,7 +4336,7 @@ module.exports = ""
 /***/ 862:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n}\r\n\r\n.dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    /*background-color: #fff;*/\r\n    /*padding: 12px;*/\r\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .dialog {\r\n        top: 40px;\r\n    }\r\n}"
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
@@ -4214,14 +4350,14 @@ module.exports = ""
 /***/ 864:
 /***/ function(module, exports) {
 
-module.exports = "/*.logo a{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*margin-bottom: 5%;*/\r\n/*margin-top: 5%;*/\r\n/*}*/\r\n\r\n\r\n"
+module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
 
 /***/ },
 
 /***/ 865:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n}\r\n\r\n.dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    /*background-color: #fff;*/\r\n    /*padding: 12px;*/\r\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .dialog {\r\n        top: 40px;\r\n    }\r\n}"
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
@@ -4284,35 +4420,35 @@ module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n
 /***/ 874:
 /***/ function(module, exports) {
 
-module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\r\n\r\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\r\n\r\n    <nav class=\"amber\">\r\n        <div class=\"nav-wrapper\">\r\n            <form>\r\n                <div class=\"input-field\">\r\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\r\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\r\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </nav>\r\n\r\n    <div class=\"collection-item\"\r\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\r\n\r\n\r\n        <app-task-row\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"task\"\r\n                [user]=\"user(task.assigned_to)\"></app-task-row>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasks.length == 0\">\r\n\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have no tasks, what are you even doing!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\r\n"
+module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\" (newTaskEvent)=\"addTaskToList()\"></app-taskdetail>\n"
 
 /***/ },
 
 /***/ 875:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"no-margin card-panel chat-panel\">\r\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\r\n\r\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
 
 /***/ },
 
 /***/ 876:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"chat-form\">\r\n    <form>\r\n        <div class=\"row no-margin\">\r\n            <div class=\"input-field col s10 no-margin no-padding\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\"\r\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\r\n                    <i class=\"material-icons\">send</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
+module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
 
 /***/ },
 
 /***/ 877:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row no-margin\">\r\n    <div class=\"col s12 no-padding\">\r\n        <div class=\"card blue lighten-4 no-margin\">\r\n            <div class=\"card-content\">\r\n                <p>{{message.message}}</p>\r\n            </div>\r\n            <div class=\"card-action\">\r\n                <span>{{message.user.name}} {{message.user.lname}}</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 878:
 /***/ function(module, exports) {
 
-module.exports = "<!--<p>Messages in Houshold:</p>-->\r\n<ul class=\"chat-list\" #scrollMe>\r\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\r\n</ul>\r\n\r\n\r\n\r\n"
+module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
 
 /***/ },
 
@@ -4326,49 +4462,49 @@ module.exports = "<div class=\"container \">\n    <div class=\"row\">\n        <
 /***/ 880:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"yellow darken-2\">\r\n  <div class=\"nav-wrapper\">\r\n\r\n      <ul class=\"right hide-on-med-and-down\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n\r\n    <ul class=\"side-nav\" id=\"mobile-demo\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\r\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\r\n    <script>\r\n\r\n    </script>\r\n  </div>\r\n\r\n\r\n</nav>\r\n\r\n\r\n"
+module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
 
 /***/ },
 
 /***/ 881:
 /***/ function(module, exports) {
 
-module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>\r\n\r\n<main>\r\n    <div class=\"row\">\r\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <aside class=\"chat-bottom card\">\r\n            <app-chat></app-chat>\r\n        </aside>\r\n    </div>\r\n</main>\r\n\r\n<footer class=\"red darken-4\">\r\n    <app-footer></app-footer>\r\n</footer>"
+module.exports = "<header>\n    <app-navigation></app-navigation>\n</header>\n\n<main>\n    <div class=\"row\">\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\n            <router-outlet></router-outlet>\n        </div>\n        <aside class=\"chat-bottom card\">\n            <app-chat></app-chat>\n        </aside>\n    </div>\n</main>\n\n<footer class=\"red darken-4\">\n    <app-footer></app-footer>\n</footer>"
 
 /***/ },
 
 /***/ 882:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">{{award.name}}</span>\r\n        <div class=\"row no-margin\">\r\n          <form class=\"col s12\">\r\n              <div class=\"row no-margin\">\r\n\r\n                  <div class=\"input-field col s12 m9\">\r\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\r\n                            <label for=\"award_description\" class=\"active\">Description</label>\r\n                       </div>\r\n                  <div class=\"input-field col s12 m3\">\r\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\r\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\r\n                    </div>\r\n                </div>\r\n          </form>\r\n    </div>\r\n  </div>\r\n    <!--<div class=\"card-action\">-->\r\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\r\n\r\n    <!--</div>-->\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 883:
 /***/ function(module, exports) {
 
-module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\r\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\r\n\r\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\r\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\r\n</div>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\"></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
 /***/ 884:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">New award of the month</span>\r\n        <div class=\"row no-margin\">\r\n            <form class=\"col s12\" #newAwardForm=\"ngForm\">\r\n                <div class=\"row no-margin\">\r\n                    <div class=\"input-field col s12 l3\">\r\n                        <input [(ngModel)]=\"name\" id=\"award_name\" name=\"name\" type=\"text\" class=\"no-margin\">\r\n                        <label for=\"award_name\" class=\"active\">Award Name</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12 l7\">\r\n                        <input [(ngModel)]=\"description\" name=\"description\" id=\"award_description\" type=\"text\" class=\"no-margin\">\r\n                        <label for=\"award_description\" class=\"active\">Description</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12 l2\">\r\n                        <a class=\"waves-effect waves-light red btn\" (click)=\"set()\">Set</a>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">New award of the month</span>\n        <div class=\"row no-margin\">\n            <form class=\"col s12\" #newAwardForm=\"ngForm\">\n                <div class=\"row no-margin\">\n                    <div class=\"input-field col s12 l3\">\n                        <input [(ngModel)]=\"name\" id=\"award_name\" name=\"name\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_name\" class=\"active\">Award Name</label>\n                    </div>\n                    <div class=\"input-field col s12 l7\">\n                        <input [(ngModel)]=\"description\" name=\"description\" id=\"award_description\" type=\"text\" class=\"no-margin\">\n                        <label for=\"award_description\" class=\"active\">Description</label>\n                    </div>\n                    <div class=\"input-field col s12 l2\">\n                        <a class=\"waves-effect waves-light red btn\" (click)=\"set()\">Set</a>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 885:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"showDialog = !showDialog; selectedUser = user;\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\"\r\n                    [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"openUserPopup(user)\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\"\r\n                    [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
 
 /***/ },
 
 /***/ 886:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">Member Details</span>\r\n        <div class=\"row center-align\" >\r\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img circle \" style=\"max-height: 100px; max-width: 100px; overflow: hidden\">\r\n        </div>\r\n        <div class=\"row\">\r\n            <form class=\"col s12\" #userDetailForm=\"ngForm\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input [(ngModel)]=\"user.name\" id=\"first_name\" name=\"name\" type=\"text\" class=\"validate\">\r\n                        <label class=\"active\" for=\"first_name\">First Name</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input [(ngModel)]=\"user.lname\" id=\"last_name\" name=\"lname\" type=\"text\" class=\"validate\">\r\n                        <label class=\"active\" for=\"last_name\">Last Name</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12\">\r\n                        <i class=\"prefix material-icons\">email</i>\r\n                        <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\r\n                        <label class=\"active\" for=\"email\" data-error=\"Email not validated\" data-success=\"Valid Email \">E-mail</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12\">\r\n                        <i class=\"material-icons prefix\">phone</i>\r\n                        <input [(ngModel)]=\"user.phoneNumber\" name=\"phoneNumber\" id=\"phone_number\" type=\"number\" class=\"validate\" >\r\n                        <label class=\"active\" for=\"phone_number\">Phone Number</label>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-action\">\r\n        <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\r\n        <a *ngIf=\"currentUser === user.uid\" (click)=\"save()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default\">save</a>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">Member Details</span>\n        <div class=\"row center-align\" >\n            <img src=\"{{user.imgsrc}}\" class=\"responsive-img circle \" style=\"max-height: 100px; max-width: 100px; overflow: hidden\">\n        </div>\n        <div class=\"row\">\n            <form class=\"col s12\" #userDetailForm=\"ngForm\">\n                <div class=\"row\">\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.name\" id=\"first_name\" name=\"name\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"first_name\">First Name</label>\n                    </div>\n                    <div class=\"input-field col s6\">\n                        <input [(ngModel)]=\"user.lname\" id=\"last_name\" name=\"lname\" type=\"text\" class=\"validate\">\n                        <label class=\"active\" for=\"last_name\">Last Name</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"prefix material-icons\">email</i>\n                        <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" type=\"email\" class=\"validate\">\n                        <label class=\"active\" for=\"email\" data-error=\"Email not validated\" data-success=\"Valid Email \">E-mail</label>\n                    </div>\n                    <div class=\"input-field col s12\">\n                        <i class=\"material-icons prefix\">phone</i>\n                        <input [(ngModel)]=\"user.phoneNumber\" name=\"phoneNumber\" id=\"phone_number\" type=\"number\" class=\"validate\" >\n                        <label class=\"active\" for=\"phone_number\">Phone Number</label>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n        <a *ngIf=\"currentUser === user.uid\" (click)=\"save()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default\">save</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
@@ -4382,56 +4518,56 @@ module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"po
 /***/ 888:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <app-finished-bar class=\"col s12\"></app-finished-bar>\n</div>\n<div class=\"row\">\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\n</div>\n<div class=\"row\">\n\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\n\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\n\n</div>\n\n"
+module.exports = "<div class=\"row\">\r\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\r\n</div>\r\n<div class=\"row\">\r\n\r\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\r\n\r\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\r\n\r\n</div>\r\n\r\n"
 
 /***/ },
 
 /***/ 889:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Contribution</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 890:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Member contribution</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution evolution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 891:
 /***/ function(module, exports) {
 
-module.exports = "<x-chartist id=\"chart\"\n            [data]=\"data\"\n            [type]=\"type\">\n</x-chartist>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished vs canceled</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 892:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Finished tasks</span>\n\n        <x-chartist  [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished tasks</span>\r\n\r\n        <x-chartist  [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 893:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...\r\n    </app-household-overview>\r\n\r\n    <div class=\"row\" *ngIf=\"user && user.household\">\r\n        <ul>\r\n            <li>{{user.household.countFinishedTasks}}</li>\r\n            <li>{{user.household.countTotalScore}}</li>\r\n            <li>{{user.household.mostPopularTask}}</li>\r\n            <li>{{user.household.tasks.length}}</li>\r\n        </ul>\r\n\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" *ngIf=\"user && user.household\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\"loading\"></app-loader-small>\r\n\r\n    <app-household-overview (receivedHousehold)=\"user = $event\" *ngIf=\"user\" [household]=\"user.household\">loading...\r\n    </app-household-overview>\r\n\r\n    <div *ngIf=\"user && user.household\">\r\n        <app-charts [(household)]=\"user.household\"></app-charts>\r\n    </div>\r\n    <div class=\"fixed-action-btn vertical click-to-toggle\" *ngIf=\"user && user.household\" style=\"margin-bottom: 4em\">\r\n  <a class=\"btn-floating btn-large red\">\r\n    <i class=\"material-icons\">menu</i>\r\n  </a>\r\n  <ul>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Edit Household\"><i class=\"material-icons\">mode_edit</i> </a></li>\r\n    <li><a class=\"btn-floating red\" materialize=\"tooltip\" data-position=\"left\" data-delay=\"20\" data-tooltip=\"Leave Household\" (click)=\"showDialogLeave=!showDialogLeave\"><i class=\"material-icons\">exit_to_app</i> </a> </li>\r\n  </ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<app-leave-household [(visible)]=\"showDialogLeave\" [(user)]=\"user\" (updatedUser)=\"updateHouseholdComponent($event)\"></app-leave-household>\r\n"
 
 /***/ },
 
 /***/ 894:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div *ngIf=\"household\" class=\"card-content\">\r\n    <!--Household found-->\r\n    <span class=\"card-title center\">Join Household</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <div class=\"input-field col s12 l9\">\r\n            <i class=\"material-icons prefix\">home</i>\r\n            <input value=\"{{household.name}}\" name=\"memberemail\"  id=\"houseold_name\"  type=\"text\" class=\"\" readonly >\r\n            <label for=\"houseold_name\" class=\"active\">Household Name</label>\r\n          </div>\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div *ngIf=\"!household\" class=\"card-content\">\r\n    <!--Household found-->\r\n    <span class=\"card-title center\">Sorry</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <p>We couldn't find a the household you're looking for</p>\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n\r\n  <div   class=\"card-action\" >\r\n    <a  *ngIf=\"household\" (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\r\n    <a   *ngIf=\"household\" class=\"right\"  (click)=\"join()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Join</a>\r\n    <a *ngIf=\"!household\"  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">thanks anyway</a>\r\n\r\n\r\n  </div>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div *ngIf=\"household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input value=\"{{household.name}}\" name=\"memberemail\"  id=\"houseold_name\"  type=\"text\" class=\"\" readonly >\n            <label for=\"houseold_name\" class=\"active\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n\n  <div *ngIf=\"!household\" class=\"card-content\">\n    <!--Household found-->\n    <span class=\"card-title center\">Sorry</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <p>We couldn't find a the household you're looking for</p>\n\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div   class=\"card-action\" >\n    <a  *ngIf=\"household\" (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a   *ngIf=\"household\" class=\"right\"  (click)=\"join()\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Join</a>\n    <a *ngIf=\"!household\"  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">thanks anyway</a>\n\n\n  </div>\n\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
 
 /***/ },
 
 /***/ 895:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Join Household</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <div class=\"input-field col s12 l9\">\r\n            <i class=\"material-icons prefix\">email</i>\r\n            <input [(ngModel)]=\"memberemail\" name=\"memberemail\"  id=\"household_emaail\"  type=\"email\" class=\"validate\" >\r\n            <label for=\"household_emaail\" class=\"\">Household Member Email</label>\r\n          </div>\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n  <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\r\n    <a class=\"right\" (click)=\"save();showDialogJoin=!showDialogJoin;foundhousehold=household\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Search</a>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n\r\n<app-join-household-detail [(household)]=\"household\"  [(visible)]=\"showDialogJoin\" (householdjoined)=\"receivedhouseholdfromJoinDialog($event)\" ></app-join-household-detail>\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Join Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">email</i>\n            <input [(ngModel)]=\"memberemail\" name=\"memberemail\"  id=\"household_emaail\"  type=\"email\" class=\"validate\" >\n            <label for=\"household_emaail\" class=\"\">Household Member Email</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n  <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"save();showDialogJoin=!showDialogJoin;foundhousehold=household\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">Search</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n\n<app-join-household-detail [(household)]=\"household\"  [(visible)]=\"showDialogJoin\" (householdjoined)=\"receivedhouseholdfromJoinDialog($event)\" ></app-join-household-detail>\n"
 
 /***/ },
 
@@ -4445,28 +4581,28 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  
 /***/ 897:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n  <div class=\"card-content\">\r\n    <span class=\"card-title center\">Make Household</span>\r\n    <div class=\"row no-margin\">\r\n      <form class=\"col s12\">\r\n        <div class=\"row no-margin\">\r\n\r\n          <div class=\"input-field col s12 l9\">\r\n            <i class=\"material-icons prefix\">home</i>\r\n            <input [(ngModel)]=\"householdName\" name=\"householdname\"  id=\"household_name\"  type=\"text\" class=\"validate\" required >\r\n            <label for=\"household_name\" class=\"\">Household Name</label>\r\n          </div>\r\n\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-action\">\r\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\r\n    <a class=\"right\" (click)=\"create();\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">create household</a>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n  <div class=\"card-content\">\n    <span class=\"card-title center\">Make Household</span>\n    <div class=\"row no-margin\">\n      <form class=\"col s12\">\n        <div class=\"row no-margin\">\n\n          <div class=\"input-field col s12 l9\">\n            <i class=\"material-icons prefix\">home</i>\n            <input [(ngModel)]=\"householdName\" name=\"householdname\"  id=\"household_name\"  type=\"text\" class=\"validate\" required >\n            <label for=\"household_name\" class=\"\">Household Name</label>\n          </div>\n\n        </div>\n      </form>\n    </div>\n  </div>\n  <div class=\"card-action\">\n    <a  (click)=\"close()\" class=\"right\"  aria-label=\"close\" style=\"cursor: default; margin-bottom: 10px\">close</a>\n    <a class=\"right\" (click)=\"create();\" aria-label=\"Join\" style=\"cursor: default;margin-bottom: 10px\">create household</a>\n\n  </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\n"
 
 /***/ },
 
 /***/ 898:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">About</span>\r\n        <div class=\"row\">\r\n            <h5>The Cleansing application</h5>\r\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\r\n            <h5>Licensing</h5>\r\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\r\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0</a></p>\r\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-action\">\r\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 899:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"top-nav yellow darken-2\">\r\n    <div class=\"container\">\r\n        <div class=\"nav-wrapper\">\r\n            <a\r\n                    materialize=\"sideNav\"\r\n                    data-activates=\"nav-mobile\"\r\n                    class=\"button-collapse top-nav full hide-on-large-only\">\r\n                <i class=\"material-icons\">menu</i>\r\n            </a>\r\n            <a href=\"home\" class=\"page-title\">The cleansing</a>\r\n        </div>\r\n    </div>\r\n</nav>\r\n\r\n<ul id=\"nav-mobile\" class=\"side-nav fixed\">\r\n    <li>\r\n        <div class=\"userView\">\r\n            <div class=\"background yellow darken-2\">\r\n\r\n            </div>\r\n            <img class=\"circle\" src=\"/assets/web_hi_res_205.png\">\r\n            <span class=\"name white-text\">{{user.displayName}}</span>\r\n            <span class=\"email white-text\">{{user.email}}</span>\r\n        </div>\r\n    </li>\r\n\r\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\r\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\r\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\r\n    <li>\r\n        <div class=\"divider\"></div>\r\n    </li>\r\n    <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\r\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">exit_to_app</i>Sign out</a></li>\r\n    <li>\r\n        <div class=\"divider\"></div>\r\n    </li>\r\n    <li><a href=\"\" class=\"waves-effect waves-teal\" (click)=\"openAbout($event)\">About</a></li>\r\n</ul>\r\n\r\n<app-about-component [(visible)]=\"aboutVisible\"></app-about-component>"
+module.exports = "<nav class=\"top-nav yellow darken-2\">\n    <div class=\"container\">\n        <div class=\"nav-wrapper\">\n            <a\n                    materialize=\"sideNav\"\n                    data-activates=\"nav-mobile\"\n                    class=\"button-collapse top-nav full hide-on-large-only\">\n                <i class=\"material-icons\">menu</i>\n            </a>\n            <a href=\"home\" class=\"page-title\">The cleansing</a>\n        </div>\n    </div>\n</nav>\n\n<ul id=\"nav-mobile\" class=\"side-nav fixed\">\n    <li>\n        <div class=\"userView\">\n            <div class=\"background yellow darken-2\">\n\n            </div>\n            <img class=\"circle\" src=\"/assets/web_hi_res_205.png\">\n            <span class=\"name white-text\">{{user.displayName}}</span>\n            <span class=\"email white-text\">{{user.email}}</span>\n        </div>\n    </li>\n\n    <li><a [routerLink]=\"['']\" class=\"waves-effect \"><i class=\"material-icons\">home</i>Home</a></li>\n    <li><a [routerLink]=\"['tasks']\" class=\"waves-effect \"><i class=\"material-icons\">assignment</i>Tasks</a></li>\n    <li><a [routerLink]=\"['household']\" class=\"waves-effect \"><i class=\"material-icons\">people</i>Household</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"#\" class=\"waves-effect \"><i class=\"material-icons\">settings</i>Settings</a></li>\n    <li><a class=\"waves-effect \" (click)=\"logout()\"><i class=\"material-icons\">exit_to_app</i>Sign out</a></li>\n    <li>\n        <div class=\"divider\"></div>\n    </li>\n    <li><a href=\"\" class=\"waves-effect waves-teal\" (click)=\"openAbout($event)\">About</a></li>\n</ul>\n\n<app-about-component [(visible)]=\"aboutVisible\"></app-about-component>"
 
 /***/ },
 
 /***/ 900:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n        <!--<ng-content></ng-content>-->\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">{{task.name}}</span>\r\n\r\n\r\n            <!--<div class=\"fixed-action-btn horizontal\">-->\r\n            <!--<a class=\"btn-floating btn-large red\">-->\r\n            <!--<i class=\"large material-icons\">mode_edit</i>-->\r\n            <!--</a>-->\r\n            <!--<ul>-->\r\n            <!--<li><a class=\"btn-floating red\" onclick=\"Materialize.toast('Task Changes Saved',4000,'rounded')\" ><i class=\"material-icons\">save</i></a> </li>-->\r\n            <!--<li><a class=\"btn-floating yellow darken-1\" onclick=\"Materialize.toast('Task Deleted',4000,'rounded')\"><i class=\"material-icons\">delete</i></a> </li>-->\r\n            <!--</ul>-->\r\n            <!--</div>-->\r\n            <div class=\"row\">\r\n                <form class=\"col s12\" #taskForm=\"ngForm\">\r\n                    <div class=\"row\">\r\n                        <div class=\"input-field col s6\">\r\n                            <input [(ngModel)]=\"task.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\r\n                            <label for=\"task_name\" class=\"active\">Task Name</label>\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <input [(ngModel)]=\"task.dueDate\" name=\"dueDate\" id=\"task_due_date\" type=\"date\" class=\"\">\r\n                            <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\r\n                        </div>\r\n                        <div class=\"input-field col s12\">\r\n                            <input [(ngModel)]=\"task.description\" name=\"description\" id=\"task_description\" type=\"text\" class=\"materialize-textarea\">\r\n                            <label for=\"task_due_date\" class=\"active\">Description</label>\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <input [(ngModel)]=\"task.period\" name=\"period\" id=\"task_periodicity\" type=\"number\" class=\"validate\">\r\n                            <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <input [(ngModel)]=\"task.points\" name=\"points\" id=\"task_points\" type=\"number\" class=\"validate\">\r\n                            <label for=\"task_points\" class=\"active\">Points</label>\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <!--todo Select user wanneer geen assigned-->\r\n                            <select class=\"validate browser-default\" [(ngModel)]=\"task.assigned_to\" name=\"assigned_to\" id=\"task_user\" >\r\n                                <option disabled selected>Select User</option>\r\n                                <option *ngFor=\"let user of users\" [ngValue]=\"user.id\">{{user.name}}</option>\r\n                            </select>\r\n                            <label for=\"task_user\" class=\"active\">User</label>\r\n\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n\r\n        <div *ngIf=\"!newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Delete Task\" (click)=\"delete()\" class=\"right\">delete task</a>\r\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\r\n\r\n        </div>\r\n        <div *ngIf=\"newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\r\n\r\n        </div>\r\n    </div>\r\n\r\n    <div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n        <!--<ng-content></ng-content>-->\n        <div class=\"card-content\">\n            <span class=\"card-title\">{{task.name}}</span>\n\n\n            <!--<div class=\"fixed-action-btn horizontal\">-->\n            <!--<a class=\"btn-floating btn-large red\">-->\n            <!--<i class=\"large material-icons\">mode_edit</i>-->\n            <!--</a>-->\n            <!--<ul>-->\n            <!--<li><a class=\"btn-floating red\" onclick=\"Materialize.toast('Task Changes Saved',4000,'rounded')\" ><i class=\"material-icons\">save</i></a> </li>-->\n            <!--<li><a class=\"btn-floating yellow darken-1\" onclick=\"Materialize.toast('Task Deleted',4000,'rounded')\"><i class=\"material-icons\">delete</i></a> </li>-->\n            <!--</ul>-->\n            <!--</div>-->\n            <div class=\"row\">\n                <form class=\"col s12\" #taskForm=\"ngForm\">\n                    <div class=\"row\">\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\n                            <label for=\"task_name\" class=\"active\">Task Name</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input materialize=\"pickadate\" [(ngModel)]=\"task.dueDate\" name=\"dueDate\" id=\"task_due_date\"\n                                   type=\"date\" class=\"datepicker\">\n                            <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\n                        </div>\n                        <div class=\"input-field col s12\">\n                            <input [(ngModel)]=\"task.description\" name=\"description\" id=\"task_description\" type=\"text\"\n                                   class=\"\">\n                            <label for=\"task_description\" class=\"active\">Description</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.period\" name=\"period\" id=\"task_periodicity\" type=\"number\"\n                                   class=\"validate\">\n                            <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <input [(ngModel)]=\"task.points\" name=\"points\" id=\"task_points\" type=\"number\"\n                                   class=\"validate\">\n                            <label for=\"task_points\" class=\"active\">Points</label>\n                        </div>\n                        <div class=\"input-field col s6\">\n                            <select class=\"validate\" materialize=\"material_select\" [(ngModel)]=\"task.assigned_to\"\n                                    name=\"assigned_to\" id=\"task_user\">\n                                <option disabled selected>Select User</option>\n                                <option *ngFor=\"let user of usersLocal\" [ngValue]=\"user.id\">{{user.name}}</option>\n                            </select>\n                            <label for=\"task_user\" class=\"active\">User</label>\n                        </div>\n                    </div>\n                </form>\n            </div>\n        </div>\n\n        <div *ngIf=\"!newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Delete Task\" (click)=\"deleteTask()\" class=\"right\">delete task</a>\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\n\n        </div>\n        <div *ngIf=\"newTask\" class=\"card-action\">\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\n\n        </div>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
@@ -4480,7 +4616,7 @@ module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\
 /***/ 902:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\r\n    <div class=\"col flex-down-center\">\r\n\r\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\r\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\r\n\r\n    </div>\r\n    <div class=\"col\" style=\"flex-grow: 1\">\r\n        <span class=\"title\">{{task.name}}</span>\r\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\r\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\r\n\r\n\r\n    </div>\r\n    <div class=\"col flex-down\">\r\n        <div class=\"flex-wrap-end\"\r\n             style=\"align-self: flex-start\">\r\n\r\n            <a class=\"tooltipped\"\r\n               (click)=\"finishClick()\"\r\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n                <i class=\"material-icons\">done</i></a>\r\n            <a class=\"tooltipped\"\r\n               (click)=\"showDetailClick()\"\r\n               materialize=\"tooltip\"\r\n               data-position=\"bottom\"\r\n               data-delay=\"20\"\r\n               data-tooltip=\"edit\">\r\n                <i class=\"material-icons\">mode_edit</i></a>\r\n            <a class=\"tooltipped\"\r\n               (click)=\"cancelClick()\"\r\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n                <i class=\"material-icons\">cancel</i></a>\r\n\r\n        </div>\r\n        <span class=\"chip\">{{task.points}} points</span>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
 
 /***/ },
 
