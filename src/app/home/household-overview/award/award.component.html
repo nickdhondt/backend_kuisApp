@@ -1,5 +1,8 @@
 <div *ngIf="award" [hidden]="showDialogAward" class="center">
-    <a (click)="showDialogAward=!showDialogAward;currentaward=award">{{award.name}}</a></div>
+    <a (click)="showDialogAward=!showDialogAward;currentaward=award">{{award.name}}</a>
+    <div class="last">{{household.lastAward}} won by {{household.lastAwardWonBy}}</div>
+</div>
+
 
 <div *ngIf="!award" [hidden]="showDialogNewAward" class="center">
     <a class="materialize-red-text" (click)="showDialogNewAward=!showDialogNewAward">Set an award for this month</a>
