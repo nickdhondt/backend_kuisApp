@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
 import {User} from "../../../models/user.model";
 import {UpdateHouseholdOverviewService} from "../../../service/update-household-overview.service";
+import {UpdateTaskListService} from "../../../service/update-task-list.service";
 
 @Component({
   selector: 'app-tasks-todo',
@@ -15,6 +16,9 @@ export class TasksTodoComponent implements OnInit {
         this.updateHouseholdOverviewService.householdUpdated$.subscribe((data) => {
             this.getUser()
         });
+        this.updateTaskListService.listUpdated$.subscribe((data) => {
+            this.getUser();
+        })
     }
 
     user: User;
@@ -22,7 +26,7 @@ export class TasksTodoComponent implements OnInit {
     currentUser:String;
     loading: Boolean = true;
 
-    constructor(private apiSevice: ApiService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService) {
+    constructor(private apiSevice: ApiService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, private updateTaskListService:UpdateTaskListService) {
     }
 
     getUser() {

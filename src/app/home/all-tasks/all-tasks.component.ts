@@ -21,7 +21,6 @@ export class AllTasksComponent implements OnInit {
 
     constructor(private apiSevice: ApiService, private updateTaskListService:UpdateTaskListService) {
         updateTaskListService.listUpdated$.subscribe((data) => {
-            console.log("ooooh boy");
             this.getUser();
         })
     }
