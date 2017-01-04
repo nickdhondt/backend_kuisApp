@@ -62,6 +62,7 @@ export class TasktodoRowComponent implements OnInit {
         this.finish.emit(this.task);
         let userUid:string = firebase.auth().currentUser.uid;
 
+
         this.apiService.addFinishedTask(this.task.id, true, userUid, moment().format("YYYY-MM-DD HH:mm:ss"));
     }
 
