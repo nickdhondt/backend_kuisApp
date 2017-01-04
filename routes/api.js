@@ -514,8 +514,6 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                 finished_on: receivedTask.finished_on
             });
 
-            console.log(finishedTask);
-
             finishedTask.save(function (err) {
                 if (err) return next(err);
 
