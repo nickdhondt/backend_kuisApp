@@ -166,7 +166,7 @@ describe("task tests", function () {
         };
 
         var req = http.request(opts, function (res) {
-            res.setEncoding('utf8');
+            res.setEncoding('utf8'); //comment
             var result = "";
             res.on('data', function (d) {
                 console.log(d);
