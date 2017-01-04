@@ -572,7 +572,10 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                                 taskID: receivedTask.id,
                                 userID: user.id,
                                 householdID: originalTask.household_id,
-                                done: receivedTask.done
+                                done: receivedTask.done,
+                                name: user.name,
+                                lname: user.lname,
+                                taskName: originalTask.name
                             };
                             process.emit("task-finished", finishedTaskData);
 
@@ -587,8 +590,11 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                         let finishedTaskData = {
                             taskID: receivedTask.id,
                             userID: user.id,
-                            householdID: receivedTask.household_id,
-                            done: receivedTask.done
+                            householdID: originalTask.household_id,
+                            done: receivedTask.done,
+                            name: user.name,
+                            lname: user.lname,
+                            taskName: originalTask.name
                         };
                         process.emit("task-finished", finishedTaskData);
 

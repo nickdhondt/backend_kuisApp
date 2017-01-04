@@ -12,7 +12,6 @@ export class UpdateHouseholdOverviewService {
     }
 
     updateHouseholdNeeded() {
-        console.log("request received");
         this.updateHouseholdNeededSource.next(true);
     }
 

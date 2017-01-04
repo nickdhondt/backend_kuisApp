@@ -141,7 +141,7 @@ export class ApiService {
                     {headers: this.headers})
                     .map((response: Response) => {
 
-                    console.log(response.json());
+                    // console.log(response.json());
 
                         let user: User = response.json();
 

@@ -27,8 +27,22 @@ module.exports = function (io) {
 
         socket.on("chat-message", function (msg) {
             User.getUserByUID(socket.uid, function (data) {
-                io.to('household_' + socket.householdID).emit("sent-message", {user: {imgsrc: data.imgsrc, name: data.name, lname: data.lname}, message: msg});
-                body = JSON.stringify({condition: "'household_" + socket.householdID + "' in topics", priority: "high", data:{fromId: data.id, announcement: msg}});
+                io.to('household_' + socket.householdID).emit("sent-message", {
+                    user: {
+                        imgsrc: data.imgsrc,
+                        name: data.name,
+                        lname: data.lname
+                    }, message: msg
+                });
+                body = JSON.stringify({
+                    condition: "'household_" + socket.householdID + "' in topics",
+                    priority: "high",
+                    data: {
+                        type: "a",
+                        fromId: data.id,
+                        message: parseNameForNotification(data) + ": " + msg
+                    }
+                });
 
                 let options = {
                     url: "https://fcm.googleapis.com/fcm/send",
@@ -48,12 +62,18 @@ module.exports = function (io) {
 
     process.on("task-finished", function (taskData) {
 
-        io.to('household_' + taskData.householdID).emit("tasks-update", {taskID: taskData.taskID, done:taskData.done});
+        io.to('household_' + taskData.householdID).emit("tasks-update", {taskID: taskData.taskID, done: taskData.done});
 
         body = JSON.stringify({
             condition: "'household_" + taskData.householdID + "' in topics",
             priority: "high",
-            data: {taskFinished: taskData.taskID, userFinished: taskData.userID, done:taskData.done}
+            data: {
+                type: "t",
+                taskFinishedId: taskData.taskID,
+                fromId: taskData.userID,
+                message: parseNameForNotification(taskData) + " finished task '" + taskData.taskName + "'",
+                done: taskData.done
+            }
         });
 
         let options = {
@@ -69,6 +89,16 @@ module.exports = function (io) {
         request(options, function (error, response, body) {
         });
     });
+
+    function parseNameForNotification(user) {
+        let name;
+
+        if (user.name !== null && user.name === "") name = user.lname;
+        else if (user.lname != null && user.lname === "") name = user.name;
+        else name = user.name;
+
+        return name;
+    }
 
     router.all('/', function (req, res, next) {
         next();
