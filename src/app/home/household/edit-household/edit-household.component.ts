@@ -34,8 +34,8 @@ export class EditHouseholdComponent implements OnInit {
   }
 
   save(){
-    console.log(this.household);
-    this.apiService.updateHousehold(this.household);
+
+    this.apiService.updateHousehold(this.household).subscribe((household)=>{this.close()});
   }
 
   close(){
