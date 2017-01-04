@@ -432,6 +432,8 @@ export class ApiService {
 
         return Observable.fromPromise(tokenPromise);
     }
+
+    public
 }
 
 
