@@ -25,6 +25,7 @@ module.exports = (function (configURL, database) {
   try{
     database.connect(configURL);
     db=mongoose.connection;
+    mongoose.Promise=global.Promise;
     console.log("Started connection on =" + (configURL.text).cyan + ", waiting for it to open");
 
   }catch(err){

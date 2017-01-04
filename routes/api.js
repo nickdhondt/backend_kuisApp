@@ -492,6 +492,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
 
     let receivedTask = req.task;
 
+
     User.getUserByUID(res.locals.uid, function (user) {
 
         if (!user) return next(new Error("fbUser not found"));
@@ -514,10 +515,12 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
                 finished_on: receivedTask.finished_on
             });
 
+            console.log(typeof finishedTask.finished_on + finishedTask.finished_on);
+
             finishedTask.save(function (err) {
                 if (err) return next(err);
 
-                //checked
+                // checked
                 if (receivedTask.done) {
                     user.score += originalTask.points;
                     User.updateUser(user, () => {
@@ -549,7 +552,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
 
                 originalTask.dueDate = nextDue.format("YYYY-MM-DD");
 
-                //checked
+                // checked
                 if (originalTask.assigned_to != null) {
 
                     User.getUsersByHouseholdID(originalTask.household_id, null, function (obj, users) {
