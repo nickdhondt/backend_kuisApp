@@ -19,6 +19,7 @@ import {UpdateTaskListService} from "../service/update-task-list.service";
 import {UpdateHouseholdOverviewService} from "../service/update-household-overview.service";
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
+import {enableProdMode} from '@angular/core';
 
 
 const myFirebaseConfig = {
@@ -32,6 +33,7 @@ const myFirebaseAuthConfig = {
     method: AuthMethods.Popup
 };
 
+// enableProdMode();
 
 @NgModule({
     declarations: [
