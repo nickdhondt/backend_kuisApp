@@ -14,7 +14,7 @@ class Task {
 
         FinishedTask
             .aggregate([
-                {$match: {household_id: 37}},
+                {$match: {household_id: id}},
                 {
                     $group: {
                         _id: {
