@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter,trigger,transition,style,animate
 import {Input} from "@angular/core/src/metadata/directives";
 import {Household} from "../../../../models/household.model";
 import {User} from "../../../../models/user.model";
+import {ApiService} from "../../../../service/api.service";
 
 @Component({
   selector: 'app-edit-household',
@@ -26,14 +27,15 @@ export class EditHouseholdComponent implements OnInit {
 
   @Output() visibleChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit() {
 
   }
 
   save(){
-    console.log(this.household)
+    console.log(this.household);
+    this.apiService.updateHousehold(this.household);
   }
 
   close(){

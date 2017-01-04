@@ -333,14 +333,17 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 //controle door:
 router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next) {
-    process.on("mysqlError", (err) => {
-        return next(err);
-    });
-    let body = req.body;
-    Household.updateHousehold(body, function (household) {
-        res.json(household);
-        res.end();
-    })
+   console.log(req.body);
+
+
+    // process.on("mysqlError", (err) => {
+    //     return next(err);
+    // });
+    // let body = req.body;
+    // Household.updateHousehold(body, function (household) {
+    //     res.json(household);
+    //     res.end();
+    // })
 });
 
 //af: steven

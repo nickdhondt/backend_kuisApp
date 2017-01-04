@@ -6,7 +6,7 @@
       <form class="col s12">
         <div class="input-field col s12 l9">
           <i class="material-icons prefix">home</i>
-          <input  value="{{household.name}}" name="householdname"   id="household_name"  type="text" class="validate" required >
+          <input  [(ngModel)]="household.name" name="householdname"   id="household_name"  type="text" class="validate" required >
           <label for="household_name" class="active">Household Name</label>
         </div>
       </form>
