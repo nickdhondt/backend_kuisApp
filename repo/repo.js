@@ -34,7 +34,6 @@ class getUser {
 
     static getAwardStatsFromMongo(household, cb){
 
-        let household_id = 37;
         FinishedAward.aggregate([
 
             {$match: {household_id: household.id}},
