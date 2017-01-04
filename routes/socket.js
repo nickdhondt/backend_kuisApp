@@ -9,7 +9,7 @@ module.exports = function (io) {
         socket.on("subscribe", function (token) {
             admin.auth().verifyIdToken(token)
                 .then(function (decodedToken) {
-
+                    console.log(token)
                     let uid = decodedToken.uid;
                     User.getUserByUID(uid, function (user) {
 
