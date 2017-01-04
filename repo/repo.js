@@ -163,9 +163,7 @@ class getUser {
 
                         if (awardDate.isBefore(now)) {
 
-                            // TODO: verhuis award naar mongo https://github.com/BartDelrue/backend_kuisApp/blob/master/routes/api.php#L65
-
-                            // process.emit("award-winner", winnerID);
+                            Award.saveAwardToMongo(userwithhousehold.household, award);
 
                             Award.deleteAwardByHouseholdID(userwithhousehold.household.id);
 

@@ -10,10 +10,10 @@ var finishedAwardSchema = new Schema({
     id: Number,
     name : String,
     description:String,
-    month: String,
+    month: Date,
     winner_id: Number,
     household_id: Number,
-    users: String,
+    users: Object,
     creator_id: Number
 });
 

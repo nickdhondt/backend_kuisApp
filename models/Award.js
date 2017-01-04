@@ -5,7 +5,11 @@ let User = require("./User");
 let Task = require("./Task");
 let Household = require("./Household");
 
+let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
+
+
 class Award {
+
 
 
     static getAwardByHouseholdID(id, obj, cb) {
@@ -59,6 +63,40 @@ class Award {
           else cb(body);
       })
   }
+
+    static saveAwardToMongo(household, award) {
+
+      let maxScore = 0;
+      let winner = null;
+      let scores = {};
+
+      household.users.map(u=>{
+
+          scores[u.id] = u.score;
+
+          if(u.score == maxScore)
+              winner = null;
+          else if(u.score > maxScore){
+              winner = u.id;
+              maxScore = u.score;
+          }
+      });
+
+        let newFinishedAward = FinishedAward({
+            id: award.id,
+            name: award.name,
+            description: award.description,
+            month: award.month,
+            winner_id: winner,
+            household_id: award.household_id,
+            users: scores,
+            creator_id: award.creator_id
+        });
+
+        newFinishedAward.save(function (err) {
+            if (err) console.log(err);
+        })
+    };
 }
 
 module.exports = Award;
