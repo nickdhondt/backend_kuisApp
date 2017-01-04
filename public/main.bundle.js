@@ -61,7 +61,7 @@ var Contract = (function () {
     ], Contract);
     return Contract;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contract.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contract.js.map
 
 /***/ },
 
@@ -174,6 +174,7 @@ var ApiService = (function () {
                 _this.headers.set('Firebase-ID-Token', token);
                 return _this._http.get(_this.actionUrl + "userbyuid/" + null, { headers: _this.headers })
                     .map(function (response) {
+                    // console.log(response.json());
                     var user = response.json();
                     if (user.household) {
                         for (var u in user.household.users) {
@@ -221,35 +222,6 @@ var ApiService = (function () {
         });
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].fromPromise(tokenPromise);
     };
-    ApiService.prototype.addFinishedAward = function () {
-        var _this = this;
-        var data = 'Test';
-        var tokenPromise = new Promise(function (resolve, reject) {
-            _this.auth.token.then(function (token) {
-                _this.headers.set("Firebase-ID-Token", token);
-                return _this._http.post(_this.actionUrl + "finishaward", { data: data }, { headers: _this.headers })
-                    .map(function (res) { return res.json(); })
-                    .catch(ApiService.handleError)
-                    .subscribe(function (data) { return console.log(data); });
-            });
-        });
-    };
-    // public addAward(description: string, name: string, month: string, winner_id: number, creator_id: number, household_id: number): Observable<Award> {
-    //
-    //     let tokenPromise = new Promise<Award>((resolve, reject) => {
-    //         this.auth.token.then(token => {
-    //             this.headers.set("Firebase-ID-Token", token);
-    //             return this._http.post(
-    //                 this.actionUrl + "addaward",
-    //                 {description, name, month, winner_id, creator_id, household_id},
-    //                 {headers: this.headers})
-    //                 .map(res => res.json())
-    //                 .catch(ApiService.handleError)
-    //                 .subscribe(data => console.log(" Add award Data: " + data))
-    //         })
-    //     });
-    //     return Observable.fromPromise(tokenPromise);
-    // }
     ApiService.prototype.getHouseholdbyEmail = function (email) {
         var _this = this;
         var tokenPromise = new Promise(function (resolve, reject) {
@@ -392,7 +364,7 @@ var ApiService = (function () {
     return ApiService;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/api.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/api.service.js.map
 
 /***/ },
 
@@ -425,7 +397,7 @@ var Task = (function () {
     };
     return Task;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task.model.js.map
 
 /***/ },
 
@@ -495,7 +467,7 @@ var SocketService = (function () {
     return SocketService;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/socket.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/socket.service.js.map
 
 /***/ },
 
@@ -524,7 +496,6 @@ var UpdateHouseholdOverviewService = (function () {
         this.householdUpdated$ = this.updateHouseholdNeededSource.asObservable();
     }
     UpdateHouseholdOverviewService.prototype.updateHouseholdNeeded = function () {
-        console.log("request received");
         this.updateHouseholdNeededSource.next(true);
     };
     UpdateHouseholdOverviewService = __decorate([
@@ -533,7 +504,7 @@ var UpdateHouseholdOverviewService = (function () {
     ], UpdateHouseholdOverviewService);
     return UpdateHouseholdOverviewService;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/update-household-overview.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/update-household-overview.service.js.map
 
 /***/ },
 
@@ -564,7 +535,7 @@ var Award = (function () {
     };
     return Award;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.model.js.map
 
 /***/ },
 
@@ -601,7 +572,7 @@ var UpdateTaskListService = (function () {
     ], UpdateTaskListService);
     return UpdateTaskListService;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/update-task-list.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/update-task-list.service.js.map
 
 /***/ },
 
@@ -628,13 +599,13 @@ var AppComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(873),
-            styles: [__webpack_require__(856)]
+            styles: [__webpack_require__(857)]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.component.js.map
 
 /***/ },
 
@@ -704,7 +675,7 @@ var AppRoutingModule = (function () {
     ], AppRoutingModule);
     return AppRoutingModule;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.routes.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.routes.js.map
 
 /***/ },
 
@@ -756,14 +727,14 @@ var AllTasksComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-all-tasks',
             template: __webpack_require__(874),
-            styles: [__webpack_require__(857)]
+            styles: [__webpack_require__(858)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__["a" /* UpdateTaskListService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__["a" /* UpdateTaskListService */]) === 'function' && _b) || Object])
     ], AllTasksComponent);
     return AllTasksComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/all-tasks.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/all-tasks.component.js.map
 
 /***/ },
 
@@ -796,14 +767,14 @@ var HomeComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
             template: __webpack_require__(883),
-            styles: [__webpack_require__(861)]
+            styles: [__webpack_require__(862)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], HomeComponent);
     return HomeComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.component.js.map
 
 /***/ },
 
@@ -864,7 +835,7 @@ var HouseholdComponent = (function () {
     return HouseholdComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.component.js.map
 
 /***/ },
 
@@ -918,14 +889,14 @@ var TasksTodoComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasks-todo',
             template: __webpack_require__(903),
-            styles: [__webpack_require__(868)]
+            styles: [__webpack_require__(869)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]) === 'function' && _b) || Object])
     ], TasksTodoComponent);
     return TasksTodoComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-todo.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-todo.component.js.map
 
 /***/ },
 
@@ -955,7 +926,7 @@ var User = (function () {
     };
     return User;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user.model.js.map
 
 /***/ },
 
@@ -1011,14 +982,14 @@ var LoginComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-login',
             template: __webpack_require__(907),
-            styles: [__webpack_require__(871)]
+            styles: [__webpack_require__(856)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], LoginComponent);
     return LoginComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/login.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/login.component.js.map
 
 /***/ },
 
@@ -1053,7 +1024,7 @@ var NotFoundComponent = (function () {
     ], NotFoundComponent);
     return NotFoundComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/not-found.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/not-found.component.js.map
 
 /***/ },
 
@@ -1113,7 +1084,7 @@ var AuthGuard = (function () {
     return AuthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.guard.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.guard.js.map
 
 /***/ },
 
@@ -1169,7 +1140,7 @@ var UnauthGuard = (function () {
     return UnauthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/unauth.guard.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/unauth.guard.js.map
 
 /***/ },
 
@@ -1206,7 +1177,7 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/main.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/main.js.map
 
 /***/ },
 
@@ -1324,7 +1295,7 @@ var AuthService = (function () {
     return AuthService;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.service.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.service.js.map
 
 /***/ },
 
@@ -1356,7 +1327,7 @@ var Household = (function () {
     };
     return Household;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.model.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.model.js.map
 
 /***/ },
 
@@ -1453,7 +1424,7 @@ var AppModule = (function () {
     ], AppModule);
     return AppModule;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.module.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.module.js.map
 
 /***/ },
 
@@ -1519,7 +1490,7 @@ var TaskRowComponent = (function () {
     return TaskRowComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task-row.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task-row.component.js.map
 
 /***/ },
 
@@ -1598,14 +1569,14 @@ var TasklistComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-tasklist',
             template: __webpack_require__(876),
-            styles: [__webpack_require__(858)],
+            styles: [__webpack_require__(859)],
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], TasklistComponent);
     return TasklistComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasklist.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasklist.component.js.map
 
 /***/ },
 
@@ -1652,7 +1623,7 @@ var ChatComponent = (function () {
     return ChatComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/chat.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/chat.component.js.map
 
 /***/ },
 
@@ -1705,7 +1676,7 @@ var MessageFormComponent = (function () {
     return MessageFormComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-form.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-form.component.js.map
 
 /***/ },
 
@@ -1744,7 +1715,7 @@ var MessageItemComponent = (function () {
     ], MessageItemComponent);
     return MessageItemComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-item.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-item.component.js.map
 
 /***/ },
 
@@ -1814,7 +1785,7 @@ var MessageListComponent = (function () {
     return MessageListComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-list.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-list.component.js.map
 
 /***/ },
 
@@ -1843,13 +1814,13 @@ var FooterComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-footer',
             template: __webpack_require__(881),
-            styles: [__webpack_require__(859)]
+            styles: [__webpack_require__(860)]
         }), 
         __metadata('design:paramtypes', [])
     ], FooterComponent);
     return FooterComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/footer.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/footer.component.js.map
 
 /***/ },
 
@@ -1878,13 +1849,13 @@ var HeaderComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-header',
             template: __webpack_require__(882),
-            styles: [__webpack_require__(860)]
+            styles: [__webpack_require__(861)]
         }), 
         __metadata('design:paramtypes', [])
     ], HeaderComponent);
     return HeaderComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/header.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/header.component.js.map
 
 /***/ },
 
@@ -2054,7 +2025,7 @@ var HomeModule = (function () {
     ], HomeModule);
     return HomeModule;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.module.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.module.js.map
 
 /***/ },
 
@@ -2136,7 +2107,7 @@ var AwardDetailComponent = (function () {
     return AwardDetailComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award-detail.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award-detail.component.js.map
 
 /***/ },
 
@@ -2203,14 +2174,14 @@ var AwardComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-award',
             template: __webpack_require__(885),
-            styles: [__webpack_require__(862)]
+            styles: [__webpack_require__(863)]
         }), 
         __metadata('design:paramtypes', [])
     ], AwardComponent);
     return AwardComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.component.js.map
 
 /***/ },
 
@@ -2293,7 +2264,7 @@ var NewAwardComponent = (function () {
     return NewAwardComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-award.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-award.component.js.map
 
 /***/ },
 
@@ -2368,14 +2339,14 @@ var HouseholdOverviewComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-household-overview',
             template: __webpack_require__(887),
-            styles: [__webpack_require__(863)]
+            styles: [__webpack_require__(864)]
         }), 
         __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]) === 'function' && _d) || Object])
     ], HouseholdOverviewComponent);
     return HouseholdOverviewComponent;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household-overview.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household-overview.component.js.map
 
 /***/ },
 
@@ -2453,7 +2424,7 @@ var UserDetailComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-detail',
             template: __webpack_require__(888),
-            styles: [__webpack_require__(864)],
+            styles: [__webpack_require__(865)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -2471,7 +2442,7 @@ var UserDetailComponent = (function () {
     return UserDetailComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-detail.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-detail.component.js.map
 
 /***/ },
 
@@ -2510,14 +2481,14 @@ var UserImgComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-user-img',
             template: __webpack_require__(889),
-            styles: [__webpack_require__(865)]
+            styles: [__webpack_require__(866)]
         }), 
         __metadata('design:paramtypes', [])
     ], UserImgComponent);
     return UserImgComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-img.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-img.component.js.map
 
 /***/ },
 
@@ -2559,7 +2530,7 @@ var ChartsComponent = (function () {
     return ChartsComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/charts.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/charts.component.js.map
 
 /***/ },
 
@@ -2684,7 +2655,7 @@ var ContributionDonutComponent = (function () {
     return ContributionDonutComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contribution-donut.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contribution-donut.component.js.map
 
 /***/ },
 
@@ -2854,7 +2825,7 @@ var EvolutionLineComponent = (function () {
     return EvolutionLineComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/evolution-line.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/evolution-line.component.js.map
 
 /***/ },
 
@@ -3017,7 +2988,7 @@ var FinishedBarComponent = (function () {
     return FinishedBarComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/finished-bar.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/finished-bar.component.js.map
 
 /***/ },
 
@@ -3141,7 +3112,7 @@ var TasksDonutComponent = (function () {
     return TasksDonutComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-donut.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-donut.component.js.map
 
 /***/ },
 
@@ -3232,7 +3203,7 @@ var JoinHouseholdDetailComponent = (function () {
     return JoinHouseholdDetailComponent;
     var _a, _b, _c, _d, _e, _f;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/join-household-detail.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household-detail.component.js.map
 
 /***/ },
 
@@ -3321,7 +3292,7 @@ var JoinHouseholdComponent = (function () {
     return JoinHouseholdComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/join-household.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household.component.js.map
 
 /***/ },
 
@@ -3410,7 +3381,7 @@ var LeaveHouseholdComponent = (function () {
     return LeaveHouseholdComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/leave-household.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/leave-household.component.js.map
 
 /***/ },
 
@@ -3501,7 +3472,7 @@ var NewHouseholdComponent = (function () {
     return NewHouseholdComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-household.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-household.component.js.map
 
 /***/ },
 
@@ -3574,7 +3545,7 @@ var AboutComponentComponent = (function () {
     return AboutComponentComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/about-component.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/about-component.component.js.map
 
 /***/ },
 
@@ -3620,14 +3591,14 @@ var NavigationComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-navigation',
             template: __webpack_require__(901),
-            styles: [__webpack_require__(866)]
+            styles: [__webpack_require__(867)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], NavigationComponent);
     return NavigationComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/navigation.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/navigation.component.js.map
 
 /***/ },
 
@@ -3705,8 +3676,8 @@ var TaskdetailComponent = (function () {
         this.visibleChange.emit(this.visible);
     };
     TaskdetailComponent.prototype.close = function () {
-        // let stateObj = { foo: history.state.foo };
-        // history.replaceState(stateObj, "back", history.state.foo);
+        var stateObj = { foo: history.state.foo };
+        history.replaceState(stateObj, "back", history.state.foo);
         this.back();
     };
     TaskdetailComponent.prototype.add = function () {
@@ -3764,7 +3735,7 @@ var TaskdetailComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-taskdetail',
             template: __webpack_require__(902),
-            styles: [__webpack_require__(867)],
+            styles: [__webpack_require__(868)],
             animations: [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('dialog', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
@@ -3782,7 +3753,7 @@ var TaskdetailComponent = (function () {
     return TaskdetailComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/taskdetail.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/taskdetail.component.js.map
 
 /***/ },
 
@@ -3852,6 +3823,8 @@ var TasktodoRowComponent = (function () {
         this.socketService.taskUpdates().subscribe(function (data) {
             if (!_this.isDestroyed && data.taskID === _this.task.id) {
                 if (data.done) {
+                    console.log("this task is done");
+                    console.log(data.taskID);
                     _this.updateHouseholdOverviewService.updateHouseholdNeeded();
                     _this.state = "finished";
                     _this.finish.emit(_this.task);
@@ -3914,7 +3887,7 @@ var TasktodoRowComponent = (function () {
     return TasktodoRowComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasktodo-row.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasktodo-row.component.js.map
 
 /***/ },
 
@@ -3981,14 +3954,14 @@ var TodolistComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-todolist',
             template: __webpack_require__(905),
-            styles: [__webpack_require__(869)]
+            styles: [__webpack_require__(870)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], TodolistComponent);
     return TodolistComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/todolist.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/todolist.component.js.map
 
 /***/ },
 
@@ -4002,7 +3975,7 @@ var TodolistComponent = (function () {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
 
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/index.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/index.js.map
 
 /***/ },
 
@@ -4031,13 +4004,13 @@ var LoaderSmallComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-loader-small',
             template: __webpack_require__(906),
-            styles: [__webpack_require__(870)]
+            styles: [__webpack_require__(871)]
         }), 
         __metadata('design:paramtypes', [])
     ], LoaderSmallComponent);
     return LoaderSmallComponent;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/loader-small.component.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/loader-small.component.js.map
 
 /***/ },
 
@@ -4053,7 +4026,7 @@ var LoaderSmallComponent = (function () {
 var environment = {
     production: false
 };
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/environment.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/environment.js.map
 
 /***/ },
 
@@ -4119,7 +4092,7 @@ var SortUsersPipe = (function () {
     ], SortUsersPipe);
     return SortUsersPipe;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/sort-users.pipe.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/sort-users.pipe.js.map
 
 /***/ },
 
@@ -4185,7 +4158,7 @@ var SortPipe = (function () {
     ], SortPipe);
     return SortPipe;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/sort.pipe.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/sort.pipe.js.map
 
 /***/ },
 
@@ -4221,7 +4194,7 @@ var TasksFilterPipe = (function () {
     ], TasksFilterPipe);
     return TasksFilterPipe;
 }());
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-filter.pipe.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-filter.pipe.js.map
 
 /***/ },
 
@@ -4277,7 +4250,7 @@ var TasksFilterPipe = (function () {
 
 
 
-//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/polyfills.js.map
+//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/polyfills.js.map
 
 /***/ },
 
@@ -4410,21 +4383,21 @@ module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  lef
 /***/ 855:
 /***/ function(module, exports) {
 
-module.exports = "\n"
+module.exports = "\r\n"
 
 /***/ },
 
 /***/ 856:
 /***/ function(module, exports) {
 
-module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
+module.exports = ".container {\n  background: url(\"../../assets/login_background.jpg\") no-repeat center;\n  background-size: cover;\n  height: 100vh;\n  min-width: 100vw;\n  max-width: 100vw;\n  margin: 0;\n  padding: 0;\n  top: 0;\n  left: 0;\n  right: 0;\n  overflow: hidden; }\n\nbutton {\n  display: block;\n  margin: 0 auto;\n  margin-bottom: 15px;\n  width: 250px; }\n\n.content-login {\n  margin-top: 15%; }\n\nh4 {\n  font-size: 4rem;\n  font-family: 'Raleway', sans-serif; }\n"
 
 /***/ },
 
 /***/ 857:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*@media all and (min-width: 992px){*/\r\n/*body{*/\r\n/*background-color: yellow;*/\r\n/*}*/\r\n/*app-header{*/\r\n/*display: none;*/\r\n/*}*/\r\n/*}*/"
 
 /***/ },
 
@@ -4438,21 +4411,21 @@ module.exports = ""
 /***/ 859:
 /***/ function(module, exports) {
 
-module.exports = "ul li a:hover i{\r\n  color: indianred;\r\n}\r\ni .material-icons{\r\n  -webkit-transition: color 0.5s ease;\r\n  transition: color 0.5s ease;\r\n  position: relative;\r\n  top:6px;\r\n}\r\n.fa{\r\n  margin-left: 10px;\r\n  position: relative;\r\n  top:-1px;\r\n  float: right;\r\n  right: 40%;\r\n}\r\n.fa-briefcase{\r\n  color: whitesmoke;\r\n}\r\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 860:
 /***/ function(module, exports) {
 
-module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
+module.exports = "ul li a:hover i{\r\n  color: indianred;\r\n}\r\nul li {\r\n  margin-bottom: 5px;\r\n}\r\ni .material-icons{\r\n  -webkit-transition: color 0.5s ease;\r\n  transition: color 0.5s ease;\r\n  position: relative;\r\n  top:6px;\r\n}\r\n.fa{\r\n  margin-left: 10px;\r\n  position: relative;\r\n  top:-1px;\r\n  float: right;\r\n  right: 40%;\r\n}\r\n.fa-briefcase{\r\n  color: whitesmoke;\r\n}\r\n.col{\r\n  margin-top: 30px;\r\n\r\n}\r\n"
 
 /***/ },
 
 /***/ 861:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = "/*.brand-logo{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*}*/"
 
 /***/ },
 
@@ -4473,35 +4446,35 @@ module.exports = ""
 /***/ 864:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
+module.exports = ""
 
 /***/ },
 
 /***/ 865:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n}\r\n\r\n.dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    /*background-color: #fff;*/\r\n    /*padding: 12px;*/\r\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .dialog {\r\n        top: 40px;\r\n    }\r\n}"
 
 /***/ },
 
 /***/ 866:
 /***/ function(module, exports) {
 
-module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
+module.exports = ""
 
 /***/ },
 
 /***/ 867:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
+module.exports = "/*.logo a{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*margin-bottom: 5%;*/\r\n/*margin-top: 5%;*/\r\n/*}*/\r\n\r\n\r\n"
 
 /***/ },
 
 /***/ 868:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n}\r\n\r\n.dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    /*background-color: #fff;*/\r\n    /*padding: 12px;*/\r\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .dialog {\r\n        top: 40px;\r\n    }\r\n}"
 
 /***/ },
 
@@ -4522,7 +4495,7 @@ module.exports = ""
 /***/ 871:
 /***/ function(module, exports) {
 
-module.exports = ".container{\r\n  background: url(\"../../assets/login_background.jpg\") no-repeat center;\r\n\r\n  height: 100vh;\r\n  min-width: 100vw;\r\n  max-width: 100vw;\r\n  margin: 0;\r\n  padding: 0;\r\n  top: 0;\r\n  left:0;\r\n  right: 0;\r\n  overflow: hidden;\r\n}\r\nbutton{\r\n  display: block;\r\n  margin: 0 auto;\r\n  margin-bottom: 15px;\r\n\r\n  width: 250px;\r\n}\r\n.content-login{\r\n  margin-top: 15%;\r\n}\r\n\r\nh4{\r\n  font-size:4rem ;\r\n  font-family: 'Raleway', sans-serif;\r\n}\r\n"
+module.exports = ""
 
 /***/ },
 
@@ -4557,35 +4530,35 @@ module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n
 /***/ 876:
 /***/ function(module, exports) {
 
-module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\n"
+module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\r\n\r\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\r\n\r\n    <nav class=\"amber\">\r\n        <div class=\"nav-wrapper\">\r\n            <form>\r\n                <div class=\"input-field\">\r\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\r\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\r\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </nav>\r\n\r\n    <div class=\"collection-item\"\r\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\r\n\r\n\r\n        <app-task-row\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"task\"\r\n                [user]=\"user(task.assigned_to)\"></app-task-row>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasks.length == 0\">\r\n\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have no tasks, what are you even doing!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\r\n"
 
 /***/ },
 
 /***/ 877:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
+module.exports = "<div class=\"no-margin card-panel chat-panel\">\r\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\r\n\r\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ },
 
 /***/ 878:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
+module.exports = "<div class=\"chat-form\">\r\n    <form>\r\n        <div class=\"row no-margin\">\r\n            <div class=\"input-field col s10 no-margin no-padding\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\"\r\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\r\n                    <i class=\"material-icons\">send</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
 
 /***/ },
 
 /***/ 879:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"row no-margin\">\r\n    <div class=\"col s12 no-padding\">\r\n        <div class=\"card blue lighten-4 no-margin\">\r\n            <div class=\"card-content\">\r\n                <p>{{message.message}}</p>\r\n            </div>\r\n            <div class=\"card-action\">\r\n                <span>{{message.user.name}} {{message.user.lname}}</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 880:
 /***/ function(module, exports) {
 
-module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
+module.exports = "<!--<p>Messages in Houshold:</p>-->\r\n<ul class=\"chat-list\" #scrollMe>\r\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\r\n</ul>\r\n\r\n\r\n\r\n"
 
 /***/ },
 
@@ -4599,28 +4572,28 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
 /***/ 882:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
+module.exports = "<nav class=\"yellow darken-2\">\r\n  <div class=\"nav-wrapper\">\r\n\r\n      <ul class=\"right hide-on-med-and-down\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n\r\n    <ul class=\"side-nav\" id=\"mobile-demo\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\r\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\r\n    <script>\r\n\r\n    </script>\r\n  </div>\r\n\r\n\r\n</nav>\r\n\r\n\r\n"
 
 /***/ },
 
 /***/ 883:
 /***/ function(module, exports) {
 
-module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>\r\n\r\n<main>\r\n    <div class=\"row\">\r\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <aside class=\"chat-bottom card\">\r\n            <app-chat></app-chat>\r\n        </aside>\r\n    </div>\r\n</main>\r\n\r\n<footer class=\"background yellow darken-3\">\r\n    <app-footer></app-footer>\r\n</footer>\r\n"
+module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>\r\n\r\n<main>\r\n    <div class=\"row\">\r\n        <div class=\"col s12 l12\" style=\"min-height: 100vh;\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <aside class=\"chat-bottom card\">\r\n            <app-chat></app-chat>\r\n        </aside>\r\n    </div>\r\n</main>\r\n\r\n<footer class=\"background yellow darken-2\">\r\n    <app-footer></app-footer>\r\n</footer>\r\n"
 
 /***/ },
 
 /***/ 884:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">{{award.name}}</span>\r\n        <div class=\"row no-margin\">\r\n          <form class=\"col s12\">\r\n              <div class=\"row no-margin\">\r\n\r\n                  <div class=\"input-field col s12 m9\">\r\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\r\n                            <label for=\"award_description\" class=\"active\">Description</label>\r\n                       </div>\r\n                  <div class=\"input-field col s12 m3\">\r\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\r\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\r\n                    </div>\r\n                </div>\r\n          </form>\r\n    </div>\r\n  </div>\r\n    <!--<div class=\"card-action\">-->\r\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\r\n\r\n    <!--</div>-->\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 885:
 /***/ function(module, exports) {
 
-module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\r\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\r\n\r\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\r\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\r\n</div>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\"></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
@@ -4648,42 +4621,42 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 889:
 /***/ function(module, exports) {
 
-module.exports = "<figure class=\"\" style=\"margin: 0\">\r\n\r\n    <div style=\"position: relative\">\r\n\r\n        <div class=\"chip\"\r\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\r\n             style=\"position: absolute; top:-10px; left:0;\">\r\n            {{user.score || '0'}}\r\n        </div>\r\n\r\n        <div class=\"hoverable circle z-depth-1\"\r\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\r\n            <img src=\"{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}\" class=\"responsive-img\">\r\n        </div>\r\n    </div>\r\n\r\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\r\n\r\n</figure>\r\n"
+module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"position: relative\">\n\n        <div class=\"chip\"\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\n             style=\"position: absolute; top:-10px; left:0;\">\n            {{user.score || '0'}}\n        </div>\n\n        <div class=\"hoverable circle z-depth-1\"\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\n            <img src=\"{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}\" class=\"responsive-img\">\n        </div>\n    </div>\n\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\n\n</figure>\n"
 
 /***/ },
 
 /***/ 890:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\r\n</div>\r\n<div class=\"row\">\r\n\r\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\r\n\r\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\r\n\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\">\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\n</div>\n<div class=\"row\">\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\n</div>\n<div class=\"row\">\n\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\n\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\n\n</div>\n\n"
 
 /***/ },
 
 /***/ 891:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Contribution</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 892:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution evolution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Contribution evolution</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 893:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished vs canceled</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Finished vs canceled</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 894:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished tasks</span>\r\n\r\n        <x-chartist  [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Finished tasks</span>\n\n        <x-chartist  [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n\n    </div>\n</div>"
 
 /***/ },
 
@@ -4725,7 +4698,7 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  
 /***/ 900:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">About</span>\r\n        <div class=\"row\">\r\n            <h5>The Cleansing application</h5>\r\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\r\n            <h5>Licensing</h5>\r\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\r\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\r\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-action\">\r\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
@@ -4753,14 +4726,14 @@ module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\
 /***/ 904:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\r\n    <div class=\"col flex-down-center\">\r\n\r\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\r\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\r\n\r\n    </div>\r\n    <div class=\"col\" style=\"flex-grow: 1\">\r\n        <span class=\"title\">{{task.name}}</span>\r\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\r\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\r\n\r\n\r\n    </div>\r\n    <div class=\"col flex-down\">\r\n        <div class=\"flex-wrap-end\"\r\n             style=\"align-self: flex-start\">\r\n\r\n            <a class=\"tooltipped\"\r\n               (click)=\"finishClick()\"\r\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n                <i class=\"material-icons\">done</i></a>\r\n            <a class=\"tooltipped\"\r\n               (click)=\"showDetailClick()\"\r\n               materialize=\"tooltip\"\r\n               data-position=\"bottom\"\r\n               data-delay=\"20\"\r\n               data-tooltip=\"edit\">\r\n                <i class=\"material-icons\">mode_edit</i></a>\r\n            <a class=\"tooltipped\"\r\n               (click)=\"cancelClick()\"\r\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n                <i class=\"material-icons\">cancel</i></a>\r\n\r\n        </div>\r\n        <span class=\"chip\">{{task.points}} points</span>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 905:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n\r\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\r\n\r\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\r\n\r\n        <!--<div style=\"position:absolute; z-index: 10\">-->\r\n        <!--<a class=\"btn\">test</a>-->\r\n        <!--</div>-->\r\n\r\n        <app-tasktodo-row\r\n                (cancel)=\"cancel($event, i)\"\r\n                (finish)=\"finish($event, i)\"\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"tasktodo\"\r\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasksTodo.length == 0\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have nothing to do, go make some tasks!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail *ngIf=\"selectedTask\" [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\n\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\n\n        <!--<div style=\"position:absolute; z-index: 10\">-->\n        <!--<a class=\"btn\">test</a>-->\n        <!--</div>-->\n\n        <app-tasktodo-row\n                (cancel)=\"cancel($event, i)\"\n                (finish)=\"finish($event, i)\"\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"tasktodo\"\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\n\n\n    </div>\n</div>\n\n<div *ngIf=\"tasksTodo.length == 0\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have nothing to do, go make some tasks!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail *ngIf=\"selectedTask\" [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
 
 /***/ },
 
@@ -4774,7 +4747,7 @@ module.exports = "<div class=\"center-align\" style=\"margin-top: 150px\">\n    
 /***/ 907:
 /***/ function(module, exports) {
 
-module.exports = "\r\n\r\n\r\n<div class=\"container \">\r\n  <div class=\"content-login\">\r\n  <div class=\"row \">\r\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\r\n      <h4 class=\"center-align white-text\">The Cleansing</h4>\r\n      </div>\r\n  </div>\r\n  <div class=\"row \">\r\n  <div class=\"col s12 m6 l4 offset-m4 offset-l4 \">\r\n  <button class=\"btn center-align\" (click)=\"loginFacebook()\">Login With Facebook</button>\r\n  <button class=\"btn center-align\" (click)=\"loginGoogle()\">Login With Google</button>\r\n\r\n\r\n\r\n  </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n\r\n\r\n<div class=\"container \">\r\n  <div class=\"content-login\">\r\n  <div class=\"row \">\r\n    <div class=\"col s12 m6 l4 offset-m3 offset-l4\">\r\n      <h4 class=\"center-align white-text\">The Cleansing</h4>\r\n      </div>\r\n  </div>\r\n  <div class=\"row \">\r\n  <div class=\"col s12 m6 l4 offset-m3 offset-l4 \">\r\n  <button class=\"btn center-align\" (click)=\"loginFacebook()\">Login with Facebook</button>\r\n  <button class=\"btn center-align\" (click)=\"loginGoogle()\">Sign in with Google</button>\r\n\r\n\r\n\r\n  </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ },
 
