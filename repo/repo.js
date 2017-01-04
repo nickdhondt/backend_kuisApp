@@ -100,7 +100,7 @@ class getUser {
             }
         });
 
-    let res = "It's a draw between: ";
+    let res = "It was a draw between: ";
 
     for(let i=0; i<winners.length; i++) {
         res += winners[i];
