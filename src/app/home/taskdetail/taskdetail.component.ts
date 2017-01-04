@@ -29,15 +29,15 @@ export class TaskdetailComponent implements OnInit {
     @Input() users: User[];
     @Input() closable = true;
     @Input() visible: boolean;
-    @Input() newTask:Boolean = false;
+    @Input() newTask: Boolean = false;
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    private usersLocal:User[];
-    private taskLocal:Task;
+    private usersLocal: User[];
+    private taskLocal: Task;
 
-    constructor(private apiService:ApiService, private location:PlatformLocation, private updateTaskListService:UpdateTaskListService) {
+    constructor(private apiService: ApiService, private location: PlatformLocation, private updateTaskListService: UpdateTaskListService) {
 
-        location.onPopState((event)=>{
+        location.onPopState((event) => {
             this.back();
         })
     }
@@ -46,19 +46,21 @@ export class TaskdetailComponent implements OnInit {
         if (this.task === undefined) this.task = new Task();
         this.taskLocal = _.clone(this.task);
 
-        let doMeUserSet:Boolean = false;
+        if (this.users) {
+            let doMeUserSet: Boolean = false;
 
-        for(let user of this.users) {
-            if (user.id === null) doMeUserSet = true;
-        }
+            for (let user of this.users) {
+                if (user.id === null) doMeUserSet = true;
+            }
 
-        if (this.users !== undefined && !doMeUserSet) {
-            this.usersLocal = _.map(this.users, _.clone);
-            let doMeUser = new User;
-            doMeUser.name = "everyone";
-            doMeUser.id = null;
+            if (this.users !== undefined && !doMeUserSet) {
+                this.usersLocal = _.map(this.users, _.clone);
+                let doMeUser = new User;
+                doMeUser.name = "everyone";
+                doMeUser.id = null;
 
-            this.usersLocal.push(doMeUser);
+                this.usersLocal.push(doMeUser);
+            }
         }
     }
 
@@ -69,12 +71,13 @@ export class TaskdetailComponent implements OnInit {
         }
     }
 
-    back(){
+    back() {
         this.visible = false;
         this.visibleChange.emit(this.visible);
     }
+
     close() {
-        let stateObj = { foo: history.state.foo };
+        let stateObj = {foo: history.state.foo};
         history.replaceState(stateObj, "back", history.state.foo);
 
         this.back();
@@ -83,27 +86,29 @@ export class TaskdetailComponent implements OnInit {
     add() {
 
 
-        if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             console.log(this.taskLocal);
 
-            this.apiService.addTask(this.taskLocal).subscribe((data)=>{
+            this.apiService.addTask(this.taskLocal).subscribe((data) => {
                 this.updateTaskListService.updateListNeeded();
                 this.close();
             });
         }
     }
-    save(){
 
-        if(moment(this.taskLocal.dueDate).isValid() && this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+    save() {
+
+        if (moment(this.taskLocal.dueDate).isValid() && this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             this.task = this.taskLocal;
-            this.apiService.updateTask(this.task).subscribe((data)=>{
+            this.apiService.updateTask(this.task).subscribe((data) => {
                 this.updateTaskListService.updateListNeeded();
                 this.close();
             });
         }
     }
-    deleteTask(){
-        this.apiService.deleteTask(this.task.id).subscribe((data)=>{
+
+    deleteTask() {
+        this.apiService.deleteTask(this.task.id).subscribe((data) => {
             this.updateTaskListService.updateListNeeded();
             this.close()
         });
