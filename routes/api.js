@@ -383,6 +383,9 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 //controle door:
 router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next) {
+
+
+
     process.on("mysqlError", (err) => {
         return next(err);
     });

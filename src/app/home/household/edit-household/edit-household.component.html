@@ -1,0 +1,22 @@
+<div [@dialog] *ngIf="visible" class="card dialog" >
+  <!--<ng-content></ng-content>-->
+  <div class="card-content">
+    <span class="card-title center">Edit household</span>
+    <div class="row">
+      <form class="col s12">
+        <div class="input-field col s12 l9">
+          <i class="material-icons prefix">home</i>
+          <input  [(ngModel)]="household.name" name="householdname"   id="household_name"  type="text" class="validate" required >
+          <label for="household_name" class="active">Household Name</label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card-action">
+    <a></a>
+    <a (click)="save()" class="right" aria-label="Join">save changes</a>
+    <a (click)="close()" class="right" aria-label="close">cancel</a>
+  </div>
+</div>
+
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

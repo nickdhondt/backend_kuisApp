@@ -45,6 +45,8 @@ import {TasksDonutComponent} from "./household/charts/tasks-donut/tasks-donut.co
 import {ChartsModule} from "ng2-charts";
 import { AboutComponentComponent } from './navigation/about-component/about-component.component';
 import { LeaveHouseholdComponent } from './household/leave-household/leave-household.component';
+import { EditHouseholdComponent } from './household/edit-household/edit-household.component';
+
 
 
 @NgModule({
@@ -87,6 +89,8 @@ import { LeaveHouseholdComponent } from './household/leave-household/leave-house
         TasksDonutComponent,
         AboutComponentComponent,
         LeaveHouseholdComponent,
+        EditHouseholdComponent,
+
     ],
     imports: [
         RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule, ChartsModule

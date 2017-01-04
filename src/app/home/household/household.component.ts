@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {User} from "../../../models/user.model";
 import {ApiService} from "../../../service/api.service";
 import {UpdateHouseholdOverviewService} from "../../../service/update-household-overview.service";
+import {Household} from "../../../models/household.model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-household',
@@ -11,18 +13,23 @@ import {UpdateHouseholdOverviewService} from "../../../service/update-household-
 export class HouseholdComponent implements OnInit {
 
     showDialogLeave: boolean = false;
+    showDialogEdit : boolean = false;
+
 
     ngOnInit(): void {
         this.getUser();
         this.updateHouseholdOverviewService.householdUpdated$.subscribe((data) => {
             this.getUser()
         });
+
+
     }
 
     user: User;
     loading: Boolean = true;
+    currenthousehold : Household;
 
-    constructor(private apiSevice: ApiService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService) {
+    constructor(private apiSevice: ApiService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, public router:Router) {
 
     }
 
@@ -33,6 +40,7 @@ export class HouseholdComponent implements OnInit {
                 data => {
                     this.user = data;
                     this.loading = false;
+                    this.currenthousehold=data.household;
                 },
                 error => console.log(error)
             );
@@ -40,5 +48,12 @@ export class HouseholdComponent implements OnInit {
 
     updateHouseholdComponent(user) {
         this.user = user;
+    }
+
+    openHouseholdDetailPopup(user){
+      this.showDialogEdit = !this.showDialogEdit;
+
+      let stateObj = { foo: this.router.url };
+      history.pushState(stateObj, "popup", "currenthousehold");
     }
 }
