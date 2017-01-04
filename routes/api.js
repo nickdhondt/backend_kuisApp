@@ -950,6 +950,7 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
 //controle door: bart the almighty (en nee, het werkte niet)
 router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
 
+
     process.on("mysqlError", (err) => {
         return next(err);
     });

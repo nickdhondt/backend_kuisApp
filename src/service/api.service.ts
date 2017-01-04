@@ -28,7 +28,7 @@ export class ApiService {
 
     private static handleError(error: Response) {
         console.error(error);
-        return Observable.throw(error.json().error || 'server error...');
+        return Observable.throw(error || 'server error...');
     }
 
     public getContributions(): Observable<any> {
@@ -124,6 +124,58 @@ export class ApiService {
         });
 
         return Observable.fromPromise(tokenPromise);
+
+    }
+
+    public addTasks(tasks):Observable<Task[]>{
+
+        let tokenPromise = new Promise<any>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.post(
+                    this.actionUrl + "addtasks",tasks,
+                    {headers: this.headers})
+                    .map(res=>res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+
+
+
+
+    }
+    public importTasks(assign:boolean):Observable<any>{
+
+        let tokenPromise = new Promise<any>((resolve, reject) => {
+
+            this.auth.token.then(token => {
+
+                this.headers.set('Firebase-ID-Token', token);
+
+                return this._http.get(
+                    this.actionUrl + "importtasks/1337/"+assign,
+                    {headers: this.headers})
+                    .map(res=>res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+
+
 
     }
 

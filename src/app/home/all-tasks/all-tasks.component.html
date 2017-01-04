@@ -6,13 +6,22 @@
                   [tasks]="user.household? user.household.tasks : []"
                   [users]="user.household? user.household.users : undefined">
     </app-tasklist>
-    <div class="fixed-action-btn vertical click-to-toggle" style="margin-bottom: 4em">
-        <a class="btn-floating btn-large red" (click)="showCreateTask()">
-            <i class="material-icons">add</i>
+    <div *ngIf="user && user.household" class="fixed-action-btn vertical click-to-toggle" style="margin-bottom: 4em">
+        <a class="btn-floating btn-large red">
+            <i class="material-icons">menu</i>
         </a>
+        <ul>
+            <li>
+                <a class="btn-floating red" materialize="tooltip" data-position="left" data-delay="20" data-tooltip="create task" (click)="showCreateTask()"><i class="material-icons">add</i></a>
+            </li>
+            <li>
+                <a class="btn-floating red" materialize="tooltip" data-position="left" data-delay="20" data-tooltip="import tasks" (click)="importTasks()"><i class="material-icons">swap_vert</i></a>
+            </li>
+        </ul>
     </div>
 
 </div>
 <div *ngIf="user && user.household">
 <app-taskdetail *ngIf="user" [(visible)]="dialogVisible" [(users)]="user.household.users" [newTask]="true"></app-taskdetail>
+<app-cancel-okdialog (result)="processDialogResult($event)" [(visible)]="cancelOKVisible" [message]="dialogMessage" [title]="dialogTitle" > </app-cancel-okdialog>
 </div>
