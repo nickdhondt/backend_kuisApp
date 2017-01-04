@@ -778,7 +778,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     });
 });
 
-router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, function (req, res, next) {
+router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
 
     //let assignUsers = 7;
     //if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
