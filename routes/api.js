@@ -524,13 +524,15 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
                 finished_on: receivedTask.finished_on
             });
 
+            console.log(typeof finishedTask.finished_on + finishedTask.finished_on);
+
             finishedTask.save(function (err) {
                 if (err) {
                     console.log(err);
                     return next(err);
                 }
 
-                //checked
+                // checked
                 if (receivedTask.done) {
                     user.score += originalTask.points;
                     User.updateUser(user, () => {
@@ -562,7 +564,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
 
                 originalTask.dueDate = nextDue.format("YYYY-MM-DD");
 
-                //checked
+                // checked
                 if (originalTask.assigned_to != null) {
 
                     User.getUsersByHouseholdID(originalTask.household_id, null, function (obj, users) {

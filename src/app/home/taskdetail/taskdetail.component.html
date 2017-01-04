@@ -64,9 +64,8 @@
 
         <div *ngIf="!newTask" class="card-action">
             <a *ngIf="closable" (click)="close()" aria-label="Close" class="">close</a>
-            <a aria-label="Delete Task" (click)="deleteTask()" class="right">delete task</a>
             <a aria-label="Save Task" (click)="save()" class="right">save task</a>
-
+            <a aria-label="Delete Task" (click)="deleteTask()" class="right">delete task</a>
         </div>
         <div *ngIf="newTask" class="card-action">
             <a *ngIf="closable" (click)="close()" aria-label="Close" class="">close</a>

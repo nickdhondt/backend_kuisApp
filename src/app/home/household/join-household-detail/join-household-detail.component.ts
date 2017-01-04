@@ -3,6 +3,7 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 import {Household} from "../../../../models/household.model";
 import {ApiService} from "../../../../service/api.service";
 import {AuthService} from "../../../../auth/services/auth.service";
+import {SocketService} from "../../../../service/socket.service";
 
 @Component({
   selector: 'app-join-household-detail',
@@ -22,7 +23,7 @@ import {AuthService} from "../../../../auth/services/auth.service";
 })
 export class JoinHouseholdDetailComponent implements OnInit {
 
-  constructor(private apiService:ApiService,private auth:AuthService,private _ngZone:NgZone) {
+  constructor(private apiService:ApiService,private auth:AuthService,private _ngZone:NgZone, private socketService:SocketService) {
     this.user = auth.authState.auth;
   }
 
@@ -46,9 +47,11 @@ export class JoinHouseholdDetailComponent implements OnInit {
       this.apiService.addUsertoHousehold(this.household.id)
           .subscribe(
               user => {
+                  this.socketService.resubscribe();
                   this.visible = false;
                   this.visibleChange.emit(this.visible);
                   this.householdjoined.emit(user);
+
               },
               error => console.log(error)
           );
