@@ -128,7 +128,7 @@ router.get('/finishedcanceledstats', firebaseAuthenticator, function (req, res, 
     })
 });
 
-router.get('/householdstats', function (req, res, next) {
+router.get('/seedmongoawards', function (req, res, next) {
 
 
     let creators = [28,30,33,71];
@@ -187,6 +187,56 @@ router.get('/householdstats', function (req, res, next) {
     res.end();
 
 });
+
+router.get('/test', (req, res, next)=>{
+
+    let household_id = 37;
+    FinishedAward.aggregate([
+
+        {$match: {household_id: household_id}},
+        {$sort: {"month": -1}},
+        {
+            $group: {
+                _id: '$winner_id',
+                count: {$sum: 1},
+                last: {$first: '$name'},
+                max : {$first: '$month'},
+                users: {$first: '$users'},
+            }
+        },
+        {$sort: {"max": -1}},
+
+    ]).exec((err, stats)=>{
+
+        if (err) console.log(err);//process.emit("mysqlError", err);
+        else {
+
+            let mostAwards;
+            let max = 0;
+            let total = 0;
+            stats.map(s=>{
+                total+=s.count;
+                if(s.count > max ){
+                    mostAwards = s;
+                    max = s.count;
+                }
+            });
+
+            result = {};
+            result.mostAwardsWon = mostAwards._id || "it's mostly a draw";
+            result.countFinishedAwards = total;
+            result.lastAward = stats[0].last;
+            result.lastAwardWonBy = stats[0]._id || findwinners(stats[0].users);
+
+            res.json(result);
+            res.end();
+        }
+    });
+
+
+});
+
+
 
 router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 

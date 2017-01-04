@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
 import {User} from "../../../models/user.model";
 import {UpdateTaskListService} from "../../../service/update-task-list.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-all-tasks',
@@ -19,7 +20,7 @@ export class AllTasksComponent implements OnInit {
     user: User;
     loading: Boolean = true;
 
-    constructor(private apiSevice: ApiService, private updateTaskListService:UpdateTaskListService) {
+    constructor(private apiSevice: ApiService, private updateTaskListService:UpdateTaskListService, private router:Router) {
         updateTaskListService.listUpdated$.subscribe((data) => {
             this.getUser();
         })
@@ -35,6 +36,12 @@ export class AllTasksComponent implements OnInit {
                 },
                 error => console.log(error)
             );
+    }
+
+    showCreateTask(){
+        this.dialogVisible=!this.dialogVisible;
+        let stateObj = { foo: this.router.url };
+        history.pushState(stateObj, "popup", "task");
     }
 
 }

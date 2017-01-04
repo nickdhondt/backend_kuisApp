@@ -32,9 +32,87 @@ class getUser {
         })
     }
 
+    static getAwardStatsFromMongo(household, cb){
+
+        let household_id = 37;
+        FinishedAward.aggregate([
+
+            {$match: {household_id: household.id}},
+            {$sort: {"month": -1}},
+            {
+                $group: {
+                    _id: '$winner_id',
+                    count: {$sum: 1},
+                    last: {$first: '$name'},
+                    max : {$first: '$month'},
+                    users: {$first: '$users'},
+                }
+            },
+            {$sort: {"max": -1}},
+
+        ]).exec((err, stats)=>{
+
+            if (err) console.log(err);//process.emit("mysqlError", err);
+            else {
+
+                let mostAwards;
+                let max = 0;
+                let total = 0;
+                stats.map(s=>{
+                    total+=s.count;
+                    if(s.count > max ){
+                        mostAwards = s;
+                        max = s.count;
+                    }
+                });
+
+                let result = {};
+                result.mostAwardsWon = mostAwards._id || "it's mostly a draw";
+                result.countFinishedAwards = total;
+                result.lastAward = stats[0].last;
+                result.lastAwardWonBy = stats[0]._id || getUser.findwinners(stats[0].users, household.users);
+
+                cb(result);
+            }
+        });
+    }
+
+    static findwinners(users, householdusers){
+
+        let max = 0;
+        let winners = [];
+
+        Object.keys(users).map(k=>{
+
+            let user = householdusers.filter((u)=>{
+                if(u.id == k) return true;
+            });
+
+            if(!user[0]) user = "an old user";
+            else user = user[0].name;
+
+            if(users[k] == max)
+                winners.push(user);
+            else if(users[k] > max){
+                winners = [];
+                winners.push(user);
+                max = users[k];
+            }
+        });
+
+    let res = "It was a draw between: ";
+
+    for(let i=0; i<winners.length; i++) {
+        res += winners[i];
+        if (i < winners.length - 2) res += ", ";
+        else if (i == winners.length -2) res += " and ";
+    }
+
+    return res;
+};
+
     static getTaskStatsFromMongo(household_id, cb) {
 
-        // TODO: haal stats op uit sql
         FinishedTask
             .aggregate([
                 {$match: {household_id: household_id, done: true}},
@@ -57,10 +135,9 @@ class getUser {
                 }
             ])
             .exec(function (err, stats) {
-                if (err) next(err);
+                if (err)process.emit("mysqlError", err);
 
-                //delete stats[0]._id;
-                cb(stats[0]);
+                else cb(stats[0]);
             });
 
     }
@@ -75,23 +152,15 @@ class getUser {
 
                     getUser.getTaskStatsFromMongo(rows[0].id, (statsTasks) => {
 
-                        let statsAwards = {
-                            countFinishedAwards: 65,
-                            mostAwardsWon: "User",
-                            lastAward: "Name of award",
-                            lastAwardWonBy: "User or collection of users"
-                        };
+                            user.household = Object.assign(rows[0], statsTasks);
 
-                        user.household = Object.assign(rows[0], statsTasks, statsAwards);
-
-                        getUser.addUsersToHouseholdToUser(user, cb);
+                            getUser.addUsersToHouseholdToUser(user, cb);
 
                     });
                 }
 
             })
     }
-
 
     static addUsersToHouseholdToUser(userwithhousehold, cb) {
 
@@ -101,7 +170,14 @@ class getUser {
                 else {
 
                     userwithhousehold.household.users = rows;
-                    getUser.addTasksToHouseholdToUser(userwithhousehold, cb);
+
+                    getUser.getAwardStatsFromMongo(userwithhousehold.household, (stats)=>{
+
+                        userwithhousehold.household = Object.assign(userwithhousehold.household, stats);
+
+                        getUser.addTasksToHouseholdToUser(userwithhousehold, cb);
+                    });
+
                 }
             })
     }
@@ -113,7 +189,6 @@ class getUser {
             function (err, rows, fields) {
                 if (err) process.emit("mysqlError", err);
                 else {
-
                     userwithhousehold.household.tasks = rows;
                     getUser.addTasksTodoToHouseholdToUser(userwithhousehold, cb);
 
