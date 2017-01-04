@@ -29,7 +29,7 @@ module.exports = __webpack_require__(493);
 
 /***/ },
 
-/***/ 126:
+/***/ 127:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61,7 +61,7 @@ var Contract = (function () {
     ], Contract);
     return Contract;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contract.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contract.js.map
 
 /***/ },
 
@@ -70,14 +70,14 @@ var Contract = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contract__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contract__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_task_model__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_household_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ApiService; });
@@ -364,11 +364,11 @@ var ApiService = (function () {
     return ApiService;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/api.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/api.service.js.map
 
 /***/ },
 
-/***/ 175:
+/***/ 176:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -397,77 +397,7 @@ var Task = (function () {
     };
     return Task;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task.model.js.map
-
-/***/ },
-
-/***/ 176:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(126);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SocketService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var SocketService = (function () {
-    function SocketService(contract) {
-        var _this = this;
-        this.contract = contract;
-        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__["connect"](contract.Hostname);
-        this.socket.on("connect", function () { return _this.subscribe(); });
-    }
-    SocketService.prototype.subscribe = function () {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.getToken().then(function (token) {
-            _this.socket.emit("subscribe", token);
-        });
-    };
-    SocketService.prototype.sendMessage = function (message) {
-        this.socket.emit("chat-message", message);
-    };
-    SocketService.prototype.receiveMessages = function () {
-        var _this = this;
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].create(function (observer) {
-            _this.socket.on("sent-message", function (msg) {
-                observer.next(msg);
-            });
-        });
-    };
-    SocketService.prototype.taskUpdates = function () {
-        var _this = this;
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].create(function (observer) {
-            _this.socket.on("tasks-update", function (taskInfo) {
-                observer.next(taskInfo);
-            });
-        });
-    };
-    SocketService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__contract__["a" /* Contract */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__contract__["a" /* Contract */]) === 'function' && _a) || Object])
-    ], SocketService);
-    return SocketService;
-    var _a;
-}());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/socket.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task.model.js.map
 
 /***/ },
 
@@ -476,7 +406,7 @@ var SocketService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UpdateHouseholdOverviewService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -504,47 +434,16 @@ var UpdateHouseholdOverviewService = (function () {
     ], UpdateHouseholdOverviewService);
     return UpdateHouseholdOverviewService;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/update-household-overview.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/update-household-overview.service.js.map
 
 /***/ },
 
-/***/ 257:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Award; });
-/**
- * Created by Bart on 28/12/2016.
- */
-/**
- * Created by Bart on 26/12/2016.
- */
-var Award = (function () {
-    function Award() {
-    }
-    Award.makeAwardFromJSON = function (item) {
-        var award = new Award();
-        award.id = item.id;
-        award.name = item.name;
-        award.month = new Date(Date.parse(item.month));
-        award.description = item.description;
-        award.winner_id = item.winner_id;
-        award.household_id = item.household_id;
-        award.creator_id = award.creator_id;
-        return award;
-    };
-    return Award;
-}());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.model.js.map
-
-/***/ },
-
-/***/ 258:
+/***/ 178:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UpdateTaskListService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -572,7 +471,38 @@ var UpdateTaskListService = (function () {
     ], UpdateTaskListService);
     return UpdateTaskListService;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/update-task-list.service.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/update-task-list.service.js.map
+
+/***/ },
+
+/***/ 258:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Award; });
+/**
+ * Created by Bart on 28/12/2016.
+ */
+/**
+ * Created by Bart on 26/12/2016.
+ */
+var Award = (function () {
+    function Award() {
+    }
+    Award.makeAwardFromJSON = function (item) {
+        var award = new Award();
+        award.id = item.id;
+        award.name = item.name;
+        award.month = new Date(Date.parse(item.month));
+        award.description = item.description;
+        award.winner_id = item.winner_id;
+        award.household_id = item.household_id;
+        award.creator_id = award.creator_id;
+        return award;
+    };
+    return Award;
+}());
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.model.js.map
 
 /***/ },
 
@@ -605,7 +535,7 @@ var AppComponent = (function () {
     ], AppComponent);
     return AppComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.component.js.map
 
 /***/ },
 
@@ -675,7 +605,7 @@ var AppRoutingModule = (function () {
     ], AppRoutingModule);
     return AppRoutingModule;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.routes.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.routes.js.map
 
 /***/ },
 
@@ -685,7 +615,7 @@ var AppRoutingModule = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_update_task_list_service__ = __webpack_require__(178);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AllTasksComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -707,7 +637,6 @@ var AllTasksComponent = (function () {
         this.dialogVisible = false;
         this.loading = true;
         updateTaskListService.listUpdated$.subscribe(function (data) {
-            console.log("ooooh boy");
             _this.getUser();
         });
     }
@@ -734,7 +663,7 @@ var AllTasksComponent = (function () {
     return AllTasksComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/all-tasks.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/all-tasks.component.js.map
 
 /***/ },
 
@@ -743,7 +672,7 @@ var AllTasksComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -774,7 +703,7 @@ var HomeComponent = (function () {
     return HomeComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.component.js.map
 
 /***/ },
 
@@ -835,7 +764,7 @@ var HouseholdComponent = (function () {
     return HouseholdComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.component.js.map
 
 /***/ },
 
@@ -846,6 +775,7 @@ var HouseholdComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_update_task_list_service__ = __webpack_require__(178);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasksTodoComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -859,16 +789,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TasksTodoComponent = (function () {
-    function TasksTodoComponent(apiSevice, updateHouseholdOverviewService) {
+    function TasksTodoComponent(apiSevice, updateHouseholdOverviewService, updateTaskListService) {
         this.apiSevice = apiSevice;
         this.updateHouseholdOverviewService = updateHouseholdOverviewService;
+        this.updateTaskListService = updateTaskListService;
         this.loading = true;
     }
     TasksTodoComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getUser();
         this.updateHouseholdOverviewService.householdUpdated$.subscribe(function (data) {
+            _this.getUser();
+        });
+        this.updateTaskListService.listUpdated$.subscribe(function (data) {
             _this.getUser();
         });
     };
@@ -891,12 +826,12 @@ var TasksTodoComponent = (function () {
             template: __webpack_require__(903),
             styles: [__webpack_require__(869)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__service_api_service__["a" /* ApiService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__service_update_household_overview_service__["a" /* UpdateHouseholdOverviewService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__service_update_task_list_service__["a" /* UpdateTaskListService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_update_task_list_service__["a" /* UpdateTaskListService */]) === 'function' && _c) || Object])
     ], TasksTodoComponent);
     return TasksTodoComponent;
-    var _a, _b;
+    var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-todo.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-todo.component.js.map
 
 /***/ },
 
@@ -904,29 +839,31 @@ var TasksTodoComponent = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
-/**
- * Created by Bart on 27/12/2016.
- */
-var User = (function () {
-    function User() {
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Household; });
+var Household = (function () {
+    function Household() {
     }
-    User.makeUserFromJSON = function (item) {
-        var user = new User();
-        user.id = item.id;
-        user.name = item.name;
-        user.lname = item.lname;
-        user.email = item.email;
-        user.household_id = item.household_id;
-        user.score = item.score;
-        user.phoneNumber = item.phoneNumber;
-        user.uid = item.uid;
-        user.imgsrc = item.imgsrc;
-        return user;
+    Household.makeHouseholdFromJSON = function (item) {
+        var household = new Household();
+        household.id = item.id;
+        household.name = item.name;
+        // household.taskstodo = item.taskstodo;
+        // household.countFinishedTasks = item.countFinishedTasks;
+        // household.countFinishedAwards = item.countFinishedAwards;
+        // household.countTotalScore = item.countTotalScore;
+        // household.countTasks = item.countTasks;
+        // household.mostPopularTask = item.mostPopularTask;
+        // household.mostAwardsWon = item.mostAwardsWon;
+        // household.lastAward = item.lastAward;
+        // household.lastAwardWonBy = item.lastAwardWonBy;
+        // household.tasks = item.tasks;
+        household.users = item.users;
+        household.award = item.award;
+        return household;
     };
-    return User;
+    return Household;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user.model.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household.model.js.map
 
 /***/ },
 
@@ -935,7 +872,7 @@ var User = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -989,7 +926,7 @@ var LoginComponent = (function () {
     return LoginComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/login.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/login.component.js.map
 
 /***/ },
 
@@ -1024,7 +961,7 @@ var NotFoundComponent = (function () {
     ], NotFoundComponent);
     return NotFoundComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/not-found.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/not-found.component.js.map
 
 /***/ },
 
@@ -1040,7 +977,7 @@ var NotFoundComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(52);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1084,7 +1021,7 @@ var AuthGuard = (function () {
     return AuthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.guard.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.guard.js.map
 
 /***/ },
 
@@ -1100,7 +1037,7 @@ var AuthGuard = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__(52);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UnauthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1140,7 +1077,37 @@ var UnauthGuard = (function () {
     return UnauthGuard;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/unauth.guard.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/unauth.guard.js.map
+
+/***/ },
+
+/***/ 41:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return User; });
+/**
+ * Created by Bart on 27/12/2016.
+ */
+var User = (function () {
+    function User() {
+    }
+    User.makeUserFromJSON = function (item) {
+        var user = new User();
+        user.id = item.id;
+        user.name = item.name;
+        user.lname = item.lname;
+        user.email = item.email;
+        user.household_id = item.household_id;
+        user.score = item.score;
+        user.phoneNumber = item.phoneNumber;
+        user.uid = item.uid;
+        user.imgsrc = item.imgsrc;
+        return user;
+    };
+    return User;
+}());
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user.model.js.map
 
 /***/ },
 
@@ -1177,21 +1144,21 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/main.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/main.js.map
 
 /***/ },
 
-/***/ 51:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_user_model__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AuthService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1275,7 +1242,16 @@ var AuthService = (function () {
     };
     AuthService.prototype.logout = function () {
         this.auth$.logout();
+        // // Google sign out
+        // Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+        //     new ResultCallback<Status>() {
+        // @Override
+        // public void onResult(@NonNull Status status) {
+        //         updateUI(null);
+        //     }
+        // });
     };
+    ;
     Object.defineProperty(AuthService.prototype, "token", {
         get: function () {
             if (this.authState)
@@ -1295,39 +1271,7 @@ var AuthService = (function () {
     return AuthService;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/auth.service.js.map
-
-/***/ },
-
-/***/ 52:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Household; });
-var Household = (function () {
-    function Household() {
-    }
-    Household.makeHouseholdFromJSON = function (item) {
-        var household = new Household();
-        household.id = item.id;
-        household.name = item.name;
-        // household.taskstodo = item.taskstodo;
-        // household.countFinishedTasks = item.countFinishedTasks;
-        // household.countFinishedAwards = item.countFinishedAwards;
-        // household.countTotalScore = item.countTotalScore;
-        // household.countTasks = item.countTasks;
-        // household.mostPopularTask = item.mostPopularTask;
-        // household.mostAwardsWon = item.mostAwardsWon;
-        // household.lastAward = item.lastAward;
-        // household.lastAwardWonBy = item.lastAwardWonBy;
-        // household.tasks = item.tasks;
-        household.users = item.users;
-        household.award = item.award;
-        return household;
-    };
-    return Household;
-}());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household.model.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/auth.service.js.map
 
 /***/ },
 
@@ -1335,13 +1279,13 @@ var Household = (function () {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(417);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_services_auth_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__(400);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth_guard_auth_guard__ = __webpack_require__(402);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_routes__ = __webpack_require__(395);
@@ -1349,10 +1293,10 @@ var Household = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_module__ = __webpack_require__(606);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__not_found_not_found_component__ = __webpack_require__(401);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__contract__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__contract__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_update_task_list_service__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_socket_service__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_update_task_list_service__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_update_household_overview_service__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_modal__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angular2_modal_plugins_bootstrap__ = __webpack_require__(651);
@@ -1424,7 +1368,7 @@ var AppModule = (function () {
     ], AppModule);
     return AppModule;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/app.module.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/app.module.js.map
 
 /***/ },
 
@@ -1433,8 +1377,8 @@ var AppModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_task_model__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskRowComponent; });
@@ -1490,7 +1434,7 @@ var TaskRowComponent = (function () {
     return TaskRowComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/task-row.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/task-row.component.js.map
 
 /***/ },
 
@@ -1500,7 +1444,7 @@ var TaskRowComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasklistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1576,7 +1520,7 @@ var TasklistComponent = (function () {
     return TasklistComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasklist.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasklist.component.js.map
 
 /***/ },
 
@@ -1585,7 +1529,7 @@ var TasklistComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChatComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1623,7 +1567,7 @@ var ChatComponent = (function () {
     return ChatComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/chat.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/chat.component.js.map
 
 /***/ },
 
@@ -1632,7 +1576,7 @@ var ChatComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(98);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MessageFormComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1676,7 +1620,7 @@ var MessageFormComponent = (function () {
     return MessageFormComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-form.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-form.component.js.map
 
 /***/ },
 
@@ -1715,7 +1659,7 @@ var MessageItemComponent = (function () {
     ], MessageItemComponent);
     return MessageItemComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-item.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-item.component.js.map
 
 /***/ },
 
@@ -1724,7 +1668,7 @@ var MessageItemComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_socket_service__ = __webpack_require__(98);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MessageListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1752,13 +1696,17 @@ var MessageListComponent = (function () {
     }
     MessageListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.socketService.socketResubscribed$.subscribe(function (data) { return _this.socketUpdate(); });
+        this.scrollToBottom();
+    };
+    MessageListComponent.prototype.socketUpdate = function () {
+        var _this = this;
         this.socketService
             .receiveMessages()
             .subscribe(function (msg) {
             _this.messages.push(msg);
             _this.scrollToBottom();
         });
-        this.scrollToBottom();
     };
     MessageListComponent.prototype.scrollToBottom = function () {
         var _this = this;
@@ -1785,7 +1733,7 @@ var MessageListComponent = (function () {
     return MessageListComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/message-list.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/message-list.component.js.map
 
 /***/ },
 
@@ -1820,7 +1768,7 @@ var FooterComponent = (function () {
     ], FooterComponent);
     return FooterComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/footer.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/footer.component.js.map
 
 /***/ },
 
@@ -1855,7 +1803,7 @@ var HeaderComponent = (function () {
     ], HeaderComponent);
     return HeaderComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/header.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/header.component.js.map
 
 /***/ },
 
@@ -1865,7 +1813,7 @@ var HeaderComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_component__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_services_auth_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routes__ = __webpack_require__(395);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tasks_todo_tasks_todo_component__ = __webpack_require__(399);
@@ -1874,7 +1822,7 @@ var HeaderComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_navigation_component__ = __webpack_require__(623);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__header_header_component__ = __webpack_require__(605);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__contract__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__contract__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tasks_todo_todolist_todolist_component__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__chat_chat_component__ = __webpack_require__(600);
@@ -2025,7 +1973,7 @@ var HomeModule = (function () {
     ], HomeModule);
     return HomeModule;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/home.module.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/home.module.js.map
 
 /***/ },
 
@@ -2034,8 +1982,8 @@ var HomeModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(41);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2107,7 +2055,7 @@ var AwardDetailComponent = (function () {
     return AwardDetailComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award-detail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award-detail.component.js.map
 
 /***/ },
 
@@ -2116,8 +2064,9 @@ var AwardDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_award_model__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AwardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2128,6 +2077,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2167,6 +2117,10 @@ var AwardComponent = (function () {
         __metadata('design:type', Array)
     ], AwardComponent.prototype, "users", void 0);
     __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__models_household_model__["a" /* Household */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__models_household_model__["a" /* Household */]) === 'function' && _b) || Object)
+    ], AwardComponent.prototype, "household", void 0);
+    __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core_src_metadata_directives__["b" /* Output */])(), 
         __metadata('design:type', Object)
     ], AwardComponent.prototype, "addAwardToHousehold", void 0);
@@ -2179,9 +2133,9 @@ var AwardComponent = (function () {
         __metadata('design:paramtypes', [])
     ], AwardComponent);
     return AwardComponent;
-    var _a;
+    var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/award.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/award.component.js.map
 
 /***/ },
 
@@ -2264,7 +2218,7 @@ var NewAwardComponent = (function () {
     return NewAwardComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-award.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-award.component.js.map
 
 /***/ },
 
@@ -2274,8 +2228,8 @@ var NewAwardComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_award_model__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_award_model__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HouseholdOverviewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2346,7 +2300,7 @@ var HouseholdOverviewComponent = (function () {
     return HouseholdOverviewComponent;
     var _a, _b, _c, _d;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/household-overview.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/household-overview.component.js.map
 
 /***/ },
 
@@ -2355,9 +2309,9 @@ var HouseholdOverviewComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_services_auth_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2442,7 +2396,7 @@ var UserDetailComponent = (function () {
     return UserDetailComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-detail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-detail.component.js.map
 
 /***/ },
 
@@ -2451,7 +2405,7 @@ var UserDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_user_model__ = __webpack_require__(41);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserImgComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2488,7 +2442,7 @@ var UserImgComponent = (function () {
     return UserImgComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/user-img.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/user-img.component.js.map
 
 /***/ },
 
@@ -2497,7 +2451,7 @@ var UserImgComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ChartsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2530,7 +2484,7 @@ var ChartsComponent = (function () {
     return ChartsComponent;
     var _a;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/charts.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/charts.component.js.map
 
 /***/ },
 
@@ -2539,10 +2493,10 @@ var ChartsComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ContributionDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2655,7 +2609,7 @@ var ContributionDonutComponent = (function () {
     return ContributionDonutComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/contribution-donut.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/contribution-donut.component.js.map
 
 /***/ },
 
@@ -2664,11 +2618,11 @@ var ContributionDonutComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chartist__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chartist__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_chartist__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return EvolutionLineComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2825,7 +2779,7 @@ var EvolutionLineComponent = (function () {
     return EvolutionLineComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/evolution-line.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/evolution-line.component.js.map
 
 /***/ },
 
@@ -2834,10 +2788,10 @@ var EvolutionLineComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chartist__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chartist__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FinishedBarComponent; });
@@ -2988,7 +2942,7 @@ var FinishedBarComponent = (function () {
     return FinishedBarComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/finished-bar.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/finished-bar.component.js.map
 
 /***/ },
 
@@ -2997,10 +2951,10 @@ var FinishedBarComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chartist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chartist__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_household_model__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasksDonutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3112,7 +3066,7 @@ var TasksDonutComponent = (function () {
     return TasksDonutComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-donut.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-donut.component.js.map
 
 /***/ },
 
@@ -3121,10 +3075,11 @@ var TasksDonutComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_household_model__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_socket_service__ = __webpack_require__(98);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return JoinHouseholdDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3140,11 +3095,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var JoinHouseholdDetailComponent = (function () {
-    function JoinHouseholdDetailComponent(apiService, auth, _ngZone) {
+    function JoinHouseholdDetailComponent(apiService, auth, _ngZone, socketService) {
         this.apiService = apiService;
         this.auth = auth;
         this._ngZone = _ngZone;
+        this.socketService = socketService;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.householdjoined = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.user = auth.authState.auth;
@@ -3160,6 +3117,7 @@ var JoinHouseholdDetailComponent = (function () {
         console.log("Join Household");
         this.apiService.addUsertoHousehold(this.household.id)
             .subscribe(function (user) {
+            _this.socketService.resubscribe();
             _this.visible = false;
             _this.visibleChange.emit(_this.visible);
             _this.householdjoined.emit(user);
@@ -3198,12 +3156,12 @@ var JoinHouseholdDetailComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === 'function' && _f) || Object])
+        __metadata('design:paramtypes', [(typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__auth_services_auth_service__["a" /* AuthService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__service_socket_service__["a" /* SocketService */]) === 'function' && _g) || Object])
     ], JoinHouseholdDetailComponent);
     return JoinHouseholdDetailComponent;
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household-detail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/join-household-detail.component.js.map
 
 /***/ },
 
@@ -3212,7 +3170,7 @@ var JoinHouseholdDetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return JoinHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3292,7 +3250,7 @@ var JoinHouseholdComponent = (function () {
     return JoinHouseholdComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/join-household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/join-household.component.js.map
 
 /***/ },
 
@@ -3301,9 +3259,10 @@ var JoinHouseholdComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_household_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_socket_service__ = __webpack_require__(98);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LeaveHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3318,9 +3277,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LeaveHouseholdComponent = (function () {
-    function LeaveHouseholdComponent(apiService) {
+    function LeaveHouseholdComponent(apiService, socketService) {
         this.apiService = apiService;
+        this.socketService = socketService;
         this.visibleChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.updatedUser = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
@@ -3333,6 +3294,7 @@ var LeaveHouseholdComponent = (function () {
     LeaveHouseholdComponent.prototype.leave = function () {
         var _this = this;
         this.apiService.leaveHousehold(this.user.id).subscribe(function (user) {
+            _this.socketService.resubscribe();
             _this.visible = false;
             _this.visibleChange.emit(_this.visible);
             _this.updatedUser.emit(user);
@@ -3376,12 +3338,12 @@ var LeaveHouseholdComponent = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [(typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _e) || Object])
+        __metadata('design:paramtypes', [(typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__service_api_service__["a" /* ApiService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__service_socket_service__["a" /* SocketService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__service_socket_service__["a" /* SocketService */]) === 'function' && _f) || Object])
     ], LeaveHouseholdComponent);
     return LeaveHouseholdComponent;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/leave-household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/leave-household.component.js.map
 
 /***/ },
 
@@ -3390,7 +3352,7 @@ var LeaveHouseholdComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core_src_metadata_directives__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_api_service__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NewHouseholdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3472,7 +3434,7 @@ var NewHouseholdComponent = (function () {
     return NewHouseholdComponent;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/new-household.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/new-household.component.js.map
 
 /***/ },
 
@@ -3545,7 +3507,7 @@ var AboutComponentComponent = (function () {
     return AboutComponentComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/about-component.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/about-component.component.js.map
 
 /***/ },
 
@@ -3554,7 +3516,7 @@ var AboutComponentComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_services_auth_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NavigationComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3598,7 +3560,7 @@ var NavigationComponent = (function () {
     return NavigationComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/navigation.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/navigation.component.js.map
 
 /***/ },
 
@@ -3607,15 +3569,15 @@ var NavigationComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_api_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(831);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_update_task_list_service__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_update_task_list_service__ = __webpack_require__(178);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TaskdetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3692,8 +3654,8 @@ var TaskdetailComponent = (function () {
     };
     TaskdetailComponent.prototype.save = function () {
         var _this = this;
-        this.task = this.taskLocal;
-        if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+        if (__WEBPACK_IMPORTED_MODULE_5_moment__(this.taskLocal.dueDate).isValid() && this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+            this.task = this.taskLocal;
             this.apiService.updateTask(this.task).subscribe(function (data) {
                 _this.updateTaskListService.updateListNeeded();
                 _this.close();
@@ -3753,7 +3715,7 @@ var TaskdetailComponent = (function () {
     return TaskdetailComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/taskdetail.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/taskdetail.component.js.map
 
 /***/ },
 
@@ -3762,14 +3724,14 @@ var TaskdetailComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_task_model__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_socket_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_socket_service__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_update_household_overview_service__ = __webpack_require__(177);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TasktodoRowComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3803,8 +3765,6 @@ var TasktodoRowComponent = (function () {
         this.showDetail.emit(this.task);
     };
     TasktodoRowComponent.prototype.finishClick = function () {
-        console.log("request update");
-        this.updateHouseholdOverviewService.updateHouseholdNeeded();
         this.state = 'finished';
         this.isDestroyed = true;
         this.finish.emit(this.task);
@@ -3820,11 +3780,16 @@ var TasktodoRowComponent = (function () {
     };
     TasktodoRowComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.socketUpdate();
+        this.socketService.socketResubscribed$.subscribe(function (data) { return _this.socketUpdate(); });
+    };
+    TasktodoRowComponent.prototype.socketUpdate = function () {
+        var _this = this;
+        console.log("method called");
         this.socketService.taskUpdates().subscribe(function (data) {
+            console.log("data received");
             if (!_this.isDestroyed && data.taskID === _this.task.id) {
                 if (data.done) {
-                    console.log("this task is done");
-                    console.log(data.taskID);
                     _this.updateHouseholdOverviewService.updateHouseholdNeeded();
                     _this.state = "finished";
                     _this.finish.emit(_this.task);
@@ -3887,7 +3852,7 @@ var TasktodoRowComponent = (function () {
     return TasktodoRowComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasktodo-row.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasktodo-row.component.js.map
 
 /***/ },
 
@@ -3897,7 +3862,7 @@ var TasktodoRowComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_api_service__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user_model__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TodolistComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3961,7 +3926,7 @@ var TodolistComponent = (function () {
     return TodolistComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/todolist.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/todolist.component.js.map
 
 /***/ },
 
@@ -3975,7 +3940,7 @@ var TodolistComponent = (function () {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
 
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/index.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/index.js.map
 
 /***/ },
 
@@ -4010,7 +3975,7 @@ var LoaderSmallComponent = (function () {
     ], LoaderSmallComponent);
     return LoaderSmallComponent;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/loader-small.component.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/loader-small.component.js.map
 
 /***/ },
 
@@ -4026,7 +3991,7 @@ var LoaderSmallComponent = (function () {
 var environment = {
     production: false
 };
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/environment.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/environment.js.map
 
 /***/ },
 
@@ -4092,7 +4057,7 @@ var SortUsersPipe = (function () {
     ], SortUsersPipe);
     return SortUsersPipe;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/sort-users.pipe.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/sort-users.pipe.js.map
 
 /***/ },
 
@@ -4158,7 +4123,7 @@ var SortPipe = (function () {
     ], SortPipe);
     return SortPipe;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/sort.pipe.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/sort.pipe.js.map
 
 /***/ },
 
@@ -4194,7 +4159,7 @@ var TasksFilterPipe = (function () {
     ], TasksFilterPipe);
     return TasksFilterPipe;
 }());
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/tasks-filter.pipe.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/tasks-filter.pipe.js.map
 
 /***/ },
 
@@ -4250,7 +4215,7 @@ var TasksFilterPipe = (function () {
 
 
 
-//# sourceMappingURL=C:/xampp/htdocs/www/backend_kuisApp/src/polyfills.js.map
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/polyfills.js.map
 
 /***/ },
 
@@ -4383,7 +4348,7 @@ module.exports = ".overlay {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  lef
 /***/ 855:
 /***/ function(module, exports) {
 
-module.exports = "\r\n"
+module.exports = "\n"
 
 /***/ },
 
@@ -4397,7 +4362,7 @@ module.exports = ".container {\n  background: url(\"../../assets/login_backgroun
 /***/ 857:
 /***/ function(module, exports) {
 
-module.exports = "/*@media all and (min-width: 992px){*/\r\n/*body{*/\r\n/*background-color: yellow;*/\r\n/*}*/\r\n/*app-header{*/\r\n/*display: none;*/\r\n/*}*/\r\n/*}*/"
+module.exports = "/*@media all and (min-width: 992px){*/\n/*body{*/\n/*background-color: yellow;*/\n/*}*/\n/*app-header{*/\n/*display: none;*/\n/*}*/\n/*}*/"
 
 /***/ },
 
@@ -4418,14 +4383,14 @@ module.exports = ""
 /***/ 860:
 /***/ function(module, exports) {
 
-module.exports = "ul li a:hover i{\r\n  color: indianred;\r\n}\r\nul li {\r\n  margin-bottom: 5px;\r\n}\r\ni .material-icons{\r\n  -webkit-transition: color 0.5s ease;\r\n  transition: color 0.5s ease;\r\n  position: relative;\r\n  top:6px;\r\n}\r\n.fa{\r\n  margin-left: 10px;\r\n  position: relative;\r\n  top:-1px;\r\n  float: right;\r\n  right: 40%;\r\n}\r\n.fa-briefcase{\r\n  color: whitesmoke;\r\n}\r\n.col{\r\n  margin-top: 30px;\r\n\r\n}\r\n"
+module.exports = "ul li a:hover i{\r\n  color: indianred;\r\n}\r\nul li {\r\n  margin-bottom: 5px;\r\n}\r\ni .material-icons{\r\n  -webkit-transition: color 0.5s ease;\r\n  transition: color 0.5s ease;\r\n  position: relative;\r\n  top:6px;\r\n}\r\n.fa{\r\n  margin-left: 10px;\r\n  position: relative;\r\n  top:-1px;\r\n  float: right;\r\n  right: 40%;\r\n}\r\n.fa-briefcase{\r\n  color: whitesmoke;\r\n}\r\n.col{\r\n  margin-top: 30px;\r\n}\r\n"
 
 /***/ },
 
 /***/ 861:
 /***/ function(module, exports) {
 
-module.exports = "/*.brand-logo{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*}*/"
+module.exports = "/*.brand-logo{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*}*/"
 
 /***/ },
 
@@ -4439,7 +4404,7 @@ module.exports = ""
 /***/ 863:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".last {\r\n    margin: 1em 0;\r\n}"
 
 /***/ },
 
@@ -4453,7 +4418,7 @@ module.exports = ""
 /***/ 865:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n}\r\n\r\n.dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    /*background-color: #fff;*/\r\n    /*padding: 12px;*/\r\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .dialog {\r\n        top: 40px;\r\n    }\r\n}"
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
@@ -4467,14 +4432,14 @@ module.exports = ""
 /***/ 867:
 /***/ function(module, exports) {
 
-module.exports = "/*.logo a{*/\r\n/*font-family: 'Finger Paint', cursive;*/\r\n/*font-size: 32px;*/\r\n/*margin-bottom: 5%;*/\r\n/*margin-top: 5%;*/\r\n/*}*/\r\n\r\n\r\n"
+module.exports = "/*.logo a{*/\n/*font-family: 'Finger Paint', cursive;*/\n/*font-size: 32px;*/\n/*margin-bottom: 5%;*/\n/*margin-top: 5%;*/\n/*}*/\n\n\n"
 
 /***/ },
 
 /***/ 868:
 /***/ function(module, exports) {
 
-module.exports = ".overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.5);\r\n    z-index: 999;\r\n}\r\n\r\n.dialog {\r\n    z-index: 1000;\r\n    position: fixed;\r\n    right: 0;\r\n    left: 0;\r\n    top: 20px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    width: 90%;\r\n    max-width: 520px;\r\n    /*background-color: #fff;*/\r\n    /*padding: 12px;*/\r\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .dialog {\r\n        top: 40px;\r\n    }\r\n}"
+module.exports = ".overlay {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n}\n\n.dialog {\n    z-index: 1000;\n    position: fixed;\n    right: 0;\n    left: 0;\n    top: 20px;\n    margin-right: auto;\n    margin-left: auto;\n    width: 90%;\n    max-width: 520px;\n    /*background-color: #fff;*/\n    /*padding: 12px;*/\n    /*box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);*/\n}\n\n@media (min-width: 768px) {\n    .dialog {\n        top: 40px;\n    }\n}"
 
 /***/ },
 
@@ -4502,7 +4467,7 @@ module.exports = ""
 /***/ 872:
 /***/ function(module, exports) {
 
-module.exports = ""
+module.exports = ".container {\r\n    background: url(\"../../assets/404-2.jpg\") no-repeat center;\r\n    background-size:cover;\r\n\r\n    height: 100vh;\r\n    min-width: 100vw;\r\n    max-width: 100vw;\r\n    margin: 0;\r\n    padding: 0;\r\n    top: 0;\r\n    left:0;\r\n    right: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.content {\r\n    margin-top: 150px;\r\n}\r\n\r\n.text {\r\n    margin: 1em 0;\r\n}\r\n\r\n.text:last-of-type {\r\n    margin-bottom: 0;\r\n}"
 
 /***/ },
 
@@ -4530,35 +4495,35 @@ module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\">\n
 /***/ 876:
 /***/ function(module, exports) {
 
-module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\r\n\r\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\r\n\r\n    <nav class=\"amber\">\r\n        <div class=\"nav-wrapper\">\r\n            <form>\r\n                <div class=\"input-field\">\r\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\r\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\r\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </nav>\r\n\r\n    <div class=\"collection-item\"\r\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\r\n\r\n\r\n        <app-task-row\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"task\"\r\n                [user]=\"user(task.assigned_to)\"></app-task-row>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasks.length == 0\">\r\n\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have no tasks, what are you even doing!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\r\n"
+module.exports = "<h2 class=\"center-align grey-text light text-darken-1\">all our tasks</h2>\n\n<div class=\"collection\" [hidden]=\"tasks.length == 0\" *ngIf=\"tasks.length > 0\">\n\n    <nav class=\"amber\">\n        <div class=\"nav-wrapper\">\n            <form>\n                <div class=\"input-field\">\n                    <input #filterField (keyup)=\"0\" id=\"search\" type=\"search\" name=\"filter\" required>\n                    <label for=\"search\"><i class=\"material-icons\">search</i></label>\n                    <i class=\"material-icons\" (click)=\"filterField.value = ''\">close</i>\n                </div>\n            </form>\n        </div>\n    </nav>\n\n    <div class=\"collection-item\"\n         *ngFor=\"let task of tasks | tasksFilter:filterField.value | sort:'period'; let i = index\">\n\n\n        <app-task-row\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"task\"\n                [user]=\"user(task.assigned_to)\"></app-task-row>\n\n    </div>\n</div>\n\n<div *ngIf=\"tasks.length == 0\">\n\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have no tasks, what are you even doing!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>\n"
 
 /***/ },
 
 /***/ 877:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"no-margin card-panel chat-panel\">\r\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\r\n\r\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\r\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"no-margin card-panel chat-panel\">\n    <a (click)=\"toggleChat()\">{{isHidden ? 'Announcements' : 'X Close'}}</a>\n\n    <app-message-list [hidden]=\"isHidden\"></app-message-list>\n    <app-message-form [hidden]=\"isHidden\"></app-message-form>\n</div>\n\n\n\n"
 
 /***/ },
 
 /***/ 878:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"chat-form\">\r\n    <form>\r\n        <div class=\"row no-margin\">\r\n            <div class=\"input-field col s10 no-margin no-padding\">\r\n                <i class=\"prefix mdi-communication-chat\"></i>\r\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\r\n            </div>\r\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\r\n                <button type=\"submit\" (click)=\"sendMessage()\"\r\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\r\n                    <i class=\"material-icons\">send</i>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
+module.exports = "<div class=\"chat-form\">\n    <form>\n        <div class=\"row no-margin\">\n            <div class=\"input-field col s10 no-margin no-padding\">\n                <i class=\"prefix mdi-communication-chat\"></i>\n                <input type=\"text\" class=\"no-margin\" placeholder=\"Announcement\" value={{messageContent}} (input)=\"messageContent = $event.target.value\">\n            </div>\n            <div class=\"input-field col s2 no-margin right-align no-padding\">\n                <button type=\"submit\" (click)=\"sendMessage()\"\n                        class=\"waves-effect waves-light btn-floating btn-small blue\">\n                    <i class=\"material-icons\">send</i>\n                </button>\n            </div>\n        </div>\n    </form>\n</div>\n"
 
 /***/ },
 
 /***/ 879:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row no-margin\">\r\n    <div class=\"col s12 no-padding\">\r\n        <div class=\"card blue lighten-4 no-margin\">\r\n            <div class=\"card-content\">\r\n                <p>{{message.message}}</p>\r\n            </div>\r\n            <div class=\"card-action\">\r\n                <span>{{message.user.name}} {{message.user.lname}}</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row no-margin\">\n    <div class=\"col s12 no-padding\">\n        <div class=\"card blue lighten-4 no-margin\">\n            <div class=\"card-content\">\n                <p>{{message.message}}</p>\n            </div>\n            <div class=\"card-action\">\n                <span>{{message.user.name}} {{message.user.lname}}</span>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 880:
 /***/ function(module, exports) {
 
-module.exports = "<!--<p>Messages in Houshold:</p>-->\r\n<ul class=\"chat-list\" #scrollMe>\r\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\r\n</ul>\r\n\r\n\r\n\r\n"
+module.exports = "<!--<p>Messages in Houshold:</p>-->\n<ul class=\"chat-list\" #scrollMe>\n    <li *ngFor=\"let message of messages\"><app-message-item [message]=\"message\"></app-message-item></li>\n</ul>\n\n\n\n"
 
 /***/ },
 
@@ -4572,7 +4537,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
 /***/ 882:
 /***/ function(module, exports) {
 
-module.exports = "<nav class=\"yellow darken-2\">\r\n  <div class=\"nav-wrapper\">\r\n\r\n      <ul class=\"right hide-on-med-and-down\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n\r\n    <ul class=\"side-nav\" id=\"mobile-demo\">\r\n      <li><a href=\"\">My Account</a> </li>\r\n      <li><a>Settings</a></li>\r\n      <li><a>Sign out</a> </li>\r\n    </ul>\r\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\r\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\r\n    <script>\r\n\r\n    </script>\r\n  </div>\r\n\r\n\r\n</nav>\r\n\r\n\r\n"
+module.exports = "<nav class=\"yellow darken-2\">\n  <div class=\"nav-wrapper\">\n\n      <ul class=\"right hide-on-med-and-down\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n\n    <ul class=\"side-nav\" id=\"mobile-demo\">\n      <li><a href=\"\">My Account</a> </li>\n      <li><a>Settings</a></li>\n      <li><a>Sign out</a> </li>\n    </ul>\n      <a href=\"home\" class=\"brand-logo center\">The Cleansing</a>\n      <a data-activates=\"mobile-demo\" class=\"\"><i class=\"material-icons\">menu</i></a>\n    <script>\n\n    </script>\n  </div>\n\n\n</nav>\n\n\n"
 
 /***/ },
 
@@ -4586,14 +4551,14 @@ module.exports = "<header>\r\n    <app-navigation></app-navigation>\r\n</header>
 /***/ 884:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  <!--<ng-content></ng-content>-->\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">{{award.name}}</span>\r\n        <div class=\"row no-margin\">\r\n          <form class=\"col s12\">\r\n              <div class=\"row no-margin\">\r\n\r\n                  <div class=\"input-field col s12 m9\">\r\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\r\n                            <label for=\"award_description\" class=\"active\">Description</label>\r\n                       </div>\r\n                  <div class=\"input-field col s12 m3\">\r\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\r\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\r\n                    </div>\r\n                </div>\r\n          </form>\r\n    </div>\r\n  </div>\r\n    <!--<div class=\"card-action\">-->\r\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\r\n\r\n    <!--</div>-->\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\n  <!--<ng-content></ng-content>-->\n    <div class=\"card-content\">\n        <span class=\"card-title center\">{{award.name}}</span>\n        <div class=\"row no-margin\">\n          <form class=\"col s12\">\n              <div class=\"row no-margin\">\n\n                  <div class=\"input-field col s12 m9\">\n                            <input value=\"{{award.description}}\" id=\"award_description\" type=\"text\" class=\"\" readonly  >\n                            <label for=\"award_description\" class=\"active\">Description</label>\n                       </div>\n                  <div class=\"input-field col s12 m3\">\n                      <input value=\"{{user.name}}\" id=\"award_created_by\" type=\"text\" class=\"\" readonly>\n                        <label for=\"award_created_by\" class=\"active\">Created By</label>\n                    </div>\n                </div>\n          </form>\n    </div>\n  </div>\n    <!--<div class=\"card-action\">-->\n    <!--<a  (click)=\"close()\" class=\"right\"  aria-label=\"Save\" style=\"cursor: default; margin-bottom: 10px\">close</a>-->\n\n    <!--</div>-->\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
 /***/ 885:
 /***/ function(module, exports) {
 
-module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\r\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\r\n\r\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\r\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\r\n</div>\r\n\r\n\r\n<app-award-detail\r\n        *ngIf=\"award\"\r\n        [(visible)]=\"showDialogAward\"\r\n        [(award)]=\"award\"\r\n        [user]=\"user\"></app-award-detail>\r\n\r\n<app-new-award\r\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\r\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
+module.exports = "<div *ngIf=\"award\" [hidden]=\"showDialogAward\" class=\"center\">\n    <a (click)=\"showDialogAward=!showDialogAward;currentaward=award\">{{award.name}}</a></div>\n\n<div *ngIf=\"!award\" [hidden]=\"showDialogNewAward\" class=\"center\">\n    <a class=\"materialize-red-text\" (click)=\"showDialogNewAward=!showDialogNewAward\">Set an award for this month</a>\n    <div class=\"last\">{{household.lastAward}} won by {{household.lastAwardWonBy}}</div>\n</div>\n\n\n<app-award-detail\n        *ngIf=\"award\"\n        [(visible)]=\"showDialogAward\"\n        [(award)]=\"award\"\n        [user]=\"user\"></app-award-detail>\n\n<app-new-award\n        (awardAdded)=\"receiveAwardfromDialog($event)\"\n        [(visible)]=\"showDialogNewAward\"></app-new-award>"
 
 /***/ },
 
@@ -4607,7 +4572,7 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 887:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"openUserPopup(user)\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\"\r\n                    [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n<div *ngIf=\"household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">{{household.name}}</h2>\r\n\r\n    <div style=\"padding-bottom: 25px; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap\">\r\n\r\n        <app-user-img\r\n                *ngFor=\"let user of household.users | sortUsers:'score'; let i = index;\"\r\n                [user]=\"user\"\r\n                [index]=\"i\"\r\n                (click)=\"openUserPopup(user)\"\r\n        ></app-user-img>\r\n\r\n    </div>\r\n\r\n    <app-award [(award)]=\"household.award\"\r\n               [(users)]=\"household.users\"\r\n               [(household)]=\"household\"\r\n               (addawardtohousehold)=\"addAwardToHousehold($event)\"></app-award>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"!household\">\r\n\r\n    <h2 class=\"truncate center-align grey-text light text-darken-1\">my household</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No household found</span>\r\n            <p>It seems like you don't belong to a household yet.</p>\r\n            <p>A household is where your tasks are ketp and where you can compete with others!</p>\r\n            <p></p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a (click)=\"showJoinHouseholdDialog=!showJoinHouseholdDialog\">Find a household</a>\r\n            <a  (click)=\"showMakeHouseholdDialog=!showMakeHouseholdDialog\">Create a household</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-user-detail [(visible)]=\"showDialog\" [(user)]=\"selectedUser\"></app-user-detail>\r\n<app-join-household (householdtoHouseholdComp)=\"sendUserToUpper($event)\"\r\n                    [(visible)]=\"showJoinHouseholdDialog\"></app-join-household>\r\n<app-new-household (userReceived)=\"sendUserToUpper($event)\" [(visible)]=\"showMakeHouseholdDialog\"></app-new-household>\r\n"
 
 /***/ },
 
@@ -4621,42 +4586,42 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n   
 /***/ 889:
 /***/ function(module, exports) {
 
-module.exports = "<figure class=\"\" style=\"margin: 0\">\n\n    <div style=\"position: relative\">\n\n        <div class=\"chip\"\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\n             style=\"position: absolute; top:-10px; left:0;\">\n            {{user.score || '0'}}\n        </div>\n\n        <div class=\"hoverable circle z-depth-1\"\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\n            <img src=\"{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}\" class=\"responsive-img\">\n        </div>\n    </div>\n\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\n\n</figure>\n"
+module.exports = "<figure class=\"\" style=\"margin: 0\">\r\n\r\n    <div style=\"position: relative\">\r\n\r\n        <div class=\"chip\"\r\n             [ngClass]=\"index == 0 ? 'yellow darken-2 white-text':''\"\r\n             style=\"position: absolute; top:-10px; left:0;\">\r\n            {{user.score || '0'}}\r\n        </div>\r\n\r\n        <div class=\"hoverable circle z-depth-1\"\r\n             style=\"max-width: 75px; max-height: 75px; overflow: hidden; margin: 10px\">\r\n            <img src=\"{{user.imgsrc || 'https://pbs.twimg.com/profile_images/695211716259549184/SUWgwZwh.jpg'}}\" class=\"responsive-img\">\r\n        </div>\r\n    </div>\r\n\r\n    <figcaption class=\"center grey-text darken-1\">{{user.name}}</figcaption>\r\n\r\n</figure>\r\n"
 
 /***/ },
 
 /***/ 890:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\">\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\n</div>\n<div class=\"row\">\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\n</div>\n<div class=\"row\">\n\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\n\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\n\n</div>\n\n"
+module.exports = "<div class=\"row\">\r\n    <app-finished-bar [(household)]=\"household\" class=\"col s12\"></app-finished-bar>\r\n</div>\r\n<div class=\"row\">\r\n    <app-evolution-line [(household)]=\"household\" class=\"col s12\"></app-evolution-line>\r\n</div>\r\n<div class=\"row\">\r\n\r\n    <app-contribution-donut class=\"col s12 m6\" [(household)]=\"household\"></app-contribution-donut>\r\n\r\n    <app-tasks-donut class=\"col s12 m6\" [(household)]=\"household\"></app-tasks-donut>\r\n\r\n</div>\r\n\r\n"
 
 /***/ },
 
 /***/ 891:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Contribution</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 892:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Contribution evolution</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Contribution evolution</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 893:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Finished vs canceled</span>\n        <x-chartist [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished vs canceled</span>\r\n        <x-chartist [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n    </div>\r\n</div>"
 
 /***/ },
 
 /***/ 894:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"card\">\n\n    <div class=\"card-content\">\n        <span class=\"card-title\">Finished tasks</span>\n\n        <x-chartist  [events]=\"events\"\n                    [options]=\"options\"\n                    [(data)]=\"data\"\n                    [type]=\"type\">\n        </x-chartist>\n\n    </div>\n</div>"
+module.exports = "<div class=\"card\">\r\n\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title\">Finished tasks</span>\r\n\r\n        <x-chartist  [events]=\"events\"\r\n                    [options]=\"options\"\r\n                    [(data)]=\"data\"\r\n                    [type]=\"type\">\r\n        </x-chartist>\r\n\r\n    </div>\r\n</div>"
 
 /***/ },
 
@@ -4698,7 +4663,7 @@ module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\" >\r\n  
 /***/ 900:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div class=\"card-content\">\r\n        <span class=\"card-title center\">About</span>\r\n        <div class=\"row\">\r\n            <h5>The Cleansing application</h5>\r\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\r\n            <h5>Licensing</h5>\r\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\r\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\r\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-action\">\r\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\n    <div class=\"card-content\">\n        <span class=\"card-title center\">About</span>\n        <div class=\"row\">\n            <h5>The Cleansing application</h5>\n            <p>Developed by Bart Delrue, Brent Vanwildemeersch, Steven Mollie and Nick D'hondt for web using Angular 2 and Node.js.</p>\n            <h5>Licensing</h5>\n            <p>Licensing Licensed under the Apache License, Version 2.0 (the License); you may not use these files except in compliance with the License. You may obtain a copy of the License at</p>\n            <p><a target=\"_blank\" href=\"http://www.apache.org/licenses/LICENSE-2.0\">http://www.apache.org/licenses/LICENSE-2.0 <i class=\"tiny material-icons\">launch</i></a></p>\n            <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>\n        </div>\n    </div>\n    <div class=\"card-action\">\n        <a (click)=\"close()\" aria-label=\"Close\" class=\"\" style=\"cursor: default\">close</a>\n    </div>\n</div>\n\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>"
 
 /***/ },
 
@@ -4712,7 +4677,7 @@ module.exports = "<nav class=\"top-nav yellow darken-2\">\r\n    <div class=\"co
 /***/ 902:
 /***/ function(module, exports) {
 
-module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n        <!--<ng-content></ng-content>-->\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">{{taskLocal.name}}</span>\r\n\r\n            <div class=\"row\">\r\n                <form class=\"col s12\" #taskForm=\"ngForm\">\r\n                    <div class=\"row\">\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_name\" class=\"active\">Task Name</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\r\n                            </div>\r\n                            <input\r\n                                    materialize=\"pickadate\" [(ngModel)]=\"taskLocal.dueDate\" name=\"dueDate\" id=\"task_due_date\"\r\n                                   type=\"date\"  class=\"datepicker\">\r\n                        </div>\r\n                        <div class=\"input-field col s12\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_description\" class=\"active\">Description</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.description\" name=\"description\" id=\"task_description\" type=\"text\"\r\n                                   class=\"\">\r\n\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.period\" name=\"period\" id=\"task_periodicity\" type=\"number\"\r\n                                   class=\"validate\">\r\n\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_points\" class=\"active\">Points</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.points\" name=\"points\" id=\"task_points\" type=\"number\"\r\n                                   class=\"validate\">\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                            <label for=\"task_user\" class=\"active\">User</label>\r\n                            </div>\r\n                            <select materialize=\"material_select\"\r\n                                    class=\"validate\" [(ngModel)]=\"taskLocal.assigned_to\" name=\"assigned_to\" id=\"task_user\">\r\n                                <option disabled selected>Select User</option>\r\n                                <option *ngFor=\"let user of usersLocal\" [ngValue]=\"user.id\">{{user.name}}</option>\r\n                            </select>\r\n\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n\r\n        <div *ngIf=\"!newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Delete Task\" (click)=\"deleteTask()\" class=\"right\">delete task</a>\r\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\r\n\r\n        </div>\r\n        <div *ngIf=\"newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n\r\n"
+module.exports = "<div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n    <div [@dialog] *ngIf=\"visible\" class=\"card dialog\">\r\n        <!--<ng-content></ng-content>-->\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">{{taskLocal.name}}</span>\r\n\r\n            <div class=\"row\">\r\n                <form class=\"col s12\" #taskForm=\"ngForm\">\r\n                    <div class=\"row\">\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_name\" class=\"active\">Task Name</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.name\" name=\"name\" id=\"task_name\" type=\"text\" class=\"validate\">\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_due_date\" class=\"active\">Next Due Date</label>\r\n                            </div>\r\n                            <input\r\n                                    materialize=\"pickadate\" [(ngModel)]=\"taskLocal.dueDate\" name=\"dueDate\" id=\"task_due_date\"\r\n                                   type=\"date\"  class=\"datepicker\">\r\n                        </div>\r\n                        <div class=\"input-field col s12\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_description\" class=\"active\">Description</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.description\" name=\"description\" id=\"task_description\" type=\"text\"\r\n                                   class=\"\">\r\n\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_periodicity\" class=\"active\">Periodicity (in days)</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.period\" name=\"period\" id=\"task_periodicity\" type=\"number\"\r\n                                   class=\"validate\">\r\n\r\n                        </div>\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                                <label for=\"task_points\" class=\"active\">Points</label>\r\n                            </div>\r\n                            <input [(ngModel)]=\"taskLocal.points\" name=\"points\" id=\"task_points\" type=\"number\"\r\n                                   class=\"validate\">\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-field col s6\">\r\n                            <div style=\"padding-bottom:10px\">\r\n                            <label for=\"task_user\" class=\"active\">User</label>\r\n                            </div>\r\n                            <select materialize=\"material_select\"\r\n                                    class=\"validate\" [(ngModel)]=\"taskLocal.assigned_to\" name=\"assigned_to\" id=\"task_user\">\r\n                                <option disabled selected>Select User</option>\r\n                                <option *ngFor=\"let user of usersLocal\" [ngValue]=\"user.id\">{{user.name}}</option>\r\n                            </select>\r\n\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n\r\n        <div *ngIf=\"!newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Save Task\" (click)=\"save()\" class=\"right\">save task</a>\r\n            <a aria-label=\"Delete Task\" (click)=\"deleteTask()\" class=\"right\">delete task</a>\r\n        </div>\r\n        <div *ngIf=\"newTask\" class=\"card-action\">\r\n            <a *ngIf=\"closable\" (click)=\"close()\" aria-label=\"Close\" class=\"\">close</a>\r\n            <a aria-label=\"Save Task\" (click)=\"add()\" class=\"right\">add task</a>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"visible\" class=\"overlay\" (click)=\"close()\"></div>\r\n\r\n"
 
 /***/ },
 
@@ -4726,14 +4691,14 @@ module.exports = "<div class=\"container\">\r\n\r\n    <app-loader-small *ngIf=\
 /***/ 904:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\r\n    <div class=\"col flex-down-center\">\r\n\r\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\r\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\r\n\r\n    </div>\r\n    <div class=\"col\" style=\"flex-grow: 1\">\r\n        <span class=\"title\">{{task.name}}</span>\r\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\r\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\r\n\r\n\r\n    </div>\r\n    <div class=\"col flex-down\">\r\n        <div class=\"flex-wrap-end\"\r\n             style=\"align-self: flex-start\">\r\n\r\n            <a class=\"tooltipped\"\r\n               (click)=\"finishClick()\"\r\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n                <i class=\"material-icons\">done</i></a>\r\n            <a class=\"tooltipped\"\r\n               (click)=\"showDetailClick()\"\r\n               materialize=\"tooltip\"\r\n               data-position=\"bottom\"\r\n               data-delay=\"20\"\r\n               data-tooltip=\"edit\">\r\n                <i class=\"material-icons\">mode_edit</i></a>\r\n            <a class=\"tooltipped\"\r\n               (click)=\"cancelClick()\"\r\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\r\n                <i class=\"material-icons\">cancel</i></a>\r\n\r\n        </div>\r\n        <span class=\"chip\">{{task.points}} points</span>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row flex-stretch\" style=\"margin-bottom: 0;\" [@visibleState]=\"(state)\">\n    <div class=\"col flex-down-center\">\n\n        <p [ngClass]=\"{'red-text': dateDiff<=0}\" class=\"text-large\">{{dateDiff}}</p>\n        <p class=\"text-small \">{{dateDiff == 1 ? 'day left' : 'days left'}}</p>\n\n    </div>\n    <div class=\"col\" style=\"flex-grow: 1\">\n        <span class=\"title\">{{task.name}}</span>\n        <p class=\"grey-text\">{{user.name || \"do me!\"}}</p>\n        <p class=\"text-small\">repeats every {{task.period}} days</p>\n\n\n    </div>\n    <div class=\"col flex-down\">\n        <div class=\"flex-wrap-end\"\n             style=\"align-self: flex-start\">\n\n            <a class=\"tooltipped\"\n               (click)=\"finishClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">done</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"showDetailClick()\"\n               materialize=\"tooltip\"\n               data-position=\"bottom\"\n               data-delay=\"20\"\n               data-tooltip=\"edit\">\n                <i class=\"material-icons\">mode_edit</i></a>\n            <a class=\"tooltipped\"\n               (click)=\"cancelClick()\"\n               materialize=\"tooltip\" data-position=\"bottom\" data-delay=\"20\" data-tooltip=\"finish\">\n                <i class=\"material-icons\">cancel</i></a>\n\n        </div>\n        <span class=\"chip\">{{task.points}} points</span>\n    </div>\n</div>"
 
 /***/ },
 
 /***/ 905:
 /***/ function(module, exports) {
 
-module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\n\n\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\n\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\n\n        <!--<div style=\"position:absolute; z-index: 10\">-->\n        <!--<a class=\"btn\">test</a>-->\n        <!--</div>-->\n\n        <app-tasktodo-row\n                (cancel)=\"cancel($event, i)\"\n                (finish)=\"finish($event, i)\"\n                (showDetail)=\"showDetail($event)\"\n                [task]=\"tasktodo\"\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\n\n\n    </div>\n</div>\n\n<div *ngIf=\"tasksTodo.length == 0\">\n\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\n\n    <div class=\"card\">\n        <div class=\"card-content\">\n            <span class=\"card-title\">No tasks found</span>\n            <p>You have nothing to do, go make some tasks!</p>\n        </div>\n        <div class=\"card-action\">\n            <a href=\"#\">Fuck you</a>\n            <a href=\"#\">OK</a>\n        </div>\n    </div>\n</div>\n\n<app-taskdetail *ngIf=\"selectedTask\" [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
+module.exports = "<!--<app-loader-small *ngIf=\"loading\"></app-loader-small>-->\r\n\r\n\r\n<div class=\"collection\" [hidden]=\"tasksTodo.length == 0\" *ngIf=\"tasksTodo.length > 0\">\r\n\r\n    <div class=\"collection-item\" style=\"\" *ngFor=\"let tasktodo of tasksTodo | sort; let i = index\">\r\n\r\n        <!--<div style=\"position:absolute; z-index: 10\">-->\r\n        <!--<a class=\"btn\">test</a>-->\r\n        <!--</div>-->\r\n\r\n        <app-tasktodo-row\r\n                (cancel)=\"cancel($event, i)\"\r\n                (finish)=\"finish($event, i)\"\r\n                (showDetail)=\"showDetail($event)\"\r\n                [task]=\"tasktodo\"\r\n                [user]=\"user(tasktodo.assigned_to)\"></app-tasktodo-row>\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"tasksTodo.length == 0\">\r\n\r\n    <h2 class=\"center-align grey-text light text-darken-1\">my upcoming tasks</h2>\r\n\r\n    <div class=\"card\">\r\n        <div class=\"card-content\">\r\n            <span class=\"card-title\">No tasks found</span>\r\n            <p>You have nothing to do, go make some tasks!</p>\r\n        </div>\r\n        <div class=\"card-action\">\r\n            <a href=\"#\">Fuck you</a>\r\n            <a href=\"#\">OK</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<app-taskdetail *ngIf=\"selectedTask\" [(visible)]=\"showDialog\" [(task)]=\"selectedTask\" [(users)]=\"users\"></app-taskdetail>"
 
 /***/ },
 
@@ -4754,7 +4719,88 @@ module.exports = "\r\n\r\n\r\n<div class=\"container \">\r\n  <div class=\"conte
 /***/ 908:
 /***/ function(module, exports) {
 
-module.exports = "<p>\n  not-found works!\n</p>\n"
+module.exports = "<div class=\"container \">\r\n    <div class=\"content\">\r\n        <div class=\"row\">\r\n            <div class=\"col s10 m6 l6 offset-s1 offset-m3 offset-l3\">\r\n                <div class=\"card\">\r\n                    <div class=\"card-content\">\r\n                        <span class=\"card-title\">Oooh boy</span>\r\n                        <div class=\"text-small text\">Error: 404</div>\r\n                        <div class=\"text\">This is rubbish. It looks like the page you requested doesn't exist or was removed. You can always admire the <a href=\"/\">homepage</a>!</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+
+/***/ },
+
+/***/ 98:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__(1173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contract__ = __webpack_require__(127);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SocketService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SocketService = (function () {
+    function SocketService(contract) {
+        this.contract = contract;
+        this.resubscribeNeededSource = new __WEBPACK_IMPORTED_MODULE_3_rxjs__["Subject"]();
+        this.socketResubscribed$ = this.resubscribeNeededSource.asObservable();
+        this.connect();
+    }
+    SocketService.prototype.connect = function () {
+        var _this = this;
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__["connect"](this.contract.Hostname);
+        this.socket.on("connect", function () { return _this.subscribe(); });
+    };
+    SocketService.prototype.subscribe = function () {
+        var _this = this;
+        this.resubscribeNeededSource.next(true);
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.getToken().then(function (token) {
+            _this.socket.emit("subscribe", token);
+        });
+    };
+    SocketService.prototype.resubscribe = function () {
+        this.socket.disconnect();
+        this.connect();
+    };
+    SocketService.prototype.sendMessage = function (message) {
+        this.socket.emit("chat-message", message);
+    };
+    SocketService.prototype.receiveMessages = function () {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].create(function (observer) {
+            _this.socket.on("sent-message", function (msg) {
+                console.log("test");
+                observer.next(msg);
+            });
+        });
+    };
+    SocketService.prototype.taskUpdates = function () {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].create(function (observer) {
+            _this.socket.on("tasks-update", function (taskInfo) {
+                observer.next(taskInfo);
+            });
+        });
+    };
+    SocketService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__contract__["a" /* Contract */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__contract__["a" /* Contract */]) === 'function' && _a) || Object])
+    ], SocketService);
+    return SocketService;
+    var _a;
+}());
+//# sourceMappingURL=C:/Users/Nick/OneDrive/KuisAppWeb/backend_kuisApp/src/socket.service.js.map
 
 /***/ }
 
