@@ -2,6 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter, trigger, transition, sty
 import {Household} from "../../../../models/household.model";
 import {User} from "../../../../models/user.model";
 import {ApiService} from "../../../../service/api.service";
+import {SocketService} from "../../../../service/socket.service";
 
 @Component({
   selector: 'app-leave-household',
@@ -29,7 +30,7 @@ export class LeaveHouseholdComponent implements OnInit {
   @Output() visibleChange:EventEmitter<boolean>= new EventEmitter<boolean>();
   @Output() updatedUser: EventEmitter<any>=new EventEmitter();
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private socketService:SocketService) { }
 
   ngOnInit() {
   }
@@ -43,6 +44,7 @@ export class LeaveHouseholdComponent implements OnInit {
 
       this.apiService.leaveHousehold(this.user.id).subscribe(
           user => {
+              this.socketService.resubscribe();
               this.visible = false;
               this.visibleChange.emit(this.visible);
               this.updatedUser.emit(user);

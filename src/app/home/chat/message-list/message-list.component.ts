@@ -23,14 +23,18 @@ export class MessageListComponent implements OnInit {
     constructor(private socketService:SocketService) {}
 
     ngOnInit() {
+        this.socketService.socketResubscribed$.subscribe((data)=>this.socketUpdate());
+
+        this.scrollToBottom();
+    }
+
+    private socketUpdate() {
         this.socketService
             .receiveMessages()
             .subscribe((msg) => {
                 this.messages.push(msg);
                 this.scrollToBottom();
             });
-
-        this.scrollToBottom();
     }
 
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;

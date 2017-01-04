@@ -18,6 +18,7 @@ import * as firebase from 'firebase';
 import {SocketService} from "../../../../../service/socket.service";
 import {take} from "rxjs/operator/take";
 import {UpdateHouseholdOverviewService} from "../../../../../service/update-household-overview.service";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -56,8 +57,6 @@ export class TasktodoRowComponent implements OnInit {
     }
 
     finishClick() {
-        console.log("request update");
-        this.updateHouseholdOverviewService.updateHouseholdNeeded();
         this.state = 'finished';
         this.isDestroyed = true;
         this.finish.emit(this.task);
@@ -80,11 +79,16 @@ export class TasktodoRowComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.socketUpdate();
+        this.socketService.socketResubscribed$.subscribe((data)=>this.socketUpdate());
+    }
+
+    private socketUpdate() {
+        console.log("method called");
         this.socketService.taskUpdates().subscribe((data) => {
+            console.log("data received");
             if (!this.isDestroyed && data.taskID === this.task.id) {
                 if (data.done) {
-                    console.log("this task is done");
-                    console.log(data.taskID);
                     this.updateHouseholdOverviewService.updateHouseholdNeeded();
                     this.state = "finished";
                     this.finish.emit(this.task);

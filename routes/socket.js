@@ -13,13 +13,15 @@ module.exports = function (io) {
                     let uid = decodedToken.uid;
                     User.getUserByUID(uid, function (user) {
 
-                        if (user.household_id !== undefined) {
+                        if (user.household_id !== null) {
                             socket.householdID = user.household_id;
                             socket.join("household_" + user.household_id);
                         } else {
-                            socket.householdID = user.id;
+                            socket.householdID = user.uid;
                             socket.join("household_" + user.id);
                         }
+                        console.log("subscribe");
+                        console.log(socket.householdID);
                         socket.uid = uid;
                     })
                 });
@@ -27,6 +29,7 @@ module.exports = function (io) {
 
         socket.on("chat-message", function (msg) {
             User.getUserByUID(socket.uid, function (data) {
+                console.log(socket.householdID);
                 io.to('household_' + socket.householdID).emit("sent-message", {
                     user: {
                         imgsrc: data.imgsrc,
