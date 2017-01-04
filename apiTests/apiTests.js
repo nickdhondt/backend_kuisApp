@@ -60,7 +60,7 @@ describe("user tests", function () {
             });
             res.on('end', function (err) {
                 assert.equal(err,null);
-                assert.equal(res.statusCode, 200);
+                assert.equal(res.statusCode, 200); //comment
                 console.log(result);
                 var data = JSON.parse(result);
                 assert.notEqual(lengthOfObject(data),0);
