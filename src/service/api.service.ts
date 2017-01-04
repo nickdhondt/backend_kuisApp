@@ -327,6 +327,26 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
+    public updateHousehold(household:Household):Observable<Household>{
+      let tokenPromise = new Promise<Household>((resolve,reject)=>{
+        this.auth.token.then(token=>{
+          this.headers.set('Firebase-ID-Token',token);
+          return this._http.post(
+            this.actionUrl + "updatehousehold",
+            household,
+            {headers:this.headers})
+            .map(res=>res.json())
+            .catch(ApiService.handleError)
+            .subscribe(
+              data=>resolve(data),
+              err=>reject(err)
+            )
+
+        });
+      })
+      return Observable.fromPromise(tokenPromise);
+    }
+
     public leaveHousehold(id: Number): Observable<User> {
         let tokenPromise = new Promise<User>((resolve, reject) => {
         this.auth.token.then(token=>{
