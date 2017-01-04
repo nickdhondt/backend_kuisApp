@@ -9,6 +9,7 @@ let conn = require('../helpers/connection')(mysql);
 
 let firebaseAuthenticator = require("../middleware/firebase-authenticator");
 let checkTaskFormat = require("../middleware/checkTaskFormat");
+let checkFinishedTaskFormat = require("../middleware/checkFinishedTaskFormat");
 let apiNotFound = require("../middleware/api-not-found");
 let apiErrorHandling = require("../middleware/api-error-handling");
 
@@ -451,11 +452,13 @@ router.get('/tasksbytoken', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door: Bart & Nick
-router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
+router.post('/addtask',[checkTaskFormat, firebaseAuthenticator], function (req, res, next) {
     process.on("mysqlError", (err) => {
         return next(err);
     });
     let body = req.body;
+
+
     User.getUserByUID(res.locals.uid, function (user) {
         body.household_id = user.household_id;
         if(body.dueDate === null || body.household_id == null){
@@ -471,10 +474,14 @@ router.post('/addtask', firebaseAuthenticator, function (req, res, next) {
 
 //af: steven
 //controle door: Bart & Nick
-router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
+router.post('/updatetask', [checkTaskFormat, firebaseAuthenticator] , function (req, res, next) {
+
+    console.log(req.body);
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
+
     let body = req.body;
     User.getUserByUID(res.locals.uid, function (user) {
         body.household_id = user.household_id;
@@ -485,12 +492,15 @@ router.post('/updatetask', firebaseAuthenticator, function (req, res, next) {
     })
 });
 
-router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (req, res, next) {
+router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], function (req, res, next) {
+
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
 
     let receivedTask = req.task;
+
 
     User.getUserByUID(res.locals.uid, function (user) {
 
@@ -515,7 +525,10 @@ router.post('/finishtask', [firebaseAuthenticator, checkTaskFormat], function (r
             });
 
             finishedTask.save(function (err) {
-                if (err) return next(err);
+                if (err) {
+                    console.log(err);
+                    return next(err);
+                }
 
                 //checked
                 if (receivedTask.done) {
@@ -848,14 +861,15 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
 
 //af: steven
 //controle door: bart the almighty (en nee, het werkte niet)
-router.post('/addtasks',  function (req, res, next) {
+router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
 
     process.on("mysqlError", (err) => {
         return next(err);
     });
+
     let body = req.body;
 
-    Household.getHouseholdLimitedByUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", household=>{
+    Household.getHouseholdLimitedByUID(res.locals.uid, household=>{
 
     let arrayToSend = [];
 
@@ -869,7 +883,6 @@ router.post('/addtasks',  function (req, res, next) {
         arr.push(t.name);
         arr.push(t.dueDate);
         arr.push(t.assigned_to);
-
 
         arrayToSend.push(arr);
 

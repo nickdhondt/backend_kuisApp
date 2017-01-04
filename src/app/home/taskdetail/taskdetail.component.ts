@@ -81,6 +81,8 @@ export class TaskdetailComponent implements OnInit {
     }
 
     add() {
+
+
         if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
             console.log(this.taskLocal);
 
@@ -91,8 +93,9 @@ export class TaskdetailComponent implements OnInit {
         }
     }
     save(){
-        this.task = this.taskLocal;
-        if(this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+
+        if(moment(this.taskLocal.dueDate).isValid() && this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
+            this.task = this.taskLocal;
             this.apiService.updateTask(this.task).subscribe((data)=>{
                 this.updateTaskListService.updateListNeeded();
                 this.close();

@@ -114,7 +114,6 @@ class getUser {
                 if (err) process.emit("mysqlError", err);
                 else {
 
-                    console.log(rows);
                     userwithhousehold.household.tasks = rows;
                     getUser.addTasksTodoToHouseholdToUser(userwithhousehold, cb);
 

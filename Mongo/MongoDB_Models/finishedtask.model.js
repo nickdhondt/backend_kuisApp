@@ -1,7 +1,7 @@
 /**
  * Created by Student on 28/12/2016.
  */
-"use strict"
+"use strict";
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

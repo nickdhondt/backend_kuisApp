@@ -213,7 +213,6 @@ class Task {
 
             else cb(rows);
         });
-
     }
 
     static getTaskByID(id, cb) {

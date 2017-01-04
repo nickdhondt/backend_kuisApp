@@ -5,16 +5,15 @@ import {Headers, Http, Response} from "@angular/http";
 import {Contract} from "../../contract";
 import {User} from "../../models/user.model";
 import {Observable} from "rxjs";
+import * as firebase from "firebase";
 
 
 @Injectable()
 export class AuthService {
 
-  public authState: FirebaseAuthState = null;
+    public authState: FirebaseAuthState = null;
     private actionUrl: string;
     private headers: Headers;
-
-
 
     constructor(public auth$: FirebaseAuth, private router: Router, private _http: Http, private _contract: Contract) {
 
@@ -83,8 +82,18 @@ export class AuthService {
   }
 
   logout(){
-    this.auth$.logout()
-  }
+
+      this.auth$.logout();
+
+      // // Google sign out
+      // Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+      //     new ResultCallback<Status>() {
+      // @Override
+      // public void onResult(@NonNull Status status) {
+      //         updateUI(null);
+      //     }
+      // });
+  };
 
 
   get token(): firebase.Promise<string>{
