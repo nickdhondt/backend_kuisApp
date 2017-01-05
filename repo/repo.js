@@ -65,11 +65,15 @@ class getUser {
                     }
                 });
 
+                let wonby = "";
+                if(stats[0]._id)  wonby = getUser.findwinner(stats[0]._id, household.users);
+                else wonby = getUser.findwinners(stats[0].users, household.users);
+
                 let result = {};
                 result.mostAwardsWon = mostAwards._id || "it's mostly a draw";
                 result.countFinishedAwards = total;
                 result.lastAward = stats[0].last;
-                result.lastAwardWonBy = stats[0]._id || getUser.findwinners(stats[0].users, household.users);
+                result.lastAwardWonBy = wonby;
 
                 cb(result);
             }
@@ -84,6 +88,17 @@ class getUser {
         });
     }
 
+    static findwinner(id, householdusers){
+
+        let winner = "an old user";
+
+        householdusers.map(u=>{
+            if(u.id == id) winner = u.name;
+        });
+
+        return winner;
+
+    }
     static findwinners(users, householdusers){
 
         let max = 0;
@@ -107,7 +122,7 @@ class getUser {
             }
         });
 
-    let res = "It was a draw between: ";
+    let res = "it was a draw between: ";
 
     for(let i=0; i<winners.length; i++) {
         res += winners[i];
