@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild, ElementRef, Output, EventEmitter} from "@angular/core";
 import {SocketService} from "../../../../service/socket.service";
+import {ApiService} from "../../../../service/api.service";
 
 @Component({
     selector: 'app-message-list',
@@ -10,10 +11,16 @@ import {SocketService} from "../../../../service/socket.service";
 export class MessageListComponent implements OnInit {
     messages: Array<Object> = [];
 
-    constructor(private socketService:SocketService) {}
+    constructor(private socketService:SocketService, private apiService:ApiService) {}
 
     ngOnInit() {
         this.socketService.socketResubscribed$.subscribe((data)=>this.socketUpdate());
+
+        this.apiService.getAnnouncements().subscribe((data)=>{
+            for(let message of data) {
+                this.messages.push({message: message.message, user:{name: message.name, lname:message.lname}});
+            }
+        });
 
         this.scrollToBottom();
     }

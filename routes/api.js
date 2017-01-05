@@ -24,6 +24,7 @@ let repo = require("../repo/repo");
 let moment = require("moment");
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
+let Announcement = require('../Mongo/MongoDB_Models/announcement.model');
 
 
 router.use(bodyParser.json());
@@ -904,6 +905,15 @@ router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
     })
 
     });
+});
+
+router.get('/lastannouncements', firebaseAuthenticator, function (req, res, next) {
+    User.getUserByUID(res.locals.uid, function (user) {
+        Announcement.find({'household_id': user.household_id}).limit(30).exec(function(err, posts){
+            res.json(posts);
+            res.end();
+        });
+    })
 });
 // router.use(apiNotFound);
 // router.use(apiErrorHandling);
