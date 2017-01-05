@@ -17,8 +17,8 @@ export class AuthService {
 
     constructor(public auth$: FirebaseAuth, private router: Router, private _http: Http, private _contract: Contract) {
 
-        this.actionUrl = _contract.LocalhostWithApiUrl;
-        //this.actionUrl = _contract.ServerWithApiUrl;
+        //this.actionUrl = _contract.LocalhostWithApiUrl;
+        this.actionUrl = _contract.ServerWithApiUrl;
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
