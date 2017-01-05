@@ -85,7 +85,7 @@ class Task {
                         count: {$sum: 1},
                     }
                 },
-                // {$sort: {"_id": -1}},
+                {$sort: {"count": -1}},
             ])
             .exec(function (err, data) {
                 if (err) next(err);
@@ -124,7 +124,6 @@ class Task {
             function (err, rows, fields) {
                 if (err) process.emit("mysqlError", err);
                 else {
-                    console.log(rows);
                     cb(rows);
                 }
             })
