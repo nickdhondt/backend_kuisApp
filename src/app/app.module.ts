@@ -29,7 +29,7 @@ const myFirebaseAuthConfig = {
     method: AuthMethods.Popup
 };
 
- enableProdMode();
+ // enableProdMode();
 
 @NgModule({
     declarations: [

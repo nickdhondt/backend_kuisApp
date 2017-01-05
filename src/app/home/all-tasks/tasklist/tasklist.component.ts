@@ -14,6 +14,7 @@ export class TasklistComponent implements OnInit {
 
     @Input() tasks: Task[];
     @Input() users: User[];
+    @Input() hasHousehold:Boolean;
 
     showDialog: boolean = false;
     selectedTask: Task;
