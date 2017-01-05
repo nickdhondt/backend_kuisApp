@@ -505,7 +505,26 @@ export class ApiService {
         return Observable.fromPromise(tokenPromise);
     }
 
-    public
+    public getAnnouncements():Observable<any[]>{
+
+        let tokenPromise = new Promise<any[]>((resolve,reject)=>{
+            this.auth.token.then(token=>{
+                this.headers.set("Firebase-ID-Token",token);
+                return this._http.get(
+                    this.actionUrl +"lastannouncements/",
+                    {headers:this.headers})
+                    .map(res => res.json())
+                    .catch(ApiService.handleError)
+                    .subscribe(
+                        data => resolve(data),
+                        err => reject(err)
+                    );
+
+            })
+        });
+
+        return Observable.fromPromise(tokenPromise);
+    }
 }
 
 

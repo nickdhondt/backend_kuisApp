@@ -230,7 +230,7 @@ class getUser {
 
                     if (award) {
 
-                        let awardTerm = "day"; // Change to "month" for production
+                        let awardTerm = "months"; // Change to "months" for production
 
                         let awardDate = moment(award.month, "YYYY-MM-DD");
                         let now = moment().subtract(1, awardTerm);

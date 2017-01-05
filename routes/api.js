@@ -24,6 +24,7 @@ let repo = require("../repo/repo");
 let moment = require("moment");
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
+let Announcement = require('../Mongo/MongoDB_Models/announcement.model');
 
 
 router.use(bodyParser.json());
@@ -236,8 +237,6 @@ router.get('/test', (req, res, next)=>{
 
 });
 
-
-
 router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
     process.on("mysqlError", (err) => {
@@ -383,9 +382,6 @@ router.post('/updateuser', firebaseAuthenticator, function (req, res, next) {
 //af: steven
 //controle door:
 router.post('/updatehousehold', firebaseAuthenticator, function (req, res, next) {
-
-
-
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -776,7 +772,7 @@ router.post('/addaward', firebaseAuthenticator, function (req, res, next) {
     });
 });
 
-router.get('/importtasks/:household/:assignusers?', firebaseAuthenticator, function (req, res, next) {
+router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, function (req, res, next) {
 
     //let assignUsers = 7;
     //if (req.params.term !== undefined) assignUsers = parseB(req.params.assignusers.toLowerCase() === "true");
@@ -986,6 +982,15 @@ router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
     })
 
     });
+});
+
+router.get('/lastannouncements', firebaseAuthenticator, function (req, res, next) {
+    User.getUserByUID(res.locals.uid, function (user) {
+        Announcement.find({'household_id': user.household_id}).limit(30).exec(function(err, posts){
+            res.json(posts);
+            res.end();
+        });
+    })
 });
 // router.use(apiNotFound);
 // router.use(apiErrorHandling);

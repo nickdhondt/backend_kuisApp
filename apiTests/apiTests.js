@@ -1,7 +1,9 @@
 var assert = require("assert");
 var http = require('http');
 var should = require('should');
-var firebaseToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjYzNjhiYjg3NzVhYTI3YmI0MzlmNDYwNGZlNDk4Y2Y4YWYyMTQyNDEifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20va3Vpc2FwcCIsIm5hbWUiOiJTdGV2ZW4gTW9sbGllIiwicGljdHVyZSI6Imh0dHBzOi8vc2NvbnRlbnQueHguZmJjZG4ubmV0L3YvbC90MS4wLTEvcDEwMHgxMDAvMTQzNTg2NDhfMTAyMDkxNjA5MzMyOTQyODBfNzU5MDI0MTczMjk5OTUwNTcyOF9uLmpwZz9vaD1lNTA0MjUzNWE4Y2NjZjViZTI1YTVkNGUwNDIyNWM5OSZvZT01OEQyMjNGNSIsImF1ZCI6Imt1aXNhcHAiLCJhdXRoX3RpbWUiOjE0ODMwMDkyOTcsInVzZXJfaWQiOiJHZllBMWhXYmtiZFU4dU93aENENFBXN3N5VVoyIiwic3ViIjoiR2ZZQTFoV2JrYmRVOHVPd2hDRDRQVzdzeVVaMiIsImlhdCI6MTQ4MzU2MjkxNSwiZXhwIjoxNDgzNTY2NTE1LCJlbWFpbCI6InN0ZXZlZGVtb2xsZUBob3RtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJmYWNlYm9vay5jb20iOlsiMTAyMDk2NzQ5NjM1MDQ3MTQiXSwiZW1haWwiOlsic3RldmVkZW1vbGxlQGhvdG1haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.TBUGBYMItZ2SMZZmd114FyWsDU5yAP9eQ0RyShCb9uPsNd9foXlFvL0SSiGOaJDA1O7PHp_hiA5GpAYoxJeW3libFExRcRR_CP5J2eVmYRet_9X44S7QWBPBChd8FNSvIpmtJ05zDBq9AY7EWlj_Prtt7a30XMgTKLC-fp-vqRgOjX38sbUj5bDX6gA8RHSzPCRyW_Rh4jxftQG9O8kRNlE69yetMWI3C11RoxZqFqt5oidocezklKnrm2_hn1hXyZKoDNI5kIXUpk0QfVduB7LVgREno1z7uDDOOWCcWbhtkH2wQPjETsoVONSYp41h41NIq_GHRciq87PyXC3QOw';
+var supertest = require("supertest");
+var server = supertest.agent("http://localhost:3000");
+var firebaseToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjZkMjhmYWIwMzliZTNjMWNiYTFlZTc3NDRkMjdmYTg2OTNkMTcwZDIifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20va3Vpc2FwcCIsIm5hbWUiOiJTdGV2ZW4gTW9sbGllIiwicGljdHVyZSI6Imh0dHBzOi8vc2NvbnRlbnQueHguZmJjZG4ubmV0L3YvbC90MS4wLTEvcDEwMHgxMDAvMTQzNTg2NDhfMTAyMDkxNjA5MzMyOTQyODBfNzU5MDI0MTczMjk5OTUwNTcyOF9uLmpwZz9vaD1lNTA0MjUzNWE4Y2NjZjViZTI1YTVkNGUwNDIyNWM5OSZvZT01OEQyMjNGNSIsImF1ZCI6Imt1aXNhcHAiLCJhdXRoX3RpbWUiOjE0ODMwMDkyOTcsInVzZXJfaWQiOiJHZllBMWhXYmtiZFU4dU93aENENFBXN3N5VVoyIiwic3ViIjoiR2ZZQTFoV2JrYmRVOHVPd2hDRDRQVzdzeVVaMiIsImlhdCI6MTQ4MzYxNTQzOCwiZXhwIjoxNDgzNjE5MDM4LCJlbWFpbCI6InN0ZXZlZGVtb2xsZUBob3RtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJmYWNlYm9vay5jb20iOlsiMTAyMDk2NzQ5NjM1MDQ3MTQiXSwiZW1haWwiOlsic3RldmVkZW1vbGxlQGhvdG1haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.K-bbRSFJUzPUL2I49UVXmt9sK9X4C9I8tZFyudYzJ1zRKGftOJJTM1YvZXIL6_iDcSNANnTGMJBsqJJQWgAm3TjhS0CHS-o0s4M0hMeGr8QBndrYp71tisSkIcQuYMn1IPQmYbu7jTDmft62glMMh6TbpMup6tU2rc-YUPESKc3N3v2LZGA4bDxvvDWfjQn3Oob4GkPMUDj1x5JLAodrB4oFBGrNk70RUXhr3DA1Kt-7Lx1zlWXXNo_SrBEG4ndHYfSSN8CvKl99dCAm6P2LRFEYolvvhTeWP8nIfk8VLvJI83cyL4wrGs0kgBBQBvlutv8r_5mA49uVppUosGppVw';
 
 describe("user tests", function () {
     var lengthOfObject = function (obj) {
@@ -280,5 +282,18 @@ describe("task tests", function () {
             })
         });
         req.end();
+    });
+
+    it("should add a task", function (done) {
+        var body = {"description":"test api van steven","dueDate":"2016-12-31","household_id":37,"period":7,"points":3,"name":"test api", "assigned_to":37};
+        server
+            .post('api/addtask')
+            .set({"Firebase-ID-Token": firebaseToken})
+            .send(body)
+            .expect(200)
+            .end(function (err,res) {
+                console.log(res);
+                done();
+            });
     });
 });

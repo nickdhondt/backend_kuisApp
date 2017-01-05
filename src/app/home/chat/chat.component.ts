@@ -14,6 +14,8 @@ export class ChatComponent implements OnInit {
 
     household: Household = new Household();
 
+    changes: Boolean = false;
+
     constructor(private socketService:SocketService) {
 
     }
@@ -28,6 +30,7 @@ export class ChatComponent implements OnInit {
 
     private toggleChat(): void {
         this.isHidden = !this.isHidden;
+        this.changes = !this.changes;
     }
 
 

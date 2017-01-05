@@ -5,6 +5,8 @@ module.exports = function (io) {
     let User = require("../models/User");
     let request = require("request");
 
+    let Announcement = require('../Mongo/MongoDB_Models/announcement.model');
+
     io.on('connection', function (socket) {
         socket.on("subscribe", function (token) {
             admin.auth().verifyIdToken(token)
@@ -30,6 +32,19 @@ module.exports = function (io) {
         socket.on("chat-message", function (msg) {
             User.getUserByUID(socket.uid, function (data) {
                 //console.log(socket.householdID);
+
+                let newAnnouncement = Announcement({
+                    imgsrc: data.imgsrc,
+                    name: data.name,
+                    lname: data.lname,
+                    message: msg,
+                    household_id: "" + socket.householdID
+                });
+
+                newAnnouncement.save(function (err) {
+                    if (err) console.log(err);
+                });
+
                 io.to('household_' + socket.householdID).emit("sent-message", {
                     user: {
                         imgsrc: data.imgsrc,
