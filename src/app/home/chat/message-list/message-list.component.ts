@@ -20,9 +20,8 @@ export class MessageListComponent implements OnInit {
             for(let message of data) {
                 this.messages.push({message: message.message, user:{name: message.name, lname:message.lname}});
             }
+            this.scrollToBottom();
         });
-
-        this.scrollToBottom();
     }
 
     private socketUpdate() {
