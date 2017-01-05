@@ -31,6 +31,7 @@ const myFirebaseAuthConfig = {
 
  enableProdMode();
 
+
 @NgModule({
     declarations: [
         AppComponent,
