@@ -39,16 +39,17 @@ export class JoinHouseholdComponent implements OnInit {
   }
   save(){
     if(this.memberemail){
-      console.log(this.memberemail);
+      //console.log(this.memberemail);
 
       this.apiservice.getHouseholdbyEmail(this.memberemail).subscribe(
         data=>{
 
           this.household = data;
-          console.log(this.household);
+          //console.log(this.household);
 
         },
-        error=>console.log(error));
+        //error=>console.log(error)
+      );
     }
     this.visible=false;
     this.visibleChange.emit(this.visible);

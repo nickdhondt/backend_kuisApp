@@ -41,7 +41,7 @@ export class NewHouseholdComponent implements OnInit {
         this.apiService.addHousehold(this.householdName).subscribe(
             household => {
 
-                console.log(household);
+                //console.log(household);
 
                 this.apiService.addUsertoHousehold(household.id).subscribe(
                     user => {
@@ -49,11 +49,11 @@ export class NewHouseholdComponent implements OnInit {
                         this.userReceived.emit(user);
 
                     },
-                    error => console.log(error)
+                    error => {}
                 )
 
             },
-            error => console.log(error)
+            error => {}
         );
       //current user toevoegen aan dit household
 
@@ -63,7 +63,7 @@ export class NewHouseholdComponent implements OnInit {
       this.visibleChange.emit(this.visible);
 
     }else {
-      console.log("no name")
+      //console.log("no name")
     }
   }
 }

@@ -51,7 +51,7 @@ class getUser {
 
         ]).exec((err, stats)=>{
 
-            if (err) console.log(err);//process.emit("mysqlError", err);
+            if (err) process.emit("mysqlError", err);
             else {
 
                 let mostAwards;

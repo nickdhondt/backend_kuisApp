@@ -23,7 +23,8 @@ export class LoginComponent{
 
             this.auth.addUser().subscribe(
                 data => this.router.navigate(['home']),
-                error => console.log(error));
+                error => {}
+            );
 
         })
         .catch((error)=>{
@@ -39,7 +40,7 @@ export class LoginComponent{
 
             this.auth.addUser().subscribe(
                 data => this.router.navigate(['home']),
-                error => console.log(error));
+                error => {})
 
         })
         .catch((error)=>{

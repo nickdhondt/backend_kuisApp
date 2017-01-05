@@ -109,7 +109,8 @@ export class TasksDonutComponent implements OnInit {
                 this.data = result;
 
             },
-            error => console.log(error))
+            error => {}
+        )
     }
 
     private findUser(id: number) {
@@ -117,7 +118,7 @@ export class TasksDonutComponent implements OnInit {
             if (this.household.users[user].id == id)
                 return this.household.users[user].name;
 
-        console.log(id);
+        //console.log(id);
         return "inactive member"
     }
 }

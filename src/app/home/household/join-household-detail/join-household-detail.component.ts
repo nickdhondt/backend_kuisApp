@@ -42,7 +42,7 @@ export class JoinHouseholdDetailComponent implements OnInit {
   }
 
   join(){
-    console.log("Join Household");
+    //console.log("Join Household");
 
       this.apiService.addUsertoHousehold(this.household.id)
           .subscribe(
@@ -53,7 +53,7 @@ export class JoinHouseholdDetailComponent implements OnInit {
                   this.householdjoined.emit(user);
 
               },
-              error => console.log(error)
+              error =>{}
           );
 
   }

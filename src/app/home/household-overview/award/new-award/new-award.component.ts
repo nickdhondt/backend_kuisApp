@@ -38,9 +38,9 @@ export class NewAwardComponent implements OnInit {
 
     set() {
         if (this.name !== "") {
-            console.log("test");
+            //console.log("test");
             this.apiService.setAward(this.name, this.description).subscribe((award) => {
-                console.log("received");
+                //console.log("received");
                 this.awardAdded.emit(award);
                 this.close();
                 this.name = "";

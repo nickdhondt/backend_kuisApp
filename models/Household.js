@@ -16,7 +16,7 @@ class Household {
 
     static getHouseholdLimitedByUID(uid, cb) {
 
-        console.log(uid);
+        //console.log(uid);
 
         conn.query("select `households`.* from `households` " +
             "inner join `users` on `users`.`household_id` = `households`.`id`" +
@@ -136,7 +136,7 @@ class Household {
         conn.query("update `users` set `household_id` = ? where `uid` = ?", post, function (err, res) {
             if (err) process.emit("mysqlError", err);
             else {
-                console.log(post);
+                //console.log(post);
                 cb(res);
             }
         })

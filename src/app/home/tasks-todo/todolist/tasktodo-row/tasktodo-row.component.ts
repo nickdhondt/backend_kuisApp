@@ -14,11 +14,9 @@ import {Task} from "../../../../../models/task.model";
 import * as moment from "moment";
 import {User} from "../../../../../models/user.model";
 import {ApiService} from "../../../../../service/api.service";
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import {SocketService} from "../../../../../service/socket.service";
-import {take} from "rxjs/operator/take";
 import {UpdateHouseholdOverviewService} from "../../../../../service/update-household-overview.service";
-import {Observable} from "rxjs";
 
 
 @Component({
@@ -85,9 +83,9 @@ export class TasktodoRowComponent implements OnInit {
     }
 
     private socketUpdate() {
-        console.log("method called");
+        //console.log("method called");
         this.socketService.taskUpdates().subscribe((data) => {
-            console.log("data received");
+            //console.log("data received");
             if (!this.isDestroyed && data.taskID === this.task.id) {
                 if (data.done) {
                     this.updateHouseholdOverviewService.updateHouseholdNeeded();

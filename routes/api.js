@@ -208,7 +208,7 @@ router.get('/test', (req, res, next)=>{
 
     ]).exec((err, stats)=>{
 
-        if (err) console.log(err);//process.emit("mysqlError", err);
+        if (err) process.emit("mysqlError", err);
         else {
 
             let mostAwards;
@@ -257,7 +257,7 @@ router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next
     //do not remove! req.params nodig voor redirect
     let uid = res.locals.uid || req.params.fbUser;
 
-    console.log(uid);
+    //console.log(uid);
 
     process.on("mysqlError", (err) => {
         return next(err);
@@ -561,8 +561,6 @@ router.post('/addtask',[checkTaskFormat, firebaseAuthenticator], function (req, 
 //controle door: Bart & Nick
 router.post('/updatetask', [checkTaskFormat, firebaseAuthenticator] , function (req, res, next) {
 
-    console.log(req.body);
-
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -609,11 +607,11 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
                 finished_on: receivedTask.finished_on
             });
 
-            console.log(typeof finishedTask.finished_on + finishedTask.finished_on);
+            //console.log(typeof finishedTask.finished_on + finishedTask.finished_on);
 
             finishedTask.save(function (err) {
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
                     return next(err);
                 }
 
@@ -976,11 +974,9 @@ router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
 
     });
 
-    console.log(arrayToSend);
-
     Task.addTasks(arrayToSend, function (firstID) {
 
-        console.log(firstID);
+        //console.log(firstID);
 
         Task.getImportedTasks(household.id, firstID, (tasks)=>{
 

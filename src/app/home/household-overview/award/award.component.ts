@@ -35,7 +35,7 @@ export class AwardComponent implements OnInit {
     private findUser() {
         for (let user in this.users) {
             if (this.users[user].id == this.award.creator_id) {
-                console.log(this.users[user].name);
+                //console.log(this.users[user].name);
                 this.user = this.users[user];
             }
         }

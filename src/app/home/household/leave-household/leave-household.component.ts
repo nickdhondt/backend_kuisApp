@@ -48,9 +48,9 @@ export class LeaveHouseholdComponent implements OnInit {
               this.visible = false;
               this.visibleChange.emit(this.visible);
               this.updatedUser.emit(user);
-              console.log(user);
+              //console.log(user);
           },
-          error => console.log(error)
+          error => {}
       );
 
 

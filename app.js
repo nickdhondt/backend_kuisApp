@@ -62,7 +62,7 @@ app.use('/socket', socketRoute);
 app.use('/', index);
 
 process.on('uncaughtException', function (err) {
-    console.log('Caught exception: ' + err);
+    //console.log('Caught exception: ' + err);
 });
 
 // catch 404 and forward to error handler
