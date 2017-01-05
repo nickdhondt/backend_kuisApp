@@ -22,8 +22,8 @@ module.exports = function (io) {
                             socket.householdID = user.uid;
                             socket.join("household_" + user.id);
                         }
-                        console.log("subscribe");
-                        console.log(socket.householdID);
+                        //console.log("subscribe");
+                        //console.log(socket.householdID);
                         socket.uid = uid;
                     })
                 });
@@ -31,7 +31,7 @@ module.exports = function (io) {
 
         socket.on("chat-message", function (msg) {
             User.getUserByUID(socket.uid, function (data) {
-                console.log(socket.householdID);
+                //console.log(socket.householdID);
 
                 let newAnnouncement = Announcement({
                     imgsrc: data.imgsrc,

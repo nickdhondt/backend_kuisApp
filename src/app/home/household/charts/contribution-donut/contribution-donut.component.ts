@@ -91,7 +91,7 @@ export class ContributionDonutComponent implements OnInit {
                 let result = {"labels": [], "series": []};
 
                 data.sort((d1, d2) => {
-                    console.log(d1._id);
+                    //console.log(d1._id);
                     if (d1._id > d2._id) return -1;
                     if (d1._id < d2._id) return 1;
                     return 0;
@@ -103,7 +103,8 @@ export class ContributionDonutComponent implements OnInit {
 
                 this.data = result;
             },
-            error => console.log(error))
+            error => {}
+        )
     }
 
     private findUser(id: number) {

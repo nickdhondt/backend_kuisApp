@@ -38,13 +38,13 @@ export class TasksTodoComponent implements OnInit {
                     this.loading = false;
                     this.currentUser = this.user.uid;
                 },
-                error => console.log(error)
+                error => {}
             );
     }
 
   receivenewHousehold(id)
   {
-    console.log("ReceivenewHousehold"+id);
+    //console.log("ReceivenewHousehold"+id);
   }
 
 

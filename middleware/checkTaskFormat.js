@@ -6,7 +6,7 @@ let moment = require("moment");
 function checkTaskFormat(req, res, next) {
 
     if(!moment(req.body.dueDate).isValid()){
-        console.log("wrong date");
+        //console.log("wrong date");
         return next(new Error("wrong date"));
     }
     else {

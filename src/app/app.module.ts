@@ -19,7 +19,6 @@ import {UpdateTaskListService} from "../service/update-task-list.service";
 import {UpdateHouseholdOverviewService} from "../service/update-household-overview.service";
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
-import {enableProdMode} from '@angular/core';
 
 
 const myFirebaseConfig = {
@@ -50,8 +49,6 @@ enableProdMode();
         AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
         CommonModule,
         HomeModule,
-        ModalModule.forRoot(),
-        BootstrapModalModule,
     ],
     providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService, SocketService, UpdateTaskListService, UpdateHouseholdOverviewService],
     bootstrap: [AppComponent],

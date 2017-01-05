@@ -40,7 +40,7 @@ export class AboutComponentComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.visible);
+        //console.log(this.visible);
     }
 
 }

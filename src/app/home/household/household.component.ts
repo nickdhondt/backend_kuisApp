@@ -42,7 +42,7 @@ export class HouseholdComponent implements OnInit {
                     this.loading = false;
                     this.currenthousehold=data.household;
                 },
-                error => console.log(error)
+                error => {}
             );
     }
 

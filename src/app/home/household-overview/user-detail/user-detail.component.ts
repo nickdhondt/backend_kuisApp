@@ -55,6 +55,6 @@ export class UserDetailComponent implements OnInit {
     }
     save(){
         //Code om update-user uit te voeren
-        this.apiService.updateUser(this.user).subscribe((user)=>{console.log(user); this.close()})
+        this.apiService.updateUser(this.user).subscribe((user)=>this.close())
     }
 }

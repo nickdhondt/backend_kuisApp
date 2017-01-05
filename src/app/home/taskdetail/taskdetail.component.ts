@@ -87,7 +87,7 @@ export class TaskdetailComponent implements OnInit {
 
 
         if (this.taskLocal.name !== undefined && this.taskLocal.dueDate !== undefined && this.taskLocal.dueDate !== "" && this.taskLocal.assigned_to !== undefined && this.taskLocal.period !== undefined && this.taskLocal.points !== undefined) {
-            console.log(this.taskLocal);
+            //console.log(this.taskLocal);
 
             this.apiService.addTask(this.taskLocal).subscribe((data) => {
                 this.updateTaskListService.updateListNeeded();

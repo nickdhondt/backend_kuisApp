@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
-import * as firebase from 'firebase';
+import {Injectable} from "@angular/core";
+import * as io from "socket.io-client";
+import * as firebase from "firebase";
 import {Observable, Subject} from "rxjs";
 import {Contract} from "../contract";
 
@@ -41,7 +41,7 @@ export class SocketService {
     receiveMessages():Observable<any> {
         return Observable.create((observer: any) => {
             this.socket.on("sent-message", (msg) => {
-                console.log("test");
+                //console.log("test");
                 observer.next(msg)
             })
         })

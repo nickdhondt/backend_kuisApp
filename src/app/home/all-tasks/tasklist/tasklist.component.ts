@@ -22,8 +22,8 @@ export class TasklistComponent implements OnInit {
     }
 
     private listNeedsUpdate(data) {
-        console.log("oooh boy");
-        console.log(data);
+        //console.log("oooh boy");
+        //console.log(data);
     }
 
     ngOnInit() {

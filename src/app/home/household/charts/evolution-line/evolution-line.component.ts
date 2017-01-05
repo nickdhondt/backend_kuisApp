@@ -136,7 +136,7 @@ export class EvolutionLineComponent implements OnInit {
 
                 resolve(result);
             },
-            error => console.log(error))
+            )
     }
 
     private findUser(id: number) {

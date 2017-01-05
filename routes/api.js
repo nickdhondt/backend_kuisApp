@@ -120,7 +120,7 @@ router.get('/finishedcanceledstats', firebaseAuthenticator, function (req, res, 
 
     Household.getHouseholdLimitedByUID(res.locals.uid, (household) => {
 
-    Task.getFinishedCanceld(37, (data)=>{
+    Task.getFinishedCanceld(household.id, (data)=>{
 
         res.json(data);
         res.end();
@@ -129,31 +129,111 @@ router.get('/finishedcanceledstats', firebaseAuthenticator, function (req, res, 
     })
 });
 
-router.get('/householdstats', function (req, res, next) {
+router.get('/seedmongoawards', function (req, res, next) {
 
 
-    FinishedTask
-        .aggregate([
-            {$match: {household_id: 37}},
-            {
-                $group: {
-                    _id: {
-                        "year": {$year: "$finished_on"},
-                        "month": {$month: '$finished_on'},
+    let creators = [28,30,33,71];
+    let awards = [
+        {id:1 ,name:"Geen afwas voor een week", description:""},
+        {id:2 ,name:"We trakteren met een film", description:""},
+        {id:3 ,name:"Controle over de tv", description:"Voor 3 dagen"},
+        {id:4 ,name:"Keuze van radiopost", description:"Voor de volledige maand!"},
+        {id:5 ,name:"Een (niet) sensuele voetmassage", description:""},
+        {id:6 ,name:"Drie gestreken hemden", description:"We strijken drie hemden voor jou!"},
+        {id:7 ,name:"Een lekkere Ename!", description:""},
+        {id:8 ,name:"Extra douchetijd 's morgens", description:"Een kwartier langer in de badkamer voor één week!"},
+        {id:9 ,name: "Een pak batterijen",description:"Voor in de dildo."},
+        {id:10 ,name: "Een maand gratis Bureaucontainers",description:""},
+        {id:12 ,name: "Drie wildcards",description:"Als je geen zin hebt om boodschappen te doen"},
+        {id:13 ,name: "Een groene koffietas over tuinieren",description:""},
+        {id:14 ,name: "Een jezusbeeldje",description:"Omdat het kan"},
+        {id:15 ,name: "Star Wars in concert on blu-ray",description:"Of dvd"}
+        ];
 
-                        "done": "$done"
-                    },
-                    count: {$sum: 1},
+
+    let index = 0;
+    let begin = moment().subtract(14, 'months');
+
+    // while(begin < moment().subtract(1, 'months')){
+    //
+    //     begin = begin.add(1,'months');
+    //     index++;
+    //
+    //     let award = awards[index];
+    //
+    //     let users={};
+    //
+    //     creators.map(c=>{
+    //         users[c] =   Math.floor(Math.random() * (100));
+    //     });
+    //
+    //     let newFinishedAward = FinishedAward({
+    //         id: award.id,
+    //         name: award.name,
+    //         description: award.description,
+    //         month: begin.format("YYYY-MM-DD"),
+    //         winner_id: creators[ Math.floor(Math.random() * (creators.length))],
+    //         household_id: 37,
+    //         users: users,
+    //         creator_id: creators[ Math.floor(Math.random() * (creators.length))]
+    //     });
+    //
+    //     newFinishedAward.save(function (err) {
+    //         if (err) console.log(err);
+    //         else console.log("saved :" + index);
+    //     })
+    // }
+
+    res.send();
+    res.end();
+
+});
+
+router.get('/test', (req, res, next)=>{
+
+    let household_id = 37;
+    FinishedAward.aggregate([
+
+        {$match: {household_id: household_id}},
+        {$sort: {"month": -1}},
+        {
+            $group: {
+                _id: '$winner_id',
+                count: {$sum: 1},
+                last: {$first: '$name'},
+                max : {$first: '$month'},
+                users: {$first: '$users'},
+            }
+        },
+        {$sort: {"max": -1}},
+
+    ]).exec((err, stats)=>{
+
+        if (err) process.emit("mysqlError", err);
+        else {
+
+            let mostAwards;
+            let max = 0;
+            let total = 0;
+            stats.map(s=>{
+                total+=s.count;
+                if(s.count > max ){
+                    mostAwards = s;
+                    max = s.count;
                 }
-            },
-            {$sort: {"_id.year":-1, "_id.month": -1}},
-        ])
-        .exec(function (err, tasks) {
-            if (err) next(err);
+            });
 
-            res.json(tasks);
+            result = {};
+            result.mostAwardsWon = mostAwards._id || "it's mostly a draw";
+            result.countFinishedAwards = total;
+            result.lastAward = stats[0].last;
+            result.lastAwardWonBy = stats[0]._id || findwinners(stats[0].users);
+
+            res.json(result);
             res.end();
-        })
+        }
+    });
+
 
 });
 
@@ -176,7 +256,7 @@ router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next
     //do not remove! req.params nodig voor redirect
     let uid = res.locals.uid || req.params.fbUser;
 
-    console.log(uid);
+    //console.log(uid);
 
     process.on("mysqlError", (err) => {
         return next(err);
@@ -477,8 +557,6 @@ router.post('/addtask',[checkTaskFormat, firebaseAuthenticator], function (req, 
 //controle door: Bart & Nick
 router.post('/updatetask', [checkTaskFormat, firebaseAuthenticator] , function (req, res, next) {
 
-    console.log(req.body);
-
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -525,11 +603,11 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
                 finished_on: receivedTask.finished_on
             });
 
-            console.log(typeof finishedTask.finished_on + finishedTask.finished_on);
+            //console.log(typeof finishedTask.finished_on + finishedTask.finished_on);
 
             finishedTask.save(function (err) {
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
                     return next(err);
                 }
 
@@ -866,6 +944,7 @@ router.get('/importtasks/:household/:assignusers?',  firebaseAuthenticator, func
 //controle door: bart the almighty (en nee, het werkte niet)
 router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
 
+
     process.on("mysqlError", (err) => {
         return next(err);
     });
@@ -891,11 +970,9 @@ router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
 
     });
 
-    console.log(arrayToSend);
-
     Task.addTasks(arrayToSend, function (firstID) {
 
-        console.log(firstID);
+        //console.log(firstID);
 
         Task.getImportedTasks(household.id, firstID, (tasks)=>{
 

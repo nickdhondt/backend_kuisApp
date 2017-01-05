@@ -38,7 +38,7 @@ export class AllTasksComponent implements OnInit {
                     this.user = data;
                     this.loading = false;
                 },
-                error => console.log(error)
+                error => {}
             );
     }
 
@@ -55,7 +55,7 @@ export class AllTasksComponent implements OnInit {
                 this.dialogTitle = "Please confirm";
                 this.cancelOKVisible = true;
             },
-            error => console.log(error)
+            error => {}
         );
 
     }
@@ -66,11 +66,11 @@ export class AllTasksComponent implements OnInit {
 
             this.apiSevice.addTasks(this.importedTasks).subscribe(
                 data=>{
-                    console.log(this.user.household.tasks.length);
+                    //console.log(this.user.household.tasks.length);
                     this.user.household.tasks = this.user.household.tasks.concat(data.map(d=>Task.makeTaskFromJSON(d)));
-                    console.log(this.user.household.tasks.length);
+                    //console.log(this.user.household.tasks.length);
                 },
-                error => console.log(error)
+                error => {}
             )
         }
 

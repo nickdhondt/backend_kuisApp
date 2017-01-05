@@ -42,7 +42,6 @@ import {FinishedBarComponent} from "./household/charts/finished-bar/finished-bar
 import {ContributionDonutComponent} from "./household/charts/contribution-donut/contribution-donut.component";
 import {EvolutionLineComponent} from "./household/charts/evolution-line/evolution-line.component";
 import {TasksDonutComponent} from "./household/charts/tasks-donut/tasks-donut.component";
-import {ChartsModule} from "ng2-charts";
 import {AboutComponentComponent} from "./navigation/about-component/about-component.component";
 import {LeaveHouseholdComponent} from "./household/leave-household/leave-household.component";
 import {EditHouseholdComponent} from "./household/edit-household/edit-household.component";
@@ -94,7 +93,7 @@ import {CancelOKdialogComponent} from "./cancel-okdialog/cancel-okdialog.compone
 
     ],
     imports: [
-        RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule, ChartsModule
+        RouterModule, AppRoutingModule, CommonModule, FormsModule, ChartistModule
     ],
     providers: [AuthService, ApiService, Contract],
     bootstrap: [MessageListComponent, MessageFormComponent, MessageItemComponent]

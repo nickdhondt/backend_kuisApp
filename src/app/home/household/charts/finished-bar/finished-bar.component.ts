@@ -105,13 +105,14 @@ export class FinishedBarComponent implements OnInit {
                 series[0].data.reverse();
                 series[1].data.reverse();
 
-                console.log({labels: labels, series:series});
+                //console.log({labels: labels, series:series});
 
                 resolve({labels: labels, series:series});
 
 
             },
-            error => console.log(error))
+            error => {}
+        )
     }
 
 
