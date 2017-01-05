@@ -43,7 +43,11 @@ export class TaskdetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.task === undefined) this.task = new Task();
+        if (this.task === undefined) {
+            this.task = new Task();
+            this.task.period = 7;
+            this.task.points = 3;
+        }
         this.taskLocal = _.clone(this.task);
 
         if (this.users) {
@@ -56,7 +60,7 @@ export class TaskdetailComponent implements OnInit {
             if (this.users !== undefined && !doMeUserSet) {
                 this.usersLocal = _.map(this.users, _.clone);
                 let doMeUser = new User;
-                doMeUser.name = "everyone";
+                doMeUser.name = "Everyone";
                 doMeUser.id = null;
 
                 this.usersLocal.push(doMeUser);
