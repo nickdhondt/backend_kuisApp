@@ -86,6 +86,14 @@ describe("user tests", function () {
             .end(function (err,res) {
                 res.status.should.equal(200);
                 res.body.household_id.should.equal(37);
+                res.body.email.should.equal(body.email);
+                res.body.imgsrc.should.equal(body.imgsrc);
+                res.body.lname.should.equal(body.lname);
+                res.body.score.should.equal(body.score);
+                res.body.uid.should.equal(body.uid);
+                res.body.name.should.equal(body.name);
+                res.body.id.should.equal(body.id);
+                res.body.phoneNumber.should.equal(body.phoneNumber);
                 done();
             });
     })
@@ -187,6 +195,9 @@ describe("household tests", function () {
             .end(function (err,res) {
                 res.status.should.equal(200);
                 res.body.name.should.equal(body.name);
+                res.body.id.should.equal(body.id);
+                res.body.phoneNumber.should.equal(body.phoneNumber);
+                res.body.address.should.equal(body.address);
                 done();
             });
     });
@@ -304,12 +315,19 @@ describe("task tests", function () {
             .expect(200)
             .end(function (err,res) {
                 res.status.should.equal(200);
+                res.body.description.should.equal(body.description);
+                res.body.dueDate.should.equal(body.dueDate);
+                res.body.household_id.should.equal(body.household_id);
+                res.body.period.should.equal(body.period);
+                res.body.points.should.equal(body.points);
+                res.body.name.should.equal(body.name);
+                res.body.assigned_to.should.equal(body.assigned_to);
                 done();
             });
     });
 
     it("should update a task", function (done) {
-        var body = {"description":"updateTest","dueDate":"2016-12-31","household_id":37,"period":7,"points":3,"name":"test api", "assigned_to":37};
+        var body = {"description":"updateTest","id":2596,"dueDate":"2016-12-31","household_id":37,"period":7,"points":3,"name":"test api", "assigned_to":37};
         server
             .post('/api/updatetask')
             .set({"Firebase-ID-Token": firebaseToken})
@@ -318,6 +336,13 @@ describe("task tests", function () {
             .end(function (err,res) {
                 res.status.should.equal(200);
                 assert.equal(err,null);
+                res.body.description.should.equal(body.description);
+                res.body.dueDate.should.equal(body.dueDate);
+                res.body.household_id.should.equal(body.household_id);
+                res.body.period.should.equal(body.period);
+                res.body.points.should.equal(body.points);
+                res.body.name.should.equal(body.name);
+                res.body.assigned_to.should.equal(body.assigned_to);
                 done();
             });
     });
@@ -333,7 +358,11 @@ describe("award tests", function () {
            .expect(200)
            .end(function (err,res) {
                res.status.should.equal(200);
-               res.body.household_id.should.equal(37);
+               res.body.household_id.should.equal(body.household_id);
+               res.body.creator_id.should.equal(body.creator_id);
+               res.body.description.should.equal(body.description);
+               res.body.month.should.equal(body.month);
+               res.body.name.should.equal(body.name);
                done();
            });
    }) 
