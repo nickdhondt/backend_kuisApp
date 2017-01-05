@@ -52,7 +52,7 @@ class getUser {
         ]).exec((err, stats)=>{
 
             if (err) process.emit("mysqlError", err);
-            else if (stats.lenght > 0){
+            else if (stats.length > 0){
 
                 let mostAwards;
                 let max = 0;
