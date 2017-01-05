@@ -17,7 +17,6 @@ import {ApiService} from "../service/api.service";
 import {SocketService} from "../service/socket.service";
 import {UpdateTaskListService} from "../service/update-task-list.service";
 import {UpdateHouseholdOverviewService} from "../service/update-household-overview.service";
-import {enableProdMode} from '@angular/core';
 
 const myFirebaseConfig = {
     apiKey: "AIzaSyB_BRv8vUg4D0njciLkTNqGBEfZM4cNVlQ",
@@ -30,7 +29,7 @@ const myFirebaseAuthConfig = {
     method: AuthMethods.Popup
 };
 
-enableProdMode();
+// enableProdMode();
 
 @NgModule({
     declarations: [
