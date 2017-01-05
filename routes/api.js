@@ -4,6 +4,7 @@ let router = express.Router();
 let bodyParser = require('body-parser');
 
 let fs = require('fs');
+let path = require('path');
 let mysql = require('mysql');
 let conn = require('../helpers/connection')(mysql);
 
@@ -37,24 +38,6 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', function (req, res) {
-    let routes = [];
-
-    for (let route of router.stack) {
-        let methods;
-        let path;
-
-        if (route.route !== undefined) {
-            path = route.route.path;
-            methods = Object.getOwnPropertyNames(route.route.methods);
-
-            routes.push({
-                path: "api" + path,
-                methods: methods
-            });
-        }
-    }
-
-    res.render('routes', {title: 'The Cleansing API routes', routes: routes});
     res.end();
 });
 
