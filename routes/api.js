@@ -87,7 +87,6 @@ router.get('/taskstatsbyhousehold', firebaseAuthenticator, function (req, res, n
 
         Task.getTaskStats(household.id, (data) => {
 
-            console.log(data);
             res.json(data);
             res.end();
 
