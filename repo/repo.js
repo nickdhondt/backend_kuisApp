@@ -52,7 +52,7 @@ class getUser {
         ]).exec((err, stats)=>{
 
             if (err) process.emit("mysqlError", err);
-            else {
+            else if (stats.lenght > 0){
 
                 let mostAwards;
                 let max = 0;
@@ -72,6 +72,14 @@ class getUser {
                 result.lastAwardWonBy = stats[0]._id || getUser.findwinners(stats[0].users, household.users);
 
                 cb(result);
+            }
+            else{
+                cb({
+                    mostAwardsWon: "nobody",
+                    countFinishedAwards: 0,
+                    lastAward: "no awards yet",
+                    lastAwardWonBy: "nobody",
+                })
             }
         });
     }
@@ -136,7 +144,16 @@ class getUser {
             .exec(function (err, stats) {
                 if (err)process.emit("mysqlError", err);
 
-                else cb(stats[0]);
+                else {
+                    if(stats[0]) cb(stats[0]);
+
+                    else cb({
+                        _id: "stats",
+                        mostPopularTask: "no tasks",
+                        countFinishedTasks: 0,
+                        countTotalScore: 0
+                    });
+                }
             });
 
     }
@@ -151,9 +168,8 @@ class getUser {
 
                     getUser.getTaskStatsFromMongo(rows[0].id, (statsTasks) => {
 
-                            user.household = Object.assign(rows[0], statsTasks);
-
-                            getUser.addUsersToHouseholdToUser(user, cb);
+                        user.household = Object.assign(rows[0], statsTasks);
+                        getUser.addUsersToHouseholdToUser(user, cb);
 
                     });
                 }
@@ -169,6 +185,7 @@ class getUser {
                 else {
 
                     userwithhousehold.household.users = rows;
+
 
                     getUser.getAwardStatsFromMongo(userwithhousehold.household, (stats)=>{
 
@@ -193,8 +210,6 @@ class getUser {
 
                 }
             })
-
-
     }
 
 

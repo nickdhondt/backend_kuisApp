@@ -179,6 +179,7 @@ router.get('/seedfinishedtasks', (req, res, next)=>{
 
     Task.getTasksUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", tasks=>{
 
+        //console.log(tasks);
         res.json(tasks);
         res.end();
     });
@@ -201,10 +202,9 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
 
+
     //do not remove! req.params nodig voor redirect
     let uid = res.locals.uid || req.params.fbUser;
-
-    //console.log(uid);
 
     process.on("mysqlError", (err) => {
         return next(err);

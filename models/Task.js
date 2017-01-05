@@ -118,12 +118,15 @@ class Task {
 
     }
 
-    static getTasksUID(id, obj, cb) {
+    static getTasksUID(id, cb) {
 
         conn.query("select * from `tasks` where `household_id` = (select `household_id` from `users` where `uid` = ?)", [id],
             function (err, rows, fields) {
                 if (err) process.emit("mysqlError", err);
-                else cb(obj, rows);
+                else {
+                    console.log(rows);
+                    cb(rows);
+                }
             })
     }
 
