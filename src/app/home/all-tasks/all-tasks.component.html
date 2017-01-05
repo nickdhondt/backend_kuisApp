@@ -4,7 +4,8 @@
 
     <app-tasklist *ngIf="user"
                   [tasks]="user.household? user.household.tasks : []"
-                  [users]="user.household? user.household.users : undefined">
+                  [users]="user.household? user.household.users : undefined"
+    [hasHousehold]="user.household_id !== null">
     </app-tasklist>
     <div *ngIf="user && user.household" class="fixed-action-btn vertical click-to-toggle" style="margin-bottom: 4em">
         <a class="btn-floating btn-large red">
