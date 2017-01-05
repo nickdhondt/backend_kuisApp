@@ -1,5 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
+import {NgModule, enableProdMode} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
@@ -17,8 +17,6 @@ import {ApiService} from "../service/api.service";
 import {SocketService} from "../service/socket.service";
 import {UpdateTaskListService} from "../service/update-task-list.service";
 import {UpdateHouseholdOverviewService} from "../service/update-household-overview.service";
-import {ModalModule} from "angular2-modal";
-import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 
 const myFirebaseConfig = {
