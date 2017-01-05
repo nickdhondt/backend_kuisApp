@@ -249,7 +249,7 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
         res.end();
     });
 
-    //changes, so many changes
+
 });
 
 router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
