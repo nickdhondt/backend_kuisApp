@@ -3,7 +3,7 @@ var http = require('http');
 var should = require('should');
 var supertest = require("supertest");
 var server = supertest.agent("http://localhost:3000");
-var firebaseToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjZkMjhmYWIwMzliZTNjMWNiYTFlZTc3NDRkMjdmYTg2OTNkMTcwZDIifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20va3Vpc2FwcCIsIm5hbWUiOiJTdGV2ZW4gTW9sbGllIiwicGljdHVyZSI6Imh0dHBzOi8vc2NvbnRlbnQueHguZmJjZG4ubmV0L3YvbC90MS4wLTEvcDEwMHgxMDAvMTQzNTg2NDhfMTAyMDkxNjA5MzMyOTQyODBfNzU5MDI0MTczMjk5OTUwNTcyOF9uLmpwZz9vaD1lNTA0MjUzNWE4Y2NjZjViZTI1YTVkNGUwNDIyNWM5OSZvZT01OEQyMjNGNSIsImF1ZCI6Imt1aXNhcHAiLCJhdXRoX3RpbWUiOjE0ODMwMDkyOTcsInVzZXJfaWQiOiJHZllBMWhXYmtiZFU4dU93aENENFBXN3N5VVoyIiwic3ViIjoiR2ZZQTFoV2JrYmRVOHVPd2hDRDRQVzdzeVVaMiIsImlhdCI6MTQ4MzYyMDk4NSwiZXhwIjoxNDgzNjI0NTg1LCJlbWFpbCI6InN0ZXZlZGVtb2xsZUBob3RtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJmYWNlYm9vay5jb20iOlsiMTAyMDk2NzQ5NjM1MDQ3MTQiXSwiZW1haWwiOlsic3RldmVkZW1vbGxlQGhvdG1haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.QyOUgDNSX8_BvJU2_Gc7g-Hi3myA3E_1_95-VoQF5_UTHrz0iKMYmFnj0lNqr23XEbng5DsLU_IyEfAcvygeAgUuSk2aXLq0Q_DopMzFgUkRJYJUuN003uK-G2QdTsyNoCxYJYJeXZEF7kp4-tR7XwAEPaY5gc7ir0gOLWW-_i49QdqI2EBGa4llxcdaPv9EKM3qceszI_HXXVjebt71Omh9djamCvzLi6QUn9Dg6UuTWo1zFj1PunBOHgK3dze7i4fFOcAypCQFYY5Pgpn-rxMc4XmszHoi7StQFKlJAr9Miah7PmOsBg4_ElBp3yuQyryneyozUQdSqOGjyc8PyQ';
+var firebaseToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjZkMjhmYWIwMzliZTNjMWNiYTFlZTc3NDRkMjdmYTg2OTNkMTcwZDIifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20va3Vpc2FwcCIsIm5hbWUiOiJTdGV2ZW4gTW9sbGllIiwicGljdHVyZSI6ImhBzOi8vc2NvbnRlbnQueHguZmJjZG4ubmV0L3YvbC90MS4wLTEvcDEwMHgxMDAvMTQzNTg2NDhfMTAyMDkxNjA5MzMyOTQyODBfNzU5MDI0MTczMjk5OTUwNTcyOF9uLmpwZz9vaD1lNTA0MjUzNWE4Y2NjZjViZTI1YTVkNGUwNDIyNWM5OSZvZT01OEQyMjNGNSIsImF1ZCI6Imt1aXNhcHAiLCJhdXRoX3RpbWUiOjE0ODMwMDkyOTcsInVzZXJfaWQiOiJHZllBMWhXYmtiZFU4dU93aENENFBXN3N5VVoyIiwic3ViIjoiR2ZZQTFoV2JrYmRVOHVPd2hDRDRQVzdzeVVaMiIsImlhdCI6MTQ4MzYyNTc4NCwiZXhwIjoxNDgzNjI5Mzg0LCJlbWFpbCI6InN0ZXZlZGVtb2xsZUBob3RtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJmYWNlYm9vay5jb20iOlsiMTAyMDk2NzQ5NjM1MDQ3MTQiXSwiZW1haWwiOlsic3RldmVkZW1vbGxlQGhvdG1haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.nialtks2SAarmEJPtHCcXXEkUv-yxgxXxsqsjno9nFRgInnF2zsFCsclfm6_2MrBR5uZmrfU2Qrm1TrqTDgZZdTJNcLZcetxMekKjpDNZle0Zrsv7XONY9a1ZGUQgfcq8ZikJVhgndAzdg5Sj2VTKiZRCToVFv9OlSBc0xJtICjqx9485DW0pU7NPFr3cuLbtdxYxj4YaoLstFXzdvKkHrz7t09I1lcZ07LfCvawyMgjOBO9gMDRUwMpRWold_oD4M_2MhJvJ0N73S5ZnzCx_t0KeI-L2UurDUxnlQe4b7qbCYPtUPagkc1YU34vW0J9BlLwx0FQIB97Ie0xb4N50A';
 
 describe("user tests", function () {
     var lengthOfObject = function (obj) {
@@ -85,7 +85,7 @@ describe("user tests", function () {
             .expect(200)
             .end(function (err,res) {
                 res.status.should.equal(200);
-                res.body.household_id.should.equal(37);
+                res.body.household_id.should.equal(body.household_id);
                 res.body.email.should.equal(body.email);
                 res.body.imgsrc.should.equal(body.imgsrc);
                 res.body.lname.should.equal(body.lname);

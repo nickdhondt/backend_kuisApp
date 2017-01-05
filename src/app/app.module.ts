@@ -48,7 +48,7 @@ const myFirebaseAuthConfig = {
         CommonModule,
         HomeModule,
     ],
-    providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService, SocketService, UpdateTaskListService, UpdateHouseholdOverviewService],
+    providers: [AuthService, AuthGuard, UnauthGuard, Contract, ApiService, SocketService, UpdateTaskListService, UpdateHouseholdOverviewService,],
     bootstrap: [AppComponent],
 })
 
