@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input} from "@angular/core";
 import {SocketService} from "../../../../service/socket.service";
 import {ApiService} from "../../../../service/api.service";
 
@@ -10,6 +10,7 @@ import {ApiService} from "../../../../service/api.service";
 
 export class MessageListComponent implements OnInit {
     messages: Array<Object> = [];
+    @Input() changes:Boolean;
 
     constructor(private socketService:SocketService, private apiService:ApiService) {}
 
@@ -20,8 +21,10 @@ export class MessageListComponent implements OnInit {
             for(let message of data) {
                 this.messages.push({message: message.message, user:{name: message.name, lname:message.lname}});
             }
-            this.scrollToBottom();
         });
+    }
+    ngOnChanges() {
+        this.scrollToBottom();
     }
 
     private socketUpdate() {

@@ -1,7 +1,7 @@
 <div class="no-margin card-panel chat-panel">
     <a (click)="toggleChat()">{{isHidden ? 'Announcements' : 'X Close'}}</a>
 
-    <app-message-list [hidden]="isHidden"></app-message-list>
+    <app-message-list [hidden]="isHidden" [(changes)]="changes"></app-message-list>
     <app-message-form [hidden]="isHidden"></app-message-form>
 </div>
 
