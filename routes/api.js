@@ -129,7 +129,7 @@ router.get('/finishedcanceledstats', firebaseAuthenticator, function (req, res, 
     })
 });
 
-router.get('/seedmongoawards', function (req, res, next) {
+router.get('/seedmongoawards',firebaseAuthenticator, function (req, res, next) {
 
 
     let creators = [28,30,33,71];
@@ -189,7 +189,8 @@ router.get('/seedmongoawards', function (req, res, next) {
 
 });
 
-router.get('/test', (req, res, next)=>{
+router.get('/test', firebaseAuthenticator,(req, res, next)=>{
+
 
     let household_id = 37;
     FinishedAward.aggregate([
