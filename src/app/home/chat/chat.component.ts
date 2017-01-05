@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Household} from "../../../models/household.model";
 import {ApiService} from "../../../service/api.service";
+import {SocketService} from "../../../service/socket.service";
 
 @Component({
     selector: 'app-chat',
@@ -13,12 +14,16 @@ export class ChatComponent implements OnInit {
 
     household: Household = new Household();
 
-    constructor(private apiService: ApiService) {
+    constructor(private socketService:SocketService) {
 
     }
 
     ngOnInit() {
-        //this.getHousehold();
+        this.socketService
+            .receiveMessages()
+            .subscribe((msg) => {
+                this.isHidden = false;
+            });
     }
 
     private toggleChat(): void {
