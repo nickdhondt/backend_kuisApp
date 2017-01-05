@@ -112,9 +112,9 @@ router.get('/finishedcanceledstats', firebaseAuthenticator, function (req, res, 
     })
 });
 
-router.get('/seedmongoawards',firebaseAuthenticator, function (req, res, next) {
+router.get('/seedmongoawards',function (req, res, next) {
 
-
+    let household_id = 0;
     let creators = [28,30,33,71];
     let awards = [
         {id:1 ,name:"Geen afwas voor een week", description:""},
@@ -156,7 +156,7 @@ router.get('/seedmongoawards',firebaseAuthenticator, function (req, res, next) {
     //         description: award.description,
     //         month: begin.format("YYYY-MM-DD"),
     //         winner_id: creators[ Math.floor(Math.random() * (creators.length))],
-    //         household_id: 37,
+    //         household_id: household_id,
     //         users: users,
     //         creator_id: creators[ Math.floor(Math.random() * (creators.length))]
     //     });
@@ -172,52 +172,16 @@ router.get('/seedmongoawards',firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/test', firebaseAuthenticator,(req, res, next)=>{
+router.get('/seedfinishedtasks', (req, res, next)=>{
 
 
     let household_id = 37;
-    FinishedAward.aggregate([
 
-        {$match: {household_id: household_id}},
-        {$sort: {"month": -1}},
-        {
-            $group: {
-                _id: '$winner_id',
-                count: {$sum: 1},
-                last: {$first: '$name'},
-                max : {$first: '$month'},
-                users: {$first: '$users'},
-            }
-        },
-        {$sort: {"max": -1}},
+    Task.getTasksUID("yNk23UJPeQRsCdLvYQKKHonIzFa2", tasks=>{
 
-    ]).exec((err, stats)=>{
-
-        if (err) process.emit("mysqlError", err);
-        else {
-
-            let mostAwards;
-            let max = 0;
-            let total = 0;
-            stats.map(s=>{
-                total+=s.count;
-                if(s.count > max ){
-                    mostAwards = s;
-                    max = s.count;
-                }
-            });
-
-            result = {};
-            result.mostAwardsWon = mostAwards._id || "it's mostly a draw";
-            result.countFinishedAwards = total;
-            result.lastAward = stats[0].last;
-            result.lastAwardWonBy = stats[0]._id || findwinners(stats[0].users);
-
-            res.json(result);
-            res.end();
-        }
+        res.json(tasks);
+        res.end();
     });
-
 
 });
 
