@@ -112,66 +112,66 @@ router.get('/finishedcanceledstats', firebaseAuthenticator, function (req, res, 
     })
 });
 
-router.get('/seedmongoawards',function (req, res, next) {
-
-    let household_id = 148;
-    let creators = [251,252,253,254];
-    let awards = [
-        {id:1 ,name:"Geen afwas voor een week", description:""},
-        {id:2 ,name:"We trakteren met een film", description:""},
-        {id:3 ,name:"Controle over de tv", description:"Voor 3 dagen"},
-        {id:4 ,name:"Keuze van radiopost", description:"Voor de volledige maand!"},
-        {id:5 ,name:"Een (niet) sensuele voetmassage", description:""},
-        {id:6 ,name:"Drie gestreken hemden", description:"We strijken drie hemden voor jou!"},
-        {id:7 ,name:"Een lekkere Ename!", description:""},
-        {id:8 ,name:"Extra douchetijd 's morgens", description:"Een kwartier langer in de badkamer voor één week!"},
-        {id:9 ,name: "Een pak batterijen",description:"Voor in de dildo."},
-        {id:10 ,name: "Een maand gratis Bureaucontainers",description:""},
-        {id:12 ,name: "Drie wildcards",description:"Als je geen zin hebt om boodschappen te doen"},
-        {id:13 ,name: "Een groene koffietas over tuinieren",description:""},
-        {id:14 ,name: "Een jezusbeeldje",description:"Omdat het kan"},
-        {id:15 ,name: "Star Wars in concert on blu-ray",description:"Of dvd"}
-        ];
-
-
-    let index = 0;
-    let begin = moment().subtract(14, 'months');
-
-    while(begin < moment().subtract(1, 'months')){
-
-        begin = begin.add(1,'months');
-        index++;
-
-        let award = awards[index];
-
-
-        let users={};
-
-        creators.map(c=>{
-            users[c] =   Math.floor(Math.random() * (100));
-        });
-
-        let newFinishedAward = FinishedAward({
-            id: award.id,
-            name: award.name,
-            description: award.description,
-            month: begin.format("YYYY-MM-DD"),
-            winner_id: creators[ Math.floor(Math.random() * (creators.length))],
-            household_id: household_id,
-            users: users,
-            creator_id: creators[ Math.floor(Math.random() * (creators.length))]
-        });
-
-        newFinishedAward.save(function (err) {
-            if (err) console.log(err);
-            else console.log("saved :" + index);
-        })
-    }
-
-    res.send();
-    res.end();
-
-});
+// router.get('/seedmongoawards',function (req, res, next) {
+//
+//     let household_id = 148;
+//     let creators = [251,252,253,254];
+//     let awards = [
+//         {id:1 ,name:"Geen afwas voor een week", description:""},
+//         {id:2 ,name:"We trakteren met een film", description:""},
+//         {id:3 ,name:"Controle over de tv", description:"Voor 3 dagen"},
+//         {id:4 ,name:"Keuze van radiopost", description:"Voor de volledige maand!"},
+//         {id:5 ,name:"Een (niet) sensuele voetmassage", description:""},
+//         {id:6 ,name:"Drie gestreken hemden", description:"We strijken drie hemden voor jou!"},
+//         {id:7 ,name:"Een lekkere Ename!", description:""},
+//         {id:8 ,name:"Extra douchetijd 's morgens", description:"Een kwartier langer in de badkamer voor één week!"},
+//         {id:9 ,name: "Een pak batterijen",description:"Voor in de dildo."},
+//         {id:10 ,name: "Een maand gratis Bureaucontainers",description:""},
+//         {id:12 ,name: "Drie wildcards",description:"Als je geen zin hebt om boodschappen te doen"},
+//         {id:13 ,name: "Een groene koffietas over tuinieren",description:""},
+//         {id:14 ,name: "Een jezusbeeldje",description:"Omdat het kan"},
+//         {id:15 ,name: "Star Wars in concert on blu-ray",description:"Of dvd"}
+//         ];
+//
+//
+//     let index = 0;
+//     let begin = moment().subtract(14, 'months');
+//
+//     while(begin < moment().subtract(1, 'months')){
+//
+//         begin = begin.add(1,'months');
+//         index++;
+//
+//         let award = awards[index];
+//
+//
+//         let users={};
+//
+//         creators.map(c=>{
+//             users[c] =   Math.floor(Math.random() * (100));
+//         });
+//
+//         let newFinishedAward = FinishedAward({
+//             id: award.id,
+//             name: award.name,
+//             description: award.description,
+//             month: begin.format("YYYY-MM-DD"),
+//             winner_id: creators[ Math.floor(Math.random() * (creators.length))],
+//             household_id: household_id,
+//             users: users,
+//             creator_id: creators[ Math.floor(Math.random() * (creators.length))]
+//         });
+//
+//         newFinishedAward.save(function (err) {
+//             if (err) console.log(err);
+//             else console.log("saved :" + index);
+//         })
+//     }
+//
+//     res.send();
+//     res.end();
+//
+// });
 
 // router.get('/seedfinishedtasks', (req, res, next)=>{
 //
