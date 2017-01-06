@@ -3,6 +3,7 @@ import {Household} from "../../../../models/household.model";
 import {User} from "../../../../models/user.model";
 import {ApiService} from "../../../../service/api.service";
 import {SocketService} from "../../../../service/socket.service";
+import {UpdateAnnouncementHistoryService} from "../../../../service/update-announcement-history.service";
 
 @Component({
   selector: 'app-leave-household',
@@ -30,7 +31,7 @@ export class LeaveHouseholdComponent implements OnInit {
   @Output() visibleChange:EventEmitter<boolean>= new EventEmitter<boolean>();
   @Output() updatedUser: EventEmitter<any>=new EventEmitter();
 
-  constructor(private apiService: ApiService, private socketService:SocketService) { }
+  constructor(private apiService: ApiService, private socketService:SocketService, private updateAnnouncementHistoryService:UpdateAnnouncementHistoryService) { }
 
   ngOnInit() {
   }
@@ -49,6 +50,7 @@ export class LeaveHouseholdComponent implements OnInit {
               this.visibleChange.emit(this.visible);
               this.updatedUser.emit(user);
               //console.log(user);
+              this.updateAnnouncementHistoryService.updateHistoryNeeded()
           },
           error => {}
       );
