@@ -21,12 +21,12 @@ let Award = require("../models/Award");
 let Task = require("../models/Task");
 
 let repo = require("../repo/repo");
+let getUserPromises = require("../repo/promisesrepo");
 
 let moment = require("moment");
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
 let Announcement = require('../Mongo/MongoDB_Models/announcement.model');
-
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -40,6 +40,7 @@ router.use(function (req, res, next) {
 router.get('/', function (req, res) {
     res.end();
 });
+
 
 router.get('/contributionsbyhousehold', firebaseAuthenticator, function (req, res, next) {
 
@@ -239,7 +240,32 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 });
 
-router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
+//testje om promises te oefenen
+//bart
+router.get('/userbyuid/:fbUser',firebaseAuthenticator, function (req, res, next) {
+
+    getUserPromises.getUserByUID(res.locals.uid)
+        .then(user=>{
+            if(user.household_id){
+                return getUserPromises.addHouseholdToUser(user)
+                    .then(userwithhousehold=>getUserPromises.addUsers(userwithhousehold))
+                    .then(userwithhousehold=>getUserPromises.addTasks(userwithhousehold))
+                    .then(userwithhousehold=>getUserPromises.addTasksTodo(userwithhousehold))
+                    .then(userwithhousehold=>getUserPromises.addAward(userwithhousehold))
+                    .then(userwithhousehold=>getUserPromises.getTaskstatsFromMongo(userwithhousehold))
+                    .then(userwithhousehold=>getUserPromises.getAwardstatsFromMongo(userwithhousehold))
+            }
+            else return user;
+    }).then(user=>{
+        res.json(user);
+        res.end();
+    }).catch(err=>{
+        next(err)
+    });
+});
+
+//geen paniek: hier is de oude
+router.get('/userbyuidOLD/:fbUser', firebaseAuthenticator, function (req, res, next) {
 
 
     //do not remove! req.params nodig voor redirect
