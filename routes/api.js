@@ -242,18 +242,18 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 //testje om promises te oefenen
 //bart
-router.get('/userbyuid/:fbUser',firebaseAuthenticator, function (req, res, next) {
+router.get('/userbyuid/:fbUser', function (req, res, next) {
 
-    getUserPromises.getUserByUID(res.locals.uid)
+    getUserPromises.getUserByUID("yNk23UJPeQRsCdLvYQKKHonIzFa2")
         .then(user=>{
             if(user.household_id){
                 return getUserPromises.addHouseholdToUser(user)
-                    .then(userwithhousehold=>getUserPromises.addUsers(userwithhousehold))
-                    .then(userwithhousehold=>getUserPromises.addTasks(userwithhousehold))
-                    .then(userwithhousehold=>getUserPromises.addTasksTodo(userwithhousehold))
-                    .then(userwithhousehold=>getUserPromises.addAward(userwithhousehold))
-                    .then(userwithhousehold=>getUserPromises.getTaskstatsFromMongo(userwithhousehold))
-                    .then(userwithhousehold=>getUserPromises.getAwardstatsFromMongo(userwithhousehold))
+                    .then(getUserPromises.addUsers)
+                    .then(getUserPromises.addTasks)
+                    .then(getUserPromises.addTasksTodo)
+                    .then(getUserPromises.addAward)
+                    .then(getUserPromises.getTaskstatsFromMongo)
+                    .then(getUserPromises.getAwardstatsFromMongo)
             }
             else return user;
     }).then(user=>{
