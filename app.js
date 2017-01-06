@@ -5,11 +5,13 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let socket = require("socket.io");
+let compression = require("compression");
 
 let index = require('./routes/index');
 let api = require('./routes/api');
 
 let app = express();
+app.use(compression());
 
 let io = socket();
 app.io = io;
