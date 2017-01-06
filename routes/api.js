@@ -242,9 +242,9 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 
 //testje om promises te oefenen
 //bart
-router.get('/userbyuid/:fbUser', function (req, res, next) {
+router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
 
-    getUserPromises.getUserByUID("yNk23UJPeQRsCdLvYQKKHonIzFa2")
+    getUserPromises.getUserByUID(res.locals.uid)
         .then(user=>{
             if(user.household_id){
                 return getUserPromises.addHouseholdToUser(user)
