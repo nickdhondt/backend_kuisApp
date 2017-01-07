@@ -177,15 +177,8 @@ let getUserPromises = (()=> {
                             if (stats[0]._id) wonby = findwinner(stats[0]._id, userwithhousehold.household.users);
                             else wonby = findwinners(stats[0].users, userwithhousehold.household.users);
 
-                            let mostwon = "it's mostly a draw";
-
-                            if(mostAwards._id)
-                                mostwon = this.findwinner(mostAwards._id, userwithhousehold.household.users);
-
-                            console.log(mostwon);
-
                             let result = {};
-                            result.mostAwardsWon = mostwon;
+                            result.mostAwardsWon = mostAwards._id ? findwinner(mostAwards._id, userwithhousehold.household.users): "it's mostly a draw";
                             result.countFinishedAwards = total;
                             result.lastAward = stats[0].last;
                             result.lastAwardWonBy = wonby;
