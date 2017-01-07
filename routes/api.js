@@ -27,6 +27,7 @@ let moment = require("moment");
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
 let Announcement = require('../Mongo/MongoDB_Models/announcement.model');
+let Promise = require('promise');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -241,8 +242,10 @@ router.get('/userlimited', firebaseAuthenticator, function (req, res, next) {
 });
 
 //testje om promises te oefenen
-//bart
+//bart yNk23UJPeQRsCdLvYQKKHonIzFa2
 router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next) {
+
+    let start = Date.now();
 
     getUserPromises.getUserByUID(res.locals.uid)
         .then(user=>{
@@ -263,6 +266,7 @@ router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next
         next(err)
     });
 });
+
 
 //geen paniek: hier is de oude
 router.get('/userbyuidOLD/:fbUser', firebaseAuthenticator, function (req, res, next) {

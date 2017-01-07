@@ -202,6 +202,19 @@ let getUserPromises = (()=> {
         })
     };
 
+    let getUsers = (userwithhousehold)=>{
+        return new Promise((resolve, reject) => {
+
+            conn.query("select * from `users` where `household_id` = ? order by `id` asc", [userwithhousehold.household.id],
+                function (err, rows, fields) {
+                    if (err) reject(err);
+                    else {
+                        resolve({users:rows});
+                    }
+                })
+        })
+    };
+
     let addUsers = (userwithhousehold) => {
 
         return new Promise((resolve, reject) => {
@@ -218,6 +231,20 @@ let getUserPromises = (()=> {
 
     };
 
+    let getTasks = (userwithhoushold)=>{
+
+        return new Promise((resolve, reject) => {
+
+            conn.query("select * from `tasks` where `household_id` = ?", [userwithhousehold.household.id],
+                function (err, rows, fields) {
+                    if (err) reject(err);
+                    else {
+                        resolve({tasks: rows});
+                    }
+                })
+        });
+
+    };
     let addTasks = (userwithhousehold) => {
 
         return new Promise((resolve, reject) => {
@@ -233,6 +260,26 @@ let getUserPromises = (()=> {
         });
     };
 
+    let getTasksTodo = (userwithhousehold, term)=>{
+
+        return new Promise((resolve, reject) => {
+
+            term = term || 7;
+
+            let dueDate = new moment().add(term, "days").format("YYYY-MM-DD");
+
+            conn.query("select * from `tasks` where `household_id` = ? and `dueDate` <= ?",
+                [userwithhousehold.household.id, dueDate],
+                function (err, rows, fields) {
+                    if (err) reject(err);
+                    else {
+                        resolve({taskstodo : rows});
+                    }
+                });
+        })
+
+
+    };
     let addTasksTodo = (userwithhousehold, term) => {
 
         return new Promise((resolve, reject) => {
@@ -300,6 +347,9 @@ let getUserPromises = (()=> {
     };
 
     return{
+        getUsers,
+        getTasks,
+        getTasksTodo,
         addAward,
         addHouseholdToUser,
         addTasks,
