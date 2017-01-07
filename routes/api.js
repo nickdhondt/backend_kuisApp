@@ -33,8 +33,6 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 router.use(function (req, res, next) {
-    res.header("test: dit is een test");
-    res.header('Content-Encoding: gzip');
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Firebase-ID-Token");
     next();
