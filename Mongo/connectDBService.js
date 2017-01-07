@@ -10,26 +10,26 @@ module.exports = (function (configURL, database) {
 
     database.connection.on("open",function () {
         //mongoose test
-        //console.log("Connection succesfull");
+        console.log("Connection succesfull");
 
     });
 
     database.connection.on("error", function (error) {
-        //console.log("connection error : " + error.message);
+        console.log("connection error : " + error.message);
 
     });
     database.connection.on("close",function () {
-        //console.log("Connection closed", configURL);
+        console.log("Connection closed", configURL);
     });
 
   try{
     database.connect(configURL);
     db=mongoose.connection;
     mongoose.Promise=global.Promise;
-    //console.log("Started connection on =" + (configURL.text).cyan + ", waiting for it to open");
+    console.log("Started connection on =" + (configURL.text).cyan + ", waiting for it to open");
 
   }catch(err){
-    //console.log(("Setting up failed to connect to" + configURL).red,err.message);
+    console.log(("Setting up failed to connect to" + configURL).red,err.message);
   }
 
     return database;
