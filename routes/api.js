@@ -1001,7 +1001,7 @@ router.post('/addtasks', firebaseAuthenticator,  function (req, res, next) {
     });
 });
 
-router.get('/lastannouncements', function (req, res, next) {
+router.get('/lastannouncements', firebaseAuthenticator, function (req, res, next) {
     User.getUserByUID(res.locals.uid, function (user) {
         Announcement.find({'household_id': user.household_id}).sort({_id:-1}).limit(30).exec(function(err, posts){
             res.json(posts.reverse());
