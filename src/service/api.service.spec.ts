@@ -1,6 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import {TestBed, inject} from "@angular/core/testing";
 import {Headers, Http, Response, HttpModule} from "@angular/http";
+import "materialize-css";
+import "angular2-materialize";
 import {ApiService} from "./api.service";
 import {AppComponent} from "../app/app.component";
 import { RouterModule } from '@angular/router';
@@ -30,7 +32,6 @@ import {MaterializeDirective} from "angular2-materialize";
 import {TasklistComponent} from "../app/home/all-tasks/tasklist/tasklist.component";
 import {TaskdetailComponent} from "../app/home/taskdetail/taskdetail.component";
 import {HouseholdOverviewComponent} from "../app/home/household-overview/household-overview.component";
-import {LoaderSmallComponent} from "../app/home/loader-small/loader-small.component";
 import {UserImgComponent} from "../app/home/household-overview/user-img/user-img.component";
 import {UserDetailComponent} from "../app/home/household-overview/user-detail/user-detail.component";
 import {AwardComponent} from "../app/home/household-overview/award/award.component";
@@ -55,6 +56,12 @@ import {AboutComponentComponent} from "../app/home/navigation/about-component/ab
 import {LeaveHouseholdComponent} from "../app/home/household/leave-household/leave-household.component";
 import {EditHouseholdComponent} from "../app/home/household/edit-household/edit-household.component";
 import {CancelOKdialogComponent} from "../app/home/cancel-okdialog/cancel-okdialog.component";
+import {NotFoundComponent} from "../app/not-found/not-found.component";
+import {LoaderSmallComponent} from "../app/loader-small/loader-small.component";
+import { FormsModule }   from '@angular/forms';
+import {ChartistModule} from 'angular2-chartist';
+import { APP_BASE_HREF } from '@angular/common';
+
 
 const routes: Routes = [
     {path: '', component: LoginComponent, canActivate: [UnauthGuard]},
@@ -88,10 +95,12 @@ const myFirebaseAuthConfig = {
 describe('ApiService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [ApiService, Contract, AuthService],
+            providers: [ApiService, Contract, AuthService, { provide: APP_BASE_HREF, useValue: '/' }],
             imports: [
                 HttpModule,
                 RouterModule,
+                FormsModule,
+                ChartistModule,
                 AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
                 RouterModule.forRoot(routes)
             ],
@@ -113,7 +122,6 @@ describe('ApiService', () => {
                 TasklistComponent,
                 TaskdetailComponent,
                 HouseholdOverviewComponent,
-                LoaderSmallComponent,
                 UserImgComponent,
                 UserDetailComponent,
                 AwardComponent,
@@ -137,32 +145,15 @@ describe('ApiService', () => {
                 LeaveHouseholdComponent,
                 EditHouseholdComponent,
                 CancelOKdialogComponent,
+                LoginComponent,
+                NotFoundComponent,
+                LoaderSmallComponent
             ]
         });
     });
 
     it('should be an observable and should give something back', inject([ApiService], (service: ApiService) => {
         expect(service).toBeTruthy();
-        expect(service.getContributions());
-        service.getContributions().subscribe(
-            (data) => {
-               expect(data.length).toBeGreaterThan(0);
-            }
-        );
-        service.getFinishedCanceledStats().subscribe(
-            data => {
-                expect(data.length).toBeGreaterThan(0);
-            }
-        );
-        service.getTaskStats().subscribe(
-            data => {
-                expect(data.length).toBeGreaterThan(0);
-            }
-        );
-        service.getContributionEvolution().subscribe(
-            data => {
-                expect(data.length).toBeGreaterThan(0);
-            }
-        )
+
     }));
 });
