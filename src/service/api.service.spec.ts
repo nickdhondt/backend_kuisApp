@@ -57,6 +57,8 @@ import {LoaderSmallComponent} from "../app/loader-small/loader-small.component";
 import {FormsModule} from "@angular/forms";
 import {ChartistModule} from "angular2-chartist";
 import {Household} from "../models/household.model";
+import {Task} from "../models/task.model";
+import {User} from "../models/user.model";
 
 
 const routes: Routes = [
@@ -150,58 +152,73 @@ describe('ApiService', () => {
         TestBed.compileComponents();
     });
 
-    it('should be an observable and should give something back', inject([ApiService], (service: ApiService) => {
+    it('contributions should return an observable', inject([ApiService], (service: ApiService) => {
         expect(service).toBeTruthy();
         service.getContributions().subscribe((contributions)=>{
             expect(contributions.length).toBeGreaterThan(0);
         });
+    }));
+    it('finishedCanceledTasks should return an observable', inject([ApiService], (service: ApiService) => {
         service.getFinishedCanceledStats().subscribe((finishedCanceledTasks) =>{
+            console.log(finishedCanceledTasks);
             expect(finishedCanceledTasks.length).toBeGreaterThan(0);
         });
+    }));
+    it('getTaskStats should return an observable', inject([ApiService], (service: ApiService) => {
         service.getTaskStats().subscribe((taskStats) =>{
             expect(taskStats.length).toBeGreaterThan(0);
         });
     }));
-    it('should be an observable and should give something back', inject([ApiService], (service: ApiService) => {
+    it('getContributionEvolution should return an observable', inject([ApiService], (service: ApiService) => {
         service.getContributionEvolution().subscribe((contributionsEvolution)=>{
             expect(contributionsEvolution.length).toBeGreaterThan(0);
         });
-        service.importTasks(false).subscribe((tasks)=>{
-            expect(tasks.length).toBeGreaterThan(0);
-        });
-    }));
-    it('user object to be defined', inject([ApiService], (service: ApiService) => {
-        service.getEverything().subscribe((user)=>{
-            expect(user.name).toBeDefined();
-            expect(user.email).toBeDefined();
-            expect(user.household).toBeDefined();
-            expect(user.household_id).toBeDefined();
-            expect(user.id).toBeDefined();
-            expect(user.imgsrc).toBeDefined();
-            expect(user.lname).toBeDefined();
-            expect(user.phoneNumber).toBeDefined();
-        });
-    }));
-    it('householdobject to be defined', inject([ApiService], (service: ApiService) => {
-        service.getHouseholdbyEmail("mordicus_87@hotmail.com").subscribe((household) =>{
-            expect(household.id).toBeDefined();
-            expect(household.award).toBeDefined();
-            expect(household.countFinishedAwards).toBeDefined();
-            expect(household.countFinishedTasks).toBeDefined();
-            expect(household.countTasks).toBeDefined();
-            expect(household.countTotalScore).toBeDefined();
-            expect(household.lastAward).toBeDefined();
-            expect(household.lastAwardWonBy).toBeDefined();
-            expect(household.mostAwardsWon).toBeDefined();
-            expect(household.mostPopularTask).toBeDefined();
-            expect(household.name).toBeDefined();
-            expect(household.tasks).toBeDefined();
-            expect(household.taskstodo).toBeDefined();
-            expect(household.users).toBeDefined();
-        })
     }));
 
-    it("getHouseholdByEmail return a household object",
+    it("GetEverything return an array of user objects",
+        inject([MockBackend, ApiService],
+            (mockBackend: MockBackend, service:ApiService)=>{
+
+                mockBackend.connections.subscribe(
+                    (connection: MockConnection) => {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({
+                                body: [
+                                    {
+                                        "id":1,
+                                        "name":"steven",
+                                        "lname":"mollie",
+                                        "email":"stevedemolle@hotmail.com",
+                                        "household_id":1,
+                                        "score":20,
+                                        "phoneNumber":"0476525906",
+                                        "uid":"blablablabla",
+                                        "imgsrc":"imgsrc"
+                                    },
+                                    {
+                                        "id":2,
+                                        "name":"bart",
+                                        "lname":"delrue",
+                                        "email":"bart.delrue@hotmail.com",
+                                        "household_id":1,
+                                        "score":20,
+                                        "phoneNumber":"telnr",
+                                        "uid":"blablablabla",
+                                        "imgsrc":"imgsrc"
+                                    }
+                                ]
+                            })
+                            )
+                        )
+                    }
+                );
+
+                service.getEverything().subscribe(data => {
+
+                    expect(data[0] instanceof User).toBeTruthy() ;
+                });
+            }));
+    it("getHouseholdByEmail a household object",
         inject([MockBackend, ApiService],
             (mockBackend: MockBackend, service:ApiService)=>{
 
@@ -306,6 +323,48 @@ describe('ApiService', () => {
                 service.getHouseholdbyEmail("mordicus_87@hotmail.com").subscribe(data => {
 
                     expect(data instanceof Household).toBeTruthy() ;
+                });
+            }));
+
+    it("importTasks return an array of task objects",
+        inject([MockBackend, ApiService],
+            (mockBackend: MockBackend, service:ApiService)=>{
+
+                mockBackend.connections.subscribe(
+                    (connection: MockConnection) => {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({
+                                body: [
+                                    {
+                                        "id":1,
+                                        "name":"task1",
+                                        "dueDate":"2017/01/19",
+                                        "description":"clean the bathroom",
+                                        "period":4,
+                                        "assigned_to":71,
+                                        "household_id":1,
+                                        "points":30
+                                    },
+                                    {
+                                        "id":2,
+                                        "name":"task2",
+                                        "dueDate":"2017/01/19",
+                                        "description":"clean the kitchen",
+                                        "period":4,
+                                        "assigned_to":71,
+                                        "household_id":1,
+                                        "points":30
+                                    }
+                                ]
+                            })
+                            )
+                        )
+                    }
+                );
+
+                service.importTasks(false).subscribe(data => {
+
+                    expect(data[0] instanceof Task).toBeTruthy() ;
                 });
             }));
 });
