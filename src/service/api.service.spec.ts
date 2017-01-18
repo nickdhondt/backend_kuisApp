@@ -1,33 +1,29 @@
 /* tslint:disable:no-unused-variable */
 import {TestBed, inject} from "@angular/core/testing";
-import {Headers, Http, Response, HttpModule} from "@angular/http";
+import {HttpModule} from "@angular/http";
 import "materialize-css";
 import "angular2-materialize";
 import {ApiService} from "./api.service";
 import {AppComponent} from "../app/app.component";
-import { RouterModule } from '@angular/router';
 import {Contract} from "../contract";
 import {AuthService} from "../auth/services/auth.service";
 import {AuthMethods, AngularFireModule} from "angularfire2";
-import {Routes, RouterModule} from "@angular/router";
 import {LoginComponent} from "../app/login/login.component";
 import {AuthGuard} from "../auth/guard/auth.guard";
 import {Routes, RouterModule} from "@angular/router";
 import {UnauthGuard} from "../auth/guard/unauth.guard";
-import {NgModule} from "@angular/core";
 import {HomeComponent} from "../app/home/home.component";
 import {TasksTodoComponent} from "../app/home/tasks-todo/tasks-todo.component";
 import {AllTasksComponent} from "../app/home/all-tasks/all-tasks.component";
 import {HouseholdComponent} from "../app/home/household/household.component";
 import {NavigationComponent} from "../app/home//navigation/navigation.component";
 import {HeaderComponent} from "../app/home/header/header.component";
-import {CommonModule} from "@angular/common";
+import {APP_BASE_HREF} from "@angular/common";
 import {TodolistComponent} from "../app/home/tasks-todo/todolist/todolist.component";
 import {ChatComponent} from "../app/home/chat/chat.component";
 import {MessageListComponent} from "../app/home/chat/message-list/message-list.component";
 import {MessageFormComponent} from "../app/home/chat/message-form/message-form.component";
 import {MessageItemComponent} from "../app/home/chat/message-item/message-item.component";
-import {FormsModule} from "@angular/forms";
 import {MaterializeDirective} from "angular2-materialize";
 import {TasklistComponent} from "../app/home/all-tasks/tasklist/tasklist.component";
 import {TaskdetailComponent} from "../app/home/taskdetail/taskdetail.component";
@@ -47,7 +43,6 @@ import {NewHouseholdComponent} from "../app/home/household/new-household/new-hou
 import {JoinHouseholdComponent} from "../app/home/household/join-household/join-household.component";
 import {JoinHouseholdDetailComponent} from "../app/home/household/join-household-detail/join-household-detail.component";
 import {ChartsComponent} from "../app/home/household/charts/charts.component";
-import {ChartistModule} from "angular2-chartist";
 import {FinishedBarComponent} from "../app/home/household/charts/finished-bar/finished-bar.component";
 import {ContributionDonutComponent} from "../app/home/household/charts/contribution-donut/contribution-donut.component";
 import {EvolutionLineComponent} from "../app/home/household/charts/evolution-line/evolution-line.component";
@@ -58,9 +53,8 @@ import {EditHouseholdComponent} from "../app/home/household/edit-household/edit-
 import {CancelOKdialogComponent} from "../app/home/cancel-okdialog/cancel-okdialog.component";
 import {NotFoundComponent} from "../app/not-found/not-found.component";
 import {LoaderSmallComponent} from "../app/loader-small/loader-small.component";
-import { FormsModule }   from '@angular/forms';
-import {ChartistModule} from 'angular2-chartist';
-import { APP_BASE_HREF } from '@angular/common';
+import {FormsModule} from "@angular/forms";
+import {ChartistModule} from "angular2-chartist";
 
 
 const routes: Routes = [
