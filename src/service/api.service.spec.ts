@@ -201,7 +201,7 @@ describe('ApiService', () => {
         })
     }));
 
-    it("should return a household object",
+    it("getHouseholdByEmail return a household object",
         inject([MockBackend, ApiService],
             (mockBackend: MockBackend, service:ApiService)=>{
 
