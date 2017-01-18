@@ -173,15 +173,15 @@ describe('ApiService', () => {
         });
     }));
     it('user object to be defined', inject([ApiService], (service: ApiService) => {
-        service.getEverything().subscribe((everything)=>{
-            expect(everything.name).toBeDefined();
-            expect(everything.email).toBeDefined();
-            expect(everything.household).toBeDefined();
-            expect(everything.household_id).toBeDefined();
-            expect(everything.id).toBeDefined();
-            expect(everything.imgsrc).toBeDefined();
-            expect(everything.lname).toBeDefined();
-            expect(everything.phoneNumber).toBeDefined();
+        service.getEverything().subscribe((user)=>{
+            expect(user.name).toBeDefined();
+            expect(user.email).toBeDefined();
+            expect(user.household).toBeDefined();
+            expect(user.household_id).toBeDefined();
+            expect(user.id).toBeDefined();
+            expect(user.imgsrc).toBeDefined();
+            expect(user.lname).toBeDefined();
+            expect(user.phoneNumber).toBeDefined();
         });
     }));
     it('householdobject to be defined', inject([ApiService], (service: ApiService) => {
