@@ -154,6 +154,40 @@ describe('ApiService', () => {
 
     it('should be an observable and should give something back', inject([ApiService], (service: ApiService) => {
         expect(service).toBeTruthy();
-
+        service.getContributions().subscribe((contributions)=>{
+            expect(contributions.length).toBeGreaterThan(0);
+        });
+        service.getFinishedCanceledStats().subscribe((finishedCanceledTasks) =>{
+            expect(finishedCanceledTasks.length).toBeGreaterThan(0);
+        });
+        service.getTaskStats().subscribe((taskStats) =>{
+            expect(taskStats.length).toBeGreaterThan(0);
+        });
     }));
+    it('should be an observable and should give something back', inject([ApiService], (service: ApiService) => {
+        service.getContributionEvolution().subscribe((contributionsEvolution)=>{
+            expect(contributionsEvolution.length).toBeGreaterThan(0);
+        });
+        service.importTasks(false).subscribe((tasks)=>{
+            expect(tasks.length).toBeGreaterThan(0);
+        });
+    }));
+    it('user object to be defined', inject([ApiService], (service: ApiService) => {
+        service.getEverything().subscribe((everything)=>{
+            expect(everything.name).toBeDefined();
+            expect(everything.email).toBeDefined();
+            expect(everything.household).toBeDefined();
+            expect(everything.household_id).toBeDefined();
+            expect(everything.id).toBeDefined();
+            expect(everything.imgsrc).toBeDefined();
+            expect(everything.lname).toBeDefined();
+            expect(everything.phoneNumber).toBeDefined();
+        });
+    }));
+    it('householdobject to be defined', inject([ApiService], (service: ApiService) => {
+        service.getHouseholdbyEmail("mordicus_87@hotmail.com").subscribe((household) =>{
+            expect(household.id).toBeDefined();
+        })
+    }));
+
 });
