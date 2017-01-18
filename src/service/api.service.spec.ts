@@ -187,7 +187,19 @@ describe('ApiService', () => {
     it('householdobject to be defined', inject([ApiService], (service: ApiService) => {
         service.getHouseholdbyEmail("mordicus_87@hotmail.com").subscribe((household) =>{
             expect(household.id).toBeDefined();
+            expect(household.award).toBeDefined();
+            expect(household.countFinishedAwards).toBeDefined();
+            expect(household.countFinishedTasks).toBeDefined();
+            expect(household.countTasks).toBeDefined();
+            expect(household.countTotalScore).toBeDefined();
+            expect(household.lastAward).toBeDefined();
+            expect(household.lastAwardWonBy).toBeDefined();
+            expect(household.mostAwardsWon).toBeDefined();
+            expect(household.mostPopularTask).toBeDefined();
+            expect(household.name).toBeDefined();
+            expect(household.tasks).toBeDefined();
+            expect(household.taskstodo).toBeDefined();
+            expect(household.users).toBeDefined();
         })
     }));
-
 });
