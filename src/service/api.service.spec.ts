@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import {TestBed, inject} from "@angular/core/testing";
-import {HttpModule} from "@angular/http";
+import {MockBackend, MockConnection} from "@angular/http/testing";
+import {BaseRequestOptions, Http, XHRBackend, HttpModule, Response, ResponseOptions} from "@angular/http";
 import "materialize-css";
 import "angular2-materialize";
 import {ApiService} from "./api.service";
@@ -55,6 +56,7 @@ import {NotFoundComponent} from "../app/not-found/not-found.component";
 import {LoaderSmallComponent} from "../app/loader-small/loader-small.component";
 import {FormsModule} from "@angular/forms";
 import {ChartistModule} from "angular2-chartist";
+import {Household} from "../models/household.model";
 
 
 const routes: Routes = [
@@ -89,7 +91,8 @@ const myFirebaseAuthConfig = {
 describe('ApiService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [ApiService, Contract, AuthService, { provide: APP_BASE_HREF, useValue: '/' }],
+            providers: [ApiService, MockBackend, BaseRequestOptions, Contract, AuthService, { provide: APP_BASE_HREF, useValue: '/',Http, deps: [MockBackend, BaseRequestOptions],
+                useFactory: (backend: XHRBackend, defaultOptions: BaseRequestOptions)=> {return new Http(backend, defaultOptions)}}],
             imports: [
                 HttpModule,
                 RouterModule,
@@ -144,6 +147,7 @@ describe('ApiService', () => {
                 LoaderSmallComponent
             ]
         });
+        TestBed.compileComponents();
     });
 
     it('should be an observable and should give something back', inject([ApiService], (service: ApiService) => {
@@ -196,4 +200,112 @@ describe('ApiService', () => {
             expect(household.users).toBeDefined();
         })
     }));
+
+    it("should return a household object",
+        inject([MockBackend, ApiService],
+            (mockBackend: MockBackend, service:ApiService)=>{
+
+                mockBackend.connections.subscribe(
+                    (connection: MockConnection) => {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({
+                                body: {
+                                    "id":1,
+                                    "name":"The b@ckstack",
+                                    "tasktodo":[{
+                                        "id":1,
+                                        "name":"task1",
+                                        "dueDate":"2017/01/19",
+                                        "description":"clean the bathroom",
+                                        "period":4,
+                                        "assigned_to":71,
+                                        "household_id":1,
+                                        "points":30
+                                    },
+                                        {
+                                            "id":2,
+                                            "name":"task2",
+                                            "dueDate":"2017/01/19",
+                                            "description":"clean the kitchen",
+                                            "period":4,
+                                            "assigned_to":71,
+                                            "household_id":1,
+                                            "points":30
+                                        }
+                                    ],
+                                    "countFinishedTasks":4,
+                                    "countFinishedAwards":5,
+                                    "countTotalScore":200,
+                                    "countTasks":30,
+                                    "mostPopularTask":"clean the bathroom",
+                                    "mostAwardsWon":"Bart",
+                                    "lastAwardWonBy":"Steven",
+                                    "tasks":[
+                                        {
+                                            "id":1,
+                                            "name":"task1",
+                                            "dueDate":"2017/01/19",
+                                            "description":"clean the bathroom",
+                                            "period":4,
+                                            "assigned_to":71,
+                                            "household_id":1,
+                                            "points":30
+                                        },
+                                        {
+                                            "id":2,
+                                            "name":"task2",
+                                            "dueDate":"2017/01/19",
+                                            "description":"clean the kitchen",
+                                            "period":4,
+                                            "assigned_to":71,
+                                            "household_id":1,
+                                            "points":30
+                                        }
+                                    ],
+                                    "users":[
+                                        {
+                                            "id":1,
+                                            "name":"steven",
+                                            "lname":"mollie",
+                                            "email":"stevedemolle@hotmail.com",
+                                            "household_id":1,
+                                            "score":20,
+                                            "phoneNumber":"0476525906",
+                                            "uid":"blablablabla",
+                                            "imgsrc":"imgsrc"
+                                        },
+                                        {
+                                            "id":2,
+                                            "name":"bart",
+                                            "lname":"delrue",
+                                            "email":"bart.delrue@hotmail.com",
+                                            "household_id":1,
+                                            "score":20,
+                                            "phoneNumber":"telnr",
+                                            "uid":"blablablabla",
+                                            "imgsrc":"imgsrc"
+                                        },
+
+                                    ],
+                                    "award":{
+                                            "id":1,
+                                        "name":"award",
+                                        "month":"2017/01/19",
+                                        "description":"award of the month",
+                                        "winner_id":71,
+                                        "household_id":1,
+                                        "creator_id":71
+                                    }
+                                }
+                            })
+                            )
+                        )
+                    }
+                );
+
+                service.getHouseholdbyEmail("mordicus_87@hotmail.com").subscribe(data => {
+
+                    expect(data instanceof Household).toBeTruthy() ;
+                });
+            }));
 });
