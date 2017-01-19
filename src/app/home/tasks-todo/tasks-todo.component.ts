@@ -3,6 +3,7 @@ import {ApiService} from "../../../service/api.service";
 import {User} from "../../../models/user.model";
 import {UpdateHouseholdOverviewService} from "../../../service/update-household-overview.service";
 import {UpdateTaskListService} from "../../../service/update-task-list.service";
+import {SocketService} from "../../../service/socket.service";
 
 @Component({
   selector: 'app-tasks-todo',
@@ -13,10 +14,13 @@ export class TasksTodoComponent implements OnInit {
 
     ngOnInit(): void {
         this.getUser();
-        this.updateHouseholdOverviewService.householdUpdated$.subscribe((data) => {
-            this.getUser()
-        });
+
         this.updateTaskListService.listUpdated$.subscribe((data) => {
+            this.getUser();
+        });
+
+        this.socketService.taskUpdates().subscribe((data) => {
+            console.log(data);
             this.getUser();
         })
     }
@@ -26,7 +30,7 @@ export class TasksTodoComponent implements OnInit {
     currentUser:String;
     loading: Boolean = true;
 
-    constructor(private apiSevice: ApiService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, private updateTaskListService:UpdateTaskListService) {
+    constructor(private apiSevice: ApiService, private socketService:SocketService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, private updateTaskListService:UpdateTaskListService) {
     }
 
     getUser() {

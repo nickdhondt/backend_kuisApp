@@ -4,6 +4,7 @@ import {ApiService} from "../../../service/api.service";
 import {UpdateHouseholdOverviewService} from "../../../service/update-household-overview.service";
 import {Household} from "../../../models/household.model";
 import {Router} from "@angular/router";
+import {SocketService} from "../../../service/socket.service";
 
 @Component({
     selector: 'app-household',
@@ -18,9 +19,11 @@ export class HouseholdComponent implements OnInit {
 
     ngOnInit(): void {
         this.getUser();
-        this.updateHouseholdOverviewService.householdUpdated$.subscribe((data) => {
-            this.getUser()
-        });
+
+        this.socketService.taskUpdates().subscribe((data) => {
+            console.log(data);
+            this.getUser();
+        })
 
 
     }
@@ -29,7 +32,7 @@ export class HouseholdComponent implements OnInit {
     loading: Boolean = true;
     currenthousehold : Household;
 
-    constructor(private apiSevice: ApiService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, public router:Router) {
+    constructor(private apiSevice: ApiService, private socketService:SocketService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, public router:Router) {
 
     }
 
