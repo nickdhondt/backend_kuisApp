@@ -14,15 +14,14 @@ import {SocketService} from "../../../service/socket.service";
 export class HouseholdComponent implements OnInit {
 
     showDialogLeave: boolean = false;
-    showDialogEdit : boolean = false;
+    showDialogEdit: boolean = false;
 
 
     ngOnInit(): void {
         this.getUser();
 
         this.socketService.taskUpdates().subscribe((data) => {
-            console.log(data);
-            this.getUser();
+            this.getUser()
         })
 
 
@@ -30,9 +29,9 @@ export class HouseholdComponent implements OnInit {
 
     user: User;
     loading: Boolean = true;
-    currenthousehold : Household;
+    currenthousehold: Household;
 
-    constructor(private apiSevice: ApiService, private socketService:SocketService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, public router:Router) {
+    constructor(private apiSevice: ApiService, private socketService: SocketService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, public router: Router) {
 
     }
 
@@ -43,9 +42,10 @@ export class HouseholdComponent implements OnInit {
                 data => {
                     this.user = data;
                     this.loading = false;
-                    this.currenthousehold=data.household;
+                    this.currenthousehold = data.household;
                 },
-                error => {}
+                error => {
+                }
             );
     }
 
@@ -53,10 +53,10 @@ export class HouseholdComponent implements OnInit {
         this.user = user;
     }
 
-    openHouseholdDetailPopup(user){
-      this.showDialogEdit = !this.showDialogEdit;
+    openHouseholdDetailPopup(user) {
+        this.showDialogEdit = !this.showDialogEdit;
 
-      let stateObj = { foo: this.router.url };
-      history.pushState(stateObj, "popup", "currenthousehold");
+        let stateObj = {foo: this.router.url};
+        history.pushState(stateObj, "popup", "currenthousehold");
     }
 }

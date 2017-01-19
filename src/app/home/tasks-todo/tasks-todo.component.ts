@@ -6,9 +6,9 @@ import {UpdateTaskListService} from "../../../service/update-task-list.service";
 import {SocketService} from "../../../service/socket.service";
 
 @Component({
-  selector: 'app-tasks-todo',
-  templateUrl: './tasks-todo.component.html',
-  styleUrls: ['./tasks-todo.component.css']
+    selector: 'app-tasks-todo',
+    templateUrl: './tasks-todo.component.html',
+    styleUrls: ['./tasks-todo.component.css']
 })
 export class TasksTodoComponent implements OnInit {
 
@@ -20,17 +20,16 @@ export class TasksTodoComponent implements OnInit {
         });
 
         this.socketService.taskUpdates().subscribe((data) => {
-            console.log(data);
-            this.getUser();
+            this.getUser()
         })
     }
 
     user: User;
 
-    currentUser:String;
+    currentUser: String;
     loading: Boolean = true;
 
-    constructor(private apiSevice: ApiService, private socketService:SocketService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, private updateTaskListService:UpdateTaskListService) {
+    constructor(private apiSevice: ApiService, private socketService: SocketService, private updateHouseholdOverviewService: UpdateHouseholdOverviewService, private updateTaskListService: UpdateTaskListService) {
     }
 
     getUser() {
@@ -42,14 +41,14 @@ export class TasksTodoComponent implements OnInit {
                     this.loading = false;
                     this.currentUser = this.user.uid;
                 },
-                error => {}
+                error => {
+                }
             );
     }
 
-  receivenewHousehold(id)
-  {
-    //console.log("ReceivenewHousehold"+id);
-  }
+    receivenewHousehold(id) {
+        //console.log("ReceivenewHousehold"+id);
+    }
 
 
 }

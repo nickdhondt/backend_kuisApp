@@ -85,8 +85,8 @@ export class TasktodoRowComponent implements OnInit {
     private socketUpdate() {
         this.socketService.taskUpdates().subscribe((data) => {
             if (!this.isDestroyed && data.taskID === this.task.id) {
-                console.log(data.done);
                 if (data.done) {
+                    this.state = 'finished';
                     this.finish.emit(this.task);
                 } else {
                     this.state = "canceled";
