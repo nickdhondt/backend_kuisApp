@@ -597,14 +597,13 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
 
     let receivedTask = req.task;
 
-
     User.getUserByUID(res.locals.uid, function (user) {
 
         if (!user) return next(new Error("fbUser not found"));
 
         Task.getTaskByID(receivedTask.id, function (originalTask) {
 
-            if(receivedTask.dueDate && receivedTask.dueDate !== originalTask.dueDate){
+            if(receivedTask.dueDate && moment(receivedTask.dueDate).format("YYYY-MM-DD") !== moment(originalTask.dueDate).format("YYYY-MM-DD")){
                 return next(new Error("task already finished"))
             }
 
