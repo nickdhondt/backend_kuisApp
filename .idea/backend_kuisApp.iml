@@ -13,5 +13,15 @@
     <orderEntry type="library" name="chartist" level="application" />
     <orderEntry type="library" name="mongoose" level="application" />
     <orderEntry type="library" name="karma-jasmine-DefinitelyTyped" level="application" />
+    <orderEntry type="module-library">
+      <library name="PHP Runtime" type="php">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
+        </CLASSES>
+        <SOURCES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

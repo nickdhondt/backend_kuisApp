@@ -11,7 +11,7 @@ function checkFinishedTaskFormat(req, res, next) {
 
     if (!req.body.id) return next(new Error(format));
     if (req.body.done === undefined) return next(new Error(format));
-    if (!req.body.finished_by) return next(new Error(format));
+    if (!req.body.finished_by) req.body.finished_by = res.locals.uid;
     if (!req.body.finished_on) return next(new Error(format));
     if (!moment(req.body.finished_on).isValid()) return next(new Error(format));
 
