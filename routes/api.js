@@ -604,7 +604,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
 
         Task.getTaskByID(receivedTask.id, function (originalTask) {
 
-            if(receivedTask.dueDate && receivedTask.dueDate == originalTask.dueDate){
+            if(receivedTask.dueDate && receivedTask.dueDate !== originalTask.dueDate){
                 return next(new Error("task already finished"))
             }
 
