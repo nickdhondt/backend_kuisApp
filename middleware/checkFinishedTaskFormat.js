@@ -19,6 +19,7 @@ function checkFinishedTaskFormat(req, res, next) {
     task.done = req.body.done;
     task.finished_on = req.body.finished_on;
     task.finished_by = req.body.finished_by;
+    if(req.body.dueDate) task.dueDate = req.body.dueDate;
 
     req.task = task;
 
