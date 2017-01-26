@@ -641,7 +641,7 @@ router.post('/finishtask', [firebaseAuthenticator, checkFinishedTaskFormat], fun
                 //checked
                 let nextDue = moment(originalTask.dueDate).add(originalTask.period, "day");
 
-                while (nextDue.isBefore(moment())) {
+                while (nextDue.isBefore(moment().add(1,"day"))) {
 
                     nextDue = moment(nextDue).add(originalTask.period, "day");
 
