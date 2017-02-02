@@ -318,7 +318,7 @@ let getUserPromises = (()=> {
                             let awardDate = moment(award.month, "YYYY-MM-DD").month();
                             let now = moment().month();
 
-                            if (awardDate<now) {
+                            if (awardDate!=now) {
 
                                 Award.saveAwardToMongo(userwithhousehold.household, award);
 
