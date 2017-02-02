@@ -36,7 +36,11 @@ let getUserPromises = (()=> {
 
                             rows[0].imgsrc = "http://the-cleansing.herokuapp.com/assets/avatar.png";
 
-                            User.updateUser(rows[0],()=>{});
+                            User.updateUser(rows[0],(err, res)=>{
+
+
+
+                            });
 
                             resolve(rows[0])
                         }
