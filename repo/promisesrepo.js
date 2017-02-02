@@ -10,6 +10,8 @@ let User = require("../models/User");
 let Household = require("../models/Household");
 let Task = require("../models/Task");
 
+let request = require("request");
+
 let FinishedTask = require('../Mongo/MongoDB_Models/finishedtask.model');
 let FinishedAward = require('../Mongo/MongoDB_Models/finishedaward.model');
 
@@ -17,14 +19,33 @@ let mongoose = require('mongoose');
 
 let getUserPromises = (()=> {
 
-    let getUserByUID = (uid) => {
+    let getUserByUID = (fbUser) => {
 
         return new Promise((resolve, reject) => {
 
-            conn.query("select * from `users` where `uid` = ? limit 1", [uid], function (err, rows, fields) {
+            conn.query("select * from `users` where `uid` = ? limit 1", [fbUser.uid], function (err, rows, fields) {
 
                 if (err) reject(err);
-                else resolve(rows[0]);
+                else {
+
+                    request(rows[0].imgsrc, (err, res, body)=>{
+
+                        if(err || res.statusCode !== 200){
+
+                            //todo update picture!
+
+                            rows[0].imgsrc = "http://the-cleansing.herokuapp.com/assets/avatar.png";
+
+                            User.updateUser(rows[0],()=>{});
+
+                            resolve(rows[0])
+                        }
+                        else{
+                            resolve(rows[0])
+                        }
+
+                    });
+                }
             })
         });
     };

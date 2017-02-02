@@ -247,7 +247,7 @@ router.get('/userbyuid/:fbUser', firebaseAuthenticator, function (req, res, next
 
     let start = Date.now();
 
-    getUserPromises.getUserByUID(res.locals.uid)
+    getUserPromises.getUserByUID(res.locals.firebaseUser)
         .then(user=>{
             if(user.household_id){
                 return getUserPromises.addHouseholdToUser(user)
